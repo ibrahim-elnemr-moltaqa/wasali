@@ -1,0 +1,206 @@
+part of '../phone_field.dart';
+
+class IntelPhoneField extends StatelessWidget {
+  final TextEditingController? controller;
+  final bool obscureText;
+  final int? maxLength;
+  final int? maxLines;
+  final int? minLines;
+  final TextInputType? keyboardType;
+  final String? hint;
+  final Widget? suffix;
+  final Widget? prefix;
+  final Color? borderColor;
+  final void Function(IntelPhoneNumberEntity phoneNumber)? onChange;
+  final String? errorText;
+  final IntelPhoneNumberEntity? initialValue;
+  final Function(bool isValid)? isValidateListener;
+  final bool readOnly;
+  final bool showCountryCode;
+  final bool? filled;
+  final String? label;
+  final TextStyle? labelStyle;
+  final String? underLine;
+
+  final bool enabled;
+
+  const IntelPhoneField({
+    super.key,
+    this.controller,
+    this.obscureText = false,
+    this.maxLength,
+    this.maxLines = 1,
+    this.minLines,
+    this.keyboardType,
+    this.underLine,
+    this.hint,
+    this.suffix,
+    this.prefix,
+    this.borderColor,
+    this.onChange,
+    this.errorText,
+    this.initialValue,
+    this.readOnly = false,
+    this.showCountryCode = true,
+    this.isValidateListener,
+    this.filled,
+    this.enabled = true,
+    this.label,
+    this.labelStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (label?.isNotEmpty == true)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: Text(
+                label ?? '',
+                style: labelStyle,
+              ),
+            ),
+          Directionality(
+            textDirection: AppLanguageCubit.of(context).isArabic
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: _IntlPhoneField(
+              initialValue: initialValue?.numberWithoutZero,
+              dropdownIcon: Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.primary,
+                size: 24,
+              ),
+              // prefix: AppSvgIcon(path: AppIcons.callIcSvg_),
+              initialCountryCode: initialValue?.countryISOCode ?? "SA",
+              onChanged: onChange,
+              enabled: enabled,
+              // autovalidateMode: AutovalidateMode.disabled,
+              inputFormatters: [
+                // EnglishNumbersFormatter(),
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              invalidNumberMessage: appLocalizer.invalidPhoneNumber,
+              readOnly: readOnly,
+              controller: controller,
+              style: TextStyles.regular12,
+              hint: hint ?? appLocalizer.phoneNumber,
+              isValidateListener: isValidateListener,
+              cursorColor: AppColors.primary,
+            ),
+          ),
+          if (underLine != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              underLine!,
+              style: TextStyles.light10.copyWith(color: AppColors.secondary300),
+            ),
+          ]
+        ],
+      ),
+    );
+  }
+}
+
+class PhoneField extends StatelessWidget {
+  final TextEditingController? controller;
+  final void Function(String email)? onChanged;
+  final bool isOptional;
+  final TextStyle? labelStyle;
+  final String? hint;
+  final String? labelText;
+  final TextStyle? style;
+  final TextStyle? hintStyle;
+  final Widget? suffixIcon;
+  final String? underLine;
+
+  const PhoneField({
+    super.key,
+    this.controller,
+    this.onChanged,
+    this.underLine,
+    this.isOptional = false,
+    this.labelStyle,
+    this.hint,
+    this.labelText,
+    this.style,
+    this.hintStyle,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppTextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          controller: controller,
+          inputType: TextInputType.phone,
+          hintTextStyle: hintStyle ??
+              TextStyles.regular12.copyWith(color: AppColors.hintColor),
+          validate: (text) => Validator(text).phone,
+          onChanged: onChanged,
+          hintText: appLocalizer.phoneNumber,
+          labelTextStyle: labelStyle,
+          inputTextStyle: style,
+          textDirection: AppLanguageCubit.of(context).isArabic
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          filled: true,
+          maxLength: 9,
+          fillColor: AppColors.canvasBackgroundColor,
+          suffixIcon: AppLanguageCubit.of(context).isArabic
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (suffixIcon != null)
+                        suffixIcon!
+                      else ...[
+                        Text("966+ ",
+                            style: TextStyles.regular13
+                                .copyWith(color: AppColors.black, height: 1.2)),
+                        AppSvgIcon(path: AppIcons.flag),
+                      ],
+                    ],
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AppSvgIcon(path: AppIcons.callIcSvg_),
+                ),
+          prefixIcon: (isFocused) => AppLanguageCubit.of(context).isArabic
+              ? AppSvgIcon(path: AppIcons.callIcSvg_)
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (suffixIcon != null)
+                      suffixIcon!
+                    else ...[
+                      AppSvgIcon(path: AppIcons.flag),
+                      Text(" +966",
+                          style: TextStyles.regular13.copyWith(
+                              color: AppColors.secondary300, height: 1.2)),
+                    ],
+                  ],
+                ),
+        ),
+        if (underLine != null) ...[
+          Text(
+            underLine!,
+            style: TextStyles.light10.copyWith(color: AppColors.secondary300),
+          ),
+        ]
+      ],
+    );
+  }
+}

@@ -1,0 +1,109 @@
+import 'package:flutter/material.dart';
+import 'package:wasli/core/core.dart';
+
+class MainPageTabEntity {
+  final int index;
+  final String name;
+  final String icon;
+  final String activeIcon;
+  final Widget child;
+  const MainPageTabEntity({
+    required this.index,
+    required this.name,
+    required this.icon,
+    required this.activeIcon,
+    required this.child,
+  });
+}
+
+List<MainPageTabEntity> clientTaps = [
+  MainPageTabEntity(
+    index: 0,
+    name: appLocalizer.home,
+    icon: AppIcons.homeNav,
+    activeIcon: AppIcons.homeNavActive,
+    child: const Center(child: Text('Home')),
+  ),
+  MainPageTabEntity(
+    index: 1,
+    name: appLocalizer.orders,
+    icon: AppIcons.orderNav,
+    activeIcon: AppIcons.ordersNavActive,
+    child: const Center(child: Text('Orders')),
+  ),
+  MainPageTabEntity(
+    index: 2,
+    name: appLocalizer.more,
+    icon: AppIcons.moreNav,
+    activeIcon: AppIcons.moreNavActive,
+    child: const Center(child: Text('More')),
+  ),
+];
+
+List<MainPageTabEntity> deliveryTaps = [
+  MainPageTabEntity(
+    index: 0,
+    name: appLocalizer.home,
+    icon: AppIcons.homeNav,
+    activeIcon: AppIcons.homeNavActive,
+    child: const Center(child: Text('Home')),
+  ),
+  MainPageTabEntity(
+    index: 1,
+    name: appLocalizer.orders,
+    icon: AppIcons.orderNav,
+    activeIcon: AppIcons.ordersNavActive,
+    child: const Center(child: Text('Orders')),
+  ),
+  MainPageTabEntity(
+    index: 2,
+    name: appLocalizer.wallet,
+    icon: AppIcons.walletNav,
+    activeIcon: AppIcons.walletNavActive,
+    child: const Center(child: Text('Wallet')),
+  ),
+  MainPageTabEntity(
+    index: 3,
+    name: appLocalizer.more,
+    icon: AppIcons.moreNav,
+    activeIcon: AppIcons.moreNavActive,
+    child: const Center(child: Text('More')),
+  ),
+];
+List<MainPageTabEntity> providerTaps = [
+  MainPageTabEntity(
+    index: 0,
+    name: appLocalizer.home,
+    icon: AppIcons.homeNav,
+    activeIcon: AppIcons.homeNavActive,
+    child: const Center(child: Text('Home')),
+  ),
+  MainPageTabEntity(
+    index: 1,
+    name: appLocalizer.orders,
+    icon: AppIcons.orderNav,
+    activeIcon: AppIcons.ordersNavActive,
+    child: const Center(child: Text('Orders')),
+  ),
+  MainPageTabEntity(
+    index: 2,
+    name: appLocalizer.wallet,
+    icon: AppIcons.walletNav,
+    activeIcon: AppIcons.walletNavActive,
+    child: const Center(child: Text('Wallet')),
+  ),
+  MainPageTabEntity(
+    index: 3,
+    name: appLocalizer.offers,
+    icon: AppIcons.offersNav,
+    activeIcon: AppIcons.offersNavActive,
+    child: const Center(child: Text('Offers')),
+  ),
+  MainPageTabEntity(
+    index: 4,
+    name: appLocalizer.more,
+    icon: AppIcons.moreNav,
+    activeIcon: AppIcons.moreNavActive,
+    child: const Center(child: Text('More')),
+  ),
+];
