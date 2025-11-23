@@ -20,6 +20,7 @@ class NameField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? prefixIcon;
   final String? underLine;
+  final bool showCounter;
 
   const NameField({
     super.key,
@@ -40,6 +41,7 @@ class NameField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.underLine,
+    this.showCounter = false,
   });
 
   @override
@@ -65,9 +67,30 @@ class NameField extends StatelessWidget {
               (name) => Validator(name).name(isOptional: isOptional),
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
-          decoration: InputDecoration(
-            hintText: hint ?? appLocalizer.name,
+          buildCounter: (context,
+                  {required currentLength,
+                  required isFocused,
+                  required maxLength}) =>
+              Transform.translate(
+            offset: const Offset(-5, -35),
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white.withAlpha(230),
+              ),
+              child: Text(
+                '$currentLength / $maxLength',
+                textDirection: TextDirection.ltr,
+                style: TextStyles.regular12.copyWith(
+                  color: AppColors.greyColor,
+                ),
+              ),
+            ),
           ),
+          decoration: InputDecoration(
+              hintText: hint ?? appLocalizer.name,
+              counter: showCounter ? null : const SizedBox.shrink()),
           keyboardType: TextInputType.name,
           // inputTextStyle: style,
           // fillColor: fillColor,

@@ -1412,6 +1412,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get choose_region => 'Choose Region';
 
   @override
+  String get choose_city => 'Choose City';
+
+  @override
   String get your_location_on_map => 'Your Location on the Map';
 
   @override
@@ -1427,4 +1430,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get activation_sms_notice =>
       'You will receive an SMS soon confirming your account activation.';
+
+  @override
+  String get failedToGetLocationDetails => 'Failed to get location details';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get confirmAddress => 'Confirm Address';
 }

@@ -500,9 +500,13 @@
   "address_details": "Address Details",
   "region": "Region",
   "choose_region": "Choose Region",
+  "choose_city" : "Choose City",
   "your_location_on_map": "Your Location on the Map",
   "confirm_address": "Confirm Address",
   "search_street_or_area": "Search for a street name or area",
   "request_sent_to_admin": "Your request has been sent to the administration.",
-  "activation_sms_notice": "You will receive an SMS soon confirming your account activation."
+  "activation_sms_notice": "You will receive an SMS soon confirming your account activation.",
+  "failedToGetLocationDetails" : "Failed to get location details",
+  "address" : "Address",
+  "confirmAddress" : "Confirm Address"
 }

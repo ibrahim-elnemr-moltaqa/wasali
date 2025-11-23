@@ -503,9 +503,13 @@
   "address_details": "تفاصيل العنوان",
   "region": "المنطقة",
   "choose_region": "اختار المنطقة",
+  "choose_city" : "اختار المدينة",
   "your_location_on_map": "عنوانك على الخريطة",
   "confirm_address": "تأكيد العنوان",
   "search_street_or_area": "ابحث عن اسم الشارع او المنطقة",
   "request_sent_to_admin": "تم إرسال طلبك للإدارة",
-  "activation_sms_notice": "ستتلقى رسالة نصية تحتوي على تأكيد تفعيل حسابك قريبًا."
+  "activation_sms_notice": "ستتلقى رسالة نصية تحتوي على تأكيد تفعيل حسابك قريبًا.",
+  "failedToGetLocationDetails" : "فشل في استخراج بيانات العنوان",
+  "address" : "العنوان",
+  "confirmAddress" : "تاكيد العنوان"
 }

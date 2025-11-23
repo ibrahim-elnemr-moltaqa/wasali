@@ -117,6 +117,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/email.svg
   String get email => 'assets/icons/email.svg';
 
+  /// File path: assets/icons/fill-location.svg
+  String get fillLocation => 'assets/icons/fill-location.svg';
+
   /// File path: assets/icons/flag.svg
   String get flag => 'assets/icons/flag.svg';
 
@@ -298,6 +301,7 @@ class $AssetsIconsGen {
         doubleArrowIc,
         editIc,
         email,
+        fillLocation,
         flag,
         forwardArrowIc,
         fullLogoIc,
@@ -421,12 +425,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   String get logo => 'assets/images/logo.png';
 
+  /// File path: assets/images/map.png
+  String get map => 'assets/images/map.png';
+
+  /// File path: assets/images/marker.png
+  String get marker => 'assets/images/marker.png';
+
   /// File path: assets/images/saudi_flag.png
   String get saudiFlag => 'assets/images/saudi_flag.png';
 
   /// List of all assets
   List<String> get values =>
-      [americaFlag, appbarBackground, emptyState, logo, saudiFlag];
+      [americaFlag, appbarBackground, emptyState, logo, map, marker, saudiFlag];
 }
 
 class $AssetsLauncherIconGen {

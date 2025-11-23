@@ -19,11 +19,11 @@ import '../../material/paginated_scroll_view/domain/repositories/pagination_repo
     as _i173;
 import '../../material/paginated_scroll_view/domain/use_cases/fetch_pagination_data_use_case.dart'
     as _i266;
-import '../../src/layouts/user/register/data/repository_impl/user_register_repository_impl.dart'
+import '../../src/layouts/client/register/data/repository_impl/user_register_repository_impl.dart'
     as _i1073;
-import '../../src/layouts/user/register/domain/repository/user_register_repository.dart'
+import '../../src/layouts/client/register/domain/repository/user_register_repository.dart'
     as _i1036;
-import '../../src/layouts/user/register/domain/use_case/user_register_use_case.dart'
+import '../../src/layouts/client/register/domain/use_case/user_register_use_case.dart'
     as _i469;
 import '../../src/shared/auth/data/repository/authentication_repository_imp.dart'
     as _i565;
@@ -75,6 +75,22 @@ import '../../src/shared/common/domain/use_cases/menu/send_contact_us_message_us
     as _i404;
 import '../../src/shared/common/domain/use_cases/send_rate_use_case.dart'
     as _i25;
+import '../../src/shared/google_maps/data/data_sources/maps_data_source.dart'
+    as _i614;
+import '../../src/shared/google_maps/data/repository/maps_repository_imp.dart'
+    as _i596;
+import '../../src/shared/google_maps/domain/repository/maps_repository.dart'
+    as _i602;
+import '../../src/shared/google_maps/domain/use_cases/google_maps_api/get_location_address_use_case.dart'
+    as _i950;
+import '../../src/shared/google_maps/domain/use_cases/google_maps_api/get_maps_place_details_use_case.dart'
+    as _i949;
+import '../../src/shared/google_maps/domain/use_cases/google_maps_api/get_maps_search_suggestions_use_case.dart'
+    as _i346;
+import '../../src/shared/google_maps/domain/use_cases/location/enable_gps_and_handle_premistion.dart'
+    as _i185;
+import '../../src/shared/google_maps/domain/use_cases/location/get_current_user_location.dart'
+    as _i966;
 import '../../src/shared/notifications/data/data_sources/notification_data_source.dart'
     as _i113;
 import '../../src/shared/notifications/data/repository/notification_repository_imp.dart'
@@ -125,6 +141,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i351.GetIsUserAuthenticatedUseCase>(
         () => _i351.GetIsUserAuthenticatedUseCase());
+    gh.factory<_i185.EnableGpsAndHandlePermissionUseCase>(
+        () => _i185.EnableGpsAndHandlePermissionUseCase());
     gh.factory<_i143.WalletRepository>(
         () => _i78.WalletRepositoryImp(gh<_i351.DioHelper>()));
     gh.factory<_i722.MenuCommonRepository>(
@@ -132,6 +150,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i984.ThemeRepository>(() => _i715.ThemeRepositoryImp());
     gh.factory<_i177.SecureStorageDataSource>(
         () => _i177.SecureStorageDataSourceImpl());
+    gh.factory<_i614.MapsDataSource>(() => _i614.MapsDataSourceImpl());
     gh.factory<_i203.LanguageCacheDateSource>(
         () => _i203.LanguageCacheDateSourceImp());
     gh.factory<_i51.GetFaqUseCase>(
@@ -203,6 +222,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i1022.CanUpdatePhoneUseCase(gh<_i1005.AuthenticationRepository>()));
     gh.factory<_i310.UpdatePhoneUsecase>(
         () => _i310.UpdatePhoneUsecase(gh<_i1005.AuthenticationRepository>()));
+    gh.factory<_i602.MapsRepository>(
+        () => _i596.MapsRepositoryImp(gh<_i614.MapsDataSource>()));
     gh.factory<_i1036.UserRegisterRepository>(
         () => _i1073.UserRegisterRepositoryImpl(
               gh<_i351.DioHelper>(),
@@ -220,6 +241,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i543.GetEducationalSubjectUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i478.GetCitiesUseCase>(
         () => _i478.GetCitiesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i346.GetSearchSuggestionsUseCase>(
+        () => _i346.GetSearchSuggestionsUseCase(gh<_i602.MapsRepository>()));
+    gh.factory<_i950.GetMapLocationAddressUseCase>(
+        () => _i950.GetMapLocationAddressUseCase(gh<_i602.MapsRepository>()));
+    gh.factory<_i949.GetMapsPlaceDetailsUseCase>(
+        () => _i949.GetMapsPlaceDetailsUseCase(gh<_i602.MapsRepository>()));
     gh.factory<_i25.SendRateUseCase>(
         () => _i25.SendRateUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i266.FetchPaginatedDataUseCase<dynamic>>(() =>
@@ -237,6 +264,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i469.RegiserUseCase(gh<_i1036.UserRegisterRepository>()));
     gh.lazySingleton<_i306.UpdateNameUseCase>(() => _i306.UpdateNameUseCase(
         repository: gh<_i1005.AuthenticationRepository>()));
+    gh.factory<_i966.GetCurrentUserLocationUseCase>(
+        () => _i966.GetCurrentUserLocationUseCase(
+              gh<_i185.EnableGpsAndHandlePermissionUseCase>(),
+              gh<_i950.GetMapLocationAddressUseCase>(),
+            ));
     return this;
   }
 }

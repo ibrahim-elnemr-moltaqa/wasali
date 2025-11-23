@@ -83,6 +83,7 @@ dependencies:
   country_pickers: ^3.0.1
   flutter_animate: ^4.5.2
   animate_do: ^4.2.0
+  google_maps_flutter: ^2.14.0
 
 
 dev_dependencies:

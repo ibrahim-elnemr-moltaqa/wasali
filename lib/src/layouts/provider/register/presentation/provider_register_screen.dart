@@ -6,6 +6,7 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/src/layouts/provider/register/presentation/cubit/provider_register_cubit.dart';
 import 'package:wasli/src/layouts/provider/register/presentation/widget/provider_register_body.dart';
+import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/widgets/auth_app_bar_widget.dart';
 
 class ProviderRegisterScreen extends StatefulWidget {
@@ -51,9 +52,7 @@ class _ProviderRegisterScreenState extends State<ProviderRegisterScreen> {
                       valueListenable: currentStep,
                       builder: (context, value, child) {
                         return ProviderRegisterBody(
-                          onStepChanged: (value) {
-                            currentStep.value = value;
-                          },
+                          currentStep: currentStep,
                         );
                       }),
                 ],
@@ -76,15 +75,13 @@ class _ProviderRegisterScreenState extends State<ProviderRegisterScreen> {
                             : appLocalizer.next,
                         onPressed: () {
                           if (value == 2 && cubit.validateAllSteps()) {
-                            AppRouter.pushNamed(AppRoutes.otp, arguments: {
-                              'phone': context
-                                  .read<ProviderRegisterCubit>()
-                                  .phoneNumber
-                            });
-                          } else {
-                            context
-                                .read<ProviderRegisterCubit>()
-                                .nextStep(value);
+                            AppRouter.pushNamed(AppRoutes.otp,
+                                arguments: OtpScreenArguments(
+                                    phone: cubit.phoneNumber!,
+                                    caseEnum: OtpScreenCaseEnum.register));
+                          } else if (cubit.validateCurrentStep(value)) {
+                            currentStep.value = value + 1;
+                            cubit.nextStep(currentStep.value);
                           }
                         }),
                     const SizedBox(height: 20),

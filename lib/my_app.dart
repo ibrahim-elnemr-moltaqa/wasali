@@ -1,5 +1,5 @@
-import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/src/shared/common/presentation/choose_role/choose_role_page.dart';
+import 'package:wasli/src/shared/common/presentation/main_page/presentation/main_page.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/onboarding_page.dart';
 import 'src/shared/auth/presentation/login/login_page.dart';
 import 'package:flutter/material.dart';
@@ -86,15 +86,10 @@ class BuilderScreen extends StatelessWidget {
           root = const ChooseRolePage();
         } else if (state is AuthLogInPageState || state is AuthLogOutState) {
           root = const LoginPage();
+        } else if (state is AuthAuthenticatedState || state is GuestState) {
+          root = const MainPage();
         } else {
-          root = Scaffold(
-            body: Center(
-                child: AppButton(
-              onPressed: () =>
-                  AppAuthenticationBloc.of(context).add(LoggedOutEvent()),
-              text: appLocalizer.logOut,
-            )),
-          ); //MainPage;
+          root = const SizedBox.shrink();
         }
         return Material(
           color: Colors.white,

@@ -48,25 +48,7 @@ class AppRoutes {
   ///
   static const chatDetailsPage = '/ChatDetailsPage';
 
-  /// Student
+  /// Map
   ///
-  // static const studentAccountPage = '/StudentAccountPage';
-  // static const studentAccountPersonalInfoPage =
-  //     '/StudentAccountPersonalInfoPage';
-  // static const studentAccountBankInfoPage = '/StudentAccountBankInfoPage';
-  // static const studentAddChildPage = '/StudentAddChildPage';
-  // static const studentSwitchAccountPage = '/StudentSwitchAccountPage';
-  // static const studentStaticPage = '/StudentStaticPage';
-
-  /// Teacher
-  ///
-  // static const teacherWallet = '/TeacherWalletPage';
-  // static const teacherAccountPage = '/TeacherAccountPage';
-  // static const teacherAccountPersonalInfoPage =
-  //     "/TeacherAccountPersonalInfoPage";
-  // static const teacherAccountBanknfoPage = "/TeacherAccountBankInfoPage";
-  // static const teacherChangePhonePage = "/teacherChangePhonePage";
-  // static const teacherChangePasswordPage = "/teacherChangePasswordPage";
-  // static const teacherOtp = '/teacherOtpPage';
-  // static const teacherStaticPage = '/TeacherStaticPage';
+  static const mapPage = '/MapPage';
 }

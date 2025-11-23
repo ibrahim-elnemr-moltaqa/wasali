@@ -5,7 +5,7 @@ import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/inputs/app_text_form_field.dart';
 import 'package:wasli/src/layouts/delivery/register/presentation/cubit/delivery_register_cubit.dart';
 import 'package:wasli/src/layouts/delivery/register/presentation/cubit/delivery_register_state.dart';
-import 'package:wasli/src/layouts/delivery/register/presentation/widget/license_item_widget.dart';
+import 'package:wasli/src/shared/auth/presentation/widgets/dotted_upload_image_widget.dart';
 import 'package:wasli/src/shared/auth/presentation/widgets/accept_terms_tile.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
 
@@ -43,16 +43,20 @@ class DeliveryRegisterVehicleDataStep extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    LicenseItemWidget(
-                      title: appLocalizer.license_front,
-                      onChanged: (file) {},
+                    Expanded(
+                      child: DottedUploadImageWidget(
+                        title: appLocalizer.license_front,
+                        onChanged: (file) {},
+                      ),
                     ),
                     const SizedBox(
                       width: 12,
                     ),
-                    LicenseItemWidget(
-                      title: appLocalizer.license_back,
-                      onChanged: (file) {},
+                    Expanded(
+                      child: DottedUploadImageWidget(
+                        title: appLocalizer.license_back,
+                        onChanged: (file) {},
+                      ),
                     ),
                   ],
                 ).setTitle(
@@ -63,16 +67,20 @@ class DeliveryRegisterVehicleDataStep extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    LicenseItemWidget(
-                      title: appLocalizer.license_front,
-                      onChanged: (file) {},
+                    Expanded(
+                      child: DottedUploadImageWidget(
+                        title: appLocalizer.license_front,
+                        onChanged: (file) {},
+                      ),
                     ),
                     const SizedBox(
                       width: 12,
                     ),
-                    LicenseItemWidget(
-                      title: appLocalizer.license_back,
-                      onChanged: (file) {},
+                    Expanded(
+                      child: DottedUploadImageWidget(
+                        title: appLocalizer.license_back,
+                        onChanged: (file) {},
+                      ),
                     ),
                   ],
                 ).setTitle(

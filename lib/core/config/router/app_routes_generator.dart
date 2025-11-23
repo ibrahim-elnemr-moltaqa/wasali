@@ -1,7 +1,8 @@
 import 'package:wasli/src/layouts/delivery/register/presentation/delivery_register_screen.dart';
 import 'package:wasli/src/layouts/provider/register/presentation/provider_register_screen.dart';
-import 'package:wasli/src/layouts/user/register/presentation/user_register_page.dart';
+import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
+import 'package:wasli/src/shared/google_maps/presentation/maps_main_page.dart';
 import 'package:wasli/src/shared/more/settings/settings_page.dart';
 
 import '../../../src/shared/auth/presentation/login/login_page.dart';
@@ -69,6 +70,11 @@ class AppRoutesGenerator {
       ///
       case AppRoutes.providerRegister:
         page = const ProviderRegisterScreen();
+
+      /// MAP
+      ///
+      case AppRoutes.mapPage:
+        page = const MapsMainPage();
 
       default:
         page =

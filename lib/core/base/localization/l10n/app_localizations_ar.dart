@@ -1395,6 +1395,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get choose_region => 'اختار المنطقة';
 
   @override
+  String get choose_city => 'اختار المدينة';
+
+  @override
   String get your_location_on_map => 'عنوانك على الخريطة';
 
   @override
@@ -1409,4 +1412,13 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get activation_sms_notice =>
       'ستتلقى رسالة نصية تحتوي على تأكيد تفعيل حسابك قريبًا.';
+
+  @override
+  String get failedToGetLocationDetails => 'فشل في استخراج بيانات العنوان';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get confirmAddress => 'تاكيد العنوان';
 }

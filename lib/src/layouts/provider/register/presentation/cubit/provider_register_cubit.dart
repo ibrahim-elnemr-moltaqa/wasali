@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
@@ -9,10 +11,23 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
   final firstStepFormKey = GlobalKey<FormState>();
   final secondStepFormKey = GlobalKey<FormState>();
   final thirdStepFormKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+  TextEditingController storeNameController = TextEditingController();
+  TextEditingController storeEmailController = TextEditingController();
+  TextEditingController storeDescriptionController = TextEditingController();
+  TextEditingController addressDescription = TextEditingController();
+  TextEditingController addressDescriptionController = TextEditingController();
   IntelPhoneNumberEntity? phoneNumber;
   IntelPhoneNumberEntity? whatsAppPhoneNumber;
+  IntelPhoneNumberEntity? storePhoneNumber;
   bool isTermsAndConditionsAccepted = false;
+  File? storeImage;
+  File? commercialRegisterIamge;
+  String? mainCategory;
+  String? subCategory;
+  String? country;
+  String? region;
+  String? city;
 
   void changePhoneNumber(IntelPhoneNumberEntity? phoneNumber) {
     this.phoneNumber = phoneNumber;
@@ -21,6 +36,31 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
 
   void changeWhatsAppPhoneNumber(IntelPhoneNumberEntity? whatsAppPhoneNumber) {
     this.whatsAppPhoneNumber = whatsAppPhoneNumber;
+    emit(state);
+  }
+
+  void changeStorePhoneNumber(IntelPhoneNumberEntity? storePhoneNumber) {
+    this.storePhoneNumber = storePhoneNumber;
+    emit(state);
+  }
+
+  void changeStoreImage(File? image) {
+    storeImage = image;
+    emit(state);
+  }
+
+  void changeCommercialRegisterIamge(File? image) {
+    commercialRegisterIamge = image;
+    emit(state);
+  }
+
+  void changeMainCategory(String? mainCategory) {
+    this.mainCategory = mainCategory;
+    emit(state);
+  }
+
+  void changeSubCategory(String? subCategory) {
+    this.subCategory = subCategory;
     emit(state);
   }
 
@@ -44,8 +84,6 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
   }
 
   void nextStep(int step) {
-    if (!validateCurrentStep(step)) return;
-
     emit(state.copyWith(
       completedSteps: {
         ...state.completedSteps,

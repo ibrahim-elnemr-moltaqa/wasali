@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/layouts/client/home/presentation/client_home_page.dart';
+import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 
 class MainPageTabEntity {
   final int index;
@@ -14,6 +16,18 @@ class MainPageTabEntity {
     required this.activeIcon,
     required this.child,
   });
+
+  static List<MainPageTabEntity> getTaps({required RoleEnum type}) {
+    if (type == RoleEnum.client) {
+      return clientTaps;
+    } else if (type == RoleEnum.delivery) {
+      return deliveryTaps;
+    } else if (type == RoleEnum.provider) {
+      return providerTaps;
+    } else {
+      return [];
+    }
+  }
 }
 
 List<MainPageTabEntity> clientTaps = [
@@ -22,7 +36,7 @@ List<MainPageTabEntity> clientTaps = [
     name: appLocalizer.home,
     icon: AppIcons.homeNav,
     activeIcon: AppIcons.homeNavActive,
-    child: const Center(child: Text('Home')),
+    child: const ClientHomePage(),
   ),
   MainPageTabEntity(
     index: 1,

@@ -8,17 +8,11 @@ import 'package:wasli/src/layouts/provider/register/presentation/widget/store_da
 import 'package:wasli/src/shared/auth/domain/entities/auth_step_entity.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/widget/custom_auth_stepper_widget.dart';
 
-class ProviderRegisterBody extends StatefulWidget {
-  const ProviderRegisterBody({super.key, required this.onStepChanged});
+class ProviderRegisterBody extends StatelessWidget {
+  const ProviderRegisterBody({super.key, required this.currentStep});
 
-  final ValueChanged<int> onStepChanged;
+  final ValueNotifier<int> currentStep;
 
-  @override
-  State<ProviderRegisterBody> createState() => _ProviderRegisterBodyState();
-}
-
-class _ProviderRegisterBodyState extends State<ProviderRegisterBody> {
-  ValueNotifier<int> currentStep = ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -34,7 +28,6 @@ class _ProviderRegisterBodyState extends State<ProviderRegisterBody> {
                       steps: providerSteps,
                       onStepChanged: (index) {
                         currentStep.value = index;
-                        widget.onStepChanged(index);
                       },
                       completedSteps: state.completedSteps,
                     );

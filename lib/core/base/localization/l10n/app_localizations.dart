@@ -2798,6 +2798,12 @@ abstract class AppLocalizations {
   /// **'Choose Region'**
   String get choose_region;
 
+  /// No description provided for @choose_city.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose City'**
+  String get choose_city;
+
   /// No description provided for @your_location_on_map.
   ///
   /// In en, this message translates to:
@@ -2827,6 +2833,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You will receive an SMS soon confirming your account activation.'**
   String get activation_sms_notice;
+
+  /// No description provided for @failedToGetLocationDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to get location details'**
+  String get failedToGetLocationDetails;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get address;
+
+  /// No description provided for @confirmAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Address'**
+  String get confirmAddress;
 }
 
 class _AppLocalizationsDelegate
