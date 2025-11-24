@@ -131,7 +131,7 @@
   "registerAsServiceProvider": "تسجيل كمقدم خدمة",
   "mainServies": "الخدمات الأساسية",
   "bestsellerServices": "الخدمات الأكثر طلباً",
-  "welcomeOnApp": "مرحباً بك ! فى بُنيان تِك",
+  "welcomeOnApp": "مرحباً بك !",
   "conversations": "المحادثات",
   "orderOffers": "عروض الطلبات",
   "codeSentTo": "ادخل الكود الذي تم إرساله إلي",
@@ -511,5 +511,18 @@
   "activation_sms_notice": "ستتلقى رسالة نصية تحتوي على تأكيد تفعيل حسابك قريبًا.",
   "failedToGetLocationDetails" : "فشل في استخراج بيانات العنوان",
   "address" : "العنوان",
-  "confirmAddress" : "تاكيد العنوان"
+  "confirmAddress" : "تاكيد العنوان",
+  "selectLocation" : "تحديد موقعك",
+  "resturants" : "مطاعم",
+  "supermarker" : "سوبر ماركت",
+  "featuredOffers" : "العروض المميزة",
+  "delvieryTo" : "توصيل الى",
+  "opened" : "مفتوح",
+  "closed" : "مغلق",
+  "all" : "الكل",
+  "storeStatus" : "حاله المتجر",
+  "closestMe" : "الأقرب لي",
+  "topRated" : "الأعلى تقييم",
+  "supermarketName" : "اسم السوبر ماركت",
+  "sizes" : "الأحجام"
 }

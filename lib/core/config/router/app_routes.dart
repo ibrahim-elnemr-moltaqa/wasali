@@ -1,5 +1,5 @@
-import '../../../src/shared/more/settings/settings_page.dart';
 import '../../../src/shared/more/about_us/about_us_page.dart';
+import '../../../src/shared/more/settings/settings_page.dart';
 
 class AppRoutes {
   const AppRoutes._();
@@ -20,10 +20,12 @@ class AppRoutes {
   /// USER
   ///
   static const clientRegister = '/ClientRegisterPage';
+  static const allProvidersPage = '/allProvidersPage';
+  static const providerPage = '/providerPage';
 
   /// Provider
   ///
-  static const providerRegister = '/ProviderRegisterPage';
+  static const providerRegisterPage = '/ProviderRegisterPage';
 
   /// Delivery
   ///

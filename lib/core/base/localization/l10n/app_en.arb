@@ -126,7 +126,7 @@
   "welcomeIn": "Welcome to",
   "areYouServiceProvider": "Are you a service provider?",
   "registerAsServiceProvider": "Register as service provider",
-  "welcomeOnApp": "Welcome to Bonian-Tech",
+  "welcomeOnApp": "Welcome to!",
   "loginDescription": "Log in or create an account to explore the app",
   "createAccount": "Create Account",
   "bestsellerServices": "Bestseller services",
@@ -508,5 +508,18 @@
   "activation_sms_notice": "You will receive an SMS soon confirming your account activation.",
   "failedToGetLocationDetails" : "Failed to get location details",
   "address" : "Address",
-  "confirmAddress" : "Confirm Address"
+  "confirmAddress" : "Confirm Address",
+  "selectLocation" : "Select Location",
+  "featuredOffers" : "Featured Offers",
+  "resturants" : "Resturants",
+  "supermarker" : "Supermarkets",
+  "delvieryTo" : "Delivery to",
+  "opened" : "Opened",
+  "closed" : "Closed",
+  "all" : "All",
+  "storeStatus" : "Store status",
+  "topRated" : "Top Rated",
+  "closestMe" : "Closest me",
+  "supermarketName" : "Supermarket name",
+  "sizes" : "Sizes"
 }

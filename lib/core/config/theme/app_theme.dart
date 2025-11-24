@@ -38,6 +38,8 @@ abstract class AppTheme {
 
   final Color greyColor = const Color(0xffA3A3A3);
   final Color grey2Color = const Color(0xff666666);
+  final Color lightGreyColor = const Color(0xffE6E6E6);
+
   final Color borderColor = const Color(0xffF0F0F0);
   final Color disableBorderColor = const Color(0xffF0F0F0);
   final Color disableindicatorColor = const Color(0xffF2F2F2);

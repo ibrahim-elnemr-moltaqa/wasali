@@ -60,6 +60,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_down_2_ic.svg
   String get arrowDown2Ic => 'assets/icons/arrow_down_2_ic.svg';
 
+  /// File path: assets/icons/bag.svg
+  String get bag => 'assets/icons/bag.svg';
+
   /// File path: assets/icons/bank.svg
   String get bank => 'assets/icons/bank.svg';
 
@@ -119,6 +122,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/fill-location.svg
   String get fillLocation => 'assets/icons/fill-location.svg';
+
+  /// File path: assets/icons/fire.svg
+  String get fire => 'assets/icons/fire.svg';
 
   /// File path: assets/icons/flag.svg
   String get flag => 'assets/icons/flag.svg';
@@ -234,6 +240,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/replace-ic.svg
   String get replaceIc => 'assets/icons/replace-ic.svg';
 
+  /// File path: assets/icons/sar.svg
+  String get sar => 'assets/icons/sar.svg';
+
   /// File path: assets/icons/search-ic.svg
   String get searchIc => 'assets/icons/search-ic.svg';
 
@@ -251,6 +260,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/sms.svg
   String get sms => 'assets/icons/sms.svg';
+
+  /// File path: assets/icons/sort.svg
+  String get sort => 'assets/icons/sort.svg';
+
+  /// File path: assets/icons/star-fill.svg
+  String get starFill => 'assets/icons/star-fill.svg';
 
   /// File path: assets/icons/store.svg
   String get store => 'assets/icons/store.svg';
@@ -282,6 +297,7 @@ class $AssetsIconsGen {
         addToCartIc,
         arrowDownIc,
         arrowDown2Ic,
+        bag,
         bank,
         bellIc,
         calendar,
@@ -302,6 +318,7 @@ class $AssetsIconsGen {
         editIc,
         email,
         fillLocation,
+        fire,
         flag,
         forwardArrowIc,
         fullLogoIc,
@@ -340,12 +357,15 @@ class $AssetsIconsGen {
         rateAppIc,
         ratingIc,
         replaceIc,
+        sar,
         searchIc,
         search,
         settingsIc,
         shareIcSvg,
         shareIcSvg_,
         sms,
+        sort,
+        starFill,
         store,
         subscriptionIc,
         successIc,
@@ -431,12 +451,27 @@ class $AssetsImagesGen {
   /// File path: assets/images/marker.png
   String get marker => 'assets/images/marker.png';
 
+  /// File path: assets/images/resturants.png
+  String get resturants => 'assets/images/resturants.png';
+
   /// File path: assets/images/saudi_flag.png
   String get saudiFlag => 'assets/images/saudi_flag.png';
 
+  /// File path: assets/images/supermarket.png
+  String get supermarket => 'assets/images/supermarket.png';
+
   /// List of all assets
-  List<String> get values =>
-      [americaFlag, appbarBackground, emptyState, logo, map, marker, saudiFlag];
+  List<String> get values => [
+        americaFlag,
+        appbarBackground,
+        emptyState,
+        logo,
+        map,
+        marker,
+        resturants,
+        saudiFlag,
+        supermarket
+      ];
 }
 
 class $AssetsLauncherIconGen {

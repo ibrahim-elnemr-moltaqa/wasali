@@ -338,7 +338,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get registerAsServiceProvider => 'تسجيل كمقدم خدمة';
 
   @override
-  String get welcomeOnApp => 'مرحباً بك ! فى بُنيان تِك';
+  String get welcomeOnApp => 'مرحباً بك !';
 
   @override
   String get loginDescription => 'سجّل دخولك أو أنشئ حسابًا لاكتشاف التطبيق';
@@ -1421,4 +1421,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmAddress => 'تاكيد العنوان';
+
+  @override
+  String get selectLocation => 'تحديد موقعك';
+
+  @override
+  String get featuredOffers => 'العروض المميزة';
+
+  @override
+  String get resturants => 'مطاعم';
+
+  @override
+  String get supermarker => 'سوبر ماركت';
+
+  @override
+  String get delvieryTo => 'توصيل الى';
+
+  @override
+  String get opened => 'مفتوح';
+
+  @override
+  String get closed => 'مغلق';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get storeStatus => 'حاله المتجر';
+
+  @override
+  String get topRated => 'الأعلى تقييم';
+
+  @override
+  String get closestMe => 'الأقرب لي';
+
+  @override
+  String get supermarketName => 'اسم السوبر ماركت';
+
+  @override
+  String get sizes => 'الأحجام';
 }

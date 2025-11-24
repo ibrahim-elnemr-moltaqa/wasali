@@ -5,7 +5,7 @@ extension OnTapScaleAnimation on Widget {
   Widget onTapScaleAnimation({
     required VoidCallback onTap,
     Duration duration = const Duration(milliseconds: 200),
-    double scale = 1.2,
+    double scale = .8,
   }) {
     return _TapScaleAnimatedWidget(
       onTap: onTap,

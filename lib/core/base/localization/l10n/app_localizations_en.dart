@@ -337,7 +337,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registerAsServiceProvider => 'Register as service provider';
 
   @override
-  String get welcomeOnApp => 'Welcome to Bonian-Tech';
+  String get welcomeOnApp => 'Welcome to!';
 
   @override
   String get loginDescription =>
@@ -1439,4 +1439,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmAddress => 'Confirm Address';
+
+  @override
+  String get selectLocation => 'Select Location';
+
+  @override
+  String get featuredOffers => 'Featured Offers';
+
+  @override
+  String get resturants => 'Resturants';
+
+  @override
+  String get supermarker => 'Supermarkets';
+
+  @override
+  String get delvieryTo => 'Delivery to';
+
+  @override
+  String get opened => 'Opened';
+
+  @override
+  String get closed => 'Closed';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get storeStatus => 'Store status';
+
+  @override
+  String get topRated => 'Top Rated';
+
+  @override
+  String get closestMe => 'Closest me';
+
+  @override
+  String get supermarketName => 'Supermarket name';
+
+  @override
+  String get sizes => 'Sizes';
 }

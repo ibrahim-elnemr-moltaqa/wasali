@@ -121,4 +121,16 @@ class DeliveryRegisterCubit extends Cubit<DeliveryRegisterState> {
       super.emit(state);
     }
   }
+
+  @override
+  Future<void> close() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    ibanController.dispose();
+    identityNumberController.dispose();
+    bankAccountNumberController.dispose();
+    vehicleNumberController.dispose();
+
+    return super.close();
+  }
 }

@@ -108,6 +108,62 @@ extension ExtensionWidget on Widget {
         : this;
   }
 
+  Widget setBorder({
+    double? width,
+    Color? color,
+    double radius = 0,
+    EdgeInsetsGeometry? padding,
+    double strokeAlign = BorderSide.strokeAlignInside,
+  }) {
+    return Container(
+      padding: padding ?? EdgeInsets.zero,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: width ?? 1,
+          strokeAlign: strokeAlign,
+          color: color ?? AppColors.borderColor,
+        ),
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      child: this,
+    );
+  }
+
+  Container setContainerToView({
+    double? height,
+    double? width,
+    EdgeInsetsGeometry? margin,
+    EdgeInsetsGeometry? padding,
+    double? radius,
+    Color? color,
+    Color? borderColor,
+    AlignmentGeometry? alignment,
+    List<BoxShadow>? shadows,
+    Gradient? gradient,
+  }) {
+    return Container(
+      width: width,
+      height: height,
+      alignment: alignment,
+      margin: margin ?? EdgeInsets.zero,
+      padding: padding ?? EdgeInsets.zero,
+      decoration: ShapeDecoration(
+        color: color,
+        gradient: gradient,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(radius ?? 0)),
+          side: borderColor != null
+              ? BorderSide(
+                  color: borderColor,
+                )
+              : BorderSide.none,
+        ),
+        shadows: shadows,
+      ),
+      child: this,
+    );
+  }
+
   Widget zoomIn({
     Duration duration = const Duration(milliseconds: 800),
     Curve curve = Curves.fastOutSlowIn,

@@ -731,7 +731,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeOnApp.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Bonian-Tech'**
+  /// **'Welcome to!'**
   String get welcomeOnApp;
 
   /// No description provided for @loginDescription.
@@ -2851,6 +2851,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm Address'**
   String get confirmAddress;
+
+  /// No description provided for @selectLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Location'**
+  String get selectLocation;
+
+  /// No description provided for @featuredOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Offers'**
+  String get featuredOffers;
+
+  /// No description provided for @resturants.
+  ///
+  /// In en, this message translates to:
+  /// **'Resturants'**
+  String get resturants;
+
+  /// No description provided for @supermarker.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermarkets'**
+  String get supermarker;
+
+  /// No description provided for @delvieryTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery to'**
+  String get delvieryTo;
+
+  /// No description provided for @opened.
+  ///
+  /// In en, this message translates to:
+  /// **'Opened'**
+  String get opened;
+
+  /// No description provided for @closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closed;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @storeStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Store status'**
+  String get storeStatus;
+
+  /// No description provided for @topRated.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Rated'**
+  String get topRated;
+
+  /// No description provided for @closestMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Closest me'**
+  String get closestMe;
+
+  /// No description provided for @supermarketName.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermarket name'**
+  String get supermarketName;
+
+  /// No description provided for @sizes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sizes'**
+  String get sizes;
 }
 
 class _AppLocalizationsDelegate

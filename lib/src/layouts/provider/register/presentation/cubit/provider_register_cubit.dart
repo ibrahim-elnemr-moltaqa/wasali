@@ -11,7 +11,7 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
   final firstStepFormKey = GlobalKey<FormState>();
   final secondStepFormKey = GlobalKey<FormState>();
   final thirdStepFormKey = GlobalKey<FormState>();
-    TextEditingController nameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController storeNameController = TextEditingController();
   TextEditingController storeEmailController = TextEditingController();
   TextEditingController storeDescriptionController = TextEditingController();
@@ -103,5 +103,17 @@ class ProviderRegisterCubit extends Cubit<ProviderRegisterState> {
     if (!isClosed) {
       super.emit(state);
     }
+  }
+
+  @override
+  Future<void> close() {
+    nameController.dispose();
+    storeNameController.dispose();
+    storeEmailController.dispose();
+    storeDescriptionController.dispose();
+    addressDescription.dispose();
+    addressDescriptionController.dispose();
+
+    return super.close();
   }
 }

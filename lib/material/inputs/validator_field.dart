@@ -41,7 +41,7 @@ class ValidatorField<T> extends FormField<T?> {
 class DefaultInputFieldDesign extends StatelessWidget {
   const DefaultInputFieldDesign({
     super.key,
-     this.title,
+    this.title,
     required this.hint,
     required this.hasError,
     required this.errorMessage,
@@ -55,6 +55,8 @@ class DefaultInputFieldDesign extends StatelessWidget {
     this.heroTag,
     this.suffixIcon,
     this.borderRadius,
+    this.backgroundColor,
+    this.borderColor,
   });
   final double? borderRadius;
   final String? title;
@@ -70,6 +72,8 @@ class DefaultInputFieldDesign extends StatelessWidget {
   final TextStyle? hintStyle;
   final TextStyle? inputStyle;
   final Object? heroTag;
+  final Color? backgroundColor;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +91,8 @@ class DefaultInputFieldDesign extends StatelessWidget {
     final errorBorderColor =
         defaultInputDecoration.focusedErrorBorder?.borderSide.color ??
             AppColors.red700;
-    final borderColor = hasError ? errorBorderColor : defaultBorderColor;
+    final borderColor =
+        this.borderColor ?? (hasError ? errorBorderColor : defaultBorderColor);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: AnimatedSize(
@@ -99,7 +104,7 @@ class DefaultInputFieldDesign extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (title?.isNotEmpty==true)
+              if (title?.isNotEmpty == true)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6.0),
                   child: Text('$title', style: lableStyle),
@@ -117,7 +122,7 @@ class DefaultInputFieldDesign extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(borderRadius ?? 32),
                       border: Border.all(color: borderColor),
-                      color: AppColors.canvasBackgroundColor,
+                      color: backgroundColor ?? AppColors.canvasBackgroundColor,
                     ),
                     padding:
                         Theme.of(context).inputDecorationTheme.contentPadding,

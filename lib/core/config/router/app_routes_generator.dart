@@ -1,24 +1,25 @@
-import 'package:wasli/src/layouts/delivery/register/presentation/delivery_register_screen.dart';
-import 'package:wasli/src/layouts/provider/register/presentation/provider_register_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:wasli/src/layouts/client/providers/presentation/page/all_providers_page.dart';
+import 'package:wasli/src/layouts/client/providers/presentation/page/provider_page.dart';
 import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
+import 'package:wasli/src/layouts/delivery/register/presentation/delivery_register_screen.dart';
+import 'package:wasli/src/layouts/provider/register/data/enum/provider_enum.dart';
+import 'package:wasli/src/layouts/provider/register/presentation/provider_register_screen.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/google_maps/presentation/maps_main_page.dart';
 import 'package:wasli/src/shared/more/settings/settings_page.dart';
 
+import '../../../material/change_language/change_language_page.dart';
+import '../../../my_app.dart';
 import '../../../src/shared/auth/presentation/login/login_page.dart';
-
+import '../../../src/shared/auth/presentation/otp/otp_page.dart';
+import '../../../src/shared/more/about_us/about_us_page.dart';
 import '../../../src/shared/notifications/presentation/notifications_cubit.dart';
 import '../../../src/shared/notifications/presentation/notifications_dialog.dart';
-import '../../../src/shared/more/about_us/about_us_page.dart';
-import 'package:flutter/material.dart';
-import '../../../material/change_language/change_language_page.dart';
-import '../../../src/shared/auth/presentation/otp/otp_page.dart';
-
 import '../../../src/shared/wallet/presentation/payment_web_view/payment_webview_page.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'app_routes.dart';
 import '../../core.dart';
-import '../../../my_app.dart';
+import 'app_routes.dart';
 
 class AppRoutesGenerator {
   const AppRoutesGenerator._();
@@ -60,6 +61,13 @@ class AppRoutesGenerator {
       ///
       case AppRoutes.clientRegister:
         page = const UserRegisterPage();
+      case AppRoutes.allProvidersPage:
+        final arguments = settings.arguments as ProviderTypeEnum;
+        page = AllProvidersPage(
+          providerType: arguments,
+        );
+      case AppRoutes.providerPage:
+        page = const ProviderPage();
 
       /// DELIVERY
       ///
@@ -68,7 +76,7 @@ class AppRoutesGenerator {
 
       /// PROVIDER
       ///
-      case AppRoutes.providerRegister:
+      case AppRoutes.providerRegisterPage:
         page = const ProviderRegisterScreen();
 
       /// MAP

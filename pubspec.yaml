@@ -32,7 +32,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.4
   liquid_pull_to_refresh: ^3.0.1
-  carousel_slider: ^5.0.0
+  carousel_slider: ^5.1.1
   flutter_html: any
   flutter_gen: any # Auto Generate assets files [icons,images,fonts ,etc..]
   cached_network_image: ^3.4.1
@@ -42,6 +42,8 @@ dependencies:
   flutter_svg: ^2.0.17
   dotted_border: ^3.1.0
   video_player: ^2.9.1
+  gap: ^3.0.1
+
 
   # Service Locator
   get_it: ^8.0.3
@@ -84,6 +86,7 @@ dependencies:
   flutter_animate: ^4.5.2
   animate_do: ^4.2.0
   google_maps_flutter: ^2.14.0
+  smooth_page_indicator: ^1.2.1
 
 
 dev_dependencies:
