@@ -17,19 +17,22 @@ class AppRoutes {
   static const updatePasswordPage = '/UpdatePasswordPage';
   static const updatePhonePage = '/UpdatePhonePage';
 
-  /// USER
+  /// CLIENT
   ///
   static const clientRegister = '/ClientRegisterPage';
   static const allProvidersPage = '/allProvidersPage';
   static const providerPage = '/providerPage';
+  static const clientEditProfile = '/ClientEditProfilePage';
 
   /// Provider
   ///
   static const providerRegisterPage = '/ProviderRegisterPage';
+  static const providerEditProfile = '/ProviderEditProfilePage';
 
   /// Delivery
   ///
   static const deliveryRegister = '/DeliveryRegisterPage';
+  static const deliveryEditProfile = '/DeliveryEditProfilePage';
 
   /// Static Pages
   ///

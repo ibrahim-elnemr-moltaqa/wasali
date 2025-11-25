@@ -1,7 +1,7 @@
 {
   "@@locale": "ar",
   "locale": "EN",
-  "appName": "بُنيان-تِك",
+  "appName": "وصلي",
   "@-ERRORS-": {
     "description": "----------------- ERRORS Localizations -----------------"
   },
@@ -153,7 +153,7 @@
   "enterEmailAddress": "ادخل بريدك الإلكتروني",
   "agreeFor": "تأكيد سياية",
   "termsAndConditions": "االشروط والأحكام",
-  "aboutApp": "معلومات التطبيق",
+  "aboutApp": "عن التطبيق",
   "privacyPolicy": "سياسة الخصوصية",
   "completeAccountData": "استكمال بيانات الحساب",
   "age": "العمر",
@@ -524,5 +524,27 @@
   "closestMe" : "الأقرب لي",
   "topRated" : "الأعلى تقييم",
   "supermarketName" : "اسم السوبر ماركت",
-  "sizes" : "الأحجام"
+  "sizes" : "الأحجام",
+  "receive_orders": "استقبال طلبات",
+  "new_orders": "الطلبات الجديدة",
+  "pickup_type": "نوع الاستلام",
+  "customer_name": "اسم العميل",
+  "in_preparation": "قيد التجهيز",
+  "stop_receiving_today_question": "عدم استقبال طلبات اليوم ؟",
+  "stop_receiving_today_description": "لن يتمكن العملاء من إرسال طلبات جديدة اليوم حتى تقوم بتفعيل الاستقبال مرة أخرى",
+  "no_new_orders": "لم يتم استلام أي طلبات جديدة حتى الآن !",
+  "orders_will_appear": "ستظهر طلباتك هنا بمجرد استلام طلب جديد.",
+  "no_subscription": "لم تقم بالاشتراك في أي باقة بعد!",
+  "start_subscription_to_add_products": "ابدأ بالاشتراك في إحدى الباقات الآن لتتمكن من إضافة أول منتجاتك",
+  "subscription": "اشتراك",
+  "start_adding_products": "ابدأ بإضافة أول منتجاتك واستمتع بتجربة البيع!",
+  "start_your_journey": "ابدأ رحلتك الآن وأضف منتجاتك الأولى لعرضها للعملاء.",
+  "add_first_product": "أضف اول منتجاتك",
+  "your_current_location": "موقعك الحالى",
+  "cannot_detect_location": "لم نستطع تحديد موقعك الحالي !",
+  "enable_location_service": "تأكد من تفعيل خدمة الموقع للوصول بدقة إلى مكانك.",
+  "client_name" : "اسم العميل",
+  "customerSupport" : "الدعم الفنى",
+  "generalStatistics" : "الاحصائات العامة",
+  "previousOrders" : "الطلبات السابقة"
 }

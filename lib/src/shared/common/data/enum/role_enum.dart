@@ -5,7 +5,8 @@ import 'package:wasli/src/shared/common/presentation/main_page/domain/main_page_
 enum RoleEnum {
   client,
   provider,
-  delivery;
+  delivery,
+  guest;
 
   String get title {
     switch (this) {
@@ -15,6 +16,8 @@ enum RoleEnum {
         return appLocalizer.provider;
       case delivery:
         return appLocalizer.delivery;
+        default :
+        return '';
     }
   }
 
@@ -26,6 +29,8 @@ enum RoleEnum {
         return AppIllustrations.onBoarding1;
       case delivery:
         return AppIllustrations.onBoarding2;
+        default :
+        return '';
     }
   }
 
@@ -37,6 +42,8 @@ enum RoleEnum {
         return providerTaps;
       case delivery:
         return deliveryTaps;
+        default :
+        return [];
     }
   }
 
@@ -48,6 +55,8 @@ enum RoleEnum {
         return AppRoutes.providerRegisterPage;
       case delivery:
         return AppRoutes.deliveryRegister;
+        default :
+        return '';
     }
   }
 }

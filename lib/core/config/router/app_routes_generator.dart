@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:wasli/src/layouts/client/profile/client_edit_profile_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/all_providers_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/provider_page.dart';
 import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
@@ -68,6 +69,8 @@ class AppRoutesGenerator {
         );
       case AppRoutes.providerPage:
         page = const ProviderPage();
+      case AppRoutes.clientEditProfile:
+        page = const ClientEditProfilePage();
 
       /// DELIVERY
       ///

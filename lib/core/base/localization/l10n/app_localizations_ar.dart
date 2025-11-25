@@ -12,7 +12,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get locale => 'EN';
 
   @override
-  String get appName => 'بُنيان-تِك';
+  String get appName => 'وصلي';
 
   @override
   String get unexpectedError => 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.';
@@ -408,7 +408,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get termsAndConditions => 'االشروط والأحكام';
 
   @override
-  String get aboutApp => 'معلومات التطبيق';
+  String get aboutApp => 'عن التطبيق';
 
   @override
   String get privacyPolicy => 'سياسة الخصوصية';
@@ -972,9 +972,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get languageSettings => 'إعدادات اللغة';
 
   @override
-  String get aboutUs => 'About Us';
-
-  @override
   String get enableNotificationsRequest =>
       'يرجى تمكين إذن الإشعارات من إعدادات التطبيق';
 
@@ -1460,4 +1457,75 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sizes => 'الأحجام';
+
+  @override
+  String get receive_orders => 'استقبال طلبات';
+
+  @override
+  String get new_orders => 'الطلبات الجديدة';
+
+  @override
+  String get pickup_type => 'نوع الاستلام';
+
+  @override
+  String get customer_name => 'اسم العميل';
+
+  @override
+  String get in_preparation => 'قيد التجهيز';
+
+  @override
+  String get stop_receiving_today_question => 'عدم استقبال طلبات اليوم ؟';
+
+  @override
+  String get stop_receiving_today_description =>
+      'لن يتمكن العملاء من إرسال طلبات جديدة اليوم حتى تقوم بتفعيل الاستقبال مرة أخرى';
+
+  @override
+  String get no_new_orders => 'لم يتم استلام أي طلبات جديدة حتى الآن !';
+
+  @override
+  String get orders_will_appear => 'ستظهر طلباتك هنا بمجرد استلام طلب جديد.';
+
+  @override
+  String get no_subscription => 'لم تقم بالاشتراك في أي باقة بعد!';
+
+  @override
+  String get start_subscription_to_add_products =>
+      'ابدأ بالاشتراك في إحدى الباقات الآن لتتمكن من إضافة أول منتجاتك';
+
+  @override
+  String get subscription => 'اشتراك';
+
+  @override
+  String get start_adding_products =>
+      'ابدأ بإضافة أول منتجاتك واستمتع بتجربة البيع!';
+
+  @override
+  String get start_your_journey =>
+      'ابدأ رحلتك الآن وأضف منتجاتك الأولى لعرضها للعملاء.';
+
+  @override
+  String get add_first_product => 'أضف اول منتجاتك';
+
+  @override
+  String get your_current_location => 'موقعك الحالى';
+
+  @override
+  String get cannot_detect_location => 'لم نستطع تحديد موقعك الحالي !';
+
+  @override
+  String get enable_location_service =>
+      'تأكد من تفعيل خدمة الموقع للوصول بدقة إلى مكانك.';
+
+  @override
+  String get client_name => 'اسم العميل';
+
+  @override
+  String get customerSupport => 'الدعم الفنى';
+
+  @override
+  String get generalStatistics => 'الاحصائات العامة';
+
+  @override
+  String get previousOrders => 'الطلبات السابقة';
 }

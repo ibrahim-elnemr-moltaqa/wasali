@@ -107,7 +107,7 @@ abstract class AppLocalizations {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Bonian-tech'**
+  /// **'Wasali'**
   String get appName;
 
   /// No description provided for @unexpectedError.
@@ -869,7 +869,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutApp.
   ///
   /// In en, this message translates to:
-  /// **'App Information'**
+  /// **'About app'**
   String get aboutApp;
 
   /// No description provided for @privacyPolicy.
@@ -1976,12 +1976,6 @@ abstract class AppLocalizations {
   /// **'Language Settings'**
   String get languageSettings;
 
-  /// No description provided for @aboutUs.
-  ///
-  /// In en, this message translates to:
-  /// **'About Us'**
-  String get aboutUs;
-
   /// No description provided for @enableNotificationsRequest.
   ///
   /// In en, this message translates to:
@@ -2929,6 +2923,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sizes'**
   String get sizes;
+
+  /// No description provided for @receive_orders.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive Orders'**
+  String get receive_orders;
+
+  /// No description provided for @new_orders.
+  ///
+  /// In en, this message translates to:
+  /// **'New Orders'**
+  String get new_orders;
+
+  /// No description provided for @pickup_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Type'**
+  String get pickup_type;
+
+  /// No description provided for @customer_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Name'**
+  String get customer_name;
+
+  /// No description provided for @in_preparation.
+  ///
+  /// In en, this message translates to:
+  /// **'In Preparation'**
+  String get in_preparation;
+
+  /// No description provided for @stop_receiving_today_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop receiving orders today?'**
+  String get stop_receiving_today_question;
+
+  /// No description provided for @stop_receiving_today_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Customers won\'t be able to send new orders today until you enable receiving again.'**
+  String get stop_receiving_today_description;
+
+  /// No description provided for @no_new_orders.
+  ///
+  /// In en, this message translates to:
+  /// **'No new orders have been received yet!'**
+  String get no_new_orders;
+
+  /// No description provided for @orders_will_appear.
+  ///
+  /// In en, this message translates to:
+  /// **'Your orders will appear here as soon as you receive a new one.'**
+  String get orders_will_appear;
+
+  /// No description provided for @no_subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not subscribed to any plan yet!'**
+  String get no_subscription;
+
+  /// No description provided for @start_subscription_to_add_products.
+  ///
+  /// In en, this message translates to:
+  /// **'Start by subscribing to one of the plans to add your first products.'**
+  String get start_subscription_to_add_products;
+
+  /// No description provided for @subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get subscription;
+
+  /// No description provided for @start_adding_products.
+  ///
+  /// In en, this message translates to:
+  /// **'Start adding your first products and enjoy selling!'**
+  String get start_adding_products;
+
+  /// No description provided for @start_your_journey.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin your journey now and add your first products to display them to customers.'**
+  String get start_your_journey;
+
+  /// No description provided for @add_first_product.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Your First Product'**
+  String get add_first_product;
+
+  /// No description provided for @your_current_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Current Location'**
+  String get your_current_location;
+
+  /// No description provided for @cannot_detect_location.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t detect your current location!'**
+  String get cannot_detect_location;
+
+  /// No description provided for @enable_location_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure location service is enabled for accurate detection.'**
+  String get enable_location_service;
+
+  /// No description provided for @client_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Client Name'**
+  String get client_name;
+
+  /// No description provided for @customerSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Support'**
+  String get customerSupport;
+
+  /// No description provided for @generalStatistics.
+  ///
+  /// In en, this message translates to:
+  /// **'General Statistics'**
+  String get generalStatistics;
+
+  /// No description provided for @previousOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Orders'**
+  String get previousOrders;
 }
 
 class _AppLocalizationsDelegate

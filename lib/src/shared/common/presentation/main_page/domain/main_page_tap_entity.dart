@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/src/layouts/client/home/presentation/client_home_page.dart';
+import 'package:wasli/src/layouts/provider/home/presentation/page/provider_home_page.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
+import 'package:wasli/src/shared/more/more_page.dart';
 
 class MainPageTabEntity {
   final int index;
@@ -45,13 +47,7 @@ List<MainPageTabEntity> clientTaps = [
     activeIcon: AppIcons.ordersNavActive,
     child: const Center(child: Text('Orders')),
   ),
-  MainPageTabEntity(
-    index: 2,
-    name: appLocalizer.more,
-    icon: AppIcons.moreNav,
-    activeIcon: AppIcons.moreNavActive,
-    child: const Center(child: Text('More')),
-  ),
+  more(2),
 ];
 
 List<MainPageTabEntity> deliveryTaps = [
@@ -76,13 +72,7 @@ List<MainPageTabEntity> deliveryTaps = [
     activeIcon: AppIcons.walletNavActive,
     child: const Center(child: Text('Wallet')),
   ),
-  MainPageTabEntity(
-    index: 3,
-    name: appLocalizer.more,
-    icon: AppIcons.moreNav,
-    activeIcon: AppIcons.moreNavActive,
-    child: const Center(child: Text('More')),
-  ),
+  more(3)
 ];
 List<MainPageTabEntity> providerTaps = [
   MainPageTabEntity(
@@ -90,7 +80,7 @@ List<MainPageTabEntity> providerTaps = [
     name: appLocalizer.home,
     icon: AppIcons.homeNav,
     activeIcon: AppIcons.homeNavActive,
-    child: const Center(child: Text('Home')),
+    child: const ProviderHomePage(),
   ),
   MainPageTabEntity(
     index: 1,
@@ -113,11 +103,15 @@ List<MainPageTabEntity> providerTaps = [
     activeIcon: AppIcons.offersNavActive,
     child: const Center(child: Text('Offers')),
   ),
-  MainPageTabEntity(
-    index: 4,
+  more(4)
+];
+
+MainPageTabEntity more(int index) {
+  return MainPageTabEntity(
+    index: index,
     name: appLocalizer.more,
     icon: AppIcons.moreNav,
     activeIcon: AppIcons.moreNavActive,
-    child: const Center(child: Text('More')),
-  ),
-];
+    child: const MorePage(),
+  );
+}

@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get locale => 'ع';
 
   @override
-  String get appName => 'Bonian-tech';
+  String get appName => 'Wasali';
 
   @override
   String get unexpectedError =>
@@ -409,7 +409,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get termsAndConditions => 'Terms and Conditions';
 
   @override
-  String get aboutApp => 'App Information';
+  String get aboutApp => 'About app';
 
   @override
   String get privacyPolicy => 'Privacy policy';
@@ -986,9 +986,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageSettings => 'Language Settings';
 
   @override
-  String get aboutUs => 'About Us';
-
-  @override
   String get enableNotificationsRequest =>
       'Please enable notifications permission from app settings';
 
@@ -1478,4 +1475,77 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sizes => 'Sizes';
+
+  @override
+  String get receive_orders => 'Receive Orders';
+
+  @override
+  String get new_orders => 'New Orders';
+
+  @override
+  String get pickup_type => 'Pickup Type';
+
+  @override
+  String get customer_name => 'Customer Name';
+
+  @override
+  String get in_preparation => 'In Preparation';
+
+  @override
+  String get stop_receiving_today_question => 'Stop receiving orders today?';
+
+  @override
+  String get stop_receiving_today_description =>
+      'Customers won\'t be able to send new orders today until you enable receiving again.';
+
+  @override
+  String get no_new_orders => 'No new orders have been received yet!';
+
+  @override
+  String get orders_will_appear =>
+      'Your orders will appear here as soon as you receive a new one.';
+
+  @override
+  String get no_subscription => 'You have not subscribed to any plan yet!';
+
+  @override
+  String get start_subscription_to_add_products =>
+      'Start by subscribing to one of the plans to add your first products.';
+
+  @override
+  String get subscription => 'Subscription';
+
+  @override
+  String get start_adding_products =>
+      'Start adding your first products and enjoy selling!';
+
+  @override
+  String get start_your_journey =>
+      'Begin your journey now and add your first products to display them to customers.';
+
+  @override
+  String get add_first_product => 'Add Your First Product';
+
+  @override
+  String get your_current_location => 'Your Current Location';
+
+  @override
+  String get cannot_detect_location =>
+      'We couldn\'t detect your current location!';
+
+  @override
+  String get enable_location_service =>
+      'Make sure location service is enabled for accurate detection.';
+
+  @override
+  String get client_name => 'Client Name';
+
+  @override
+  String get customerSupport => 'Customer Support';
+
+  @override
+  String get generalStatistics => 'General Statistics';
+
+  @override
+  String get previousOrders => 'Previous Orders';
 }

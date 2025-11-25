@@ -93,6 +93,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/categories-ic.svg
   String get categoriesIc => 'assets/icons/categories-ic.svg';
 
+  /// File path: assets/icons/charts.svg
+  String get charts => 'assets/icons/charts.svg';
+
   /// File path: assets/icons/circle-logo-ic.svg
   String get circleLogoIc => 'assets/icons/circle-logo-ic.svg';
 
@@ -119,6 +122,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/email.svg
   String get email => 'assets/icons/email.svg';
+
+  /// File path: assets/icons/fav-ic.svg
+  String get favIc => 'assets/icons/fav-ic.svg';
 
   /// File path: assets/icons/fill-location.svg
   String get fillLocation => 'assets/icons/fill-location.svg';
@@ -162,6 +168,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/language-ic.svg
   String get languageIc => 'assets/icons/language-ic.svg';
 
+  /// File path: assets/icons/latest-orders.svg
+  String get latestOrders => 'assets/icons/latest-orders.svg';
+
   /// File path: assets/icons/like-ic.svg
   String get likeIc => 'assets/icons/like-ic.svg';
 
@@ -171,8 +180,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo-ic.svg
   String get logoIc => 'assets/icons/logo-ic.svg';
 
-  /// File path: assets/icons/logout-ic copy.svg
-  String get logoutIcCopy => 'assets/icons/logout-ic copy.svg';
+  /// File path: assets/icons/logout-ic.svg
+  String get logoutIc => 'assets/icons/logout-ic.svg';
 
   /// File path: assets/icons/message.svg
   String get message => 'assets/icons/message.svg';
@@ -188,6 +197,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/more-nav.svg
   String get moreNav => 'assets/icons/more-nav.svg';
+
+  /// File path: assets/icons/more-wallet.svg
+  String get moreWallet => 'assets/icons/more-wallet.svg';
 
   /// File path: assets/icons/notification-ic.svg
   String get notificationIc => 'assets/icons/notification-ic.svg';
@@ -225,6 +237,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/privacy-ic.svg
   String get privacyIc => 'assets/icons/privacy-ic.svg';
 
+  /// File path: assets/icons/privacy-policy-ic.svg
+  String get privacyPolicyIc => 'assets/icons/privacy-policy-ic.svg';
+
   /// File path: assets/icons/profile-ic.svg
   String get profileIc => 'assets/icons/profile-ic.svg';
 
@@ -242,6 +257,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/sar.svg
   String get sar => 'assets/icons/sar.svg';
+
+  /// File path: assets/icons/scooter.svg
+  String get scooter => 'assets/icons/scooter.svg';
 
   /// File path: assets/icons/search-ic.svg
   String get searchIc => 'assets/icons/search-ic.svg';
@@ -276,11 +294,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/success_ic.svg
   String get successIc => 'assets/icons/success_ic.svg';
 
+  /// File path: assets/icons/support.svg
+  String get support => 'assets/icons/support.svg';
+
+  /// File path: assets/icons/tag.svg
+  String get tag => 'assets/icons/tag.svg';
+
+  /// File path: assets/icons/terms-and-conditions-ic.svg
+  String get termsAndConditionsIc => 'assets/icons/terms-and-conditions-ic.svg';
+
   /// File path: assets/icons/terms-ic.svg
   String get termsIc => 'assets/icons/terms-ic.svg';
 
   /// File path: assets/icons/upload-image.svg
   String get uploadImage => 'assets/icons/upload-image.svg';
+
+  /// File path: assets/icons/user.svg
+  String get user => 'assets/icons/user.svg';
 
   /// File path: assets/icons/wallet-nav-active.svg
   String get walletNavActive => 'assets/icons/wallet-nav-active.svg';
@@ -308,6 +338,7 @@ class $AssetsIconsGen {
         camera,
         car,
         categoriesIc,
+        charts,
         circleLogoIc,
         city,
         closeIc,
@@ -317,6 +348,7 @@ class $AssetsIconsGen {
         doubleArrowIc,
         editIc,
         email,
+        favIc,
         fillLocation,
         fire,
         flag,
@@ -331,15 +363,17 @@ class $AssetsIconsGen {
         indicatorIc,
         langIc,
         languageIc,
+        latestOrders,
         likeIc,
         location,
         logoIc,
-        logoutIcCopy,
+        logoutIc,
         message,
         messagesActiveTabIc,
         messagesTabIc,
         moreNavActive,
         moreNav,
+        moreWallet,
         notificationIc,
         offersActiveTabIc,
         offersNavActive,
@@ -352,12 +386,14 @@ class $AssetsIconsGen {
         plus,
         prefixCalener,
         privacyIc,
+        privacyPolicyIc,
         profileIc,
         profile,
         rateAppIc,
         ratingIc,
         replaceIc,
         sar,
+        scooter,
         searchIc,
         search,
         settingsIc,
@@ -369,8 +405,12 @@ class $AssetsIconsGen {
         store,
         subscriptionIc,
         successIc,
+        support,
+        tag,
+        termsAndConditionsIc,
         termsIc,
         uploadImage,
+        user,
         walletNavActive,
         walletNav
       ];
