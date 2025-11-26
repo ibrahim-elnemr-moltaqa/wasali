@@ -18,14 +18,7 @@ class AppStartedEvent extends AppAuthenticationEvent {}
 
 class ChooseRoleEvent extends AppAuthenticationEvent {}
 
-class OnFinishWalkThrowEvent extends AppAuthenticationEvent {
-  final RoleEnum role;
-
-  const OnFinishWalkThrowEvent({required this.role});
-
-  @override
-  List<Object> get props => [role];
-}
+class OnFinishWalkThrowEvent extends AppAuthenticationEvent {}
 
 class AuthenticatedEvent extends AppAuthenticationEvent {}
 

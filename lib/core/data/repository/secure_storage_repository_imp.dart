@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
+
 import '../../core.dart';
 import '../data_source/secure_storage_data_source.dart';
 
@@ -29,15 +31,6 @@ class SecureStorageRepositoryImp implements SecureStorageRepository {
   }
 
   @override
-  Future<void> deleteToken() async {
-    try {
-      await _dataSource.deleteToken();
-    } catch (_) {
-      debugPrint("[SecureStorageRepository] Failed to delete token");
-    }
-  }
-
-  @override
   Future<void> setCachedUser(CachedUser user) async {
     try {
       return await _dataSource.setCachedUser(CacheUserModel.fromEntity(user));
@@ -57,19 +50,28 @@ class SecureStorageRepositoryImp implements SecureStorageRepository {
   }
 
   @override
-  Future<void> deleteCachedUser() async {
+  Future<RoleEnum?> getUserRole() async {
     try {
-      await _dataSource.deleteCachedUser();
+      return await _dataSource.getUserRole();
     } catch (_) {
-      debugPrint("[SecureStorageRepository] Failed to delete cached user");
+      debugPrint("[SecureStorageRepository] Failed to get user role");
+      return null;
+    }
+  }
+
+  @override
+  Future<void> setUserRole(RoleEnum role) async {
+    try {
+      await _dataSource.setUserRole(role);
+    } catch (_) {
+      debugPrint("[SecureStorageRepository] Failed to set user role");
     }
   }
 
   @override
   Future<void> deleteAllCache() async {
     try {
-      await deleteToken();
-      await deleteCachedUser();
+      await _dataSource.deleteAllCache();
     } catch (_) {
       debugPrint("[SecureStorageRepository] Failed to delete all cache");
     }

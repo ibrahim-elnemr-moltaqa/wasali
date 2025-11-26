@@ -14,6 +14,7 @@ class ChooseRolePage extends StatefulWidget {
 
 class _ChooseRolePageState extends State<ChooseRolePage> {
   ValueNotifier<RoleEnum?> roleNotifire = ValueNotifier(null);
+  final _setRoleUseCase = SetUserRoleUseCase.getInstance();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +73,9 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
                           buttonColor: AppColors.primary,
                           onPressed: () {
                             if (value != null) {
+                              _setRoleUseCase(value);
                               AppAuthenticationBloc.of(context)
-                                  .add(OnFinishWalkThrowEvent(role: value));
+                                  .add(OnFinishWalkThrowEvent());
                             } else {
                               AppToasts.hint(context,
                                   message: 'من فضلك اختر واحد');

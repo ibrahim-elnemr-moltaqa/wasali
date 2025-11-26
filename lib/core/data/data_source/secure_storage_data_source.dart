@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
+
 import '../../core.dart';
 
 const String _tokenKey = "CacheTokenKey";
@@ -9,10 +11,12 @@ const String _cacheUserDataKey = "CacheUserDataKey";
 abstract class SecureStorageDataSource {
   Future<void> setToken(TokenModel token);
   Future<TokenModel?> getToken();
-  Future<void> deleteToken();
   Future<void> setCachedUser(CacheUserModel user);
   Future<CacheUserModel?> getCachedUser();
-  Future<void> deleteCachedUser();
+  Future<void> setUserRole(RoleEnum role);
+  Future<RoleEnum?> getUserRole();
+  Future<void> deleteAllCache();
+
 }
 
 @Injectable(as: SecureStorageDataSource)
@@ -53,18 +57,6 @@ class SecureStorageDataSourceImpl implements SecureStorageDataSource {
   }
 
   @override
-  Future<void> deleteToken() async {
-    try {
-      await _storageObj.delete(key: _tokenKey);
-      debugPrint("[SecureStorageDataSource] ::: Token Deleted Successfully");
-    } catch (_) {
-      throw SecureStorageException(
-        message: "Failed to delete token from cache ، please try again",
-      );
-    }
-  }
-
-  @override
   Future<void> setCachedUser(CacheUserModel user) async {
     try {
       await _storageObj.write(key: _cacheUserDataKey, value: user.toJson);
@@ -94,15 +86,43 @@ class SecureStorageDataSourceImpl implements SecureStorageDataSource {
   }
 
   @override
-  Future<void> deleteCachedUser() async {
+  Future<void> setUserRole(RoleEnum role) async {
     try {
-      await _storageObj.delete(key: _cacheUserDataKey);
-      debugPrint(
-          "[SecureStorageDataSource] ::: Cached User Deleted Successfully");
+      return _storageObj.write(key: 'user_role', value: role.name);
     } catch (_) {
       throw SecureStorageException(
-        message: "Failed to delete cached user from cache ، please try again",
+        message: "Failed to save user role to cache ، please try again",
       );
     }
+  }
+
+  @override
+  Future<RoleEnum?> getUserRole() async {
+    try {
+      return _storageObj.read(key: 'user_role').then((value) {
+        if (value != null) {
+          return RoleEnum.values.firstWhere((role) => role.name == value,
+              orElse: () => RoleEnum.guest);
+        }
+        return null;
+      });
+    } catch (_) {
+      throw SecureStorageException(
+        message: "Failed to get user role from cache ، please try again",
+      );
+    }
+  }
+
+  
+  @override
+  Future<void> deleteAllCache() async{
+    try {
+      await _storageObj.deleteAll();
+    } catch (_) {
+      throw SecureStorageException(
+        message: "Failed to delete all cache ، please try again",
+      );
+    }
+    
   }
 }

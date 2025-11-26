@@ -39,6 +39,7 @@ class AppAuthenticationBloc
   final _getIsUserAuthenticatedUseCase = GetIsUserAuthenticatedUseCase();
   final _deleteAllCachedUseCase = DeleteAllSecureCacheUseCase.getInstance();
   final _getCachedUserUseCase = GetCachedUserUseCase.getInstance();
+  final _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
 
   void _onAppStarted(
     AppStartedEvent event,
@@ -85,11 +86,11 @@ class AppAuthenticationBloc
     OnFinishWalkThrowEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
+    final role = await _getUserRoleUseCase();
+    if (role == null) return;
     _log("Auth Log In Page");
-    emit(AuthLogInPageState(role: event.role));
+    emit(AuthLogInPageState(role: role));
   }
-
-
 
   void _onAuthenticated(
     AuthenticatedEvent event,

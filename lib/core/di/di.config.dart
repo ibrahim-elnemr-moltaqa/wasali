@@ -135,12 +135,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.factory<_i361.Dio>(() => registerModule.dio);
+    gh.factory<_i351.GetIsUserAuthenticatedUseCase>(
+        () => _i351.GetIsUserAuthenticatedUseCase());
     await gh.factoryAsync<_i351.DioHelper>(
       () => _i351.DioHelper().create(),
       preResolve: true,
     );
-    gh.factory<_i351.GetIsUserAuthenticatedUseCase>(
-        () => _i351.GetIsUserAuthenticatedUseCase());
     gh.factory<_i185.EnableGpsAndHandlePermissionUseCase>(
         () => _i185.EnableGpsAndHandlePermissionUseCase());
     gh.factory<_i143.WalletRepository>(
@@ -179,18 +179,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i321.CommonRepositoryImp(gh<_i351.DioHelper>()));
     gh.factory<_i351.DeleteAllSecureCacheUseCase>(() =>
         _i351.DeleteAllSecureCacheUseCase(gh<_i351.SecureStorageRepository>()));
-    gh.factory<_i351.DeleteCachedUserUseCase>(() =>
-        _i351.DeleteCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
-    gh.factory<_i351.DeleteTokenUseCase>(
-        () => _i351.DeleteTokenUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.GetCachedUserUseCase>(
         () => _i351.GetCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.GetTokenUseCase>(
         () => _i351.GetTokenUseCase(gh<_i351.SecureStorageRepository>()));
+    gh.factory<_i351.GetUserRoleUseCase>(
+        () => _i351.GetUserRoleUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.SetCachedUserUseCase>(
         () => _i351.SetCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.SetTokenUseCase>(
         () => _i351.SetTokenUseCase(gh<_i351.SecureStorageRepository>()));
+    gh.factory<_i351.SetUserRoleUseCase>(
+        () => _i351.SetUserRoleUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i190.NotificationRepository>(() =>
         _i1037.NotificationRepositoryImp(gh<_i113.NotificationDataSource>()));
     gh.factory<_i561.UserRegisterRepository>(

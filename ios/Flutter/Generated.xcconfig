@@ -1,8 +1,8 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/ibrahimelnemr/develop/flutter
-FLUTTER_APPLICATION_PATH=/Users/ibrahimelnemr/projects/moltaqa/wasali
+FLUTTER_ROOT=/Users/macos7/.puro/envs/stable/flutter
+FLUTTER_APPLICATION_PATH=/Users/macos7/wasali
 COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=/Users/ibrahimelnemr/projects/moltaqa/wasali/lib/main.dart
+FLUTTER_TARGET=/Users/macos7/wasali/lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
@@ -13,4 +13,4 @@ DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzUuMQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,R
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=/Users/ibrahimelnemr/projects/moltaqa/wasali/.dart_tool/package_config.json
+PACKAGE_CONFIG=/Users/macos7/wasali/.dart_tool/package_config.json

@@ -18,6 +18,7 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   MainPageTabEntity? _currentPage;
 
   late List<MainPageTabEntity> allPages;
+  late GetUserRoleUseCase _getUserRoleUseCase;
   void _addUnAuthenticatedListener() {
     UnAuthenticatedInterceptor.instance.addListener(
       () {
@@ -27,9 +28,11 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   }
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    allPages = MainPageTabEntity.getTaps(type: RoleEnum.client);
+    _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
+    final role = await _getUserRoleUseCase();
+    allPages = MainPageTabEntity.getTaps(type: role ?? RoleEnum.guest);
     startAnimation();
     _addUnAuthenticatedListener();
   }
@@ -55,8 +58,10 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   }
 
   @override
-  void didChangeDependencies() {
-    allPages = MainPageTabEntity.getTaps(type: RoleEnum.client);
+  void didChangeDependencies() async {
+    _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
+    final role = await _getUserRoleUseCase();
+    allPages = MainPageTabEntity.getTaps(type: role ?? RoleEnum.guest);
     super.didChangeDependencies();
   }
 
