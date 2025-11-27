@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../core/core.dart';
-import '../media/svg_icon.dart';
-import '../overlay/show_modal_bottom_sheet.dart';
 import '../../src/shared/auth/presentation/widgets/authentication_header_widget.dart';
 import '../buttons/app_button.dart';
+import '../overlay/show_modal_bottom_sheet.dart';
 
 const String _routeName = "GuestDialog";
 
@@ -28,26 +28,30 @@ class GuestBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const AppSvgIcon(
-            path: "assets/icons/circle-logo-ic.svg",
+          Image.asset(
+            AppImages.logo,
           ),
           AuthenticationHeaderWidget(
             subHeader: appLocalizer.geustHint,
             hasLogo: false,
-            style: TextStyles.regular14, 
+            style: TextStyles.regular14,
           ),
           Theme(
             data: Theme.of(context).copyWith(
                 elevatedButtonTheme: ElevatedButtonThemeData(
-                    style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 24, vertical: 8)),
-                          minimumSize: WidgetStateProperty.all(const Size(100, 40)),
-                        ))),
+                    style:
+                        Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                              padding: WidgetStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 8)),
+                              minimumSize:
+                                  WidgetStateProperty.all(const Size(100, 40)),
+                            ))),
             child: AppButton(
               text: appLocalizer.login,
               onPressed: () {
                 AppRouter.popUntil();
-                AppAuthenticationBloc.of(context).add(LoggedOutEvent());
+                AppAuthenticationBloc.of(context).add(ChooseRoleEvent());
               },
             ),
           ),

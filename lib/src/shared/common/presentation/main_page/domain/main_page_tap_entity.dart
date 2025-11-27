@@ -27,7 +27,7 @@ class MainPageTabEntity {
     } else if (type == RoleEnum.provider) {
       return providerTaps;
     } else {
-      return [];
+      return clientTaps;
     }
   }
 }

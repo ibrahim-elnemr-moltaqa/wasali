@@ -41,6 +41,11 @@ class AppAuthenticationBloc
   final _getCachedUserUseCase = GetCachedUserUseCase.getInstance();
   final _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
 
+  Future<RoleEnum> getRole() async {
+    final role = await _getUserRoleUseCase();
+    return role ?? RoleEnum.guest;
+  }
+
   void _onAppStarted(
     AppStartedEvent event,
     Emitter<AppAuthenticationState> emit,
@@ -62,7 +67,8 @@ class AppAuthenticationBloc
     final bool isAuthenticated = getIsAuthResult.isAuthenticated;
     final cachedUser = getIsAuthResult.cachedUser;
     if (isAuthenticated && cachedUser != null) {
-      emit(AuthAuthenticatedState(user: cachedUser));
+      final role = await getRole();
+      emit(AuthAuthenticatedState(user: cachedUser, role: role));
     } else {
       _log("Auth Un Authenticated");
       await _deleteAllCachedUseCase();
@@ -86,8 +92,7 @@ class AppAuthenticationBloc
     OnFinishWalkThrowEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
-    final role = await _getUserRoleUseCase();
-    if (role == null) return;
+    final role = await getRole();
     _log("Auth Log In Page");
     emit(AuthLogInPageState(role: role));
   }
@@ -99,7 +104,8 @@ class AppAuthenticationBloc
     final cachedUser = await _getCachedUserUseCase();
     if (cachedUser != null) {
       _log("Auth Authenticated State");
-      emit(AuthAuthenticatedState(user: cachedUser));
+      final role = await getRole();
+      emit(AuthAuthenticatedState(user: cachedUser, role: role));
     } else {
       await _startMainApp(emit);
     }
@@ -128,6 +134,7 @@ class AppAuthenticationBloc
     UnAuthorizedEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
+    _log("Auth Un Authorized");
     emit(AuthLogOutState());
   }
 
@@ -138,7 +145,7 @@ class AppAuthenticationBloc
     _log("Auth GuestState");
     emit(AuthUninitialized());
     await Future.delayed(Durations.medium1);
-    emit(GuestState());
+    emit(const GuestState());
   }
 
   void _log(String message) {

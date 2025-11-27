@@ -51,6 +51,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/account-tab-ic.svg
   String get accountTabIc => 'assets/icons/account-tab-ic.svg';
 
+  /// File path: assets/icons/addCircle.svg
+  String get addCircle => 'assets/icons/addCircle.svg';
+
   /// File path: assets/icons/add_to_cart_ic.svg
   String get addToCartIc => 'assets/icons/add_to_cart_ic.svg';
 
@@ -128,6 +131,12 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/fill-location.svg
   String get fillLocation => 'assets/icons/fill-location.svg';
+
+  /// File path: assets/icons/filter.svg
+  String get filter => 'assets/icons/filter.svg';
+
+  /// File path: assets/icons/financial-reports.svg
+  String get financialReports => 'assets/icons/financial-reports.svg';
 
   /// File path: assets/icons/fire.svg
   String get fire => 'assets/icons/fire.svg';
@@ -276,6 +285,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share_ic.svg
   String get shareIcSvg_ => 'assets/icons/share_ic.svg';
 
+  /// File path: assets/icons/shop.svg
+  String get shop => 'assets/icons/shop.svg';
+
   /// File path: assets/icons/sms.svg
   String get sms => 'assets/icons/sms.svg';
 
@@ -324,6 +336,7 @@ class $AssetsIconsGen {
         aboutIc,
         accountTabActiveIc,
         accountTabIc,
+        addCircle,
         addToCartIc,
         arrowDownIc,
         arrowDown2Ic,
@@ -350,6 +363,8 @@ class $AssetsIconsGen {
         email,
         favIc,
         fillLocation,
+        filter,
+        financialReports,
         fire,
         flag,
         forwardArrowIc,
@@ -399,6 +414,7 @@ class $AssetsIconsGen {
         settingsIc,
         shareIcSvg,
         shareIcSvg_,
+        shop,
         sms,
         sort,
         starFill,

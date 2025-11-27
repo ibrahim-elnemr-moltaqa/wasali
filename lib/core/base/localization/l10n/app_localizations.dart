@@ -3055,6 +3055,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Previous Orders'**
   String get previousOrders;
+
+  /// No description provided for @deliveryAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Addresses'**
+  String get deliveryAddresses;
+
+  /// No description provided for @service_provider_data.
+  ///
+  /// In en, this message translates to:
+  /// **' Service Provider Information'**
+  String get service_provider_data;
+
+  /// No description provided for @store_general_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Store General Settings'**
+  String get store_general_settings;
+
+  /// No description provided for @manage_store.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Store'**
+  String get manage_store;
+
+  /// No description provided for @working_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Working Days'**
+  String get working_days;
+
+  /// No description provided for @financial_reports.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Reports'**
+  String get financial_reports;
+
+  /// No description provided for @sizeManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Size Management'**
+  String get sizeManagement;
+
+  /// No description provided for @sectionsManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Sections Management'**
+  String get sectionsManagement;
+
+  /// No description provided for @productsManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Products Management'**
+  String get productsManagement;
+
+  /// No description provided for @add_new_size.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Size'**
+  String get add_new_size;
+
+  /// No description provided for @size_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Size Name'**
+  String get size_name;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
 }
 
 class _AppLocalizationsDelegate

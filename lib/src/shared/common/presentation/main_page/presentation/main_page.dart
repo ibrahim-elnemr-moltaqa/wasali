@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/material/auth_states/unauthenticated_bottom_sheet.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
@@ -18,7 +18,6 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   MainPageTabEntity? _currentPage;
 
   late List<MainPageTabEntity> allPages;
-  late GetUserRoleUseCase _getUserRoleUseCase;
   void _addUnAuthenticatedListener() {
     UnAuthenticatedInterceptor.instance.addListener(
       () {
@@ -28,13 +27,22 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   }
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
-    final role = await _getUserRoleUseCase();
-    allPages = MainPageTabEntity.getTaps(type: role ?? RoleEnum.guest);
+    final role = getRole();
+    allPages = MainPageTabEntity.getTaps(type: role);
     startAnimation();
     _addUnAuthenticatedListener();
+  }
+
+  RoleEnum getRole() {
+    final state = AppAuthenticationBloc.of(context).state;
+    if (state is AuthAuthenticatedState) {
+      return state.role;
+    } else if (state is GuestState) {
+      return state.role;
+    }
+    return RoleEnum.guest;
   }
 
   void startAnimation() {
@@ -57,13 +65,11 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
     _controller.forward();
   }
 
-  @override
-  void didChangeDependencies() async {
-    _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
-    final role = await _getUserRoleUseCase();
-    allPages = MainPageTabEntity.getTaps(type: role ?? RoleEnum.guest);
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   allPages = MainPageTabEntity.getTaps(type: RoleEnum.guest);
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void dispose() {
@@ -157,8 +163,7 @@ class _CustomNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
               allPage.length,
-              (index) => InkWell(
-                    onTap: () => onTapClicked(context, index),
+              (index) => Flexible(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(
@@ -168,7 +173,8 @@ class _CustomNavBar extends StatelessWidget {
                             path: currentPage.index == index
                                 ? allPage[index].activeIcon
                                 : allPage[index].icon,
-                          ).animate().scale(),
+                            size: 18,
+                          ),
                           const SizedBox(
                             height: 6,
                           ),
@@ -179,7 +185,8 @@ class _CustomNavBar extends StatelessWidget {
                                       .copyWith(color: Colors.white))),
                         ],
                       ),
-                    ),
+                    ).onTapScaleAnimation(
+                        onTap: () => onTapClicked(context, index)),
                   )).toList()),
     );
   }

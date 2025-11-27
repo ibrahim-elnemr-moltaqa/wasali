@@ -542,5 +542,19 @@
   "client_name" : "Client Name",
   "customerSupport" : "Customer Support",
   "generalStatistics" : "General Statistics",
-  "previousOrders" : "Previous Orders"
+  "previousOrders" : "Previous Orders",
+  "deliveryAddresses" : "Delivery Addresses",
+  "service_provider_data" :" Service Provider Information",
+  "store_general_settings" : "Store General Settings",
+  "manage_store" : "Manage Store",
+  "working_days" : "Working Days",
+  "financial_reports" : "Financial Reports",
+  "sizeManagement" : "Size Management",
+  "sectionsManagement" : "Sections Management",
+  "productsManagement" : "Products Management",
+  "add_new_size" : "Add New Size",
+  "size_name" : "Size Name",
+  "size" : "Size",
+  "active" : "Active",
+  "inactive" : "Inactive"
 }

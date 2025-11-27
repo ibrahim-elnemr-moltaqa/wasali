@@ -69,7 +69,7 @@ class ClientHomePage extends StatelessWidget {
                       const CustomProviderCardWidget(),
                   itemCount: 10),
               const SliverToBoxAdapter(
-                child: Gap(20),
+                child: Gap(100),
               )
             ],
           ),

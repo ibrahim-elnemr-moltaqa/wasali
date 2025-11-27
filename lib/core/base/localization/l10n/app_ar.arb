@@ -546,5 +546,19 @@
   "client_name" : "اسم العميل",
   "customerSupport" : "الدعم الفنى",
   "generalStatistics" : "الاحصائات العامة",
-  "previousOrders" : "الطلبات السابقة"
+  "previousOrders" : "الطلبات السابقة",
+  "deliveryAddresses" : "عناوين التوصيل",
+  "service_provider_data" :" بيانات مقدم الخدمة",
+  "store_general_settings" : "اعدادات المتجر العامة",
+  "manage_store" : "ادارة المتجر",
+  "working_days" : "ايام العمل",
+  "financial_reports" : "التقارير المالية",
+  "sizeManagement" : "ادارة المقاسات",
+  "sectionsManagement" : "ادارة الاقسام",
+  "productsManagement" : "ادارة المنتجات",
+  "add_new_size" : "اضافة مقاس جديد",
+  "size_name" : "اسم المقاس",
+  "size" : "المقاس",
+  "active" : "مفعل",
+  "inactive" :  "معطل"
 }

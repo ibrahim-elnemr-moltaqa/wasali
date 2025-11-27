@@ -1528,4 +1528,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get previousOrders => 'الطلبات السابقة';
+
+  @override
+  String get deliveryAddresses => 'عناوين التوصيل';
+
+  @override
+  String get service_provider_data => ' بيانات مقدم الخدمة';
+
+  @override
+  String get store_general_settings => 'اعدادات المتجر العامة';
+
+  @override
+  String get manage_store => 'ادارة المتجر';
+
+  @override
+  String get working_days => 'ايام العمل';
+
+  @override
+  String get financial_reports => 'التقارير المالية';
+
+  @override
+  String get sizeManagement => 'ادارة المقاسات';
+
+  @override
+  String get sectionsManagement => 'ادارة الاقسام';
+
+  @override
+  String get productsManagement => 'ادارة المنتجات';
+
+  @override
+  String get add_new_size => 'اضافة مقاس جديد';
+
+  @override
+  String get size_name => 'اسم المقاس';
+
+  @override
+  String get size => 'المقاس';
+
+  @override
+  String get active => 'مفعل';
+
+  @override
+  String get inactive => 'معطل';
 }

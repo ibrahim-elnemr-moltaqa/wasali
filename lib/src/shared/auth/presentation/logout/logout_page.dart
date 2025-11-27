@@ -36,7 +36,7 @@ class LogoutPage extends StatelessWidget {
     return BlocListener<LogOutCubit, Async<void>>(
       listener: (context, state) {
         if (state.isSuccess) {
-          AppAuthenticationBloc.of(context).add(LoggedOutEvent());
+          AppAuthenticationBloc.of(context).add(ChooseRoleEvent());
           Navigator.of(context).popUntil((route) => route.isFirst);
         } else if (state.isFailure) {
           AppToasts.error(context, message: state.errorMessage ?? '');

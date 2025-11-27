@@ -1,8 +1,9 @@
-import '../../../../../material/overlay/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../core/core.dart';
 import '../../../../../material/buttons/app_button.dart';
+import '../../../../../material/overlay/show_dialog.dart';
 import '../../../../../material/toast/app_toast.dart';
 import 'delete_account_cubit.dart';
 
@@ -24,7 +25,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
     return BlocListener<DeleteAccountCubit, Async<void>>(
       listener: (context, state) {
         if (state.isSuccess) {
-          AppAuthenticationBloc.of(context).add(LoggedOutEvent());
+          AppAuthenticationBloc.of(context).add(ChooseRoleEvent());
           Navigator.of(context).popUntil((route) => route.isFirst);
         } else if (state.isFailure) {
           AppToasts.error(context, message: state.errorMessage ?? '');

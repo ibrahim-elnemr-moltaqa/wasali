@@ -28,6 +28,7 @@ class AppRoutes {
   ///
   static const providerRegisterPage = '/ProviderRegisterPage';
   static const providerEditProfile = '/ProviderEditProfilePage';
+  static const storeManagementScreen = '/StoreManagementScreen';
 
   /// Delivery
   ///

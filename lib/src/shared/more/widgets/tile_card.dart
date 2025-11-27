@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/svg_icon.dart';
-import 'package:flutter/material.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
 
 class TileCard extends StatelessWidget {
@@ -27,7 +27,7 @@ class TileCard extends StatelessWidget {
         Expanded(
             child: Text(
           tileModel.title,
-          style: TextStyles.light14.copyWith(color: tileModel.color),
+          style: TextStyles.bold12.copyWith(color: tileModel.color),
         )),
         tileModel.trailing ??
             AppSvgIcon(

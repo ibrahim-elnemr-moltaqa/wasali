@@ -1548,4 +1548,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get previousOrders => 'Previous Orders';
+
+  @override
+  String get deliveryAddresses => 'Delivery Addresses';
+
+  @override
+  String get service_provider_data => ' Service Provider Information';
+
+  @override
+  String get store_general_settings => 'Store General Settings';
+
+  @override
+  String get manage_store => 'Manage Store';
+
+  @override
+  String get working_days => 'Working Days';
+
+  @override
+  String get financial_reports => 'Financial Reports';
+
+  @override
+  String get sizeManagement => 'Size Management';
+
+  @override
+  String get sectionsManagement => 'Sections Management';
+
+  @override
+  String get productsManagement => 'Products Management';
+
+  @override
+  String get add_new_size => 'Add New Size';
+
+  @override
+  String get size_name => 'Size Name';
+
+  @override
+  String get size => 'Size';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get inactive => 'Inactive';
 }
