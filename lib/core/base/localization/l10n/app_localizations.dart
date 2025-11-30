@@ -3122,6 +3122,102 @@ abstract class AppLocalizations {
   /// **'Size Name'**
   String get size_name;
 
+  /// No description provided for @select_size.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Size'**
+  String get select_size;
+
+  /// No description provided for @enter_size_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Size Name'**
+  String get enter_size_name;
+
+  /// No description provided for @section_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Section Name'**
+  String get section_name;
+
+  /// No description provided for @select_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Section'**
+  String get select_section;
+
+  /// No description provided for @add_new_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Section'**
+  String get add_new_section;
+
+  /// No description provided for @section.
+  ///
+  /// In en, this message translates to:
+  /// **'Section'**
+  String get section;
+
+  /// No description provided for @enter_section_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Section Name'**
+  String get enter_section_name;
+
+  /// No description provided for @product_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Name'**
+  String get product_name;
+
+  /// No description provided for @add_new_product.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Product'**
+  String get add_new_product;
+
+  /// No description provided for @select_product.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Product'**
+  String get select_product;
+
+  /// No description provided for @enter_product_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Product Name'**
+  String get enter_product_name;
+
+  /// No description provided for @product_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Description'**
+  String get product_description;
+
+  /// No description provided for @product_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Price'**
+  String get product_price;
+
+  /// No description provided for @enter_product_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Product Price'**
+  String get enter_product_price;
+
+  /// No description provided for @product_image.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Image'**
+  String get product_image;
+
+  /// No description provided for @additional_image.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional Image'**
+  String get additional_image;
+
   /// No description provided for @size.
   ///
   /// In en, this message translates to:
@@ -3139,6 +3235,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Inactive'**
   String get inactive;
+
+  /// No description provided for @day.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get day;
+
+  /// No description provided for @select_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Select day'**
+  String get select_day;
+
+  /// No description provided for @to.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get to;
+
+  /// No description provided for @add_another_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Another Day'**
+  String get add_another_day;
+
+  /// No description provided for @start_subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscript to a plan now'**
+  String get start_subscription;
+
+  /// No description provided for @start_subscription_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Start by subscribing to one of the plans to add your first products and enjoy selling!'**
+  String get start_subscription_description;
+
+  /// No description provided for @subscription_duration.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Duration'**
+  String get subscription_duration;
+
+  /// No description provided for @subscription_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Price'**
+  String get subscription_price;
+
+  /// No description provided for @subscription_start_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription Start Date'**
+  String get subscription_start_date;
+
+  /// No description provided for @subscription_end_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription End Date'**
+  String get subscription_end_date;
 }
 
 class _AppLocalizationsDelegate

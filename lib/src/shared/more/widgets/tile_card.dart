@@ -34,6 +34,9 @@ class TileCard extends StatelessWidget {
               path: AppIcons.forwardArrowIc,
             ).withRotatedBox(),
       ],
-    ).paddingBottom(20).onTapScaleAnimation(onTap: tileModel.onTap ?? () {});
+    )
+        .zoomIn()
+        .paddingBottom(20)
+        .onTapScaleAnimation(onTap: tileModel.onTap ?? () {});
   }
 }

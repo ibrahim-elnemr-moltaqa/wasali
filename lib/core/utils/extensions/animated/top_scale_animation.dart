@@ -4,7 +4,7 @@ import 'package:wasli/core/core.dart';
 extension OnTapScaleAnimation on Widget {
   Widget onTapScaleAnimation({
     required VoidCallback onTap,
-    Duration duration = const Duration(milliseconds: 200),
+    Duration duration = const Duration(milliseconds: 150),
     double scale = .8,
   }) {
     return _TapScaleAnimatedWidget(

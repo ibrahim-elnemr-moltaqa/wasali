@@ -1583,6 +1583,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get size_name => 'Size Name';
 
   @override
+  String get select_size => 'Select Size';
+
+  @override
+  String get enter_size_name => 'Enter Size Name';
+
+  @override
+  String get section_name => 'Section Name';
+
+  @override
+  String get select_section => 'Select Section';
+
+  @override
+  String get add_new_section => 'Add New Section';
+
+  @override
+  String get section => 'Section';
+
+  @override
+  String get enter_section_name => 'Enter Section Name';
+
+  @override
+  String get product_name => 'Product Name';
+
+  @override
+  String get add_new_product => 'Add New Product';
+
+  @override
+  String get select_product => 'Select Product';
+
+  @override
+  String get enter_product_name => 'Enter Product Name';
+
+  @override
+  String get product_description => 'Product Description';
+
+  @override
+  String get product_price => 'Product Price';
+
+  @override
+  String get enter_product_price => 'Enter Product Price';
+
+  @override
+  String get product_image => 'Product Image';
+
+  @override
+  String get additional_image => 'Additional Image';
+
+  @override
   String get size => 'Size';
 
   @override
@@ -1590,4 +1638,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get inactive => 'Inactive';
+
+  @override
+  String get day => 'Day';
+
+  @override
+  String get select_day => 'Select day';
+
+  @override
+  String get to => 'To';
+
+  @override
+  String get add_another_day => 'Add Another Day';
+
+  @override
+  String get start_subscription => 'Subscript to a plan now';
+
+  @override
+  String get start_subscription_description =>
+      'Start by subscribing to one of the plans to add your first products and enjoy selling!';
+
+  @override
+  String get subscription_duration => 'Subscription Duration';
+
+  @override
+  String get subscription_price => 'Subscription Price';
+
+  @override
+  String get subscription_start_date => 'Subscription Start Date';
+
+  @override
+  String get subscription_end_date => 'Subscription End Date';
 }

@@ -4,8 +4,8 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/network_image.dart';
-import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/widget/product_details_bottom_sheet.dart';
+import 'package:wasli/src/shared/common/presentation/widget/price_widget.dart';
 
 class ProductItemWidget extends StatelessWidget {
   const ProductItemWidget({
@@ -40,16 +40,7 @@ class ProductItemWidget extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         const Gap(8),
-        Row(
-          children: [
-            const Text(
-              '500',
-              style: TextStyles.bold14,
-            ),
-            const Gap(4),
-            AppSvgIcon(path: AppIcons.sar)
-          ],
-        )
+        const PriceWidget()
       ],
     )
         .setBorder(

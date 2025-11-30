@@ -87,6 +87,7 @@ dependencies:
   animate_do: ^4.2.0
   google_maps_flutter: ^2.14.0
   smooth_page_indicator: ^1.2.1
+  flutter_staggered_animations: ^1.1.1
 
 
 dev_dependencies:

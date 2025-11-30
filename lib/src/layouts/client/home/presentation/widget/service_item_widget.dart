@@ -28,6 +28,7 @@ class ServiceItemWidget extends StatelessWidget {
               borderColor: AppColors.primary,
               padding: const EdgeInsets.symmetric(vertical: 12),
             )
+            .zoomIn()
             .onTapScaleAnimation(onTap: onTap));
   }
 }

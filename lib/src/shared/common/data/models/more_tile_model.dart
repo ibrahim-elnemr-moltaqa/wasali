@@ -157,7 +157,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.working_days,
             icon: AppIcons.calendar,
-            onTap: () {},
+            onTap: () => AppRouter.pushNamed(AppRoutes.workingTimePage),
             needAuth: true,
           ),
           MoreTileModel(

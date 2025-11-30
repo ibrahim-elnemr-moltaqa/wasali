@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/animated_list_extension.dart';
 import 'package:wasli/material/auth_states/guest_checker_widget.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
@@ -24,14 +25,12 @@ class SettingsPage extends StatelessWidget {
             builder: (context, state) {
               final role =
                   state is AuthAuthenticatedState ? state.role : RoleEnum.guest;
-              return Column(
-                spacing: 8,
-                children: MoreTileModel.loadSettingsRoleItems(role, context)
-                    .map((e) => e.needAuth == true
-                        ? GuestCheckerWidget(child: TileCard(tileModel: e))
-                        : TileCard(tileModel: e))
-                    .toList(),
-              );
+              return MoreTileModel.loadSettingsRoleItems(role, context)
+                  .map((e) => e.needAuth == true
+                      ? GuestCheckerWidget(child: TileCard(tileModel: e))
+                      : TileCard(tileModel: e))
+                  .toList()
+                  .animateStaggeredList();
             },
           ),
         ));

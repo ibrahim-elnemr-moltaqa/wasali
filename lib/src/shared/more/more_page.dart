@@ -5,6 +5,7 @@ import 'package:wasli/material/auth_states/guest_checker_widget.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
 import 'package:wasli/src/shared/more/widgets/more_app_bar_widget.dart';
+import 'package:wasli/src/shared/more/widgets/package_subscription_widget.dart';
 
 import '../../../core/core.dart';
 import '../../../material/auth_states/logged_user_checker_widget.dart';
@@ -37,15 +38,14 @@ class MorePage extends StatelessWidget {
                   } else {
                     role = RoleEnum.guest;
                   }
-                  return Column(
-                    spacing: 8,
-                    children: MoreTileModel.loadRoleMoreItems(role, context)
-                        .map((e) => e.needAuth
+                  return Column(spacing: 8, children: [
+                    const PackageSubscriptionWidget(),
+                    ...MoreTileModel.loadRoleMoreItems(role, context).map((e) =>
+                        e.needAuth
                             ? LoggedUserCheckerWidget(
                                 loggedBuilder: (user) => TileCard(tileModel: e))
                             : TileCard(tileModel: e))
-                        .toList(),
-                  );
+                  ]);
                 },
               ),
             ],

@@ -9,9 +9,11 @@ class ManageStoreTapBarWidget extends StatefulWidget {
   const ManageStoreTapBarWidget({
     super.key,
     required this.onTabChanged,
+    required this.selectedIndex,
   });
 
-  final ValueChanged<StoreManagementTapModel> onTabChanged;
+  final ValueChanged<int> onTabChanged;
+  final int selectedIndex;
 
   @override
   State<ManageStoreTapBarWidget> createState() =>
@@ -19,11 +21,9 @@ class ManageStoreTapBarWidget extends StatefulWidget {
 }
 
 class _ManageStoreTapBarWidgetState extends State<ManageStoreTapBarWidget> {
-  StoreManagementTapModel selectedTab =
-      StoreManagementTapModel.loadStoreManagementTabs().first;
-
   @override
   Widget build(BuildContext context) {
+    final tabs = StoreManagementTapModel.loadStoreManagementTabs();
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -34,25 +34,19 @@ class _ManageStoreTapBarWidgetState extends State<ManageStoreTapBarWidget> {
           left: 0,
           bottom: 0,
           child: Row(
-            children: List.generate(
-                StoreManagementTapModel.loadStoreManagementTabs().length,
-                (index) {
+            children: List.generate(tabs.length, (index) {
+              final isSelected = index == widget.selectedIndex;
+
               return Expanded(
                   child: IntrinsicWidth(
                 child: Column(
                   children: [
                     Text(
-                      StoreManagementTapModel.loadStoreManagementTabs()[index]
-                          .title,
-                      style: selectedTab ==
-                              StoreManagementTapModel.loadStoreManagementTabs()[
-                                  index]
-                          ? TextStyles.bold14
-                          : TextStyles.regular14,
+                      tabs[index].title,
+                      style:
+                          isSelected ? TextStyles.bold14 : TextStyles.regular14,
                     ),
-                    if (selectedTab ==
-                        StoreManagementTapModel.loadStoreManagementTabs()[
-                            index]) ...{
+                    if (isSelected) ...{
                       const Gap(4),
                       Divider(
                         color: AppColors.primary,
@@ -62,9 +56,7 @@ class _ManageStoreTapBarWidgetState extends State<ManageStoreTapBarWidget> {
                   ],
                 ).onTapScaleAnimation(onTap: () {
                   setState(() {
-                    selectedTab = StoreManagementTapModel
-                        .loadStoreManagementTabs()[index];
-                    widget.onTabChanged(selectedTab);
+                    widget.onTabChanged(index);
                   });
                 }),
               ));

@@ -1,11 +1,13 @@
 import 'dart:async';
-import 'package:wasli/core/config/values/assets.gen.dart';
-import 'package:wasli/material/media/svg_icon.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wasli/core/config/values/assets.gen.dart';
+import 'package:wasli/material/media/svg_icon.dart';
+
 import '../../core/core.dart';
-import 'validator_field.dart';
 import '../overlay/show_modal_bottom_sheet.dart';
+import 'validator_field.dart';
 
 typedef PickedDateCallback = void Function(DateTime? dateTime);
 
@@ -47,7 +49,7 @@ class AppDatePickerField extends StatelessWidget {
           (context, hasError, errorMessage, value, onChange, onSave, validate) {
         return DefaultInputFieldDesign(
           title: labelText ?? '',
-          borderRadius: 8,
+          borderRadius: 12,
           hint: hintText ?? '',
           hasError: hasError,
           errorMessage: errorMessage ?? '',
@@ -75,8 +77,17 @@ class AppDatePickerField extends StatelessWidget {
             } else {
               await AppDateTimePickers.pickTime(
                 context,
-                onDateTimeChanged: (dateTime) {
-                  onChange(dateTime);
+                onTimePicked: (pickedTime) {
+                  final base = value ?? DateTime.now();
+
+                  final fullDateTime = DateTime(
+                    base.year,
+                    base.month,
+                    base.day,
+                    pickedTime.hour,
+                    pickedTime.minute,
+                  );
+                  onChange(fullDateTime);
                   onSave();
                   validate();
                 },
@@ -110,10 +121,7 @@ class AppDatePickerField extends StatelessWidget {
         color: AppColors.primary,
       );
     } else {
-      return Icon(
-        Icons.access_alarm,
-        color: AppColors.primary,
-      );
+      return AppSvgIcon(path: AppIcons.time);
     }
   }
 }
@@ -136,23 +144,55 @@ class AppDateTimePickers extends StatefulWidget {
   final DateTime? minimumDate;
   final DateTime? maximumDate;
 
-  static Future<DateTime?> pickTime(
+  static Future<TimeOfDay?> pickTime(
     BuildContext context, {
     DateTime? initialDate,
-    PickedDateCallback? onDateTimeChanged,
+    void Function(TimeOfDay time)? onTimePicked,
     String? Function(DateTime? dateTime)? validator,
   }) async {
     FocusManager.instance.primaryFocus?.unfocus();
-    return await showAppModalBottomSheet<DateTime?>(
+
+    return await showTimePicker(
       context: context,
-      child: AppDateTimePickers(
-        validator: validator,
-        initialDate: initialDate,
-        onDateTimeChanged: onDateTimeChanged,
-        mode: CupertinoDatePickerMode.time,
-      ),
-    );
+      initialTime: TimeOfDay.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Colors.blue, // Header background color
+            ),
+            timePickerTheme: TimePickerThemeData(
+              dialHandColor: Colors.blue, // Pointer/hand
+              dialBackgroundColor: Colors.grey.shade200,
+              dialTextColor: WidgetStateColor.resolveWith((states) {
+                return states.contains(WidgetState.selected)
+                    ? Colors.white
+                    : Colors.black;
+              }),
+              hourMinuteColor: Colors.blue.shade100,
+              hourMinuteTextColor: Colors.black,
+              entryModeIconColor: Colors.blue,
+            ),
+          ),
+          child: child!,
+        );
+      },
+    ).then((pickedTime) {
+      if (pickedTime != null && onTimePicked != null) {
+        onTimePicked(pickedTime);
+      }
+      return pickedTime;
+    });
   }
+  // await showAppModalBottomSheet<DateTime?>(
+  //   context: context,
+  //   child: AppDateTimePickers(
+  //     validator: validator,
+  //     initialDate: initialDate,
+  //     onDateTimeChanged: onDateTimeChanged,
+  //     mode: CupertinoDatePickerMode.time,
+  //   ),
+  // );
 
   static Future<DateTime?> pickDatePicker(
     BuildContext context, {

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/animated_list_extension.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/client_home_banner_widget.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/custom_provider_card_widget.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/service_item_widget.dart';
 import 'package:wasli/src/layouts/provider/register/data/enum/provider_enum.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
-import 'package:wasli/src/shared/common/presentation/home/widget/home_app_bar.dart';
+import 'package:wasli/src/shared/common/presentation/widget/home_app_bar.dart';
 
 class ClientHomePage extends StatelessWidget {
   const ClientHomePage({super.key});
@@ -66,7 +67,7 @@ class ClientHomePage extends StatelessWidget {
               SliverList.separated(
                   separatorBuilder: (context, index) => const Gap(16),
                   itemBuilder: (context, index) =>
-                      const CustomProviderCardWidget(),
+                      const CustomProviderCardWidget().animateStaggered(index),
                   itemCount: 10),
               const SliverToBoxAdapter(
                 child: Gap(100),

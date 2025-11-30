@@ -1563,6 +1563,54 @@ class AppLocalizationsAr extends AppLocalizations {
   String get size_name => 'اسم المقاس';
 
   @override
+  String get select_size => 'اختر المقاس';
+
+  @override
+  String get enter_size_name => 'ادخل اسم المقاس';
+
+  @override
+  String get section_name => 'اسم القسم';
+
+  @override
+  String get select_section => 'اختر القسم';
+
+  @override
+  String get add_new_section => 'اضافة قسم جديد';
+
+  @override
+  String get section => 'القسم';
+
+  @override
+  String get enter_section_name => 'ادخل اسم القسم';
+
+  @override
+  String get product_name => 'اسم المنتج';
+
+  @override
+  String get add_new_product => 'اضافة منتج جديد';
+
+  @override
+  String get select_product => 'Select Product';
+
+  @override
+  String get enter_product_name => 'ادخل اسم المنتج';
+
+  @override
+  String get product_description => 'وصف المنتج';
+
+  @override
+  String get product_price => 'سعر المنتج';
+
+  @override
+  String get enter_product_price => 'ادخل سعر المنتج';
+
+  @override
+  String get product_image => 'صورة المنتج';
+
+  @override
+  String get additional_image => 'صورة اضافيه';
+
+  @override
   String get size => 'المقاس';
 
   @override
@@ -1570,4 +1618,35 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get inactive => 'معطل';
+
+  @override
+  String get day => 'اليوم';
+
+  @override
+  String get select_day => 'اختر اليوم';
+
+  @override
+  String get to => 'الى';
+
+  @override
+  String get add_another_day => 'اضافه يوم اخر';
+
+  @override
+  String get start_subscription => 'اشترك ف باقة الآن';
+
+  @override
+  String get start_subscription_description =>
+      'اشترك في الباقة المميزة الآن وابدأ بإضافة منتجاتك وعرضها لعملائك';
+
+  @override
+  String get subscription_duration => 'مدة الباقة';
+
+  @override
+  String get subscription_price => 'سعر الباقة';
+
+  @override
+  String get subscription_start_date => 'تاريخ بدء الاشتراك';
+
+  @override
+  String get subscription_end_date => 'تاريخ انتهاء الاشتراك';
 }

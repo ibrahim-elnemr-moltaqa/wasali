@@ -5,10 +5,12 @@ import 'package:wasli/src/layouts/client/providers/presentation/page/all_provide
 import 'package:wasli/src/layouts/client/providers/presentation/page/provider_page.dart';
 import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
 import 'package:wasli/src/layouts/delivery/register/presentation/delivery_register_screen.dart';
-import 'package:wasli/src/layouts/provider/settings/edit_profile/provider_edit_profile.dart';
 import 'package:wasli/src/layouts/provider/register/data/enum/provider_enum.dart';
 import 'package:wasli/src/layouts/provider/register/presentation/provider_register_screen.dart';
-import 'package:wasli/src/layouts/provider/settings/store_management/presentation/store_management_screen.dart';
+import 'package:wasli/src/layouts/provider/settings/edit_profile/provider_edit_profile.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/page/add_new_product_page.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/page/store_management_screen.dart';
+import 'package:wasli/src/layouts/provider/settings/working_days/presentation/page/working_days_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/google_maps/presentation/maps_main_page.dart';
 import 'package:wasli/src/shared/more/settings/settings_page.dart';
@@ -87,6 +89,10 @@ class AppRoutesGenerator {
         page = const ProviderEditProfile();
       case AppRoutes.storeManagementScreen:
         page = const StoreManagementScreen();
+      case AppRoutes.addNewProductPage:
+        page = const AddNewProductPage();
+      case AppRoutes.workingTimePage:
+        page = const WorkingTimePage();
 
       /// MAP
       ///

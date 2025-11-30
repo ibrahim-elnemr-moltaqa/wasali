@@ -11,6 +11,11 @@ extension ExtensionWidget on Widget {
         child: this,
       );
 
+  Widget withRadius({double radius = 16}) => ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: this,
+      );
+
   CircleAvatar circle({
     double radius = 24,
     double borderWidth = 1,

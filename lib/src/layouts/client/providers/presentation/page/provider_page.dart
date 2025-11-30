@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/animated_list_extension.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/widget/product_item_widget.dart';
@@ -52,7 +53,7 @@ class ProviderPage extends StatelessWidget {
                   crossAxisSpacing: 16,
                   childAspectRatio: 0.8),
               itemBuilder: (context, index) {
-                return const ProductItemWidget();
+                return const ProductItemWidget().animateStaggered(index);
               }),
         ],
       ).paddingHorizontal(20).withSafeArea(),

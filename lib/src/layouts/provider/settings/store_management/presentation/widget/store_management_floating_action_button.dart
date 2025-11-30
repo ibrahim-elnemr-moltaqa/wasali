@@ -1,11 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class StoreManagementFloatingActionButton extends StatelessWidget {
-  const StoreManagementFloatingActionButton({super.key});
+  const StoreManagementFloatingActionButton({super.key, required this.label, this.onTap});
+  final String label;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class StoreManagementFloatingActionButton extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          appLocalizer.add_new_size,
+          label,
           style: TextStyles.bold14,
         )
       ],
@@ -26,7 +28,7 @@ class StoreManagementFloatingActionButton extends StatelessWidget {
           color: AppColors.primary,
           padding: const EdgeInsets.all(12),
           radius: 50,
-        )
+        ).onTapScaleAnimation(onTap: onTap ?? () {})
         .paddingBottom(16);
   }
 }

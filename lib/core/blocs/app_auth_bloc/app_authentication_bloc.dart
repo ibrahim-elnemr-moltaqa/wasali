@@ -50,7 +50,7 @@ class AppAuthenticationBloc
     AppStartedEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
-    await Future.delayed(const Duration(seconds: 3));
+    // await Future.delayed(const Duration(seconds: 3));
     _log("Auth Started");
     await _startMainApp(emit);
   }
@@ -135,7 +135,7 @@ class AppAuthenticationBloc
     Emitter<AppAuthenticationState> emit,
   ) async {
     _log("Auth Un Authorized");
-    emit(AuthLogOutState());
+    emit(ChooseRolePageState());
   }
 
   void _onContinueAsGuest(

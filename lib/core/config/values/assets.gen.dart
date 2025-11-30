@@ -60,6 +60,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow-down-ic.svg
   String get arrowDownIc => 'assets/icons/arrow-down-ic.svg';
 
+  /// File path: assets/icons/arrow-left-top.svg
+  String get arrowLeftTop => 'assets/icons/arrow-left-top.svg';
+
   /// File path: assets/icons/arrow_down_2_ic.svg
   String get arrowDown2Ic => 'assets/icons/arrow_down_2_ic.svg';
 
@@ -210,6 +213,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/more-wallet.svg
   String get moreWallet => 'assets/icons/more-wallet.svg';
 
+  /// File path: assets/icons/more.svg
+  String get more => 'assets/icons/more.svg';
+
   /// File path: assets/icons/notification-ic.svg
   String get notificationIc => 'assets/icons/notification-ic.svg';
 
@@ -318,6 +324,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/terms-ic.svg
   String get termsIc => 'assets/icons/terms-ic.svg';
 
+  /// File path: assets/icons/time.svg
+  String get time => 'assets/icons/time.svg';
+
   /// File path: assets/icons/upload-image.svg
   String get uploadImage => 'assets/icons/upload-image.svg';
 
@@ -339,6 +348,7 @@ class $AssetsIconsGen {
         addCircle,
         addToCartIc,
         arrowDownIc,
+        arrowLeftTop,
         arrowDown2Ic,
         bag,
         bank,
@@ -389,6 +399,7 @@ class $AssetsIconsGen {
         moreNavActive,
         moreNav,
         moreWallet,
+        more,
         notificationIc,
         offersActiveTabIc,
         offersNavActive,
@@ -425,6 +436,7 @@ class $AssetsIconsGen {
         tag,
         termsAndConditionsIc,
         termsIc,
+        time,
         uploadImage,
         user,
         walletNavActive,

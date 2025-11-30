@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/src/layouts/provider/home/presentation/dialog/stop_receive_orders_dialog.dart';
 
 class ReceiveOrdersToggle extends StatefulWidget {
@@ -47,6 +48,6 @@ class _ReceiveOrdersToggleState extends State<ReceiveOrdersToggle> {
               WidgetStatePropertyAll(AppColors.disableBorderColor),
         )
       ],
-    );
+    ).fadeInLeft();
   }
 }
