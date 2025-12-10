@@ -39,7 +39,9 @@ class MorePage extends StatelessWidget {
                     role = RoleEnum.guest;
                   }
                   return Column(spacing: 8, children: [
-                    const PackageSubscriptionWidget(),
+                    Visibility(
+                        visible: role == RoleEnum.provider,
+                        child: const PackageSubscriptionWidget()),
                     ...MoreTileModel.loadRoleMoreItems(role, context).map((e) =>
                         e.needAuth
                             ? LoggedUserCheckerWidget(

@@ -16,7 +16,7 @@ enum RoleEnum {
         return appLocalizer.provider;
       case delivery:
         return appLocalizer.delivery;
-        default :
+      default:
         return '';
     }
   }
@@ -29,7 +29,7 @@ enum RoleEnum {
         return AppIllustrations.onBoarding1;
       case delivery:
         return AppIllustrations.onBoarding2;
-        default :
+      default:
         return '';
     }
   }
@@ -42,7 +42,7 @@ enum RoleEnum {
         return providerTaps;
       case delivery:
         return deliveryTaps;
-        default :
+      default:
         return [];
     }
   }
@@ -55,7 +55,20 @@ enum RoleEnum {
         return AppRoutes.providerRegisterPage;
       case delivery:
         return AppRoutes.deliveryRegister;
-        default :
+      default:
+        return '';
+    }
+  }
+
+  String get apiRoute {
+    switch (this) {
+      case client:
+        return 'client-api';
+      case provider:
+        return 'provider-api';
+      case delivery:
+        return 'delivery-api';
+      default:
         return '';
     }
   }

@@ -50,25 +50,6 @@ class SecureStorageRepositoryImp implements SecureStorageRepository {
   }
 
   @override
-  Future<RoleEnum?> getUserRole() async {
-    try {
-      return await _dataSource.getUserRole();
-    } catch (_) {
-      debugPrint("[SecureStorageRepository] Failed to get user role");
-      return null;
-    }
-  }
-
-  @override
-  Future<void> setUserRole(RoleEnum role) async {
-    try {
-      await _dataSource.setUserRole(role);
-    } catch (_) {
-      debugPrint("[SecureStorageRepository] Failed to set user role");
-    }
-  }
-
-  @override
   Future<void> deleteAllCache() async {
     try {
       await _dataSource.deleteAllCache();

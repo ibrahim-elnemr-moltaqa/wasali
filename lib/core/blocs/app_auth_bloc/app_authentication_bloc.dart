@@ -39,10 +39,9 @@ class AppAuthenticationBloc
   final _getIsUserAuthenticatedUseCase = GetIsUserAuthenticatedUseCase();
   final _deleteAllCachedUseCase = DeleteAllSecureCacheUseCase.getInstance();
   final _getCachedUserUseCase = GetCachedUserUseCase.getInstance();
-  final _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
 
   Future<RoleEnum> getRole() async {
-    final role = await _getUserRoleUseCase();
+    final role = await GetUserRoleUseCase.getInstance().call();
     return role ?? RoleEnum.guest;
   }
 
@@ -92,8 +91,8 @@ class AppAuthenticationBloc
     OnFinishWalkThrowEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
-    final role = await getRole();
     _log("Auth Log In Page");
+    final role = await getRole();
     emit(AuthLogInPageState(role: role));
   }
 

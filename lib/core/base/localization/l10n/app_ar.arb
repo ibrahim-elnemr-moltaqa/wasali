@@ -548,6 +548,7 @@
   "generalStatistics" : "الاحصائات العامة",
   "previousOrders" : "الطلبات السابقة",
   "deliveryAddresses" : "عناوين التوصيل",
+  "selectDeliveryAddress" : "تحديد عنوان التوصيل",
   "service_provider_data" :" بيانات مقدم الخدمة",
   "store_general_settings" : "اعدادات المتجر العامة",
   "manage_store" : "ادارة المتجر",

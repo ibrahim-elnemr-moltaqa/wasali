@@ -11,7 +11,7 @@ class HeaderInterceptor implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    await Future.wait([_initToken(options), _initLang(options)]);
+    await Future.wait([_initToken(options), _initLang(options), _initRole(options)]);
     handler.next(options);
   }
 
@@ -23,6 +23,17 @@ class HeaderInterceptor implements Interceptor {
 
   final _getCachedLanguageUseCase = GetCachedLanguageUseCase.getInstance();
   final _getTokenUseCase = GetTokenUseCase.getInstance();
+  final _getUserRoleUseCase = GetUserRoleUseCase.getInstance();
+
+  Future<void> _initRole(RequestOptions options) async {
+    try {
+      final role = await _getUserRoleUseCase();
+      options.baseUrl = ApiConstants.addBaseUrl(role: role);
+    } catch (error) {
+      debugPrint(
+          "======= HeaderInterceptor Role Error ==> ${error.toString()}");
+    }
+  }
 
   Future<void> _initLang(RequestOptions options) async {
     try {

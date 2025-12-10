@@ -1,12 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/macos7/.puro/envs/stable/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/macos7/wasli"
+export "FLUTTER_ROOT=/Users/macos3/develop/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/macos3/wasali"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
-export "FLUTTER_CLI_BUILD_MODE=debug"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

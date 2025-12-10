@@ -1533,6 +1533,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get deliveryAddresses => 'عناوين التوصيل';
 
   @override
+  String get selectDeliveryAddress => 'تحديد عنوان التوصيل';
+
+  @override
   String get service_provider_data => ' بيانات مقدم الخدمة';
 
   @override

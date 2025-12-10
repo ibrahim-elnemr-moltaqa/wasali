@@ -3062,6 +3062,12 @@ abstract class AppLocalizations {
   /// **'Delivery Addresses'**
   String get deliveryAddresses;
 
+  /// No description provided for @selectDeliveryAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Delivery Address'**
+  String get selectDeliveryAddress;
+
   /// No description provided for @service_provider_data.
   ///
   /// In en, this message translates to:

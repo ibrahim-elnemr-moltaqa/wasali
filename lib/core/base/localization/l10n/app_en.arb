@@ -544,6 +544,7 @@
   "generalStatistics" : "General Statistics",
   "previousOrders" : "Previous Orders",
   "deliveryAddresses" : "Delivery Addresses",
+  "selectDeliveryAddress" : "Select Delivery Address",
   "service_provider_data" :" Service Provider Information",
   "store_general_settings" : "Store General Settings",
   "manage_store" : "Manage Store",

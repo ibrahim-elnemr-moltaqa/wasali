@@ -1,7 +1,7 @@
-import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
-import 'package:wasli/src/shared/auth/domain/use_case/update_name_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
+import 'package:wasli/src/shared/auth/domain/use_case/update_name_usecase.dart';
 
 import '../../../../../core/core.dart';
 import '../../domain/entities/user_entity.dart';
@@ -28,8 +28,6 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   DomainServiceType<Unit> login(LoginParams params) async {
     return await failerCollect(
       () async {
-        // await Future.delayed(const Duration(seconds: 2));
-        // return const Right(unit);
         final result = await _apiHelper.post(
           url: "auth/login",
           body: params.toMap,
@@ -40,7 +38,6 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
       },
     );
   }
-
 
   /// Common Services
   ///
@@ -128,7 +125,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   }
 
   @override
-  DomainServiceType<Unit> updateName(UpdateNameParams params) async{
+  DomainServiceType<Unit> updateName(UpdateNameParams params) async {
     return await failerCollect<Unit>(() async {
       final result = await _apiHelper.post(
         url: "auth/update-profile",
@@ -138,7 +135,6 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
       // await _secureStorageRepository.setToken(data.getAsValidTokenEntity);
       await _secureStorageRepository.setCachedUser(data.mapToCacheEntity);
       return const Right(unit);
-
     });
   }
 }

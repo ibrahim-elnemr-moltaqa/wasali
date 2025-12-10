@@ -115,6 +115,7 @@ import '../../src/shared/wallet/domain/use_case/withdraw_balance_use_case.dart'
     as _i356;
 import '../core.dart' as _i351;
 import '../data/data_source/language_cache_date_source.dart' as _i203;
+import '../data/data_source/role_cached_data_source.dart' as _i271;
 import '../data/data_source/secure_storage_data_source.dart' as _i177;
 import '../data/repository/language_cache_repository_imp.dart' as _i361;
 import '../data/repository/secure_storage_repository_imp.dart' as _i526;
@@ -177,20 +178,22 @@ extension GetItInjectableX on _i174.GetIt {
         _i361.LanguageCacheRepositoryImp(gh<_i203.LanguageCacheDateSource>()));
     gh.factory<_i864.CommonRepository>(
         () => _i321.CommonRepositoryImp(gh<_i351.DioHelper>()));
+    gh.factory<_i351.GetUserRoleUseCase>(
+        () => _i351.GetUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
+    gh.factory<_i351.SetUserRoleUseCase>(
+        () => _i351.SetUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
+    gh.factory<_i351.DeleteUserRoleUseCase>(
+        () => _i351.DeleteUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
     gh.factory<_i351.DeleteAllSecureCacheUseCase>(() =>
         _i351.DeleteAllSecureCacheUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.GetCachedUserUseCase>(
         () => _i351.GetCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.GetTokenUseCase>(
         () => _i351.GetTokenUseCase(gh<_i351.SecureStorageRepository>()));
-    gh.factory<_i351.GetUserRoleUseCase>(
-        () => _i351.GetUserRoleUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.SetCachedUserUseCase>(
         () => _i351.SetCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.SetTokenUseCase>(
         () => _i351.SetTokenUseCase(gh<_i351.SecureStorageRepository>()));
-    gh.factory<_i351.SetUserRoleUseCase>(
-        () => _i351.SetUserRoleUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i190.NotificationRepository>(() =>
         _i1037.NotificationRepositoryImp(gh<_i113.NotificationDataSource>()));
     gh.factory<_i561.UserRegisterRepository>(

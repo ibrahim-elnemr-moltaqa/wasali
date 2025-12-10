@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
@@ -8,53 +9,62 @@ import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key, required this.title, required this.role});
-  final String title;
-  final RoleEnum role;
+  const HomeAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        _getPersonImage(),
-        const SizedBox(
-          width: 12,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<AppAuthenticationBloc, AppAuthenticationState>(
+      builder: (context, state) {
+        RoleEnum role = RoleEnum.client;
+        String? title;
+
+        if (state is AuthAuthenticatedState) {
+          role = state.role;
+          title = state.user.name;
+        } else if (state is GuestState) {
+          role = state.role;
+          title = appLocalizer.welcomeIn;
+        }
+
+        return Row(
           children: [
-            Text(title, style: TextStyles.bold14),
-            const SizedBox(
-              height: 4,
-            ),
-            Row(
+            _getPersonImage(role),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppSvgIcon(
-                  path: AppIcons.fillLocation,
-                  size: 16,
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  appLocalizer.selectLocation,
-                  style: TextStyles.regular12
-                      .copyWith(color: AppColors.grey2Color),
-                )
+                Text(title ?? appLocalizer.welcomeIn, style: TextStyles.bold14),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    AppSvgIcon(
+                      path: AppIcons.fillLocation,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      role != RoleEnum.guest
+                          ? appLocalizer.selectDeliveryAddress
+                          : appLocalizer.selectLocation,
+                      style: TextStyles.regular12.copyWith(
+                        color: AppColors.grey2Color,
+                      ),
+                    )
+                  ],
+                ).onTapScaleAnimation(onTap: () {
+                  AppRouter.pushNamed(AppRoutes.mapPage);
+                })
               ],
-            ).onTapScaleAnimation(onTap: () {
-              AppRouter.pushNamed(AppRoutes.mapPage);
-            })
+            ),
+            const Spacer(),
+            Row(children: _getActions(role)),
           ],
-        ),
-        const Spacer(),
-        Row(
-          children: _getActions(),
-        )
-      ],
+        );
+      },
     );
   }
 
-  Widget _getPersonImage() {
+  Widget _getPersonImage(RoleEnum role) {
     if (role == RoleEnum.client) {
       return AppSvgIcon(
         path: AppIcons.profile,
@@ -77,7 +87,7 @@ class HomeAppBar extends StatelessWidget {
     }
   }
 
-  List<Widget> _getActions() {
+  List<Widget> _getActions(RoleEnum role) {
     if (role == RoleEnum.client) {
       return [
         AppSvgIcon(
@@ -87,13 +97,13 @@ class HomeAppBar extends StatelessWidget {
           radius: 12,
           padding: const EdgeInsets.all(8),
         ),
-        const SizedBox(
-          width: 12,
-        ),
-        AppSvgIcon(path: AppIcons.bag).setBorder(
+        const SizedBox(width: 12),
+        AppSvgIcon(
+          path: AppIcons.bag,
+        ).setBorder(
           radius: 12,
           padding: const EdgeInsets.all(8),
-        )
+        ),
       ];
     } else if (role == RoleEnum.provider) {
       return [

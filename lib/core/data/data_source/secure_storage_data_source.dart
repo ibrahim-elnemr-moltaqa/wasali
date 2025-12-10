@@ -13,8 +13,6 @@ abstract class SecureStorageDataSource {
   Future<TokenModel?> getToken();
   Future<void> setCachedUser(CacheUserModel user);
   Future<CacheUserModel?> getCachedUser();
-  Future<void> setUserRole(RoleEnum role);
-  Future<RoleEnum?> getUserRole();
   Future<void> deleteAllCache();
 
 }
@@ -81,34 +79,6 @@ class SecureStorageDataSourceImpl implements SecureStorageDataSource {
     } catch (_) {
       throw SecureStorageException(
         message: "Failed to get cached user from cache ، please try again",
-      );
-    }
-  }
-
-  @override
-  Future<void> setUserRole(RoleEnum role) async {
-    try {
-      return _storageObj.write(key: 'user_role', value: role.name);
-    } catch (_) {
-      throw SecureStorageException(
-        message: "Failed to save user role to cache ، please try again",
-      );
-    }
-  }
-
-  @override
-  Future<RoleEnum?> getUserRole() async {
-    try {
-      return _storageObj.read(key: 'user_role').then((value) {
-        if (value != null) {
-          return RoleEnum.values.firstWhere((role) => role.name == value,
-              orElse: () => RoleEnum.guest);
-        }
-        return null;
-      });
-    } catch (_) {
-      throw SecureStorageException(
-        message: "Failed to get user role from cache ، please try again",
       );
     }
   }

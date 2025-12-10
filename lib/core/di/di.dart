@@ -2,16 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import '../core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../core.dart';
 import 'di.config.dart';
 
 final injector = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'init',
   preferRelativeImports: true,
-  asExtension: true,
 )
 Future<void> initializeDependencies() async {
   injector.registerLazySingleton(() => const FlutterSecureStorage(
@@ -39,12 +38,14 @@ Future<void> resetDependenciesScope() async {
   await configureDependencies();
 }
 
+// final userRole = GetUserRoleUseCase.getInstance().call();
+
 @module
 abstract class RegisterModule {
   @injectable
   Dio get dio => Dio(
         BaseOptions(
-          baseUrl: ApiConstants.apiBaseUrl,
+          baseUrl: ApiConstants.addBaseUrl(),
           receiveDataWhenStatusError: true,
           headers: {
             'Content-Type': 'application/json',

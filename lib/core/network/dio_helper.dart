@@ -14,7 +14,6 @@ class DioHelper {
   }
 
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: ApiConstants.apiBaseUrl,
     receiveDataWhenStatusError: true,
     sendTimeout: const Duration(milliseconds: 30000),
     receiveTimeout: const Duration(milliseconds: 30000),
@@ -32,7 +31,8 @@ class DioHelper {
     _dio.interceptors.add(
       HeaderInterceptor(),
     );
-    _dio.interceptors.add(PrettyDioLogger(requestHeader: true, requestBody: true, maxWidth: 100));
+    _dio.interceptors.add(
+        PrettyDioLogger(requestHeader: true, requestBody: true, maxWidth: 100));
 
     _dio.interceptors.add(UnAuthenticatedInterceptor.instance);
   }
@@ -51,7 +51,8 @@ class DioHelper {
     final result = await apiExecptionCollecter(
       task: () async {
         final FormData? formData = body != null ? FormData.fromMap(body) : null;
-        final result = await _dio.get(url, data: formData, queryParameters: queryParameters);
+        final result = await _dio.get(url,
+            data: formData, queryParameters: queryParameters);
         return result;
       },
     );
@@ -69,7 +70,8 @@ class DioHelper {
   }) async {
     return apiExecptionCollecter(
       task: () async {
-        final FormData? form = formData != null ? FormData.fromMap(formData) : null;
+        final FormData? form =
+            formData != null ? FormData.fromMap(formData) : null;
         return await _dio.put(
           url,
           data: form ?? body,
@@ -100,6 +102,4 @@ class DioHelper {
       },
     );
   }
-
-  
 }

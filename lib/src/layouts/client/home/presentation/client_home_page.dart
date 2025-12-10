@@ -19,7 +19,7 @@ class ClientHomePage extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        HomeAppBar(title: appLocalizer.welcomeOnApp, role: RoleEnum.client),
+        HomeAppBar(),
         Expanded(
           child: CustomScrollView(
             slivers: [

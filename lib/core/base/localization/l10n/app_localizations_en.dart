@@ -1553,6 +1553,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deliveryAddresses => 'Delivery Addresses';
 
   @override
+  String get selectDeliveryAddress => 'Select Delivery Address';
+
+  @override
   String get service_provider_data => ' Service Provider Information';
 
   @override
