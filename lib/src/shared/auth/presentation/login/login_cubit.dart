@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/core.dart';
@@ -9,8 +8,6 @@ class LoginCubit extends Cubit<Async> {
   LoginCubit() : super(const Async.initial());
 
   final LoginUseCase _loginUseCase = injector();
-  final phoneController = TextEditingController();
-
 
   void logIn(LoginParams params) async {
     emit(const Async.loading());

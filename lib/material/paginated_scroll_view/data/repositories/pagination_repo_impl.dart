@@ -1,9 +1,10 @@
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/core.dart';
 import '../../domain/entities/paginated_entity.dart';
 import '../../domain/repositories/pagination_repo.dart';
 import '../../domain/use_cases/fetch_pagination_data_use_case.dart';
-import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
 
 @Injectable(as: PaginationRepository)
 class PaginationRepoImpl extends PaginationRepository {
@@ -13,7 +14,7 @@ class PaginationRepoImpl extends PaginationRepository {
   @override
   DomainServiceType<PagedResponse<T>> fetchPaginated<T>(
       PaginatedParams<T> params) async {
-    return failerCollect(() async {
+    return failureCollect(() async {
       final results = await _dioHelper.get(
         url: params.endpoint,
         queryParameters: {

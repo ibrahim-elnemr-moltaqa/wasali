@@ -6,14 +6,14 @@ import 'package:wasli/src/layouts/client/register/domain/use_case/user_register_
 import 'package:wasli/src/shared/auth/data/models/api_authentication_response.dart';
 
 @Injectable(as: UserRegisterRepository)
-class UserRegisterRepositoryImpl implements UserRegisterRepository{
-    final DioHelper _apiHelper;
+class UserRegisterRepositoryImpl implements UserRegisterRepository {
+  final DioHelper _apiHelper;
   final SecureStorageRepository _secureStorageRepository;
 
   UserRegisterRepositoryImpl(this._apiHelper, this._secureStorageRepository);
   @override
   DomainServiceType<Unit> register(RegisterParams params) async {
-    return await failerCollect(
+    return await failureCollect(
       () async {
         final result =
             await _apiHelper.post(url: "auth/register", body: params.toMap);

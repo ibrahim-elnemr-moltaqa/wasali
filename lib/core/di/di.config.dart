@@ -25,6 +25,16 @@ import '../../src/layouts/client/register/domain/repository/user_register_reposi
     as _i561;
 import '../../src/layouts/client/register/domain/use_case/user_register_use_case.dart'
     as _i635;
+import '../../src/layouts/provider/register/data/repository/provider_register_repository_impl.dart'
+    as _i365;
+import '../../src/layouts/provider/register/domain/repository/provider_register_repository.dart'
+    as _i913;
+import '../../src/layouts/provider/register/domain/use_case/provider_register_main_information_use_case.dart'
+    as _i276;
+import '../../src/layouts/provider/register/domain/use_case/provider_register_store_address_params.dart'
+    as _i950;
+import '../../src/layouts/provider/register/domain/use_case/provider_register_store_data_use_case.dart'
+    as _i630;
 import '../../src/shared/auth/data/repository/authentication_repository_imp.dart'
     as _i565;
 import '../../src/shared/auth/domain/repository/authentication_repository.dart'
@@ -53,6 +63,8 @@ import '../../src/shared/common/domain/repository/common_repository.dart'
     as _i864;
 import '../../src/shared/common/domain/repository/menu_common_repository.dart'
     as _i722;
+import '../../src/shared/common/domain/use_cases/get_areas_use_case.dart'
+    as _i1069;
 import '../../src/shared/common/domain/use_cases/get_cities_use_case.dart'
     as _i478;
 import '../../src/shared/common/domain/use_cases/get_countries_use_case.dart'
@@ -232,6 +244,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i310.UpdatePhoneUsecase(gh<_i1005.AuthenticationRepository>()));
     gh.factory<_i602.MapsRepository>(
         () => _i596.MapsRepositoryImp(gh<_i614.MapsDataSource>()));
+    gh.factory<_i913.ProviderRegisterRepository>(
+        () => _i365.ProviderRegisterRepositoryImpl(
+              gh<_i351.DioHelper>(),
+              gh<_i351.SecureStorageRepository>(),
+            ));
     gh.factory<_i771.GetEducationalYearsUseCase>(
         () => _i771.GetEducationalYearsUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i206.GetEducationalStageUseCase>(
@@ -244,6 +261,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i543.GetEducationalSubjectUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i478.GetCitiesUseCase>(
         () => _i478.GetCitiesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i1069.GetAreasUseCase>(
+        () => _i1069.GetAreasUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i635.RegiserUseCase>(
         () => _i635.RegiserUseCase(gh<_i561.UserRegisterRepository>()));
     gh.factory<_i346.GetSearchSuggestionsUseCase>(
@@ -267,6 +286,15 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i190.NotificationRepository>()));
     gh.lazySingleton<_i306.UpdateNameUseCase>(() => _i306.UpdateNameUseCase(
         repository: gh<_i1005.AuthenticationRepository>()));
+    gh.factory<_i276.ProviderRegisterMainInformationUseCase>(() =>
+        _i276.ProviderRegisterMainInformationUseCase(
+            gh<_i913.ProviderRegisterRepository>()));
+    gh.factory<_i630.ProviderRegisterStoreDataUseCase>(() =>
+        _i630.ProviderRegisterStoreDataUseCase(
+            gh<_i913.ProviderRegisterRepository>()));
+    gh.factory<_i950.ProviderRegisterStoreAddressUseCase>(() =>
+        _i950.ProviderRegisterStoreAddressUseCase(
+            gh<_i913.ProviderRegisterRepository>()));
     gh.factory<_i966.GetCurrentUserLocationUseCase>(
         () => _i966.GetCurrentUserLocationUseCase(
               gh<_i185.EnableGpsAndHandlePermissionUseCase>(),

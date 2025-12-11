@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wasli/core/config/values/assets.gen.dart';
 import 'package:wasli/core/core.dart';
-import 'package:wasli/src/shared/common/domain/entity/city_entity.dart';
-import 'Cities_drop_down_cubit.dart';
+import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
+
 import '../drop_down.dart';
+import 'Cities_drop_down_cubit.dart';
 
 class CitiesDropDown extends StatelessWidget {
   const CitiesDropDown({
@@ -11,18 +11,17 @@ class CitiesDropDown extends StatelessWidget {
     this.city,
     this.onChanged,
   });
-  final CityEntity? city;
-  final void Function(CityEntity? value)? onChanged;
+  final CommonEntity? city;
+  final void Function(CommonEntity? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return AppSingleDropDown<CityEntity>(
+    return AppSingleDropDown<CommonEntity>(
       value: city,
       itemDisplay: (displayValue) => displayValue?.name,
       onChanged: onChanged,
-      hint: appLocalizer.city,
+      hint: appLocalizer.choose_city,
       borderRadius: 12,
-      prefixIc: Assets.icons.city,
       cubit: CitiesDropDownCubit(),
     );
   }

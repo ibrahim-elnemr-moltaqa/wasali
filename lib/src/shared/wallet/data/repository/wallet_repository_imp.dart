@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../domain/entities/transaction_entity.dart';
 import '../../domain/repository/wallet_repository.dart';
 
@@ -12,7 +13,7 @@ class WalletRepositoryImp implements WalletRepository {
 
   @override
   DomainServiceType<List<TransactionEntity>> getTransactions() async {
-    return await failerCollect(
+    return await failureCollect(
       () async {
         await Future.delayed(const Duration(seconds: 5));
         final dumyData = List.generate(
@@ -32,7 +33,7 @@ class WalletRepositoryImp implements WalletRepository {
 
   @override
   DomainServiceType<void> withdrawBalance() async {
-    return await failerCollect(
+    return await failureCollect(
       () async {
         await Future.delayed(const Duration(seconds: 5));
         return const Right(null);
@@ -42,7 +43,7 @@ class WalletRepositoryImp implements WalletRepository {
 
   @override
   DomainServiceType<String> charageBalance(int amount) async {
-    return await failerCollect(
+    return await failureCollect(
       () async {
         await Future.delayed(const Duration(seconds: 5));
         return const Right("null");

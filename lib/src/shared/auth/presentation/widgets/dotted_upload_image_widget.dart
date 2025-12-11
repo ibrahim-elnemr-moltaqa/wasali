@@ -35,7 +35,7 @@ class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
           return null;
         },
         value: file,
-        onSaved: widget.onChanged,
+        onSaved: (value) => widget.onChanged(value),
         build: (context, hasError, errorMessage, value, onChange, onSave,
                 validate) =>
             AnimatedSize(
@@ -109,6 +109,7 @@ class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
                   ],
                 ).onTapScaleAnimation(onTap: () {
                   MediaPickerBottomSheet.show(context, onMediaPicked: (media) {
+                    widget.onChanged(File(media.path));
                     onChange(File(media.path));
                     setState(() {
                       file = File(media.path);

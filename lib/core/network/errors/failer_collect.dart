@@ -1,6 +1,6 @@
 part of core;
 
-Future<Either<Failure, T>> failerCollect<T>(
+Future<Either<Failure, T>> failureCollect<T>(
   Future<Either<Failure, T>> Function() task, {
   Future<Failure?> Function(Exception execption)? catchExecption,
   Future<Failure?> Function(Object? execption)? catchError,

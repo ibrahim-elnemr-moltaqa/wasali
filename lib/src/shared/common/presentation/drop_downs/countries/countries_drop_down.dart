@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
-import '../../../domain/entity/country_entity.dart';
-import 'countries_drop_down_cubit.dart';
+import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
+
 import '../drop_down.dart';
+import 'countries_drop_down_cubit.dart';
 
 class CountriesDropDown extends StatelessWidget {
   const CountriesDropDown({
@@ -10,8 +11,8 @@ class CountriesDropDown extends StatelessWidget {
     this.country,
     this.onChanged,
   });
-  final CountryEntity? country;
-  final void Function(CountryEntity? value)? onChanged;
+  final CommonEntity? country;
+  final void Function(CommonEntity? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CountriesDropDown extends StatelessWidget {
       title: appLocalizer.country,
       hint: appLocalizer.selectCountry,
       cubit: CountriesDropDownCubit(),
-      // prefixIc: AppIcons.countryIc,
+      borderRadius: 12,
     );
   }
 }

@@ -26,7 +26,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<Unit> login(LoginParams params) async {
-    return await failerCollect(
+    return await failureCollect(
       () async {
         final result = await _apiHelper.post(
           url: "auth/login",
@@ -44,7 +44,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<Unit> verifyOtp(String params) async {
-    return await failerCollect<Unit>(() async {
+    return await failureCollect<Unit>(() async {
       final result = await _apiHelper.post(
         url: "auth/verify-otp",
         body: {
@@ -62,7 +62,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<void> resendOtp(PhoneEntity params) async {
-    return await failerCollect<void>(() async {
+    return await failureCollect<void>(() async {
       await _apiHelper.post(url: "auth/resend-otp", body: params.toMap);
       return const Right(null);
     });
@@ -70,7 +70,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<void> logOut() async {
-    return await failerCollect<void>(
+    return await failureCollect<void>(
       () async {
         await _apiHelper.post(url: "auth/logout");
         await _secureStorageRepository.deleteAllCache();
@@ -81,7 +81,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   Future<Either<Failure, void>> deleteAccount() async {
-    return await failerCollect<void>(() async {
+    return await failureCollect<void>(() async {
       await _apiHelper.delete(url: "auth/delete-account");
       await _secureStorageRepository.deleteAllCache();
       return const Right(null);
@@ -90,7 +90,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<void> canUpdateEmail(CanUpdateEmailParams params) async {
-    return await failerCollect<void>(() async {
+    return await failureCollect<void>(() async {
       await _apiHelper.post(
         url: "auth/change-email",
         body: params.toMap,
@@ -101,7 +101,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<void> canUpdateMobile(CanUpdatePhoneParams params) async {
-    return await failerCollect<void>(() async {
+    return await failureCollect<void>(() async {
       await _apiHelper.post(
         url: "auth/change-mobile",
         body: params.toMap,
@@ -112,7 +112,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<Unit> updatePhone(UpdatePhoneParams params) async {
-    return await failerCollect<Unit>(() async {
+    return await failureCollect<Unit>(() async {
       final result = await _apiHelper.post(
         url: "auth/change-mobile",
         body: params.toMap,
@@ -126,7 +126,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<Unit> updateName(UpdateNameParams params) async {
-    return await failerCollect<Unit>(() async {
+    return await failureCollect<Unit>(() async {
       final result = await _apiHelper.post(
         url: "auth/update-profile",
         body: params.toMap(),

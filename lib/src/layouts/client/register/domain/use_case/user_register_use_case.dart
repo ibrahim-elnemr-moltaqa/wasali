@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/src/layouts/client/register/domain/repository/user_register_repository.dart';
+
 import '../../../../../../core/core.dart';
 import '../../../../../../core/utils/mixins/params.dart';
 
@@ -18,13 +19,15 @@ class RegiserUseCase extends IUseCase<void, RegisterParams> {
 
 class RegisterParams with Params {
   final String username;
-  final String phone;
+  final String mobile;
+  final String whatsApp;
   final String countryCode;
   final String deviceToken;
 
   RegisterParams({
     required this.username,
-    required this.phone,
+    required this.mobile,
+    required this.whatsApp,
     required this.countryCode,
     required this.deviceToken,
   });
@@ -32,7 +35,8 @@ class RegisterParams with Params {
   @override
   Map<String, dynamic> get toMap => {
         "name": username,
-        "mobile": '0$phone',
+        "mobile": '0$mobile',
+        "whatsapp": '0$whatsApp',
         "country_code": countryCode,
         "terms": 1,
         "device_token": deviceToken,
