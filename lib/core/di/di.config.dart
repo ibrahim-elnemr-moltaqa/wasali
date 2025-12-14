@@ -77,6 +77,10 @@ import '../../src/shared/common/domain/use_cases/get_educational_years_use_case.
     as _i771;
 import '../../src/shared/common/domain/use_cases/get_languages_use_case.dart'
     as _i530;
+import '../../src/shared/common/domain/use_cases/get_main_categories_use_case.dart'
+    as _i456;
+import '../../src/shared/common/domain/use_cases/get_sub_categories_use_case.dart'
+    as _i543;
 import '../../src/shared/common/domain/use_cases/menu/get_contact_us_data_use_case.dart'
     as _i0;
 import '../../src/shared/common/domain/use_cases/menu/get_faq_use_case.dart'
@@ -263,6 +267,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i478.GetCitiesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i1069.GetAreasUseCase>(
         () => _i1069.GetAreasUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i456.GetMainCategoriesUseCase>(
+        () => _i456.GetMainCategoriesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i543.GetSubCategoriesUseCase>(
+        () => _i543.GetSubCategoriesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i635.RegiserUseCase>(
         () => _i635.RegiserUseCase(gh<_i561.UserRegisterRepository>()));
     gh.factory<_i346.GetSearchSuggestionsUseCase>(

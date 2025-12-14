@@ -117,6 +117,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/delete-account-ic.svg
   String get deleteAccountIc => 'assets/icons/delete-account-ic.svg';
 
+  /// File path: assets/icons/delete.svg
+  String get delete => 'assets/icons/delete.svg';
+
   /// File path: assets/icons/districts.svg
   String get districts => 'assets/icons/districts.svg';
 
@@ -367,6 +370,7 @@ class $AssetsIconsGen {
         closeIc,
         coloredArrowDown,
         deleteAccountIc,
+        delete,
         districts,
         doubleArrowIc,
         editIc,

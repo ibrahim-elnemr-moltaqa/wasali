@@ -1,19 +1,26 @@
+// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/inputs/app_text_form_field.dart';
 import 'package:wasli/material/inputs/email_field.dart';
 import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
 import 'package:wasli/material/inputs/name_field.dart';
+import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/layouts/provider/register/domain/use_case/provider_register_store_data_use_case.dart';
 import 'package:wasli/src/layouts/provider/register/presentation/provider_register_cubit/store_data/store_data_cubit.dart';
 import 'package:wasli/src/shared/auth/presentation/widgets/dotted_upload_image_widget.dart';
-import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
+import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
+import 'package:wasli/src/shared/common/presentation/drop_downs/main_categories/main_categories_drop_down.dart';
+import 'package:wasli/src/shared/common/presentation/drop_downs/sub_categories/sub_categories_drop_down.dart';
 
 class StoreDataStep extends StatefulWidget {
   const StoreDataStep({super.key, required this.onStepSucceeded});
@@ -29,7 +36,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
   TextEditingController storeDescriptionController = TextEditingController();
   ValueNotifier<IntelPhoneNumberEntity?> storePhoneNumber = ValueNotifier(null);
   ValueNotifier<int?> categoryId = ValueNotifier(null);
-  ValueNotifier<List<int>?> subCategoryId = ValueNotifier(null);
+  ValueNotifier<List<CategoryEntity>?> subCategories = ValueNotifier(null);
   ValueNotifier<File?> storeImage = ValueNotifier(null);
   ValueNotifier<File?> commercialRegisterImage = ValueNotifier(null);
 
@@ -42,7 +49,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
     storeDescriptionController.dispose();
     storePhoneNumber.dispose();
     categoryId.dispose();
-    subCategoryId.dispose();
+    subCategories.dispose();
     storeImage.dispose();
     commercialRegisterImage.dispose();
     super.dispose();
@@ -57,9 +64,10 @@ class _StoreDataStepState extends State<StoreDataStep> {
         email: storeEmailController.text,
         description: storeDescriptionController.text,
         categoryId: categoryId.value!,
-        subCategoryId: subCategoryId.value!,
+        subCategoryIds: subCategories.value!.map((e) => e.id).toList(),
         commercialImage: commercialRegisterImage.value!,
       );
+      log(subCategories.value!.map((e) => e.id).toList().toString());
       context.read<StoreDataCubit>().registerStoreData(params);
     }
   }
@@ -74,6 +82,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
           key: secondStepFormKey,
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ValueListenableBuilder(
                     valueListenable: storeImage,
@@ -124,32 +133,52 @@ class _StoreDataStepState extends State<StoreDataStep> {
                 ValueListenableBuilder(
                     valueListenable: categoryId,
                     builder: (context, value, child) {
-                      return AppSingleDropDown<int>(
-                        value: null,
-                        itemDisplay: (itemDisplay) => itemDisplay.toString(),
-                        items: const [1, 2, 3, 4, 5],
+                      return MainCategoriesDropDown(
                         onChanged: (value) {
-                          categoryId.value = value;
+                          categoryId.value = value?.id;
                         },
-                        borderRadius: 10,
-                        title: appLocalizer.main_category,
-                        hint: appLocalizer.choose_main_category,
                       );
                     }),
                 ValueListenableBuilder(
-                    valueListenable: subCategoryId,
+                    valueListenable: subCategories,
                     builder: (context, value, child) {
-                      return AppMultiDropDown<int>(
-                        value: [],
-                        itemDisplay: (itemDisplay) => itemDisplay.toString(),
-                        items: const [1, 2, 3, 4, 5],
+                      return SubCategoriesDropDown(
                         onChanged: (value) {
-                          subCategoryId.value = value;
+                          subCategories.value = value;
+                          subCategories.notifyListeners();
                         },
-                        title: appLocalizer.sub_category,
-                        hint: appLocalizer.choose_sub_category,
                       );
                     }),
+                ValueListenableBuilder(
+                    valueListenable: subCategories,
+                    builder: (context, value, child) {
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(value?.length ?? 0, (index) {
+                            return Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(value?[index].name ?? ''),
+                                    const SizedBox(width: 8),
+                                    AppSvgIcon(path: AppIcons.delete)
+                                        .onTapScaleAnimation(onTap: () {
+                                      subCategories.value
+                                          ?.remove(value?[index]);
+                                      subCategories.notifyListeners();
+                                    })
+                                  ],
+                                ).setContainerToView(
+                                  padding: const EdgeInsets.all(8),
+                                  color: Colors.grey.shade200,
+                                  radius: 8,
+                                ));
+                          }),
+                        ),
+                      );
+                    })
               ],
             ),
           ),

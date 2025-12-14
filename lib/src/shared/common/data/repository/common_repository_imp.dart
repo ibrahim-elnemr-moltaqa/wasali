@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
 import '../../domain/entity/educational_stage_entity.dart';
@@ -140,5 +141,33 @@ class CommonRepositoryImp implements CommonRepository {
         return Right(areas);
       },
     );
+  }
+
+  @override
+  DomainServiceType<List<CategoryEntity>> getMainCategories() async{
+    return await failureCollect(
+      () async {
+        final response = await _dioHelper.get(url: 'categories');
+        final List date = response['data']['data'] ?? [];
+        final List<CategoryEntity> categories =
+            date.map((e) => CategoryEntity.fromJson(e)).toList();
+        return Right(categories);
+      },
+    );
+    
+  }
+
+  @override
+  DomainServiceType<List<CategoryEntity>> getSubCategories() async{
+    return await failureCollect(
+      () async {
+        final response = await _dioHelper.get(url: 'sub-categories');
+        final List date = response['data']['data'] ?? [];
+        final List<CategoryEntity> categories =
+            date.map((e) => CategoryEntity.fromJson(e)).toList();
+        return Right(categories);
+      },
+    );
+    
   }
 }

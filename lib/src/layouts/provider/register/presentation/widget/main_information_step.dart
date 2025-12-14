@@ -49,7 +49,7 @@ class _ServiceProviderStepState extends State<ServiceProviderStep> {
     return BlocProvider(
       create: (context) => MainInformationCubit(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        extendBody: true,
         backgroundColor: Colors.transparent,
         body: Form(
           key: firstStepFormKey,

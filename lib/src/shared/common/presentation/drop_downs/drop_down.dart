@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +8,7 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/material/app_fail_widget.dart';
 import 'package:wasli/material/inputs/validator_field.dart';
 import 'package:wasli/material/spin_kit_loading_widget.dart';
-import 'dart:async';
+
 import 'drop_down_cubit.dart';
 
 part 'widgets/search_field.dart';
@@ -121,6 +123,7 @@ class AppMultiDropDown<T> extends StatelessWidget {
     this.items = const [],
     this.prefixIc,
     this.cubit,
+    this.borderRadius,
   });
 
   final List<T> value;
@@ -131,6 +134,7 @@ class AppMultiDropDown<T> extends StatelessWidget {
   final List<T> items;
   final String? prefixIc;
   final DropDownCubit<T>? cubit;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext _) {
@@ -151,6 +155,7 @@ class AppMultiDropDown<T> extends StatelessWidget {
           final String dataString = data.map((e) => itemDisplay(e)).join(' , ');
 
           return DefaultInputFieldDesign(
+            borderRadius: borderRadius,
             heroTag: heroTag,
             prefixIconPath: prefixIc,
             suffixIconPath: AppIcons.arrowDownIc,
@@ -167,6 +172,7 @@ class AppMultiDropDown<T> extends StatelessWidget {
                       prefixIc: prefixIc,
                       items: items,
                       itemDisplay: itemDisplay,
+                      isMultiSelect: true,
                       onPressed: (context, result, controller) {
                         if (result != null && result != value) {
                           final bool isSelected = data.contains(result);
@@ -203,6 +209,7 @@ class _AppDropDownOverlay<T> extends StatefulWidget {
   final String? Function(T? displayValue) itemDisplay;
   final String? prefixIc;
   final int maxAllowedSelectCount;
+  final bool isMultiSelect;
   final void Function(
     BuildContext context,
     T? value,
@@ -216,6 +223,7 @@ class _AppDropDownOverlay<T> extends StatefulWidget {
     required this.onPressed,
     this.prefixIc,
     this.maxAllowedSelectCount = 1,
+    this.isMultiSelect = false,
     required this.hero,
   });
 
@@ -427,36 +435,132 @@ class _AppDropDownOverlayState<T> extends State<_AppDropDownOverlay<T>>
                               return Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: getFilteredItems.map((option) {
+                                children: getFilteredItems
+                                    .asMap()
+                                    .entries
+                                    .map((entry) {
+                                  final index = entry.key;
+                                  final option = entry.value;
                                   final bool isSelected =
                                       selectedValues.contains(option);
-                                  return GestureDetector(
-                                    behavior: HitTestBehavior.opaque,
-                                    onTap: () {
-                                      onSelected(option);
-                                    },
-                                    child: AnimatedContainer(
-                                        clipBehavior: Clip.antiAlias,
-                                        width: double.infinity,
-                                        duration: Durations.medium1,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 12,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: isSelected
-                                              ? getThemeColor(
-                                                  darkColor: AppColors.blue50
-                                                      .withAlpha(20),
-                                                  lightColor: AppColors.blue50,
+                                  final bool isLastItem =
+                                      index == getFilteredItems.length - 1;
+
+                                  return Column(
+                                    children: [
+                                      GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: AnimatedContainer(
+                                          clipBehavior: Clip.antiAlias,
+                                          width: double.infinity,
+                                          duration: Durations.medium1,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                            vertical: 12,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: isSelected
+                                                ? getThemeColor(
+                                                    darkColor: AppColors.blue50
+                                                        .withAlpha(20),
+                                                    lightColor:
+                                                        AppColors.blue50,
+                                                  )
+                                                : null,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: _HighlightText(
+                                                  text: widget.itemDisplay(
+                                                          option) ??
+                                                      '',
+                                                  searchText: searchText ?? '',
+                                                ),
+                                              ),
+                                              //! Radio or Checkbox
+                                              if (widget.isMultiSelect)
+                                                Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  margin: const EdgeInsets.only(
+                                                      right: 12),
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: isSelected
+                                                          ? AppColors.primary
+                                                          : AppColors.text
+                                                              .withValues(
+                                                                  alpha: .3),
+                                                      width: 2,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: isSelected
+                                                        ? AppColors.primary
+                                                        : Colors.transparent,
+                                                  ),
+                                                  child: isSelected
+                                                      ? const Icon(
+                                                          Icons.check,
+                                                          size: 14,
+                                                          color: Colors.white,
+                                                        )
+                                                      : null,
                                                 )
-                                              : null,
+                                              else
+                                                Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  margin: const EdgeInsets.only(
+                                                      right: 12),
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(
+                                                      color: isSelected
+                                                          ? AppColors.primary
+                                                          : AppColors.text
+                                                              .withValues(
+                                                                  alpha: .3),
+                                                      width: 2,
+                                                    ),
+                                                  ),
+                                                  child: isSelected
+                                                      ? Center(
+                                                          child: Container(
+                                                            width: 10,
+                                                            height: 10,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              color: AppColors
+                                                                  .primary,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : null,
+                                                ),
+                                              // Text
+                                            ],
+                                          ),
                                         ),
-                                        child: _HighlightText(
-                                          text:
-                                              widget.itemDisplay(option) ?? '',
-                                          searchText: searchText ?? '',
-                                        )),
+                                      ),
+                                      // Divider for multi-select
+                                      if (widget.isMultiSelect && !isLastItem)
+                                        Divider(
+                                          height: 1,
+                                          thickness: 1,
+                                          color: AppColors.text
+                                              .withValues(alpha: .1),
+                                          indent: 16,
+                                          endIndent: 16,
+                                        ),
+                                    ],
                                   );
                                 }).toList(),
                               );

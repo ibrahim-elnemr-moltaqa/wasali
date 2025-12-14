@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
 import '../entity/educational_stage_entity.dart';
@@ -13,6 +14,8 @@ abstract class CommonRepository {
   DomainServiceType<List<CommonEntity>> getCities();
   DomainServiceType<List<CommonEntity>> getAreas();
   DomainServiceType<List<CommonEntity>> getCountries();
+  DomainServiceType<List<CategoryEntity>> getMainCategories();
+  DomainServiceType<List<CategoryEntity>> getSubCategories();
   DomainServiceType<List<LanguageEntity>> getLanguages();
   DomainServiceType<List<SpecializationEntity>> getSpecializations();
   DomainServiceType<List<EducationalStageEntity>> getEducationalStages();

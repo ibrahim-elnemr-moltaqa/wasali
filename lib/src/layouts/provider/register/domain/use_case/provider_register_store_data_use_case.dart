@@ -26,7 +26,7 @@ class StoreDataParams extends Equatable {
   final String email;
   final String description;
   final int categoryId;
-  final List<int> subCategoryId;
+  final List<int> subCategoryIds;
   final File commercialImage;
 
   const StoreDataParams({
@@ -36,7 +36,7 @@ class StoreDataParams extends Equatable {
     required this.email,
     required this.description,
     required this.categoryId,
-    required this.subCategoryId,
+    required this.subCategoryIds,
     required this.commercialImage,
   });
 
@@ -47,7 +47,7 @@ class StoreDataParams extends Equatable {
         'email': email,
         'description': description,
         'category_id': categoryId,
-        'subCategory_id': subCategoryId,
+        'sub_category_ids[]': subCategoryIds,
         'commercial_register': MultipartFile.fromFileSync(commercialImage.path),
       };
 
@@ -58,7 +58,7 @@ class StoreDataParams extends Equatable {
         email,
         description,
         categoryId,
-        subCategoryId,
+        subCategoryIds,
         image,
         commercialImage
       ];
