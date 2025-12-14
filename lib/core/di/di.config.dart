@@ -59,7 +59,7 @@ import '../../src/shared/auth/domain/use_case/login_use_case.dart' as _i737;
 import '../../src/shared/auth/domain/use_case/logout_use_case.dart' as _i867;
 import '../../src/shared/auth/domain/use_case/resend_otp_use_case.dart'
     as _i897;
-import '../../src/shared/auth/domain/use_case/update_name_usecase.dart'
+import '../../src/shared/auth/domain/use_case/update_profile_usecase.dart'
     as _i306;
 import '../../src/shared/auth/domain/use_case/update_phone_use_case.dart'
     as _i310;
@@ -322,8 +322,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i947.MarkNotificationAsReadUseCase>(() =>
         _i947.MarkNotificationAsReadUseCase(
             gh<_i190.NotificationRepository>()));
-    gh.lazySingleton<_i306.UpdateNameUseCase>(() => _i306.UpdateNameUseCase(
-        repository: gh<_i1005.AuthenticationRepository>()));
+    gh.lazySingleton<_i306.UpdateProfileUseCase>(() =>
+        _i306.UpdateProfileUseCase(
+            repository: gh<_i1005.AuthenticationRepository>()));
     gh.factory<_i276.ProviderRegisterMainInformationUseCase>(() =>
         _i276.ProviderRegisterMainInformationUseCase(
             gh<_i913.ProviderRegisterRepository>()));

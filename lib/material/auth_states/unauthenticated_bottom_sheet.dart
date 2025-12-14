@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+
 import '../../core/core.dart';
-import '../overlay/show_modal_bottom_sheet.dart';
 import '../../src/shared/auth/presentation/widgets/authentication_header_widget.dart';
 import '../buttons/app_button.dart';
-
+import '../overlay/show_modal_bottom_sheet.dart';
 
 class UnAuthenticatedBottomSheet extends StatelessWidget {
   const UnAuthenticatedBottomSheet._();
   static String routeName = "UnAuthenticatedBottomSheet";
-
 
   static Future<void> show() async {
     if (AppRouter.getCurrentRoute == routeName) {
@@ -45,7 +44,7 @@ class UnAuthenticatedBottomSheet extends StatelessWidget {
             text: appLocalizer.login,
             onPressed: () {
               AppRouter.popUntil();
-              AppAuthenticationBloc.of(context).add(LoggedOutEvent());
+              AppAuthenticationBloc.of(context).add(ChooseRoleEvent());
             },
           ),
         ],

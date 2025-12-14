@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -8,10 +10,12 @@ import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/inputs/avatar_widget.dart';
 import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
 import 'package:wasli/material/inputs/name_field.dart';
+import 'package:wasli/material/toast/app_toast.dart';
+import 'package:wasli/src/layouts/client/profile/client_edit_profile_cubit.dart';
 import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
+import 'package:wasli/src/shared/auth/domain/use_case/update_profile_usecase.dart';
 import 'package:wasli/src/shared/auth/presentation/delete_account/delete_account_bottom_sheet.dart';
-
-enum Gender { male, female }
+import 'package:wasli/src/shared/common/domain/entity/gender_enum.dart';
 
 class ClientEditProfilePage extends StatefulWidget {
   const ClientEditProfilePage({super.key});
@@ -23,8 +27,8 @@ class ClientEditProfilePage extends StatefulWidget {
 class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
   late TextEditingController nameController = TextEditingController();
   late PhoneEntity whatsAppNumber;
-
-  ValueNotifier<Gender> gender = ValueNotifier(Gender.male);
+  ValueNotifier<GenderEnum?> gender = ValueNotifier(null);
+  ValueNotifier<File?> image = ValueNotifier(null);
 
   @override
   void initState() {
@@ -32,6 +36,7 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
         context.read<AppAuthenticationBloc>().state as AuthAuthenticatedState;
     nameController.text = state.user.name;
     whatsAppNumber = state.user.mobile;
+    gender.value = state.user.gender;
     super.initState();
   }
 
@@ -39,77 +44,114 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
   void dispose() {
     super.dispose();
     nameController.dispose();
+    gender.dispose();
+    image.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton()
-            .setBorder(
-              radius: 12,
-            )
-            .paddingAll(8),
-        title: Text(appLocalizer.acccountInformation),
-        centerTitle: false,
+    return BlocProvider(
+      create: (context) => ClientEditProfileCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const BackButton()
+              .setBorder(
+                radius: 12,
+              )
+              .paddingAll(8),
+          title: Text(appLocalizer.acccountInformation),
+          centerTitle: false,
+        ),
+        body: Column(
+          children: [
+            ValueListenableBuilder(
+                valueListenable: image,
+                builder: (context, value, child) {
+                  return AvatarWidget(
+                    onPickImage: (file) {
+                      image.value = file;
+                    },
+                  );
+                }),
+            NameField(
+              label: appLocalizer.username,
+              controller: nameController,
+            ),
+            IntelPhoneField(
+              label: appLocalizer.whatsApp_number,
+              controller: TextEditingController(text: whatsAppNumber.phone),
+            ),
+            ValueListenableBuilder(
+                valueListenable: gender,
+                builder: (context, value, child) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: RadioMenuButton(
+                          toggleable: true,
+                          value: GenderEnum.male,
+                          groupValue: value,
+                          onChanged: (value) {
+                            gender.value = GenderEnum.male;
+                          },
+                          child: Text(appLocalizer.male),
+                        ).setBorder(
+                          radius: 12,
+                        ),
+                      ),
+                      const Gap(12),
+                      Expanded(
+                        child: RadioMenuButton<GenderEnum>(
+                          value: GenderEnum.female,
+                          groupValue: value,
+                          onChanged: (value) {
+                            gender.value = GenderEnum.female;
+                          },
+                          child: Text(appLocalizer.female),
+                        ).setBorder(
+                          radius: 12,
+                        ),
+                      )
+                    ],
+                  ).setTitle(title: appLocalizer.gender);
+                }),
+            const Gap(24),
+            BlocConsumer<ClientEditProfileCubit, ClientEditProfileState>(
+              listener: (context, state) {
+                if (state.isSuccess) {
+                  AppToasts.success(context,
+                      message: appLocalizer.nameUpdatedSuccessfully);
+                  AppAuthenticationBloc.of(context).add(AuthenticatedEvent());
+                } else if (state.isFailure) {
+                  AppToasts.error(context,
+                      message: appLocalizer.somethingWentWrong);
+                }
+              },
+              builder: (context, state) {
+                return AppButton(
+                    isLoading: state.isLoading,
+                    text: appLocalizer.saveChanges,
+                    onPressed: () {
+                      context.read<ClientEditProfileCubit>().updateProfile(
+                            UpdateProfileParams(
+                              whatsapp: whatsAppNumber.phone,
+                              name: nameController.text,
+                              gender: gender.value,
+                              image: image.value,
+                            ),
+                          );
+                    });
+              },
+            ),
+            const Gap(24),
+            Text(
+              appLocalizer.deleteAccount,
+              style: TextStyles.bold16.copyWith(color: AppColors.error),
+            ).onTapScaleAnimation(
+                onTap: () => DeleteAccountBottomSheet.show(context))
+          ],
+        ).paddingHorizontal(20).withSafeArea(),
       ),
-      body: Column(
-        children: [
-          AvatarWidget(
-            onPickImage: (file) {},
-          ),
-          NameField(
-            label: appLocalizer.username,
-            controller: nameController,
-          ),
-          IntelPhoneField(
-            label: appLocalizer.whatsApp_number,
-            controller: TextEditingController(text: whatsAppNumber.phone),
-          ),
-          ValueListenableBuilder(
-              valueListenable: gender,
-              builder: (context, value, child) {
-                return Row(
-                  children: [
-                    Expanded(
-                      child: RadioMenuButton(
-                        toggleable: true,
-                        value: Gender.male,
-                        groupValue: value,
-                        onChanged: (value) {
-                          gender.value = Gender.male;
-                        },
-                        child: Text(appLocalizer.male),
-                      ).setBorder(
-                        radius: 12,
-                      ),
-                    ),
-                    const Gap(12),
-                    Expanded(
-                      child: RadioMenuButton<Gender>(
-                        value: Gender.female,
-                        groupValue: value,
-                        onChanged: (value) {
-                          gender.value = Gender.female;
-                        },
-                        child: Text(appLocalizer.female),
-                      ).setBorder(
-                        radius: 12,
-                      ),
-                    )
-                  ],
-                ).setTitle(title: appLocalizer.gender);
-              }),
-          const Gap(24),
-          AppButton(text: appLocalizer.saveChanges, onPressed: () {}),
-          const Gap(24),
-          Text(
-            appLocalizer.deleteAccount,
-            style: TextStyles.bold16.copyWith(color: AppColors.error),
-          ).onTapScaleAnimation(
-              onTap: () => DeleteAccountBottomSheet.show(context))
-        ],
-      ).paddingHorizontal(20).withSafeArea(),
     );
   }
 }

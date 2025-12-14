@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
-import 'package:wasli/src/shared/auth/domain/use_case/update_name_usecase.dart';
+import 'package:wasli/src/shared/auth/domain/use_case/update_profile_usecase.dart';
 
 import '../../../../../core/core.dart';
 import '../../domain/entities/user_entity.dart';
@@ -125,14 +125,13 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   }
 
   @override
-  DomainServiceType<Unit> updateName(UpdateNameParams params) async {
+  DomainServiceType<Unit> updateProfile(UpdateProfileParams params) async {
     return await failureCollect<Unit>(() async {
       final result = await _apiHelper.post(
         url: "auth/update-profile",
         body: params.toMap(),
       );
       final data = ApiUserModel.fromJson(result['data']['user']['user']);
-      // await _secureStorageRepository.setToken(data.getAsValidTokenEntity);
       await _secureStorageRepository.setCachedUser(data.mapToCacheEntity);
       return const Right(unit);
     });

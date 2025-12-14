@@ -6,7 +6,7 @@ class CacheUserModel extends CacheUserEntity {
     required super.name,
     required super.avatar,
     required super.mobile,
-    required super.email,
+    required super.whatsApp,
   });
 
   CacheUserModel.fromEntity(CacheUserEntity entity)
@@ -15,7 +15,7 @@ class CacheUserModel extends CacheUserEntity {
           name: entity.name,
           avatar: entity.avatar,
           mobile: entity.mobile,
-          email: entity.email,
+          whatsApp: entity.whatsApp,
         );
 
   factory CacheUserModel.fromJson(String tokenJson) {
@@ -24,8 +24,8 @@ class CacheUserModel extends CacheUserEntity {
       id: encodedMap[_idKey],
       name: encodedMap[_nameKey],
       avatar: encodedMap[_avatarKey],
-      email: encodedMap[_emailKey],
       mobile: PhoneModel.fromMap(encodedMap[_kCacheMobileObjectKey]),
+      whatsApp: PhoneModel.fromMap(encodedMap[_kCacheWhatsAppObjectKey]),
     );
   }
 
@@ -33,8 +33,8 @@ class CacheUserModel extends CacheUserEntity {
         _idKey: this.id,
         _nameKey: name,
         _avatarKey: avatar,
-        _emailKey: email,
         _kCacheMobileObjectKey: mobile.toMap,
+        _kCacheWhatsAppObjectKey: whatsApp.toMap
       };
 
   String get toJson => json.encode(toMap);
@@ -42,6 +42,6 @@ class CacheUserModel extends CacheUserEntity {
 
 const String _idKey = "idKey";
 const String _nameKey = "nameKey";
-const String _emailKey = "emailKey";
 const String _avatarKey = "avatarKey";
 const String _kCacheMobileObjectKey = "kCacheMobileObjectKey";
+const String _kCacheWhatsAppObjectKey = "kCacheWhatsAppObjectKey";

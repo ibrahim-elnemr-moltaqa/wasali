@@ -7,14 +7,16 @@ class CacheUserEntity extends Equatable {
   final String name;
   final String? avatar;
   final PhoneEntity mobile;
-  final String? email;
+  final PhoneEntity whatsApp;
+  final GenderEnum? gender;
 
   const CacheUserEntity({
     required this.id,
     required this.name,
-    required this.avatar,
+    this.avatar,
     required this.mobile,
-    required this.email,
+    required this.whatsApp,
+    this.gender,
   });
 
   @override
@@ -23,7 +25,8 @@ class CacheUserEntity extends Equatable {
         name,
         avatar,
         mobile,
-        email,
+        whatsApp,
+        gender
       ];
 
   @override
@@ -33,7 +36,8 @@ class CacheUserEntity extends Equatable {
         "[Name] $name\n"
         "[Avatar] $avatar\n"
         "[Mobile] $mobile\n"
-        "[Email] $email\n"
+        "[whatsApp] $whatsApp\n"
+        "[Gender] $gender\n"
         "-----------------------------------------";
   }
 }

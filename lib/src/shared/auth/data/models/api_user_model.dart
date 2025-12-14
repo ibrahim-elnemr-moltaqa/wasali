@@ -1,41 +1,48 @@
 import 'dart:convert';
 
+import 'package:wasli/src/shared/common/domain/entity/gender_enum.dart';
+
 import '../../domain/entities/user_entity.dart';
 
 class ApiUserModel extends UserEntity {
-  const ApiUserModel({
-    required super.id,
-    required super.name,
-    required super.mobile,
-    required super.image,
-    required super.isVerified,
-    required super.email,
-    required super.lat,
-    required super.lng,
-  });
+  const ApiUserModel(
+      {required super.id,
+      required super.name,
+      required super.mobile,
+      required super.whatsApp,
+      required super.image,
+      required super.isVerified,
+      required super.lat,
+      required super.lng,
+      required super.gender});
   factory ApiUserModel.example() => const ApiUserModel(
-        id: 0,
-        name: "name",
-        mobile: PhoneModel(
-          phone: "01000000000",
-          code: "01",
-          isoCode: "EG",
-        ),
-        image: "image",
-        isVerified: false,
-        email: "email",
-        lng: 41.12,
-        lat: 156.1,
-      );
+      id: 0,
+      name: "name",
+      mobile: PhoneModel(
+        phone: "01000000000",
+        code: "01",
+        isoCode: "EG",
+      ),
+      whatsApp: PhoneModel(
+        phone: "01000000000",
+        code: "01",
+        isoCode: "EG",
+      ),
+      image: "image",
+      isVerified: false,
+      lng: 41.12,
+      lat: 156.1,
+      gender: GenderEnum.male);
   factory ApiUserModel.fromJson(Map<String, dynamic> json) => ApiUserModel(
         id: json["id"],
         name: json["name"] ?? '',
         mobile: PhoneModel.fromMap(json),
+        whatsApp: PhoneModel.fromMap(json),
         image: json["image"],
         isVerified: json["is_verified"],
-        email: json["email"],
         lat: double.tryParse(json["lat"] ?? "0"),
         lng: double.tryParse(json["lng"] ?? "0"),
+        gender: GenderEnum.fromApiValue(json["gender"]),
       );
 }
 
@@ -51,17 +58,19 @@ class PhoneModel extends PhoneEntity {
     return PhoneModel.fromMap(encodedMap);
   }
 
-  factory PhoneModel.fromMap(Map<String, dynamic> map) {
+  factory PhoneModel.fromMap(Map<String, dynamic> map,
+      {bool isWhatsApp = false}) {
     return PhoneModel(
-      phone: map[kPhoneAttributeCacheKey],
-      code: map[kCountryCodeAttributeCacheKey] ?? '+966', isoCode: "SA"
-    
-    );
+        phone: map[
+            isWhatsApp ? kWhatsAppAttributeCacheKey : kPhoneAttributeCacheKey],
+        code: map[kCountryCodeAttributeCacheKey] ?? '+966',
+        isoCode: "SA");
   }
 
   String get toJson => json.encode(toMap);
 }
 
 const String kPhoneAttributeCacheKey = 'mobile';
+const String kWhatsAppAttributeCacheKey = 'whatsapp';
 const String kCountryCodeAttributeCacheKey = 'country_code';
 const String kCountryIsoCodeAttributeCacheKey = 'iso_code';
