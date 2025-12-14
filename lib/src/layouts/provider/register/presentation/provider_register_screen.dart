@@ -10,6 +10,7 @@ class ProviderRegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const AuthAppBarWidget(),
       body: Stack(
         children: [

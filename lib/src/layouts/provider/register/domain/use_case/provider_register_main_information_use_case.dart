@@ -28,6 +28,7 @@ class MainInformationsParams extends Equatable {
         'name': name,
         'mobile': '0$mobile',
         'whatsapp': '0$whatsApp',
+        'terms': 1
       };
 
   @override

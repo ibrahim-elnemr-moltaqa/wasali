@@ -1,41 +1,90 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/widget_ext.dart';
+import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/inputs/avatar_widget.dart';
 import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
 import 'package:wasli/material/inputs/name_field.dart';
-import 'package:wasli/src/layouts/delivery/register/presentation/cubit/delivery_register_cubit.dart';
-import 'package:wasli/src/layouts/delivery/register/presentation/cubit/delivery_register_state.dart';
+import 'package:wasli/material/toast/app_toast.dart';
+import 'package:wasli/src/layouts/delivery/register/domain/use_case/delivery_register_use_case.dart';
+import 'package:wasli/src/layouts/delivery/register/presentation/cubit/delivery_register/delviery_register_cubit.dart';
 
-class DeliveryRegisterInitialDataStep extends StatelessWidget {
+class DeliveryRegisterInitialDataStep extends StatefulWidget {
   const DeliveryRegisterInitialDataStep({
     super.key,
+    required this.onStepSucceeded,
   });
+  final Function(int, IntelPhoneNumberEntity) onStepSucceeded;
+
+  @override
+  State<DeliveryRegisterInitialDataStep> createState() =>
+      _DeliveryRegisterInitialDataStepState();
+}
+
+class _DeliveryRegisterInitialDataStepState
+    extends State<DeliveryRegisterInitialDataStep> {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  ValueNotifier<IntelPhoneNumberEntity?> phoneNumber = ValueNotifier(null);
+  ValueNotifier<IntelPhoneNumberEntity?> whatsAppPhoneNumber =
+      ValueNotifier(null);
+  ValueNotifier<File?> profileImage = ValueNotifier(null);
+
+  GlobalKey<FormState> firstStepFormKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneNumber.dispose();
+    whatsAppPhoneNumber.dispose();
+    profileImage.dispose();
+    super.dispose();
+  }
+
+  void onRegister(BuildContext context) {
+    if (firstStepFormKey.currentState!.validate()) {
+      final params = DeliveryRegisterParams(
+          fName: firstNameController.text,
+          lName: lastNameController.text,
+          mobile: phoneNumber.value!.number,
+          whatsApp: whatsAppPhoneNumber.value!.number,
+          image: profileImage.value!);
+      context.read<DeliveryRegisterCubit>().register(params);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DeliveryRegisterCubit, DeliveryRegisterState>(
-      builder: (context, state) {
-        final cubit = context.read<DeliveryRegisterCubit>();
-        return SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => DeliveryRegisterCubit(),
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Form(
-            key: cubit.firstStepFormKey,
+            key: firstStepFormKey,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  AvatarWidget(
-                    onPickImage: (image) {
-                      cubit.changeProfileImage(image);
-                    },
-                    onDeleteImage: () {
-                      cubit.deleteProfileImage();
-                    },
-                  ),
+                  ValueListenableBuilder(
+                      valueListenable: profileImage,
+                      builder: (context, value, child) {
+                        return AvatarWidget(
+                          onPickImage: (image) {
+                            profileImage.value = image;
+                          },
+                          onDeleteImage: () {
+                            profileImage.value = null;
+                          },
+                        );
+                      }),
                   Row(
                     children: [
                       Expanded(
                         child: NameField(
-                          controller: cubit.firstNameController,
+                          controller: firstNameController,
                           hint: appLocalizer.enterName,
                           label: appLocalizer.first_name,
                         ),
@@ -43,33 +92,68 @@ class DeliveryRegisterInitialDataStep extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: NameField(
-                          controller: cubit.lastNameController,
+                          controller: lastNameController,
                           hint: appLocalizer.enterName,
                           label: appLocalizer.last_name,
-                          
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  IntelPhoneField(
-                    initialValue: cubit.phoneNumber,
-                    label: appLocalizer.phoneNumber,
-                    onChange: cubit.changePhoneNumber,
-                    hint: appLocalizer.enterPhoneNumber,
-                  ),
+                  ValueListenableBuilder(
+                      valueListenable: phoneNumber,
+                      builder: (context, value, child) {
+                        return IntelPhoneField(
+                          initialValue: phoneNumber.value,
+                          label: appLocalizer.phoneNumber,
+                          onChange: (phoneNumber) {
+                            this.phoneNumber.value = phoneNumber;
+                          },
+                          hint: appLocalizer.enterPhoneNumber,
+                        );
+                      }),
                   const SizedBox(height: 12),
-                  IntelPhoneField(
-                    initialValue: cubit.whatsAppPhoneNumber,
-                    label: appLocalizer.whatsApp_number,
-                    onChange: cubit.changeWhatsAppPhoneNumber,
-                    hint: appLocalizer.enter_whatsapp_number,
-                  ),
+                  ValueListenableBuilder(
+                      valueListenable: whatsAppPhoneNumber,
+                      builder: (context, value, child) {
+                        return IntelPhoneField(
+                          initialValue: whatsAppPhoneNumber.value,
+                          label: appLocalizer.whatsApp_number,
+                          onChange: (phoneNumber) {
+                            whatsAppPhoneNumber.value = phoneNumber;
+                          },
+                          hint: appLocalizer.enter_whatsapp_number,
+                        );
+                      }),
                   const SizedBox(height: 16),
                 ]),
           ),
-        );
-      },
+        ),
+        bottomNavigationBar: BlocConsumer<DeliveryRegisterCubit, Async>(
+          listener: (context, state) {
+            if (state.isSuccess) {
+              widget.onStepSucceeded(1, phoneNumber.value!);
+            } else if (state.isFailure) {
+              AppToasts.error(context, message: state.errorMessage ?? '');
+            }
+          },
+          builder: (context, state) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppButton(
+                    isLoading: state.isLoading,
+                    text: appLocalizer.next,
+                    onPressed: () {
+                      if (firstStepFormKey.currentState!.validate()) {
+                        onRegister(context);
+                      }
+                    }),
+              ],
+            );
+          },
+        ).paddingBottom(16),
+      ),
     );
   }
 }

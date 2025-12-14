@@ -144,7 +144,7 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<CategoryEntity>> getMainCategories() async{
+  DomainServiceType<List<CategoryEntity>> getMainCategories() async {
     return await failureCollect(
       () async {
         final response = await _dioHelper.get(url: 'categories');
@@ -154,11 +154,10 @@ class CommonRepositoryImp implements CommonRepository {
         return Right(categories);
       },
     );
-    
   }
 
   @override
-  DomainServiceType<List<CategoryEntity>> getSubCategories() async{
+  DomainServiceType<List<CategoryEntity>> getSubCategories() async {
     return await failureCollect(
       () async {
         final response = await _dioHelper.get(url: 'sub-categories');
@@ -168,6 +167,31 @@ class CommonRepositoryImp implements CommonRepository {
         return Right(categories);
       },
     );
-    
+  }
+
+  @override
+  DomainServiceType<List<CommonEntity>> getBanks() async {
+    return await failureCollect(
+      () async {
+        final response = await _dioHelper.get(url: 'banks');
+        final List date = response['data']['data'] ?? [];
+        final List<CommonEntity> banks =
+            date.map((e) => CommonEntity.fromJson(e)).toList();
+        return Right(banks);
+      },
+    );
+  }
+
+  @override
+  DomainServiceType<List<CommonEntity>> getVehicles() async {
+    return await failureCollect(
+      () async {
+        final response = await _dioHelper.get(url: 'vehicles');
+        final List date = response['data']['data'] ?? [];
+        final List<CommonEntity> vehicles =
+            date.map((e) => CommonEntity.fromJson(e)).toList();
+        return Right(vehicles);
+      },
+    );
   }
 }

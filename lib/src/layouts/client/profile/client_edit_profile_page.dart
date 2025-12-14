@@ -55,7 +55,9 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
       ),
       body: Column(
         children: [
-          const AvatarWidget(),
+          AvatarWidget(
+            onPickImage: (file) {},
+          ),
           NameField(
             label: appLocalizer.username,
             controller: nameController,

@@ -50,21 +50,21 @@ class _ProviderRegisterBodyState extends State<ProviderRegisterBody> {
                     index: value,
                     children: [
                       ServiceProviderStep(
-                        onStepSucceeded: (value, phone) {
-                          currentStep.value = value;
+                        onStepSucceeded: (index, phone) {
+                          currentStep.value = index;
                           completedSteps.value = {
                             ...completedSteps.value,
-                            value
+                            index
                           };
                           this.phone.value = phone;
                         },
                       ),
                       StoreDataStep(
-                        onStepSucceeded: (value) {
+                        onStepSucceeded: (index) {
                           currentStep.value = value;
                           completedSteps.value = {
                             ...completedSteps.value,
-                            value
+                            index
                           };
                         },
                       ),

@@ -25,6 +25,16 @@ import '../../src/layouts/client/register/domain/repository/user_register_reposi
     as _i561;
 import '../../src/layouts/client/register/domain/use_case/user_register_use_case.dart'
     as _i635;
+import '../../src/layouts/delivery/register/data/repository/delivery_register_repository_impl.dart'
+    as _i176;
+import '../../src/layouts/delivery/register/domain/repository/delivery_register_repository.dart'
+    as _i875;
+import '../../src/layouts/delivery/register/domain/use_case/delivery_bank_info_use_case.dart'
+    as _i767;
+import '../../src/layouts/delivery/register/domain/use_case/delivery_register_use_case.dart'
+    as _i133;
+import '../../src/layouts/delivery/register/domain/use_case/delivery_vehicle_data_use_case.dart'
+    as _i246;
 import '../../src/layouts/provider/register/data/repository/provider_register_repository_impl.dart'
     as _i365;
 import '../../src/layouts/provider/register/domain/repository/provider_register_repository.dart'
@@ -65,6 +75,8 @@ import '../../src/shared/common/domain/repository/menu_common_repository.dart'
     as _i722;
 import '../../src/shared/common/domain/use_cases/get_areas_use_case.dart'
     as _i1069;
+import '../../src/shared/common/domain/use_cases/get_banks_use_case.dart'
+    as _i800;
 import '../../src/shared/common/domain/use_cases/get_cities_use_case.dart'
     as _i478;
 import '../../src/shared/common/domain/use_cases/get_countries_use_case.dart'
@@ -81,6 +93,8 @@ import '../../src/shared/common/domain/use_cases/get_main_categories_use_case.da
     as _i456;
 import '../../src/shared/common/domain/use_cases/get_sub_categories_use_case.dart'
     as _i543;
+import '../../src/shared/common/domain/use_cases/get_vehicle_use_case.dart'
+    as _i101;
 import '../../src/shared/common/domain/use_cases/menu/get_contact_us_data_use_case.dart'
     as _i0;
 import '../../src/shared/common/domain/use_cases/menu/get_faq_use_case.dart'
@@ -200,6 +214,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i351.SetUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
     gh.factory<_i351.DeleteUserRoleUseCase>(
         () => _i351.DeleteUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
+    gh.factory<_i101.GetVehicleUseCase>(
+        () => _i101.GetVehicleUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i800.GetBanksUseCase>(
+        () => _i800.GetBanksUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i351.DeleteAllSecureCacheUseCase>(() =>
         _i351.DeleteAllSecureCacheUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.GetCachedUserUseCase>(
@@ -217,6 +235,13 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i351.DioHelper>(),
               gh<_i351.SecureStorageRepository>(),
             ));
+    gh.factory<_i875.DeliveryRegisterRepository>(
+        () => _i176.DeliveryRegisterRepositoryImpl(
+              gh<_i351.DioHelper>(),
+              gh<_i351.SecureStorageRepository>(),
+            ));
+    gh.factory<_i133.DeliveryRegisterUseCase>(() =>
+        _i133.DeliveryRegisterUseCase(gh<_i875.DeliveryRegisterRepository>()));
     gh.factory<_i1005.AuthenticationRepository>(
         () => _i565.AuthenticationRepositoryImp(
               gh<_i351.DioHelper>(),
@@ -271,8 +296,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i456.GetMainCategoriesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i543.GetSubCategoriesUseCase>(
         () => _i543.GetSubCategoriesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i767.DeliveryBankInfoUseCase>(() =>
+        _i767.DeliveryBankInfoUseCase(gh<_i875.DeliveryRegisterRepository>()));
     gh.factory<_i635.RegiserUseCase>(
         () => _i635.RegiserUseCase(gh<_i561.UserRegisterRepository>()));
+    gh.factory<_i246.DeliveryVehicleDataUseCase>(() =>
+        _i246.DeliveryVehicleDataUseCase(
+            gh<_i875.DeliveryRegisterRepository>()));
     gh.factory<_i346.GetSearchSuggestionsUseCase>(
         () => _i346.GetSearchSuggestionsUseCase(gh<_i602.MapsRepository>()));
     gh.factory<_i950.GetMapLocationAddressUseCase>(
