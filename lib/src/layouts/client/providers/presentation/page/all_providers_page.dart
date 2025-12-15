@@ -7,7 +7,7 @@ import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/custom_provider_card_widget.dart';
 import 'package:wasli/src/layouts/client/providers/data/enum/provider_status_enum.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/widget/providers_appbar.dart';
-import 'package:wasli/src/layouts/provider/register/data/enum/provider_enum.dart';
+import 'package:wasli/src/layouts/provider/authentication/data/enum/provider_enum.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
 
 class AllProvidersPage extends StatelessWidget {

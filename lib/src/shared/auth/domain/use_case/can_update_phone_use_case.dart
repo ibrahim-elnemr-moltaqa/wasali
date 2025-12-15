@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/core.dart';
-import '../entities/user_entity.dart';
 import '../repository/authentication_repository.dart';
 
 @Injectable()
@@ -17,16 +17,18 @@ class CanUpdatePhoneUseCase extends IUseCase<void, CanUpdatePhoneParams> {
 }
 
 class CanUpdatePhoneParams extends Equatable {
-  final PhoneEntity phone;
+  final String phone;
 
   const CanUpdatePhoneParams({
     required this.phone,
   });
 
+  Map<String, dynamic> get toMap => {
+        "mobile": phone,
+      };
+
   @override
   List<Object?> get props => [
         phone,
       ];
-
-  Map<String, dynamic> get toMap => phone.toMap;
 }

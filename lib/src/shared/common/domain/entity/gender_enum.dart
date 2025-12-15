@@ -16,6 +16,8 @@ enum GenderEnum {
         orElse: () => GenderEnum.other,
       );
 
+  
+
   String get title {
     switch (this) {
       case GenderEnum.male:

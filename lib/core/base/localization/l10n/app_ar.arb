@@ -586,5 +586,8 @@
   "subscription_duration" : "مدة الباقة",
   "subscription_price" : "سعر الباقة",
   "subscription_start_date" : "تاريخ بدء الاشتراك",
-  "subscription_end_date" : "تاريخ انتهاء الاشتراك"
+  "subscription_end_date" : "تاريخ انتهاء الاشتراك",
+  "new_phone_number" : "رقم الهاتف الجديد",
+  "general_store_settings" : "اعدادات المتجر العامة",
+  "managementCommission" : "عمولة الإدارة"
 }

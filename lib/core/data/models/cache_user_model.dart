@@ -7,6 +7,7 @@ class CacheUserModel extends CacheUserEntity {
     required super.avatar,
     required super.mobile,
     required super.whatsApp,
+    super.gender,
   });
 
   CacheUserModel.fromEntity(CacheUserEntity entity)
@@ -16,6 +17,7 @@ class CacheUserModel extends CacheUserEntity {
           avatar: entity.avatar,
           mobile: entity.mobile,
           whatsApp: entity.whatsApp,
+          gender: entity.gender,
         );
 
   factory CacheUserModel.fromJson(String tokenJson) {
@@ -26,6 +28,7 @@ class CacheUserModel extends CacheUserEntity {
       avatar: encodedMap[_avatarKey],
       mobile: PhoneModel.fromMap(encodedMap[_kCacheMobileObjectKey]),
       whatsApp: PhoneModel.fromMap(encodedMap[_kCacheWhatsAppObjectKey]),
+      gender: encodedMap[_kCacheGenderKey],
     );
   }
 
@@ -34,7 +37,8 @@ class CacheUserModel extends CacheUserEntity {
         _nameKey: name,
         _avatarKey: avatar,
         _kCacheMobileObjectKey: mobile.toMap,
-        _kCacheWhatsAppObjectKey: whatsApp.toMap
+        _kCacheWhatsAppObjectKey: whatsApp.toMap,
+        _kCacheGenderKey: gender
       };
 
   String get toJson => json.encode(toMap);
@@ -45,3 +49,5 @@ const String _nameKey = "nameKey";
 const String _avatarKey = "avatarKey";
 const String _kCacheMobileObjectKey = "kCacheMobileObjectKey";
 const String _kCacheWhatsAppObjectKey = "kCacheWhatsAppObjectKey";
+
+const String _kCacheGenderKey = "kCacheGenderKey";

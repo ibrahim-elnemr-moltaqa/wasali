@@ -1672,4 +1672,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get subscription_end_date => 'Subscription End Date';
+
+  @override
+  String get new_phone_number => 'New Phone Number';
+
+  @override
+  String get general_store_settings => 'General Store Settings';
+
+  @override
+  String get managementCommission => 'Management commission';
 }

@@ -13,7 +13,6 @@ class HandleResponseWidget<T> extends StatelessWidget {
     this.loadingWidget,
     this.initialWidget,
     this.failureWidget,
-    this.isEmpty = false,
   });
 
   final Async<T> status;
@@ -25,7 +24,6 @@ class HandleResponseWidget<T> extends StatelessWidget {
   final Widget? loadingWidget;
   final Widget? initialWidget;
   final Widget? failureWidget;
-  final bool isEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class HandleResponseWidget<T> extends StatelessWidget {
     if (status.isSuccess) {
       if (status.data != null) {
         return onSuccess(status.data as T);
-      } else if (isEmpty) {
+      } else if (status.data == null && successWithoutDataBuilder != null) {
         return successWithoutDataBuilder!();
       } else {
         return successWithoutDataBuilder!();

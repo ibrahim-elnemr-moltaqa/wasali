@@ -29,14 +29,16 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
   late PhoneEntity whatsAppNumber;
   ValueNotifier<GenderEnum?> gender = ValueNotifier(null);
   ValueNotifier<File?> image = ValueNotifier(null);
+  String? avatarFromApi;
 
   @override
   void initState() {
     final state =
         context.read<AppAuthenticationBloc>().state as AuthAuthenticatedState;
     nameController.text = state.user.name;
-    whatsAppNumber = state.user.mobile;
-    gender.value = state.user.gender;
+    whatsAppNumber = state.user.whatsApp;
+    gender.value = GenderEnum.fromApiValue(state.user.gender ?? "");
+    avatarFromApi = state.user.avatar;
     super.initState();
   }
 
@@ -62,95 +64,101 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
           title: Text(appLocalizer.acccountInformation),
           centerTitle: false,
         ),
-        body: Column(
-          children: [
-            ValueListenableBuilder(
-                valueListenable: image,
-                builder: (context, value, child) {
-                  return AvatarWidget(
-                    onPickImage: (file) {
-                      image.value = file;
-                    },
-                  );
-                }),
-            NameField(
-              label: appLocalizer.username,
-              controller: nameController,
-            ),
-            IntelPhoneField(
-              label: appLocalizer.whatsApp_number,
-              controller: TextEditingController(text: whatsAppNumber.phone),
-            ),
-            ValueListenableBuilder(
-                valueListenable: gender,
-                builder: (context, value, child) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        child: RadioMenuButton(
-                          toggleable: true,
-                          value: GenderEnum.male,
-                          groupValue: value,
-                          onChanged: (value) {
-                            gender.value = GenderEnum.male;
-                          },
-                          child: Text(appLocalizer.male),
-                        ).setBorder(
-                          radius: 12,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ValueListenableBuilder(
+                  valueListenable: image,
+                  builder: (context, value, child) {
+                    return AvatarWidget(
+                      initialImage: avatarFromApi,
+                      onPickImage: (file) {
+                        image.value = file;
+                      },
+                    );
+                  }),
+              NameField(
+                label: appLocalizer.username,
+                controller: nameController,
+              ),
+              IntelPhoneField(
+                initialValue: whatsAppNumber.getFieldPhoneNumber,
+                label: appLocalizer.whatsApp_number,
+                onChange: (phoneNumber) {
+                  whatsAppNumber = phoneNumber.getPhoneEntity;
+                },
+              ),
+              ValueListenableBuilder(
+                  valueListenable: gender,
+                  builder: (context, value, child) {
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: RadioMenuButton(
+                            toggleable: true,
+                            value: GenderEnum.male,
+                            groupValue: value,
+                            onChanged: (value) {
+                              gender.value = GenderEnum.male;
+                            },
+                            child: Text(appLocalizer.male),
+                          ).setBorder(
+                            radius: 12,
+                          ),
                         ),
-                      ),
-                      const Gap(12),
-                      Expanded(
-                        child: RadioMenuButton<GenderEnum>(
-                          value: GenderEnum.female,
-                          groupValue: value,
-                          onChanged: (value) {
-                            gender.value = GenderEnum.female;
-                          },
-                          child: Text(appLocalizer.female),
-                        ).setBorder(
-                          radius: 12,
-                        ),
-                      )
-                    ],
-                  ).setTitle(title: appLocalizer.gender);
-                }),
-            const Gap(24),
-            BlocConsumer<ClientEditProfileCubit, ClientEditProfileState>(
-              listener: (context, state) {
-                if (state.isSuccess) {
-                  AppToasts.success(context,
-                      message: appLocalizer.nameUpdatedSuccessfully);
-                  AppAuthenticationBloc.of(context).add(AuthenticatedEvent());
-                } else if (state.isFailure) {
-                  AppToasts.error(context,
-                      message: appLocalizer.somethingWentWrong);
-                }
-              },
-              builder: (context, state) {
-                return AppButton(
-                    isLoading: state.isLoading,
-                    text: appLocalizer.saveChanges,
-                    onPressed: () {
-                      context.read<ClientEditProfileCubit>().updateProfile(
-                            UpdateProfileParams(
-                              whatsapp: whatsAppNumber.phone,
-                              name: nameController.text,
-                              gender: gender.value,
-                              image: image.value,
-                            ),
-                          );
-                    });
-              },
-            ),
-            const Gap(24),
-            Text(
-              appLocalizer.deleteAccount,
-              style: TextStyles.bold16.copyWith(color: AppColors.error),
-            ).onTapScaleAnimation(
-                onTap: () => DeleteAccountBottomSheet.show(context))
-          ],
-        ).paddingHorizontal(20).withSafeArea(),
+                        const Gap(12),
+                        Expanded(
+                          child: RadioMenuButton<GenderEnum>(
+                            value: GenderEnum.female,
+                            groupValue: value,
+                            onChanged: (value) {
+                              gender.value = GenderEnum.female;
+                            },
+                            child: Text(appLocalizer.female),
+                          ).setBorder(
+                            radius: 12,
+                          ),
+                        )
+                      ],
+                    ).setTitle(title: appLocalizer.gender);
+                  }),
+              const Gap(24),
+              BlocConsumer<ClientEditProfileCubit, ClientEditProfileState>(
+                listener: (context, state) {
+                  if (state.isSuccess) {
+                    AppToasts.success(context,
+                        message: appLocalizer.nameUpdatedSuccessfully);
+                    AppAuthenticationBloc.of(context).add(AuthenticatedEvent());
+                  } else if (state.isFailure) {
+                    AppToasts.error(context,
+                        message: appLocalizer.somethingWentWrong);
+                  }
+                },
+                builder: (context, state) {
+                  return AppButton(
+                      isLoading: state.isLoading,
+                      text: appLocalizer.saveChanges,
+                      onPressed: () {
+                        context.read<ClientEditProfileCubit>().updateProfile(
+                              UpdateProfileParams(
+                                whatsapp: whatsAppNumber.numberWithZeroIfNot,
+                                name: nameController.text,
+                                gender: gender.value,
+                                image: image.value,
+                              ),
+                            );
+                      });
+                },
+              ),
+              const Gap(24),
+              Text(
+                appLocalizer.deleteAccount,
+                style: TextStyles.bold16.copyWith(color: AppColors.error),
+              ).onTapScaleAnimation(
+                  onTap: () => DeleteAccountBottomSheet.show(context))
+            ],
+          ).paddingHorizontal(20).withSafeArea(),
+        ),
       ),
     );
   }

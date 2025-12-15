@@ -1652,4 +1652,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get subscription_end_date => 'تاريخ انتهاء الاشتراك';
+
+  @override
+  String get new_phone_number => 'رقم الهاتف الجديد';
+
+  @override
+  String get general_store_settings => 'اعدادات المتجر العامة';
+
+  @override
+  String get managementCommission => 'عمولة الإدارة';
 }

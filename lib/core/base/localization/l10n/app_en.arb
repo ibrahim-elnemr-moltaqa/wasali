@@ -583,5 +583,8 @@
   "subscription_duration" : "Subscription Duration",
   "subscription_price" : "Subscription Price",
   "subscription_start_date" : "Subscription Start Date",
-  "subscription_end_date" : "Subscription End Date"
+  "subscription_end_date" : "Subscription End Date",
+  "new_phone_number" : "New Phone Number",
+  "general_store_settings" : "General Store Settings",
+  "managementCommission" : "Management commission"
 }

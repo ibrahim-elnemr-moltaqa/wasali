@@ -7,7 +7,8 @@ import 'package:wasli/material/media/network_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class MoreAppBarWidget extends StatelessWidget {
-  const MoreAppBarWidget({super.key});
+  const MoreAppBarWidget({super.key, required this.user});
+  final CachedUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class MoreAppBarWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('راكان فيصل المطيري', style: TextStyles.bold14),
+            Text(user.name, style: TextStyles.bold14),
             const SizedBox(
               height: 4,
             ),

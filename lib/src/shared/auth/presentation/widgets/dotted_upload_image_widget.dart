@@ -7,6 +7,7 @@ import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/picker/media_picker_bottomsheet.dart';
 import 'package:wasli/material/dotted_decoration/dotted_decoration.dart';
 import 'package:wasli/material/inputs/validator_field.dart';
+import 'package:wasli/material/media/app_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class DottedUploadImageWidget extends StatefulWidget {
@@ -14,9 +15,11 @@ class DottedUploadImageWidget extends StatefulWidget {
     super.key,
     required this.title,
     required this.onChanged,
+    this.initialValue,
   });
   final String title;
   final void Function(File? file) onChanged;
+  final String? initialValue;
 
   @override
   State<DottedUploadImageWidget> createState() =>
@@ -52,54 +55,69 @@ class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      height: 110,
-                      padding: EdgeInsets.all(file != null ? 0 : 20),
-                      decoration: DottedDecoration(
-                          shape: Shape.box,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          color: hasError
-                              ? getThemeColor(
-                                  lightColor: AppColors.red50,
-                                  darkColor: AppColors.canvasBackgroundColor,
-                                )
-                              : AppColors.disableindicatorColor),
-                      child: file != null
-                          ? ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              child: Image.file(
-                                file!,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  AppSvgIcon(
-                                    path: AppIcons.uploadImage,
-                                    size: 24,
+                    widget.initialValue != null && widget.initialValue != ""
+                        ? Text(
+                            widget.title,
+                            style: TextStyles.regular12
+                                .copyWith(color: AppColors.textInputField),
+                          )
+                        : Container(
+                            height: 110,
+                            padding: EdgeInsets.all(file != null ? 0 : 20),
+                            decoration: DottedDecoration(
+                                shape: Shape.box,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                color: hasError
+                                    ? getThemeColor(
+                                        lightColor: AppColors.red50,
+                                        darkColor:
+                                            AppColors.canvasBackgroundColor,
+                                      )
+                                    : AppColors.disableindicatorColor),
+                            child: file != null ||
+                                    widget.initialValue != null &&
+                                        widget.initialValue != ""
+                                ? ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                    child: widget.initialValue != null
+                                        ? AppImage(
+                                            path: widget.initialValue!,
+                                          )
+                                        : Image.file(
+                                            file!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                  )
+                                : Center(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        AppSvgIcon(
+                                          path: AppIcons.uploadImage,
+                                          size: 24,
+                                        ),
+                                        Text(
+                                          widget.title,
+                                          style: TextStyles.regular12.copyWith(
+                                              color: AppColors.textInputField),
+                                        ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(
+                                          'png,jpeg',
+                                          style: TextStyles.regular12.copyWith(
+                                              color: AppColors
+                                                  .lightTextInputField),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Text(
-                                    widget.title,
-                                    style: TextStyles.regular12.copyWith(
-                                        color: AppColors.textInputField),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    'png,jpeg',
-                                    style: TextStyles.regular12.copyWith(
-                                        color: AppColors.lightTextInputField),
-                                  ),
-                                ],
-                              ),
-                            ),
-                    ),
+                          ),
                     if (errorMessage?.isNotEmpty == true)
                       Text(
                         errorMessage ?? '',

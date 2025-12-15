@@ -8,7 +8,7 @@ class CacheUserEntity extends Equatable {
   final String? avatar;
   final PhoneEntity mobile;
   final PhoneEntity whatsApp;
-  final GenderEnum? gender;
+  final String? gender;
 
   const CacheUserEntity({
     required this.id,

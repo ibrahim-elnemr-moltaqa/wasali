@@ -14,7 +14,7 @@ class ApiUserModel extends UserEntity {
       required super.isVerified,
       required super.lat,
       required super.lng,
-      required super.gender});
+      super.gender});
   factory ApiUserModel.example() => const ApiUserModel(
       id: 0,
       name: "name",
@@ -37,12 +37,14 @@ class ApiUserModel extends UserEntity {
         id: json["id"],
         name: json["name"] ?? '',
         mobile: PhoneModel.fromMap(json),
-        whatsApp: PhoneModel.fromMap(json),
+        whatsApp: PhoneModel.fromMap(json, isWhatsApp: true),
         image: json["image"],
         isVerified: json["is_verified"],
         lat: double.tryParse(json["lat"] ?? "0"),
         lng: double.tryParse(json["lng"] ?? "0"),
-        gender: GenderEnum.fromApiValue(json["gender"]),
+        gender: json["gender"] == null
+            ? null
+            : GenderEnum.fromApiValue(json["gender"]),
       );
 }
 

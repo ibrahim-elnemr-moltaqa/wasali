@@ -34,7 +34,7 @@ class UserEntity extends Equatable {
         avatar: image,
         mobile: mobile,
         whatsApp: whatsApp,
-        gender: gender);
+        gender: gender?.name);
   }
 
   @override
@@ -53,11 +53,18 @@ class PhoneEntity extends Equatable {
     required this.isoCode,
   });
   String get numberWithoutZero => phone.replaceFirst(RegExp(r'^0+'), '');
+  String get numberWithZeroIfNot => phone.startsWith('0') ? phone : '0$phone';
 
   PhoneEntity get getPhoneEntity => PhoneEntity(
         code: code,
         phone: numberWithoutZero,
         isoCode: isoCode,
+      );
+
+  IntelPhoneNumberEntity get getFieldPhoneNumber => IntelPhoneNumberEntity(
+        number: phone,
+        countryISOCode: isoCode,
+        countryCode: code,
       );
 
   Map<String, dynamic> get toMap => {

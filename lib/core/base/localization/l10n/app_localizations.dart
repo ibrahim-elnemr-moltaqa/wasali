@@ -3301,6 +3301,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Subscription End Date'**
   String get subscription_end_date;
+
+  /// No description provided for @new_phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'New Phone Number'**
+  String get new_phone_number;
+
+  /// No description provided for @general_store_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'General Store Settings'**
+  String get general_store_settings;
+
+  /// No description provided for @managementCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'Management commission'**
+  String get managementCommission;
 }
 
 class _AppLocalizationsDelegate

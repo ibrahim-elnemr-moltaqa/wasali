@@ -145,13 +145,14 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.store_general_settings,
             icon: AppIcons.shop,
-            onTap: () {},
+            onTap: () =>
+                AppRouter.pushNamed(AppRoutes.generalStoreSettingsPage),
             needAuth: true,
           ),
           MoreTileModel(
             title: appLocalizer.manage_store,
             icon: AppIcons.shop,
-            onTap: () => AppRouter.pushNamed(AppRoutes.storeManagementScreen),
+            onTap: () => AppRouter.pushNamed(AppRoutes.storeManagementPage),
             needAuth: true,
           ),
           MoreTileModel(

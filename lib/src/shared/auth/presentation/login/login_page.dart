@@ -1,19 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/widgets/auth_app_bar_widget.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 
-import '../../../../../material/media/svg_icon.dart';
-import '../../../notifications/helpers/firebase/firebase_helper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/config/router/app_routes.dart';
 import '../../../../../core/core.dart';
 import '../../../../../material/buttons/app_button.dart';
 import '../../../../../material/inputs/intel_phone/phone_field.dart';
+import '../../../../../material/media/svg_icon.dart';
 import '../../../../../material/toast/app_toast.dart';
+import '../../../notifications/helpers/firebase/firebase_helper.dart';
 import '../../domain/use_case/login_use_case.dart';
 import 'login_cubit.dart';
-import 'package:flutter_svg/svg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

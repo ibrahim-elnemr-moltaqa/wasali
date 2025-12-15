@@ -81,6 +81,7 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      extendBody: true,
       body: IndexedStack(
         index: _currentPage!.index,
         children: List.generate(allPages.length, (index) {

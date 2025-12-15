@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 
 import '../../core.dart';
 import '../data_source/secure_storage_data_source.dart';

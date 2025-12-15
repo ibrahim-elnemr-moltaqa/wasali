@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/material/auth_states/guest_checker_widget.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
 import 'package:wasli/src/shared/more/widgets/more_app_bar_widget.dart';
@@ -21,10 +20,11 @@ class MorePage extends StatelessWidget {
           padding: Dimensions.pageMargins,
           child: Column(
             children: [
-              const GuestCheckerWidget(
-                replaceWithDefaultGuestWidget: true,
-                child: MoreAppBarWidget(),
-              ),
+              LoggedUserCheckerWidget(loggedBuilder: (user) {
+                return MoreAppBarWidget(
+                  user: user,
+                );
+              }),
               const SizedBox(height: 20),
               BlocBuilder<AppAuthenticationBloc, AppAuthenticationState>(
                 buildWhen: (previous, current) =>

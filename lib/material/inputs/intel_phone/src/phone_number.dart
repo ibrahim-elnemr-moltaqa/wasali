@@ -34,7 +34,8 @@ class IntelPhoneNumberEntity extends Equatable {
     }
   }
 
-  factory IntelPhoneNumberEntity.fromCompleteNumber({required String completeNumber}) {
+  factory IntelPhoneNumberEntity.fromCompleteNumber(
+      {required String completeNumber}) {
     if (completeNumber == "") {
       return IntelPhoneNumberEntity(
         countryISOCode: "",
@@ -47,9 +48,11 @@ class IntelPhoneNumberEntity extends Equatable {
       final PhoneFieldCountryEntity country = getCountry(completeNumber);
       String number;
       if (completeNumber.startsWith('+')) {
-        number = completeNumber.substring(1 + country.dialCode.length + country.regionCode.length);
+        number = completeNumber
+            .substring(1 + country.dialCode.length + country.regionCode.length);
       } else {
-        number = completeNumber.substring(country.dialCode.length + country.regionCode.length);
+        number = completeNumber
+            .substring(country.dialCode.length + country.regionCode.length);
       }
       return IntelPhoneNumberEntity(
           countryISOCode: country.code,
@@ -95,13 +98,17 @@ class IntelPhoneNumberEntity extends Equatable {
     }
 
     if (phoneNumber.startsWith('+')) {
-      return _countries.firstWhere((country) => phoneNumber.substring(1).startsWith(country.dialCode + country.regionCode));
+      return _countries.firstWhere((country) => phoneNumber
+          .substring(1)
+          .startsWith(country.dialCode + country.regionCode));
     }
-    return _countries.firstWhere((country) => phoneNumber.startsWith(country.dialCode + country.regionCode));
+    return _countries.firstWhere((country) =>
+        phoneNumber.startsWith(country.dialCode + country.regionCode));
   }
 
   @override
-  String toString() => 'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
+  String toString() =>
+      'PhoneNumber(countryISOCode: $countryISOCode, countryCode: $countryCode, number: $number)';
 
   @override
   List<Object?> get props => [

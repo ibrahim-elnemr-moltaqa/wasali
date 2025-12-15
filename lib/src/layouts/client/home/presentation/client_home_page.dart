@@ -7,7 +7,7 @@ import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/client_home_banner_widget.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/custom_provider_card_widget.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/service_item_widget.dart';
-import 'package:wasli/src/layouts/provider/register/data/enum/provider_enum.dart';
+import 'package:wasli/src/layouts/provider/authentication/data/enum/provider_enum.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/presentation/widget/home_app_bar.dart';
 
