@@ -101,4 +101,9 @@ extension StringExtensions on String {
     if (uri == null || uri.path.isEmpty) return '';
     return uri.pathSegments.isNotEmpty ? uri.pathSegments.last : '';
   }
+
+  String replaceFirstCharWithCountryCode(String countryCode) {
+    if (isEmpty) return this;
+    return countryCode + substring(1);
+  }
 }

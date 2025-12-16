@@ -26,7 +26,8 @@ class MoreAppBarWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(user.name, style: TextStyles.bold14),
+            Text(user.name.isEmpty ? '${user.fName} ${user.lName}' : user.name,
+                style: TextStyles.bold14),
             const SizedBox(
               height: 4,
             ),

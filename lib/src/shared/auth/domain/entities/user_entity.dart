@@ -8,6 +8,8 @@ import '../../data/models/api_user_model.dart';
 class UserEntity extends Equatable {
   final int id;
   final String name;
+  final String? fName;
+  final String? lName;
   final PhoneEntity mobile;
   final PhoneEntity whatsApp;
   final String? image;
@@ -25,7 +27,9 @@ class UserEntity extends Equatable {
       required this.isVerified,
       required this.lat,
       required this.lng,
-      required this.gender});
+      required this.gender,
+      this.fName,
+      this.lName});
 
   CacheUserEntity get mapToCacheEntity {
     return CacheUserEntity(
@@ -34,12 +38,25 @@ class UserEntity extends Equatable {
         avatar: image,
         mobile: mobile,
         whatsApp: whatsApp,
-        gender: gender?.name);
+        gender: gender?.name,
+        fName: fName,
+        lName: lName);
   }
 
   @override
-  List<Object?> get props =>
-      [id, name, mobile, image, isVerified, whatsApp, lat, lng, gender];
+  List<Object?> get props => [
+        id,
+        name,
+        mobile,
+        image,
+        isVerified,
+        whatsApp,
+        lat,
+        lng,
+        gender,
+        fName,
+        lName
+      ];
 }
 
 class PhoneEntity extends Equatable {

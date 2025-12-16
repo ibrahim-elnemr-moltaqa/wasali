@@ -18,7 +18,7 @@ import 'package:wasli/src/shared/common/presentation/drop_downs/cities/cities_dr
 import 'package:wasli/src/shared/common/presentation/drop_downs/countries/countries_drop_down.dart';
 
 class StoreAddressStep extends StatefulWidget {
-  const StoreAddressStep({super.key,  this.phoneNumber});
+  const StoreAddressStep({super.key, this.phoneNumber});
   final IntelPhoneNumberEntity? phoneNumber;
 
   @override
@@ -30,7 +30,7 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
   ValueNotifier<int?> countryId = ValueNotifier(null);
   ValueNotifier<int?> areaId = ValueNotifier(null);
   ValueNotifier<int?> cityId = ValueNotifier(null);
-  LatLng? latLng;
+  ValueNotifier<LatLng?> latLng = ValueNotifier(null);
   ValueNotifier<bool> isTermsAndConditionsAccepted = ValueNotifier(false);
   GlobalKey<FormState> thirdStepFormKey = GlobalKey<FormState>();
 
@@ -48,11 +48,11 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
   void onRegisterStoreAddress(BuildContext context) {
     if (thirdStepFormKey.currentState?.validate() ?? false) {
       final StoreAddressCubit cubit = context.read<StoreAddressCubit>();
-      cubit.registerStoreAddress(
+      cubit.providerStoreAddress(
         StoreAddressParams(
           address: addressDescriptionController.text,
-          lat: latLng?.latitude.toString() ?? "1.222",
-          lng: latLng?.longitude.toString() ?? "2.2222",
+          lat: latLng.value?.latitude.toString(),
+          lng: latLng.value?.longitude.toString(),
           countryId: countryId.value!,
           cityId: cityId.value!,
           areaId: areaId.value!,
@@ -104,7 +104,15 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
                   validate: (text) => Validator(text).defaultValidator,
                 ),
                 const SizedBox(height: 6),
-                const YourLocationOnMapWidget(),
+                ValueListenableBuilder(
+                    valueListenable: latLng,
+                    builder: (context, value, child) {
+                      return YourLocationOnMapWidget(
+                        onLocationChanged: (address) {
+                          latLng.value = LatLng(address.lat, address.long);
+                        },
+                      );
+                    }),
                 const SizedBox(height: 12),
                 ValueListenableBuilder(
                     valueListenable: isTermsAndConditionsAccepted,

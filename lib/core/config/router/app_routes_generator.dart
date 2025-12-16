@@ -4,13 +4,16 @@ import 'package:wasli/src/layouts/client/profile/client_edit_profile_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/all_providers_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/provider_page.dart';
 import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
-import 'package:wasli/src/layouts/delivery/register/presentation/delivery_register_screen.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/register/delivery_register_screen.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/update_profile/delivery_update_profile_page.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/update_profile/delviery_update_bank_data_page.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/update_profile/delviery_update_vehicle_data_page.dart';
 import 'package:wasli/src/layouts/provider/authentication/data/enum/provider_enum.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/register/provider_register_screen.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/general_store_settings.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/provider_edit_profile.dart';
-import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/store_management/add_new_product_page.dart';
-import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/store_management/store_management_screen.dart';
+import 'package:wasli/src/layouts/provider/store_management/add_new_product_page.dart';
+import 'package:wasli/src/layouts/provider/store_management/store_management_screen.dart';
 import 'package:wasli/src/layouts/provider/settings/working_days/working_days_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/update_phone/update_phone_page.dart';
@@ -82,8 +85,14 @@ class AppRoutesGenerator {
 
       /// DELIVERY
       ///
-      case AppRoutes.deliveryRegister:
+      case AppRoutes.deliveryRegisterPage:
         page = const DeliveryRegisterScreen();
+      case AppRoutes.deliveryEditProfilePage:
+        page = const DeliveryUpdateProfilePage();
+      case AppRoutes.deliveryUpdateBankDataPage:
+        page = const DeliveryUpdateBankDataPage();
+      case AppRoutes.deliveryUpdateVehicleDataPage:
+        page = const DeliveryUpdateVehicleDataPage();
 
       /// PROVIDER
       ///

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.moltaqa.bonian_tech"
+    namespace = "com.moltaqa.wasali"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.moltaqa.bonian_tech"
+        applicationId = "com.moltaqa.wasali"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

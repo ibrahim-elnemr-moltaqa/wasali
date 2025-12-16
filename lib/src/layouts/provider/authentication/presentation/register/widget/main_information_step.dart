@@ -37,8 +37,8 @@ class _ServiceProviderStepState extends State<ServiceProviderStep> {
     if (phoneNumber.value != null && whatsAppPhoneNumber.value != null) {
       final params = MainInformationsParams(
         name: nameController.text,
-        mobile: phoneNumber.value!.number,
-        whatsApp: whatsAppPhoneNumber.value!.number,
+        mobile: phoneNumber.value!.getPhoneEntity.numberWithZeroIfNot,
+        whatsApp: whatsAppPhoneNumber.value!.getPhoneEntity.numberWithZeroIfNot,
       );
       context.read<MainInformationCubit>().providerMainInformation(params);
     }

@@ -54,7 +54,7 @@ enum RoleEnum {
       case provider:
         return AppRoutes.providerRegisterPage;
       case delivery:
-        return AppRoutes.deliveryRegister;
+        return AppRoutes.deliveryRegisterPage;
       default:
         return '';
     }

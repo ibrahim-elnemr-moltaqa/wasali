@@ -155,19 +155,16 @@ class Validator {
       return appLocalizer.fieldRequired;
     }
 
-    // No spaces allowed
     if (input.contains(' ')) {
       return appLocalizer.fieldMustNotHaveSpaces;
     }
 
     final iban = input.toUpperCase();
 
-    // IBAN must be 15 to 34 characters
     if (iban.length < 15 || iban.length > 34) {
       return appLocalizer.invalidIban;
     }
 
-    // IBAN format: 2 letters (country) + 2 digits + alphanumeric
     final regex = RegExp(r'^[A-Z]{2}[0-9]{2}[A-Z0-9]+$');
     if (!regex.hasMatch(iban)) {
       return appLocalizer.invalidIban;
@@ -183,12 +180,10 @@ class Validator {
       return appLocalizer.fieldRequired;
     }
 
-    // No spaces allowed
     if (input.contains(' ')) {
       return appLocalizer.fieldMustNotHaveSpaces;
     }
 
-    // Must be digits only
     if (!RegExp(r'^[0-9]+$').hasMatch(input)) {
       return appLocalizer.invalidBankAccountNumber;
     }

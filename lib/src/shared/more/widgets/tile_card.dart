@@ -16,6 +16,7 @@ class TileCard extends StatelessWidget {
         AppSvgIcon(
           path: tileModel.icon,
           color: tileModel.color,
+          height: 16,
         ).setBorder(
           radius: 12,
           padding: const EdgeInsets.all(8),

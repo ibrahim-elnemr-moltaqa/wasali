@@ -5,14 +5,14 @@ import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/sub_categories/sub_categories_drop_down_cubit.dart';
 
 class SubCategoriesDropDown extends StatelessWidget {
-  const SubCategoriesDropDown({super.key, this.cities, this.onChanged});
-  final List<CategoryEntity>? cities;
+  const SubCategoriesDropDown({super.key, this.subCategories, this.onChanged});
+  final List<CategoryEntity>? subCategories;
   final void Function(List<CategoryEntity>?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return AppMultiDropDown<CategoryEntity>(
-      value: cities ?? [],
+      value: subCategories ?? [],
       itemDisplay: (displayValue) => displayValue?.name,
       onChanged: onChanged,
       title: appLocalizer.sub_categories,

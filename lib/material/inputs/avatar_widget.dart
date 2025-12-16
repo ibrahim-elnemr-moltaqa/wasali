@@ -18,18 +18,25 @@ class AvatarWidget extends StatefulWidget {
   final void Function(File? file) onPickImage;
   final VoidCallback? onDeleteImage;
   final String? initialImage;
+
   @override
   State<AvatarWidget> createState() => _AvatarWidgetState();
 }
 
 class _AvatarWidgetState extends State<AvatarWidget> {
   File? profileImage;
+  bool hasDeletedInitialImage = false;
+
+  bool get hasImage =>
+      profileImage != null ||
+      (widget.initialImage != null && !hasDeletedInitialImage);
 
   @override
   Widget build(BuildContext context) {
     return ValidatorField<File>(
         validator: (value) {
-          if (value == null) {
+          if (value == null &&
+              (widget.initialImage == null || hasDeletedInitialImage)) {
             return appLocalizer.fieldRequired;
           }
           return null;
@@ -65,16 +72,15 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.disableindicatorColor),
-                            child: profileImage != null ||
-                                    widget.initialImage != null
+                            child: hasImage
                                 ? ClipOval(
-                                    child: widget.initialImage != null
-                                        ? CachedNetworkImage(
-                                            imageUrl: widget.initialImage!,
+                                    child: profileImage != null
+                                        ? Image.file(
+                                            profileImage!,
                                             fit: BoxFit.cover,
                                           )
-                                        : Image.file(
-                                            profileImage!,
+                                        : CachedNetworkImage(
+                                            imageUrl: widget.initialImage!,
                                             fit: BoxFit.cover,
                                           ),
                                   )
@@ -90,11 +96,13 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                               onTap: () => MediaPickerBottomSheet.show(context,
                                   onMediaPicked: (media) {
                                 if (media.path.isNotEmpty) {
-                                  setState(
-                                      () => profileImage = File(media.path));
-                                  widget.onPickImage
-                                      .call(profileImage ?? File(''));
-                                  onChange(profileImage ?? File(''));
+                                  final file = File(media.path);
+                                  setState(() {
+                                    profileImage = file;
+                                    hasDeletedInitialImage = false;
+                                  });
+                                  widget.onPickImage(file);
+                                  onChange(file);
                                 }
                               }),
                               child: CircleAvatar(
@@ -110,18 +118,24 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                             ))
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    InkWell(
-                      onTap: () {
-                        setState(() => profileImage = null);
-                        widget.onDeleteImage?.call();
-                      },
-                      child: Text(
-                        appLocalizer.delete_image,
-                        style: TextStyles.regular12
-                            .copyWith(color: AppColors.red600),
+                    if (hasImage) ...[
+                      const SizedBox(height: 12),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            profileImage = null;
+                            hasDeletedInitialImage = true;
+                          });
+                          widget.onDeleteImage?.call();
+                          onChange(null);
+                        },
+                        child: Text(
+                          appLocalizer.delete_image,
+                          style: TextStyles.regular12
+                              .copyWith(color: AppColors.red600),
+                        ),
                       ),
-                    ),
+                    ],
                     const SizedBox(height: 24),
                     if (errorMessage?.isNotEmpty == true)
                       Text(

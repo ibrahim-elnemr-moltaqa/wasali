@@ -6,12 +6,11 @@ import 'package:wasli/src/layouts/provider/authentication/domain/use_case/provid
 class StoreDataCubit extends Cubit<Async> {
   StoreDataCubit() : super(const Async.initial());
 
-  final ProviderRegisterStoreDataUseCase providerRegisterStoreDataUseCase =
-      injector();
+  final ProviderStoreDataUseCase providerStoreDataUseCase = injector();
 
-  Future<void> registerStoreData(StoreDataParams params) async {
+  Future<void> providerStoreData(StoreDataParams params) async {
     emit(const Async.loading());
-    final result = await providerRegisterStoreDataUseCase(params);
+    final result = await providerStoreDataUseCase(params);
     emit(result.fold((failure) => Async.failure(failure),
         (_) => const Async.successWithoutData()));
   }

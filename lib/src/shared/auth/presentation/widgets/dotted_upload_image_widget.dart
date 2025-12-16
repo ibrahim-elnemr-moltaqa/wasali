@@ -16,10 +16,12 @@ class DottedUploadImageWidget extends StatefulWidget {
     required this.title,
     required this.onChanged,
     this.initialValue,
+    this.onDelete,
   });
   final String title;
   final void Function(File? file) onChanged;
   final String? initialValue;
+  final void Function()? onDelete;
 
   @override
   State<DottedUploadImageWidget> createState() =>
@@ -28,11 +30,17 @@ class DottedUploadImageWidget extends StatefulWidget {
 
 class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
   File? file;
+
+  bool get hasImage =>
+      file != null ||
+      (widget.initialValue != null && widget.initialValue!.isNotEmpty);
+
   @override
   Widget build(BuildContext context) {
     return ValidatorField<File>(
         validator: (value) {
-          if (value == null) {
+          if (value == null &&
+              (widget.initialValue == null || widget.initialValue!.isEmpty)) {
             return appLocalizer.fieldRequired;
           }
           return null;
@@ -44,96 +52,134 @@ class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
             AnimatedSize(
               duration: Durations.medium3,
               alignment: AlignmentDirectional.centerStart,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: hasError
-                      ? getThemeColor(
-                          lightColor: AppColors.red50,
-                          darkColor: AppColors.canvasBackgroundColor,
-                        )
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    widget.initialValue != null && widget.initialValue != ""
-                        ? Text(
-                            widget.title,
-                            style: TextStyles.regular12
-                                .copyWith(color: AppColors.textInputField),
-                          )
-                        : Container(
-                            height: 110,
-                            padding: EdgeInsets.all(file != null ? 0 : 20),
-                            decoration: DottedDecoration(
-                                shape: Shape.box,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10)),
-                                color: hasError
-                                    ? getThemeColor(
-                                        lightColor: AppColors.red50,
-                                        darkColor:
-                                            AppColors.canvasBackgroundColor,
-                                      )
-                                    : AppColors.disableindicatorColor),
-                            child: file != null ||
-                                    widget.initialValue != null &&
-                                        widget.initialValue != ""
-                                ? ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    child: widget.initialValue != null
-                                        ? AppImage(
-                                            path: widget.initialValue!,
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: hasError
+                          ? getThemeColor(
+                              lightColor: AppColors.red50,
+                              darkColor: AppColors.canvasBackgroundColor,
+                            )
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // if (hasImage) ...{
+                        //   Text(
+                        //     widget.title,
+                        //     style: TextStyles.regular12
+                        //         .copyWith(color: AppColors.textInputField),
+                        //   ),
+                        //   const SizedBox(height: 8),
+                        // },
+                        Container(
+                          height: 110,
+                          padding: EdgeInsets.all(hasImage ? 0 : 20),
+                          decoration: file != null
+                              ? DottedDecoration(
+                                  shape: Shape.box,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                  color: hasError
+                                      ? getThemeColor(
+                                          lightColor: AppColors.red50,
+                                          darkColor:
+                                              AppColors.canvasBackgroundColor,
+                                        )
+                                      : AppColors.disableindicatorColor)
+                              : BoxDecoration(
+                                  border: Border.all(
+                                    color: hasError
+                                        ? getThemeColor(
+                                            lightColor: AppColors.red50,
+                                            darkColor:
+                                                AppColors.canvasBackgroundColor,
                                           )
-                                        : Image.file(
-                                            file!,
-                                            fit: BoxFit.cover,
-                                          ),
-                                  )
-                                : Center(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        AppSvgIcon(
-                                          path: AppIcons.uploadImage,
-                                          size: 24,
-                                        ),
-                                        Text(
-                                          widget.title,
-                                          style: TextStyles.regular12.copyWith(
-                                              color: AppColors.textInputField),
-                                        ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
-                                        Text(
-                                          'png,jpeg',
-                                          style: TextStyles.regular12.copyWith(
-                                              color: AppColors
-                                                  .lightTextInputField),
-                                        ),
-                                      ],
-                                    ),
+                                        : AppColors.disableindicatorColor,
                                   ),
-                          ),
-                    if (errorMessage?.isNotEmpty == true)
-                      Text(
-                        errorMessage ?? '',
-                        style:
-                            Theme.of(context).inputDecorationTheme.errorStyle,
-                      )
-                  ],
-                ).onTapScaleAnimation(onTap: () {
-                  MediaPickerBottomSheet.show(context, onMediaPicked: (media) {
-                    widget.onChanged(File(media.path));
-                    onChange(File(media.path));
-                    setState(() {
-                      file = File(media.path);
-                    });
-                  });
-                }),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                          child: hasImage
+                              ? ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                  child: file != null
+                                      ? Image.file(
+                                          file!,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : AppImage(
+                                          path: widget.initialValue!,
+                                        ),
+                                )
+                              : Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      AppSvgIcon(
+                                        path: AppIcons.uploadImage,
+                                        size: 24,
+                                      ),
+                                      Text(
+                                        widget.title,
+                                        style: TextStyles.regular12.copyWith(
+                                            color: AppColors.textInputField),
+                                      ),
+                                      const SizedBox(
+                                        height: 4,
+                                      ),
+                                      Text(
+                                        'png,jpeg',
+                                        style: TextStyles.regular12.copyWith(
+                                            color:
+                                                AppColors.lightTextInputField),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                        ),
+                        if (errorMessage?.isNotEmpty == true)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                              errorMessage ?? '',
+                              style: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .errorStyle,
+                            ),
+                          )
+                      ],
+                    ).onTapScaleAnimation(onTap: () {
+                      MediaPickerBottomSheet.show(context,
+                          onMediaPicked: (media) {
+                        final newFile = File(media.path);
+                        widget.onChanged(newFile);
+                        onChange(newFile);
+                        setState(() {
+                          file = newFile;
+                        });
+                      });
+                    }),
+                  ),
+                  if (widget.onDelete != null) ...{
+                    SizedBox(
+                      height: hasImage ? 12 : 0,
+                    ),
+                    Visibility(
+                      visible: widget.initialValue != null &&
+                          widget.initialValue!.isNotEmpty,
+                      child: Text(appLocalizer.delete_image,
+                              style: TextStyles.bold12
+                                  .copyWith(color: AppColors.red500))
+                          .onTapScaleAnimation(
+                        onTap: () => widget.onDelete,
+                      ),
+                    )
+                  }
+                ],
               ),
             ));
   }

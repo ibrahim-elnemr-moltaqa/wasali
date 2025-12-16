@@ -53,7 +53,19 @@ class MoreTileModel {
         ];
 
       case RoleEnum.delivery:
-        return [..._generalMoreList(context)];
+        return [
+          MoreTileModel(
+            title: appLocalizer.generalStatistics,
+            icon: AppIcons.charts,
+            onTap: () {},
+          ),
+          MoreTileModel(
+            title: appLocalizer.customerSupport,
+            icon: AppIcons.support,
+            onTap: () => AppRouter.pushNamed(AppRoutes.contactPage),
+          ),
+          ..._generalMoreList(context)
+        ];
 
       case RoleEnum.provider:
         return [
@@ -176,7 +188,32 @@ class MoreTileModel {
           ...generalSettingsItems(context)
         ];
       case RoleEnum.delivery:
-        return [...generalSettingsItems(context)];
+        return [
+          MoreTileModel(
+            title: appLocalizer.accountSettings,
+            icon: AppIcons.user,
+            onTap: () => AppRouter.pushNamed(AppRoutes.deliveryEditProfilePage),
+            needAuth: true,
+          ),
+          MoreTileModel(
+              title: appLocalizer.changePhoneNumber,
+              icon: AppIcons.call,
+              onTap: () => AppRouter.pushNamed(AppRoutes.updatePhonePage),
+              needAuth: true),
+          MoreTileModel(
+              title: appLocalizer.bankAccountDetails,
+              icon: AppIcons.bank,
+              onTap: () =>
+                  AppRouter.pushNamed(AppRoutes.deliveryUpdateBankDataPage),
+              needAuth: true),
+          MoreTileModel(
+              title: appLocalizer.vehicle_data,
+              icon: AppIcons.email,
+              onTap: () =>
+                  AppRouter.pushNamed(AppRoutes.deliveryUpdateVehicleDataPage),
+              needAuth: true),
+          ...generalSettingsItems(context)
+        ];
       default:
         return [];
     }

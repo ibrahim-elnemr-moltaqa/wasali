@@ -35,8 +35,10 @@ class AppRoutes {
 
   /// Delivery
   ///
-  static const deliveryRegister = '/DeliveryRegisterPage';
-  static const deliveryEditProfile = '/DeliveryEditProfilePage';
+  static const deliveryRegisterPage = '/DeliveryRegisterPage';
+  static const deliveryEditProfilePage = '/DeliveryEditProfilePage';
+  static const deliveryUpdateBankDataPage = '/DeliveryUpdateBankDataPage';
+  static const deliveryUpdateVehicleDataPage = '/deliveryUpdateVehicleDataPage';
 
   /// Static Pages
   ///

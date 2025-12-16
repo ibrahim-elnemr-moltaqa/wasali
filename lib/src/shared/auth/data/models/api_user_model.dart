@@ -14,7 +14,9 @@ class ApiUserModel extends UserEntity {
       required super.isVerified,
       required super.lat,
       required super.lng,
-      super.gender});
+      super.gender,
+      super.fName,
+      super.lName});
   factory ApiUserModel.example() => const ApiUserModel(
       id: 0,
       name: "name",
@@ -45,6 +47,8 @@ class ApiUserModel extends UserEntity {
         gender: json["gender"] == null
             ? null
             : GenderEnum.fromApiValue(json["gender"]),
+        fName: json["first_name"],
+        lName: json["last_name"],
       );
 }
 

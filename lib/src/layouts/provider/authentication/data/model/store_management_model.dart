@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/widget/floating_action_dialog.dart';
-import 'package:wasli/src/layouts/provider/authentication/presentation/widget/tabs/product_management_tab.dart';
-import 'package:wasli/src/layouts/provider/authentication/presentation/widget/tabs/section_management_tab.dart';
-import 'package:wasli/src/layouts/provider/authentication/presentation/widget/tabs/size_management_tap.dart';
+import 'package:wasli/src/layouts/provider/store_management/tabs/product_management_tab.dart';
+import 'package:wasli/src/layouts/provider/store_management/tabs/section_management_tab.dart';
+import 'package:wasli/src/layouts/provider/store_management/tabs/size_management_tap.dart';
 
 class StoreManagementTapModel {
   final String title;

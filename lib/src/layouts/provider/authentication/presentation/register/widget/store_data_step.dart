@@ -68,7 +68,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
         commercialImage: commercialRegisterImage.value!,
       );
       log(subCategories.value!.map((e) => e.id).toList().toString());
-      context.read<StoreDataCubit>().registerStoreData(params);
+      context.read<StoreDataCubit>().providerStoreData(params);
     }
   }
 

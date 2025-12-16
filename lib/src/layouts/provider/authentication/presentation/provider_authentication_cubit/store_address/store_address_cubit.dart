@@ -6,9 +6,9 @@ import 'package:wasli/src/layouts/provider/authentication/domain/use_case/provid
 class StoreAddressCubit extends Cubit<Async> {
   StoreAddressCubit() : super(const Async.initial());
 
-  final ProviderRegisterStoreAddressUseCase
-      providerRegisterStoreAddressUseCase = injector();
-  Future<void> registerStoreAddress(StoreAddressParams params) async {
+  final ProviderStoreAddressUseCase providerRegisterStoreAddressUseCase =
+      injector();
+  Future<void> providerStoreAddress(StoreAddressParams params) async {
     emit(const Async.loading());
     final result = await providerRegisterStoreAddressUseCase(params);
     emit(result.fold((failure) => Async.failure(failure),

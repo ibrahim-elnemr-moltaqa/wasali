@@ -13,7 +13,12 @@ const CameraPosition _kInitialPosition = CameraPosition(
 class YourLocationOnMapWidget extends StatefulWidget {
   const YourLocationOnMapWidget({
     super.key,
+    this.initialPosition,
+    required this.onLocationChanged,
   });
+
+  final LatLng? initialPosition;
+  final void Function(MapAddressEntity address) onLocationChanged;
 
   @override
   State<YourLocationOnMapWidget> createState() =>
@@ -23,6 +28,27 @@ class YourLocationOnMapWidget extends StatefulWidget {
 class _YourLocationOnMapWidgetState extends State<YourLocationOnMapWidget> {
   MapAddressEntity? address;
   GoogleMapController? mapController;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialPosition != null) {
+      address = MapAddressEntity(
+        address: '',
+        lat: widget.initialPosition!.latitude,
+        long: widget.initialPosition!.longitude,
+      );
+      mapController?.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: widget.initialPosition!,
+          zoom: 14.0,
+        ),
+      ));
+
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -57,6 +83,7 @@ class _YourLocationOnMapWidgetState extends State<YourLocationOnMapWidget> {
                     zoom: 14.0,
                   ),
                 ));
+                widget.onLocationChanged(address!);
               });
             },
           ),

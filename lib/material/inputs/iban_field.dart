@@ -24,7 +24,7 @@ class IbanField extends StatelessWidget {
       controller: controller,
       inputType: TextInputType.text,
       hintTextStyle: hintStyle,
-      // validate: (text) => Validator(text).ibanValidator,
+      validate: (text) => Validator(text).defaultValidator,
       onChanged: onChanged,
       label: appLocalizer.ibaneNumber,
       hintText: appLocalizer.enterIbaneNumber,

@@ -5,14 +5,14 @@ import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/main_categories/main_categories_drop_down_cubit.dart';
 
 class MainCategoriesDropDown extends StatelessWidget {
-  const MainCategoriesDropDown({super.key, this.city, this.onChanged});
-  final CategoryEntity? city;
+  const MainCategoriesDropDown({super.key, this.category, this.onChanged});
+  final CategoryEntity? category;
   final void Function(CategoryEntity? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return AppSingleDropDown<CategoryEntity>(
-      value: city,
+      value: category,
       itemDisplay: (displayValue) => displayValue?.name,
       onChanged: onChanged,
       hint: appLocalizer.mainCategories,

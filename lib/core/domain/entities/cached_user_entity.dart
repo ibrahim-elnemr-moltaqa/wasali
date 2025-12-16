@@ -5,6 +5,8 @@ typedef CachedUser = CacheUserEntity;
 class CacheUserEntity extends Equatable {
   final int id;
   final String name;
+  final String? fName;
+  final String? lName;
   final String? avatar;
   final PhoneEntity mobile;
   final PhoneEntity whatsApp;
@@ -17,17 +19,13 @@ class CacheUserEntity extends Equatable {
     required this.mobile,
     required this.whatsApp,
     this.gender,
+    this.fName,
+    this.lName,
   });
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        avatar,
-        mobile,
-        whatsApp,
-        gender
-      ];
+  List<Object?> get props =>
+      [id, name, avatar, mobile, whatsApp, gender, fName, lName];
 
   @override
   String toString() {
@@ -38,6 +36,8 @@ class CacheUserEntity extends Equatable {
         "[Mobile] $mobile\n"
         "[whatsApp] $whatsApp\n"
         "[Gender] $gender\n"
+        "[fName] $fName\n"
+        "[lName] $lName\n"
         "-----------------------------------------";
   }
 }
