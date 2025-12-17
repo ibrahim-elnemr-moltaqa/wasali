@@ -12,8 +12,10 @@ import 'package:wasli/src/layouts/provider/authentication/data/enum/provider_enu
 import 'package:wasli/src/layouts/provider/authentication/presentation/register/provider_register_screen.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/general_store_settings.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/provider_edit_profile.dart';
-import 'package:wasli/src/layouts/provider/store_management/presentation/add_new_product_page.dart';
-import 'package:wasli/src/layouts/provider/store_management/presentation/store_management_screen.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/package_details_page.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/add_new_product_page.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/store_management_screen.dart';
 import 'package:wasli/src/layouts/provider/settings/working_days/working_days_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/update_phone/update_phone_page.dart';
@@ -108,6 +110,10 @@ class AppRoutesGenerator {
         page = const WorkingTimePage();
       case AppRoutes.generalStoreSettingsPage:
         page = const GeneralStoreSettingsPage();
+      case AppRoutes.packagesPage:
+        page = const PackagesPage();
+      case AppRoutes.packageDetailsPage:
+        page = const PackageDetailsPage();
 
       /// MAP
       ///
@@ -154,7 +160,6 @@ class AppRoutesGenerator {
     );
   }
 }
-
 
 class AppScaledBox extends StatelessWidget {
   const AppScaledBox({super.key, required this.child});

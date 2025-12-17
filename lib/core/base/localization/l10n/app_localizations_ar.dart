@@ -1661,4 +1661,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get managementCommission => 'عمولة الإدارة';
+
+  @override
+  String get packages => 'الباقات';
+
+  @override
+  String get packageDuration => 'مدة الباقة';
+
+  @override
+  String get subscribeNow => 'اشترك الان';
+
+  @override
+  String get packageDetails => 'تفاصيل الباقة';
+
+  @override
+  String get renewSubscription => 'تجديد الاشتراك';
+
+  @override
+  String get remaining => 'متبقي';
+
+  @override
+  String get month => 'شهر';
+
+  @override
+  String get packagePrice => 'سعر الباقة';
 }

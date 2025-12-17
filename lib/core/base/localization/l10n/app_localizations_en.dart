@@ -1681,4 +1681,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get managementCommission => 'Management commission';
+
+  @override
+  String get packages => 'Packages';
+
+  @override
+  String get packageDuration => 'Package Duration';
+
+  @override
+  String get subscribeNow => 'Subscribe Now';
+
+  @override
+  String get packageDetails => 'Package Details';
+
+  @override
+  String get renewSubscription => 'Renew Subscription';
+
+  @override
+  String get remaining => 'Remaining';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get packagePrice => 'Package Price';
 }

@@ -3319,6 +3319,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Management commission'**
   String get managementCommission;
+
+  /// No description provided for @packages.
+  ///
+  /// In en, this message translates to:
+  /// **'Packages'**
+  String get packages;
+
+  /// No description provided for @packageDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Package Duration'**
+  String get packageDuration;
+
+  /// No description provided for @subscribeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe Now'**
+  String get subscribeNow;
+
+  /// No description provided for @packageDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Package Details'**
+  String get packageDetails;
+
+  /// No description provided for @renewSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew Subscription'**
+  String get renewSubscription;
+
+  /// No description provided for @remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get remaining;
+
+  /// No description provided for @month.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get month;
+
+  /// No description provided for @packagePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Package Price'**
+  String get packagePrice;
 }
 
 class _AppLocalizationsDelegate

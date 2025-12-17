@@ -3,7 +3,7 @@ import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/material/media/network_image.dart';
+import 'package:wasli/material/media/app_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class MoreAppBarWidget extends StatelessWidget {
@@ -14,12 +14,13 @@ class MoreAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const AppMedia(
-            path: AppConstants.networkImageTest,
-            fit: BoxFit.cover,
-            width: 48,
-            height: 48,
-            radius: 8),
+        user.avatar != null && user.avatar!.isNotEmpty
+            ? AppImage(path: user.avatar!, width: 44, height: 44, radius: 12)
+            : AppSvgIcon(path: AppIcons.profile, size: 30).setBorder(
+                radius: 12,
+                padding: const EdgeInsets.all(8),
+                color: AppColors.borderColor,
+              ),
         const SizedBox(
           width: 12,
         ),

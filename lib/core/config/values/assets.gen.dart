@@ -66,6 +66,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_down_2_ic.svg
   String get arrowDown2Ic => 'assets/icons/arrow_down_2_ic.svg';
 
+  /// File path: assets/icons/arrow_package.svg
+  String get arrowPackage => 'assets/icons/arrow_package.svg';
+
   /// File path: assets/icons/bag.svg
   String get bag => 'assets/icons/bag.svg';
 
@@ -353,6 +356,7 @@ class $AssetsIconsGen {
         arrowDownIc,
         arrowLeftTop,
         arrowDown2Ic,
+        arrowPackage,
         bag,
         bank,
         bellIc,

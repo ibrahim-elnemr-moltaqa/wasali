@@ -1,8 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
@@ -81,7 +81,6 @@ class _StoreDataTabState extends State<StoreDataTab> {
 
   void onUpdateStoreData(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
-      log(storePhoneNumber.toString());
       final params = StoreDataParams(
           image: storeImage.value,
           name: storeNameController.text,
@@ -157,9 +156,10 @@ class _StoreDataTabState extends State<StoreDataTab> {
                         ),
                         Visibility(
                           visible: storePhoneNumber.length > 1,
-                          child: AppSvgIcon(
-                            path: AppIcons.delete,
-                            height: 14,
+                          child: Icon(
+                            Iconsax.trash_copy,
+                            color: AppColors.red500,
+                            size: 14,
                           )
                               .onTapScaleAnimation(onTap: () {
                                 setState(() {

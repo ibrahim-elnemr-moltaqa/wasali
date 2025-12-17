@@ -589,5 +589,13 @@
   "subscription_end_date" : "تاريخ انتهاء الاشتراك",
   "new_phone_number" : "رقم الهاتف الجديد",
   "general_store_settings" : "اعدادات المتجر العامة",
-  "managementCommission" : "عمولة الإدارة"
+  "managementCommission" : "عمولة الإدارة",
+  "packages" : "الباقات",
+  "packageDuration" : "مدة الباقة",
+  "subscribeNow" : "اشترك الان",
+  "packageDetails" : "تفاصيل الباقة",
+  "renewSubscription" : "تجديد الاشتراك",
+  "remaining": "متبقي",
+  "month": "شهر",
+  "packagePrice": "سعر الباقة"
 }

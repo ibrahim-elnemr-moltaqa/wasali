@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
@@ -24,15 +26,20 @@ class PackageSubscriptionWidget extends StatelessWidget {
                 style: TextStyles.bold14,
               ),
               const Gap(4),
-              Text(appLocalizer.start_subscription_description),
+              Text(appLocalizer.start_subscription_description,
+                  style: TextStyles.regular12
+                      .copyWith(color: AppColors.grey2Color)),
             ],
           ),
         ),
-        AppSvgIcon(path: AppIcons.forwardArrowIc)
+        AppSvgIcon(path: AppIcons.arrowPackage)
       ],
-    ).setBorder(
-      radius: 12,
-      padding: const EdgeInsets.all(8),
-    );
+    )
+        .onTapScaleAnimation(
+            onTap: () => AppRouter.pushNamed(AppRoutes.packagesPage))
+        .setBorder(
+          radius: 12,
+          padding: const EdgeInsets.all(8),
+        );
   }
 }

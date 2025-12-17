@@ -49,6 +49,30 @@ import '../../src/layouts/provider/authentication/domain/use_case/provider_regis
     as _i386;
 import '../../src/layouts/provider/authentication/domain/use_case/provider_register_store_data_use_case.dart'
     as _i266;
+import '../../src/layouts/provider/settings/packages/data/datasource/packages_remote_data_source.dart'
+    as _i545;
+import '../../src/layouts/provider/settings/packages/data/repository/packages_repository_impl.dart'
+    as _i715;
+import '../../src/layouts/provider/settings/packages/domain/repository/packages_repository.dart'
+    as _i608;
+import '../../src/layouts/provider/settings/packages/domain/use_case/get_packages_use_case.dart'
+    as _i43;
+import '../../src/layouts/provider/settings/store_management/data/repository/sizes_repository_impl.dart'
+    as _i1013;
+import '../../src/layouts/provider/settings/store_management/domain/repository/sizes_repository.dart'
+    as _i137;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/change_size_status_use_case.dart'
+    as _i442;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/create_size_use_case.dart'
+    as _i1029;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/delete_size_use_case.dart'
+    as _i1006;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/get_size_use_case.dart'
+    as _i790;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/get_sizes_use_case.dart'
+    as _i593;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/update_size_use_case.dart'
+    as _i1003;
 import '../../src/shared/auth/data/repository/authentication_repository_imp.dart'
     as _i565;
 import '../../src/shared/auth/domain/repository/authentication_repository.dart'
@@ -180,6 +204,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i185.EnableGpsAndHandlePermissionUseCase());
     gh.factory<_i143.WalletRepository>(
         () => _i78.WalletRepositoryImp(gh<_i351.DioHelper>()));
+    gh.lazySingleton<_i545.PackagesRemoteDataSource>(
+        () => _i545.PackagesRemoteDataSourceImpl());
     gh.factory<_i722.MenuCommonRepository>(
         () => _i434.MenuCommonRepositoryImp(gh<_i351.DioHelper>()));
     gh.factory<_i984.ThemeRepository>(() => _i715.ThemeRepositoryImp());
@@ -208,6 +234,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i113.NotificationDataSourceImp(gh<_i351.DioHelper>()));
     gh.factory<_i173.PaginationRepository>(
         () => _i625.PaginationRepoImpl(gh<_i351.DioHelper>()));
+    gh.lazySingleton<_i608.PackagesRepository>(() =>
+        _i715.PackagesRepositoryImpl(gh<_i545.PackagesRemoteDataSource>()));
     gh.factory<_i351.LanguageCacheRepository>(() =>
         _i361.LanguageCacheRepositoryImp(gh<_i203.LanguageCacheDateSource>()));
     gh.factory<_i864.CommonRepository>(
@@ -232,6 +260,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i351.SetCachedUserUseCase(gh<_i351.SecureStorageRepository>()));
     gh.factory<_i351.SetTokenUseCase>(
         () => _i351.SetTokenUseCase(gh<_i351.SecureStorageRepository>()));
+    gh.factory<_i137.SizesRepository>(
+        () => _i1013.SizesRepositoryImpl(gh<_i351.DioHelper>()));
     gh.factory<_i190.NotificationRepository>(() =>
         _i1037.NotificationRepositoryImp(gh<_i113.NotificationDataSource>()));
     gh.factory<_i561.UserRegisterRepository>(
@@ -291,18 +321,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i206.GetEducationalStageUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i874.GetCountriesUseCase>(
         () => _i874.GetCountriesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i456.GetMainCategoriesUseCase>(
+        () => _i456.GetMainCategoriesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i530.GetLanguagesUseCase>(
         () => _i530.GetLanguagesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i543.GetEducationalSubjectUseCase>(
         () => _i543.GetEducationalSubjectUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i543.GetSubCategoriesUseCase>(
+        () => _i543.GetSubCategoriesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i478.GetCitiesUseCase>(
         () => _i478.GetCitiesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i1069.GetAreasUseCase>(
         () => _i1069.GetAreasUseCase(gh<_i864.CommonRepository>()));
-    gh.factory<_i456.GetMainCategoriesUseCase>(
-        () => _i456.GetMainCategoriesUseCase(gh<_i864.CommonRepository>()));
-    gh.factory<_i543.GetSubCategoriesUseCase>(
-        () => _i543.GetSubCategoriesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i593.GetSizesUseCase>(
+        () => _i593.GetSizesUseCase(gh<_i137.SizesRepository>()));
+    gh.factory<_i43.GetPackagesUseCase>(
+        () => _i43.GetPackagesUseCase(gh<_i608.PackagesRepository>()));
     gh.factory<_i60.DeliveryMainInformationUseCase>(() =>
         _i60.DeliveryMainInformationUseCase(
             gh<_i719.DeliveryRegisterRepository>()));
@@ -338,6 +372,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i386.ProviderStoreAddressUseCase>(() =>
         _i386.ProviderStoreAddressUseCase(
             gh<_i592.ProviderAuthenticationRepository>()));
+    gh.factory<_i1029.CreateSizeUseCase>(
+        () => _i1029.CreateSizeUseCase(gh<_i137.SizesRepository>()));
+    gh.factory<_i1006.DeleteSizeUseCase>(
+        () => _i1006.DeleteSizeUseCase(gh<_i137.SizesRepository>()));
+    gh.factory<_i1003.UpdateSizeUseCase>(
+        () => _i1003.UpdateSizeUseCase(gh<_i137.SizesRepository>()));
+    gh.factory<_i790.GetSizeUseCase>(
+        () => _i790.GetSizeUseCase(gh<_i137.SizesRepository>()));
+    gh.factory<_i442.ChangeSizeStatusUseCase>(
+        () => _i442.ChangeSizeStatusUseCase(gh<_i137.SizesRepository>()));
     gh.lazySingleton<_i808.UpdateProfileUseCase>(() =>
         _i808.UpdateProfileUseCase(
             repository: gh<_i1005.AuthenticationRepository>()));

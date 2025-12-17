@@ -586,5 +586,13 @@
   "subscription_end_date" : "Subscription End Date",
   "new_phone_number" : "New Phone Number",
   "general_store_settings" : "General Store Settings",
-  "managementCommission" : "Management commission"
+  "managementCommission" : "Management commission",
+  "packages" : "Packages",
+  "packageDuration" : "Package Duration",
+  "subscribeNow" : "Subscribe Now",
+  "packageDetails" : "Package Details",
+  "renewSubscription" : "Renew Subscription",
+  "remaining": "Remaining",
+  "month": "Month",
+  "packagePrice": "Package Price"
 }

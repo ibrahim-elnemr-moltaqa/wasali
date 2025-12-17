@@ -42,6 +42,9 @@ class MorePage extends StatelessWidget {
                     Visibility(
                         visible: role == RoleEnum.provider,
                         child: const PackageSubscriptionWidget()),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     ...MoreTileModel.loadRoleMoreItems(role, context).map((e) =>
                         e.needAuth
                             ? LoggedUserCheckerWidget(

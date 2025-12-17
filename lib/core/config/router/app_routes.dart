@@ -32,6 +32,8 @@ class AppRoutes {
   static const generalStoreSettingsPage = '/generalStoreSettingsPage';
   static const addNewProductPage = '/AddNewProductPage';
   static const workingTimePage = '/WorkingTimePage';
+  static const packagesPage = '/PackagesPage';
+  static const packageDetailsPage = '/PackageDetailsPage';
 
   /// Delivery
   ///
