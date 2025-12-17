@@ -29,11 +29,11 @@
 		<key>NSCameraUsageDescription</key>
 		<string>App requires access to the camera to pick your profile photo</string>
 		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-		<string>Your location is required for Bonian to track orders on maps to get the nearest entertainments centers according to your location and orders destination</string>
+		<string>Your location is required for Wasali to track orders on maps to get the nearest entertainments centers according to your location and orders destination</string>
 		<key>NSLocationAlwaysUsageDescription</key>
-		<string>Your location is required for Bonian to track orders on maps to get the nearest entertainments centers according to your location and orders destination</string>
+		<string>Your location is required for Wasali to track orders on maps to get the nearest entertainments centers according to your location and orders destination</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Your location is required for Bonian to pick entertainments centers locations and track them on maps</string>
+		<string>Your location is required for Wasali to pick entertainments centers locations and track them on maps</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>App access to the Gallery to only pick your profile photo</string>
 		<key>NSPhotoLibraryUsageDescription</key>

@@ -48,11 +48,17 @@ class StoreDataParams extends Equatable {
         if (image != null) 'image': MultipartFile.fromFileSync(image!.path),
         if (name != null) 'name': name,
         if (phone != null) 'phone': '0$phone',
-        if (phones != null) 'phones[]': phones?.map((e) => '0$e').toList(),
+        if (phones != null) ...{
+          for (int i = 0; i < phones!.length; i++)
+            'phones[$i]': '0${phones![i]}'
+        },
         if (email != null) 'email': email,
         if (description != null) 'description': description,
         if (categoryId != null) 'category_id': categoryId,
-        if (subCategoryIds != null) 'sub_category_ids[]': subCategoryIds,
+        if (subCategoryIds != null) ...{
+          for (int i = 0; i < subCategoryIds!.length; i++)
+            'sub_category_ids[$i]': subCategoryIds![i]
+        },
         if (commercialImage != null)
           'commercial_register':
               MultipartFile.fromFileSync(commercialImage!.path),

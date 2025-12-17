@@ -1,4 +1,4 @@
-package com.moltaqa.bonian_tech
+package com.moltaqa.wasali
 
 import io.flutter.embedding.android.FlutterActivity
 

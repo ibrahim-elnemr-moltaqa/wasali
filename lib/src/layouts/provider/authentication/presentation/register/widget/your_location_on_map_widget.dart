@@ -38,14 +38,6 @@ class _YourLocationOnMapWidgetState extends State<YourLocationOnMapWidget> {
         lat: widget.initialPosition!.latitude,
         long: widget.initialPosition!.longitude,
       );
-      mapController?.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: widget.initialPosition!,
-          zoom: 14.0,
-        ),
-      ));
-
-      setState(() {});
     }
   }
 
@@ -59,6 +51,14 @@ class _YourLocationOnMapWidgetState extends State<YourLocationOnMapWidget> {
           child: GoogleMap(
             onMapCreated: (controller) {
               mapController = controller;
+              if (widget.initialPosition != null) {
+                mapController?.animateCamera(CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: widget.initialPosition!,
+                    zoom: 14.0,
+                  ),
+                ));
+              }
             },
             initialCameraPosition: _kInitialPosition,
             myLocationEnabled: true,

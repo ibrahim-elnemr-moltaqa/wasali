@@ -1,14 +1,17 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/inputs/app_text_form_field.dart';
 import 'package:wasli/material/inputs/email_field.dart';
 import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
 import 'package:wasli/material/inputs/name_field.dart';
+import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/layouts/provider/authentication/domain/entity/provider_entity.dart';
 import 'package:wasli/src/layouts/provider/authentication/domain/use_case/provider_register_store_data_use_case.dart';
@@ -78,6 +81,7 @@ class _StoreDataTabState extends State<StoreDataTab> {
 
   void onUpdateStoreData(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
+      log(storePhoneNumber.toString());
       final params = StoreDataParams(
           image: storeImage.value,
           name: storeNameController.text,
@@ -116,58 +120,61 @@ class _StoreDataTabState extends State<StoreDataTab> {
                   hint: appLocalizer.store_name,
                   controller: storeNameController,
                 ),
-                // ...List.generate(storePhoneNumber.length, (index) {
-                //   return Padding(
-                //     padding: const EdgeInsets.only(bottom: 12),
-                //     child: Row(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         Expanded(
-                //           child: IntelPhoneField(
-                //             initialValue: storePhoneNumber[index],
-                //             label: appLocalizer.phoneNumber,
-                //             onChange: (phoneNumber) {
-                //               storePhoneNumber[index] = phoneNumber;
-                //             },
-                //             hint: appLocalizer.enterPhoneNumber,
-                //           ),
-                //         ),
-                //         if (storePhoneNumber.length > 1) ...[
-                //           const SizedBox(width: 8),
-                //           Padding(
-                //             padding: const EdgeInsets.only(top: 28),
-                //             child: IconButton(
-                //               icon: const Icon(Icons.delete_outline,
-                //                   color: Colors.red),
-                //               onPressed: () {
-                //                 setState(() {
-                //                   storePhoneNumber.removeAt(index);
-                //                 });
-                //               },
-                //             ),
-                //           ),
-                //         ],
-                //       ],
-                //     ),
-                //   );
-                // }),
-                // TextButton.icon(
-                //   onPressed: () {
-                //     setState(() {
-                //       // Add a new empty phone number
-                //       storePhoneNumber.add(
-                //         IntelPhoneNumberEntity.fromCompleteNumber(
-                //           completeNumber: '+966',
-                //         ),
-                //       );
-                //     });
-                //   },
-                //   icon: const Icon(Icons.add),
-                //   label: const Text(''),
-                //   style: TextButton.styleFrom(
-                //     alignment: Alignment.centerLeft,
-                //   ),
-                // ),
+                ...List.generate(storePhoneNumber.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: IntelPhoneField(
+                            initialValue: storePhoneNumber[index],
+                            label: appLocalizer.phoneNumber,
+                            onChange: (phoneNumber) {
+                              storePhoneNumber[index] = phoneNumber;
+                            },
+                            hint: appLocalizer.enterPhoneNumber,
+                          ),
+                        ),
+                        Visibility(
+                          visible: storePhoneNumber.length - 1 == index,
+                          child: AppSvgIcon(
+                            path: AppIcons.plus,
+                            height: 14,
+                          )
+                              .onTapScaleAnimation(onTap: () {
+                                setState(() {
+                                  storePhoneNumber.add(
+                                    IntelPhoneNumberEntity.fromCompleteNumber(
+                                      completeNumber: '+966',
+                                    ),
+                                  );
+                                });
+                              })
+                              .setBorder(
+                                  padding: const EdgeInsets.all(12), radius: 14)
+                              .paddingStart(8)
+                              .paddingTop(22),
+                        ),
+                        Visibility(
+                          visible: storePhoneNumber.length > 1,
+                          child: AppSvgIcon(
+                            path: AppIcons.delete,
+                            height: 14,
+                          )
+                              .onTapScaleAnimation(onTap: () {
+                                setState(() {
+                                  storePhoneNumber.removeAt(index);
+                                });
+                              })
+                              .setBorder(
+                                  padding: const EdgeInsets.all(12), radius: 14)
+                              .paddingStart(8)
+                              .paddingTop(22),
+                        )
+                      ],
+                    ),
+                  );
+                }),
                 EmailField(controller: storeEmailController),
                 AppTextFormField(
                   label: appLocalizer.store_description,
