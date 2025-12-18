@@ -597,5 +597,15 @@
   "renewSubscription" : "تجديد الاشتراك",
   "remaining": "متبقي",
   "month": "شهر",
-  "packagePrice": "سعر الباقة"
+  "packagePrice": "سعر الباقة",
+  "appCommission" : "عمولة التطبيق",
+  "total" : "الإجمالى",
+  "payPackageData" : "بيانات دفع الباقة",
+  "searchForProduct": "ابحث عن المنتج",
+  "recentlySearched": "ما بحثت عنه مؤخرا",
+  "mostSearched": "الأكثر بحثاً",
+  "showMoreRestaurants": "عرض المزيد من المطاعم",
+  "showMoreSupermarkets": "عرض المزيد من سوبر ماركت",
+  "restaurants": "مطاعم",
+  "supermarkets": "سوبر ماركت"
 }

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/package_entity.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/pay_package_bottom_sheet.dart';
 import 'package:wasli/src/shared/common/presentation/widget/price_widget.dart';
 
 class PackageItemWidget extends StatelessWidget {
   final PackageEntity? package;
-  final VoidCallback onSubscribe;
 
   const PackageItemWidget({
     super.key,
     this.package,
-    required this.onSubscribe,
   });
 
   @override
@@ -74,7 +74,8 @@ class PackageItemWidget extends StatelessWidget {
               ),
               AppSvgIcon(path: AppIcons.arrowPackage),
             ],
-          ),
+          ).onTapScaleAnimation(
+              onTap: () => PayPackageBottomSheet.show(context)),
         ],
       ),
     );

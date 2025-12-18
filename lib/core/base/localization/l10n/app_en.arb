@@ -594,5 +594,15 @@
   "renewSubscription" : "Renew Subscription",
   "remaining": "Remaining",
   "month": "Month",
-  "packagePrice": "Package Price"
+  "packagePrice": "Package Price",
+  "appCommission" : "App Commission",
+  "total" : "Total",
+  "payPackageData" : "Pay Package Data",
+  "searchForProduct": "Search for product",
+  "recentlySearched": "Recently Searched",
+  "mostSearched": "Most Searched",
+  "showMoreRestaurants": "Show more restaurants",
+  "showMoreSupermarkets": "Show more supermarkets",
+  "restaurants": "Restaurants",
+  "supermarkets": "Supermarkets"
 }

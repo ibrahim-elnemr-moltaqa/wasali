@@ -141,6 +141,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/fill-location.svg
   String get fillLocation => 'assets/icons/fill-location.svg';
 
+  /// File path: assets/icons/fillFav.svg
+  String get fillFav => 'assets/icons/fillFav.svg';
+
   /// File path: assets/icons/filter.svg
   String get filter => 'assets/icons/filter.svg';
 
@@ -164,6 +167,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/guest-ic.svg
   String get guestIc => 'assets/icons/guest-ic.svg';
+
+  /// File path: assets/icons/history.svg
+  String get history => 'assets/icons/history.svg';
 
   /// File path: assets/icons/home-nav-active.svg
   String get homeNavActive => 'assets/icons/home-nav-active.svg';
@@ -333,6 +339,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/time.svg
   String get time => 'assets/icons/time.svg';
 
+  /// File path: assets/icons/trend.svg
+  String get trend => 'assets/icons/trend.svg';
+
   /// File path: assets/icons/upload-image.svg
   String get uploadImage => 'assets/icons/upload-image.svg';
 
@@ -381,6 +390,7 @@ class $AssetsIconsGen {
         email,
         favIc,
         fillLocation,
+        fillFav,
         filter,
         financialReports,
         fire,
@@ -389,6 +399,7 @@ class $AssetsIconsGen {
         fullLogoIc,
         globalIc,
         guestIc,
+        history,
         homeNavActive,
         homeNav,
         homeTabActiveIc,
@@ -445,6 +456,7 @@ class $AssetsIconsGen {
         termsAndConditionsIc,
         termsIc,
         time,
+        trend,
         uploadImage,
         user,
         walletNavActive,

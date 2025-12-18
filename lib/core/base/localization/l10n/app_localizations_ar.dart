@@ -1685,4 +1685,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get packagePrice => 'سعر الباقة';
+
+  @override
+  String get appCommission => 'عمولة التطبيق';
+
+  @override
+  String get total => 'الإجمالى';
+
+  @override
+  String get payPackageData => 'بيانات دفع الباقة';
+
+  @override
+  String get searchForProduct => 'ابحث عن المنتج';
+
+  @override
+  String get recentlySearched => 'ما بحثت عنه مؤخرا';
+
+  @override
+  String get mostSearched => 'الأكثر بحثاً';
+
+  @override
+  String get showMoreRestaurants => 'عرض المزيد من المطاعم';
+
+  @override
+  String get showMoreSupermarkets => 'عرض المزيد من سوبر ماركت';
+
+  @override
+  String get restaurants => 'مطاعم';
+
+  @override
+  String get supermarkets => 'سوبر ماركت';
 }

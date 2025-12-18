@@ -59,7 +59,7 @@ class AllProvidersPage extends StatelessWidget {
                   child: AppSingleDropDown<ProviderStatusEnum>(
                     items: ProviderStatusEnum.values,
                     value: null,
-                    itemDisplay: (displayValue) => displayValue?.name,
+                    itemDisplay: (displayValue) => displayValue?.title,
                     hint: appLocalizer.storeStatus,
                   ),
                 ),

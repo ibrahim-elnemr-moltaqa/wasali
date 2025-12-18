@@ -29,7 +29,9 @@ class _AvatarWidgetState extends State<AvatarWidget> {
 
   bool get hasImage =>
       profileImage != null ||
-      (widget.initialImage != null && !hasDeletedInitialImage);
+      (widget.initialImage != null &&
+          widget.initialImage!.isNotEmpty &&
+          !hasDeletedInitialImage);
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ enum ProviderStatusEnum {
   closed,
   all;
 
-  String get name {
+  String get title {
     switch (this) {
       case ProviderStatusEnum.opened:
         return appLocalizer.opened;

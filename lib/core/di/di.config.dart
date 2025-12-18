@@ -25,6 +25,18 @@ import '../../src/layouts/client/register/domain/repository/user_register_reposi
     as _i561;
 import '../../src/layouts/client/register/domain/use_case/user_register_use_case.dart'
     as _i635;
+import '../../src/layouts/client/search/data/data_sources/search_data_source.dart'
+    as _i613;
+import '../../src/layouts/client/search/data/repositories/search_repository_impl.dart'
+    as _i215;
+import '../../src/layouts/client/search/domain/repositories/search_repository.dart'
+    as _i672;
+import '../../src/layouts/client/search/domain/use_cases/get_popular_searches_use_case.dart'
+    as _i160;
+import '../../src/layouts/client/search/domain/use_cases/get_recent_searches_use_case.dart'
+    as _i843;
+import '../../src/layouts/client/search/domain/use_cases/search_use_case.dart'
+    as _i350;
 import '../../src/layouts/delivery/authentication/data/repository/delivery_authentication_repository_impl.dart'
     as _i893;
 import '../../src/layouts/delivery/authentication/domain/repository/delivery_authentication_repository.dart'
@@ -202,6 +214,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i185.EnableGpsAndHandlePermissionUseCase>(
         () => _i185.EnableGpsAndHandlePermissionUseCase());
+    gh.lazySingleton<_i613.SearchDataSource>(
+        () => _i613.SearchDataSourceImpl());
     gh.factory<_i143.WalletRepository>(
         () => _i78.WalletRepositoryImp(gh<_i351.DioHelper>()));
     gh.lazySingleton<_i545.PackagesRemoteDataSource>(
@@ -238,6 +252,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i715.PackagesRepositoryImpl(gh<_i545.PackagesRemoteDataSource>()));
     gh.factory<_i351.LanguageCacheRepository>(() =>
         _i361.LanguageCacheRepositoryImp(gh<_i203.LanguageCacheDateSource>()));
+    gh.lazySingleton<_i672.SearchRepository>(
+        () => _i215.SearchRepositoryImpl(gh<_i613.SearchDataSource>()));
     gh.factory<_i864.CommonRepository>(
         () => _i321.CommonRepositoryImp(gh<_i351.DioHelper>()));
     gh.factory<_i351.GetUserRoleUseCase>(
@@ -366,6 +382,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i947.MarkNotificationAsReadUseCase>(() =>
         _i947.MarkNotificationAsReadUseCase(
             gh<_i190.NotificationRepository>()));
+    gh.factory<_i843.GetRecentSearchesUseCase>(
+        () => _i843.GetRecentSearchesUseCase(gh<_i672.SearchRepository>()));
+    gh.factory<_i160.GetPopularSearchesUseCase>(
+        () => _i160.GetPopularSearchesUseCase(gh<_i672.SearchRepository>()));
+    gh.factory<_i350.SearchUseCase>(
+        () => _i350.SearchUseCase(gh<_i672.SearchRepository>()));
     gh.factory<_i266.ProviderStoreDataUseCase>(() =>
         _i266.ProviderStoreDataUseCase(
             gh<_i592.ProviderAuthenticationRepository>()));

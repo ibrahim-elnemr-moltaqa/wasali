@@ -7,6 +7,7 @@ import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/network_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/client/providers/data/enum/provider_status_enum.dart';
+import 'package:wasli/src/shared/common/presentation/widget/product_discount_widget.dart';
 
 class CustomProviderCardWidget extends StatelessWidget {
   const CustomProviderCardWidget({
@@ -47,7 +48,7 @@ class CustomProviderCardWidget extends StatelessWidget {
                       CircleAvatar(radius: 2, backgroundColor: status!.color),
                       const Gap(6),
                       Text(
-                        status!.name,
+                        status!.title,
                         style: TextStyles.bold12.copyWith(color: status!.color),
                       ),
                       const Gap(4),
@@ -102,18 +103,7 @@ class CustomProviderCardWidget extends StatelessWidget {
               ),
               if (status == null) ...{
                 const Gap(8),
-                Row(
-                  children: [
-                    AppSvgIcon(path: AppIcons.fire),
-                    const Gap(4),
-                    const Flexible(
-                      child: Text(
-                        'احصل علي خصم 20% على بعض المنتجات',
-                        style: TextStyles.bold10,
-                      ),
-                    )
-                  ],
-                )
+                const ProductDiscountWidget()
               }
             ],
           ),

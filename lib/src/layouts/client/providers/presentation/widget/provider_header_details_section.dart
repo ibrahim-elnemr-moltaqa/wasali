@@ -40,13 +40,12 @@ class ProviderHeaderDetailsSection extends StatelessWidget {
                   Row(children: [
                     CircleAvatar(
                         radius: 2,
-                        backgroundColor:
-                            ProviderStatusEnum.opened.color),
+                        backgroundColor: ProviderStatusEnum.opened.color),
                     const Gap(6),
                     Text(
-                      ProviderStatusEnum.opened.name,
-                      style: TextStyles.bold12.copyWith(
-                          color: ProviderStatusEnum.opened.color),
+                      ProviderStatusEnum.opened.title,
+                      style: TextStyles.bold12
+                          .copyWith(color: ProviderStatusEnum.opened.color),
                     ),
                     const Gap(4),
                   ])

@@ -4,6 +4,7 @@ import 'package:wasli/src/layouts/client/profile/client_edit_profile_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/all_providers_page.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/provider_page.dart';
 import 'package:wasli/src/layouts/client/register/presentation/user_register_page.dart';
+import 'package:wasli/src/layouts/client/search/presentation/search_page.dart';
 import 'package:wasli/src/layouts/delivery/authentication/presentation/register/delivery_register_screen.dart';
 import 'package:wasli/src/layouts/delivery/authentication/presentation/update_profile/delivery_update_profile_page.dart';
 import 'package:wasli/src/layouts/delivery/authentication/presentation/update_profile/delviery_update_bank_data_page.dart';
@@ -120,6 +121,10 @@ class AppRoutesGenerator {
       case AppRoutes.mapPage:
         page = const MapsMainPage();
 
+      /// Search
+      ///
+      case AppRoutes.searchPage:
+        page = const SearchPage();
       default:
         page =
             const Scaffold(body: Center(child: Text('404 - Page not found')));

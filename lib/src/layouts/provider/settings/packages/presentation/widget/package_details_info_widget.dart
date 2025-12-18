@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/package_entity.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_tile.dart';
 import 'package:wasli/src/shared/common/presentation/widget/price_widget.dart';
 
 class PackageDetailsInfoWidget extends StatelessWidget {
@@ -92,29 +93,15 @@ class PackageDetailsInfoWidget extends StatelessWidget {
             package?.description ?? '',
             style: TextStyles.regular12.copyWith(color: AppColors.grey2Color),
           ),
-          _buildInfoRow(appLocalizer.packagePrice, '',
+          PackageTile(
+              label: appLocalizer.packagePrice,
               customValue: const PriceWidget()),
-          _buildInfoRow(appLocalizer.subscription_start_date, '12/05/2025'),
-          _buildInfoRow(appLocalizer.subscription_end_date, '12/05/2025'),
+          PackageTile(
+              label: appLocalizer.subscription_start_date, value: '12/05/2023'),
+          PackageTile(
+              label: appLocalizer.subscription_end_date, value: '12/05/2024'),
         ],
       ),
-    );
-  }
-
-  Widget _buildInfoRow(String label, String value, {Widget? customValue}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: TextStyles.regular12.copyWith(color: AppColors.grey2Color),
-        ),
-        customValue ??
-            Text(
-              value,
-              style: TextStyles.bold14,
-            ),
-      ],
     );
   }
 }

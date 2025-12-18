@@ -35,9 +35,6 @@ class PackagesPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return PackageItemWidget(
                       package: data?[index],
-                      onSubscribe: () {
-                        
-                      },
                     );
                   },
                 );

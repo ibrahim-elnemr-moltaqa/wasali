@@ -7,6 +7,7 @@ import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/network_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
+import 'package:wasli/src/shared/common/presentation/widget/cart_count_icon_widget.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -93,17 +94,17 @@ class HomeAppBar extends StatelessWidget {
         AppSvgIcon(
           path: AppIcons.searchIc,
           size: 20,
-        ).setBorder(
-          radius: 12,
-          padding: const EdgeInsets.all(8),
-        ),
+        )
+            .setBorder(
+              radius: 12,
+              padding: const EdgeInsets.all(8),
+            )
+            .onTapScaleAnimation(
+                onTap: () => AppRouter.pushNamed(AppRoutes.searchPage)),
         const SizedBox(width: 12),
-        AppSvgIcon(
-          path: AppIcons.bag,
-        ).setBorder(
-          radius: 12,
-          padding: const EdgeInsets.all(8),
-        ),
+        const CartCountIconWidget(
+          padding: 0,
+        )
       ];
     } else if (role == RoleEnum.provider) {
       return [

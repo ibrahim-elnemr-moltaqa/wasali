@@ -8,7 +8,6 @@ import 'package:wasli/src/layouts/client/home/presentation/widget/client_home_ba
 import 'package:wasli/src/layouts/client/home/presentation/widget/custom_provider_card_widget.dart';
 import 'package:wasli/src/layouts/client/home/presentation/widget/service_item_widget.dart';
 import 'package:wasli/src/layouts/provider/authentication/data/enum/provider_enum.dart';
-import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/presentation/widget/home_app_bar.dart';
 
 class ClientHomePage extends StatelessWidget {
@@ -19,7 +18,7 @@ class ClientHomePage extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        HomeAppBar(),
+        const HomeAppBar(),
         Expanded(
           child: CustomScrollView(
             slivers: [

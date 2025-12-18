@@ -1705,4 +1705,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packagePrice => 'Package Price';
+
+  @override
+  String get appCommission => 'App Commission';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get payPackageData => 'Pay Package Data';
+
+  @override
+  String get searchForProduct => 'Search for product';
+
+  @override
+  String get recentlySearched => 'Recently Searched';
+
+  @override
+  String get mostSearched => 'Most Searched';
+
+  @override
+  String get showMoreRestaurants => 'Show more restaurants';
+
+  @override
+  String get showMoreSupermarkets => 'Show more supermarkets';
+
+  @override
+  String get restaurants => 'Restaurants';
+
+  @override
+  String get supermarkets => 'Supermarkets';
 }

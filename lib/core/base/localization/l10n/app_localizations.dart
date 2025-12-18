@@ -3367,6 +3367,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Package Price'**
   String get packagePrice;
+
+  /// No description provided for @appCommission.
+  ///
+  /// In en, this message translates to:
+  /// **'App Commission'**
+  String get appCommission;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @payPackageData.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Package Data'**
+  String get payPackageData;
+
+  /// No description provided for @searchForProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for product'**
+  String get searchForProduct;
+
+  /// No description provided for @recentlySearched.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Searched'**
+  String get recentlySearched;
+
+  /// No description provided for @mostSearched.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Searched'**
+  String get mostSearched;
+
+  /// No description provided for @showMoreRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more restaurants'**
+  String get showMoreRestaurants;
+
+  /// No description provided for @showMoreSupermarkets.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more supermarkets'**
+  String get showMoreSupermarkets;
+
+  /// No description provided for @restaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get restaurants;
+
+  /// No description provided for @supermarkets.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermarkets'**
+  String get supermarkets;
 }
 
 class _AppLocalizationsDelegate

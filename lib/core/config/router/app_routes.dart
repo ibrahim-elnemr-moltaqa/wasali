@@ -64,4 +64,8 @@ class AppRoutes {
   /// Map
   ///
   static const mapPage = '/MapPage';
+
+  /// Search
+  /// 
+  static const searchPage = '/SearchPage';
 }
