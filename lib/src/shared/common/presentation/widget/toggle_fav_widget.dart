@@ -30,6 +30,7 @@ class _ToggleFavWidgetState extends State<ToggleFavWidget> {
   Widget build(BuildContext context) {
     return AppSvgIcon(
       path: isFavorite ? AppIcons.fillFav : AppIcons.favIc,
+      size: 18,
     ).onTapScaleAnimation(onTap: () => toggleFavorite());
   }
 }

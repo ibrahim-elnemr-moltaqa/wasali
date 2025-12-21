@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
+import 'package:wasli/src/shared/more/widgets/guest_more_widget.dart';
 import 'package:wasli/src/shared/more/widgets/more_app_bar_widget.dart';
 import 'package:wasli/src/shared/more/widgets/package_subscription_widget.dart';
 
@@ -20,11 +21,14 @@ class MorePage extends StatelessWidget {
           padding: Dimensions.pageMargins,
           child: Column(
             children: [
-              LoggedUserCheckerWidget(loggedBuilder: (user) {
-                return MoreAppBarWidget(
-                  user: user,
-                );
-              }),
+              LoggedUserCheckerWidget(
+                loggedBuilder: (user) {
+                  return MoreAppBarWidget(
+                    user: user,
+                  );
+                },
+                guestWidget: const MoreAppBarWidget(),
+              ),
               const SizedBox(height: 20),
               BlocBuilder<AppAuthenticationBloc, AppAuthenticationState>(
                 buildWhen: (previous, current) =>
@@ -42,6 +46,9 @@ class MorePage extends StatelessWidget {
                     Visibility(
                         visible: role == RoleEnum.provider,
                         child: const PackageSubscriptionWidget()),
+                    Visibility(
+                        visible: role == RoleEnum.guest,
+                        child: const GuestMoreWidget()),
                     const SizedBox(
                       height: 8,
                     ),

@@ -7,28 +7,39 @@ import 'package:wasli/material/media/app_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class MoreAppBarWidget extends StatelessWidget {
-  const MoreAppBarWidget({super.key, required this.user});
-  final CachedUser user;
+  const MoreAppBarWidget({super.key, this.user});
+  final CachedUser? user;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        user.avatar != null && user.avatar!.isNotEmpty
-            ? AppImage(path: user.avatar!, width: 44, height: 44, radius: 12)
-            : AppSvgIcon(path: AppIcons.profile, size: 30).setBorder(
-                radius: 12,
-                padding: const EdgeInsets.all(8),
-                color: AppColors.borderColor,
-              ),
+        if (user != null &&
+            user!.avatar != null &&
+            user!.avatar!.isNotEmpty) ...{
+          AppImage(path: user!.avatar!, width: 44, height: 44, radius: 12)
+        } else ...{
+          AppSvgIcon(path: AppIcons.profile, size: 30).setBorder(
+            radius: 12,
+            padding: const EdgeInsets.all(8),
+            color: AppColors.borderColor,
+          ),
+        },
         const SizedBox(
           width: 12,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(user.name.isEmpty ? '${user.fName} ${user.lName}' : user.name,
-                style: TextStyles.bold14),
+            if (user != null) ...{
+              Text(
+                  user!.name.isEmpty
+                      ? '${user!.fName} ${user!.lName}'
+                      : user!.name,
+                  style: TextStyles.bold14),
+            } else ...{
+              Text(appLocalizer.welcomeIn, style: TextStyles.bold14),
+            },
             const SizedBox(
               height: 4,
             ),

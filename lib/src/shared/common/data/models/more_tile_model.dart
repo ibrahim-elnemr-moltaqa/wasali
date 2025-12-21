@@ -19,7 +19,7 @@ class MoreTileModel {
     required this.title,
     required this.icon,
     this.onTap,
-    this.color = Colors.black,
+    this.color,
     this.trailing,
     this.needAuth = false,
   });
@@ -32,6 +32,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.previousOrders,
             icon: AppIcons.orderNav,
+            color: Colors.black,
             onTap: () {},
           ),
           MoreTileModel(
@@ -47,7 +48,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.customerSupport,
             icon: AppIcons.support,
-            onTap: () => AppRouter.pushNamed(AppRoutes.contactPage),
+            onTap: () => AppRouter.pushNamed(AppRoutes.customerSupportPage),
           ),
           ..._generalMoreList(context),
         ];
@@ -62,7 +63,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.customerSupport,
             icon: AppIcons.support,
-            onTap: () => AppRouter.pushNamed(AppRoutes.contactPage),
+            onTap: () => AppRouter.pushNamed(AppRoutes.customerSupportPage),
           ),
           ..._generalMoreList(context)
         ];
@@ -77,12 +78,19 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.customerSupport,
             icon: AppIcons.support,
-            onTap: () => AppRouter.pushNamed(AppRoutes.contactPage),
+            onTap: () => AppRouter.pushNamed(AppRoutes.customerSupportPage),
           ),
           ..._generalMoreList(context)
         ];
       default:
-        return _generalMoreList(context);
+        return [
+          MoreTileModel(
+            title: appLocalizer.customerSupport,
+            icon: AppIcons.support,
+            onTap: () => AppRouter.pushNamed(AppRoutes.customerSupportPage),
+          ),
+          ..._generalMoreList(context)
+        ];
     }
   }
 
@@ -131,6 +139,7 @@ class MoreTileModel {
           MoreTileModel(
               title: appLocalizer.changePhoneNumber,
               icon: AppIcons.call,
+              color: Colors.black,
               onTap: () => AppRouter.pushNamed(AppRoutes.updatePhonePage),
               needAuth: true),
           MoreTileModel(
@@ -142,6 +151,7 @@ class MoreTileModel {
             title: appLocalizer.notifications,
             icon: AppIcons.bellIc,
             trailing: const NotificationSwitch(),
+            color: Colors.black,
             needAuth: true,
           ),
           ...generalSettingsItems(context)
@@ -215,7 +225,20 @@ class MoreTileModel {
           ...generalSettingsItems(context)
         ];
       default:
-        return [];
+        return [
+          ...generalSettingsItems(context),
+          MoreTileModel(
+              title: appLocalizer.login,
+              icon: AppIcons.logoutIc,
+              color: AppColors.black,
+              trailing: const SizedBox.shrink(),
+              onTap: () {
+                AppRouter.popUntil();
+                AppAuthenticationBloc.of(context).add(
+                  ChooseRoleEvent(),
+                );
+              }),
+        ];
     }
   }
 

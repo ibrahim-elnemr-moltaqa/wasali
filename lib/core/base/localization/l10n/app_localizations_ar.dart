@@ -329,7 +329,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get requestServiceDescription => 'سارع بطلب خدمتك الأن';
 
   @override
-  String get welcomeIn => 'أهلاً بك في';
+  String get welcomeIn => 'مرحبا بك!';
 
   @override
   String get areYouServiceProvider => 'هل انت مقدم خدمة؟';
@@ -730,8 +730,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get logInFirst => 'يجب تسجيل الدخول اولا';
 
   @override
-  String get guestMessage =>
-      'الرجاء قم ##بتسجيل الدخول##اولاً\nحتى يمكنك الاستمتاع بخدماتنا';
+  String get guestMessage => 'ادخل إلى حسابك لتتمكن من إدارة طلباتك بسهولة';
 
   @override
   String get yourMessageSendSuccessMessage => ' تم إرسال الرسالة بنجاح';
@@ -1426,13 +1425,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get featuredOffers => 'العروض المميزة';
 
   @override
-  String get resturants => 'مطاعم';
-
-  @override
-  String get supermarker => 'سوبر ماركت';
-
-  @override
-  String get delvieryTo => 'توصيل الى';
+  String get deliveryTo => 'توصيل الى';
 
   @override
   String get opened => 'مفتوح';

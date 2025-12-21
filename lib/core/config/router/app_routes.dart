@@ -1,4 +1,3 @@
-import '../../../src/shared/more/about_us/about_us_page.dart';
 import '../../../src/shared/more/settings/settings_page.dart';
 
 class AppRoutes {
@@ -45,11 +44,10 @@ class AppRoutes {
   /// Static Pages
   ///
   static const staticPage = '/StaticPage';
-  static const contactPage = '/ContactPage';
+  static const customerSupportPage = '/customerSupportPage';
   static const faqsPage = '/FaqsPage';
   static const changeLanguage = '/ChangeLanguagePage';
   static const paymentWebView = '/PaymentWebViewPage';
-  static const aboutUsPage = AboutUsPage.routeName;
   static const notificationsPage = "/notifications";
   static const settingsPage = SettingsPage.routeName;
 
@@ -66,6 +64,6 @@ class AppRoutes {
   static const mapPage = '/MapPage';
 
   /// Search
-  /// 
+  ///
   static const searchPage = '/SearchPage';
 }

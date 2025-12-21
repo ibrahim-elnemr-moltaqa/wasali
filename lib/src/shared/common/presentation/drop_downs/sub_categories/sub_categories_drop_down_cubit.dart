@@ -4,16 +4,16 @@ import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/use_cases/get_sub_categories_use_case.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down_cubit.dart';
 
-class SubCategoriesDropDownCubit extends DropDownCubit<CategoryEntity> {
-  SubCategoriesDropDownCubit();
+class SubCategoriesCubit extends DropDownCubit<CategoryEntity> {
+  SubCategoriesCubit();
 
   final GetSubCategoriesUseCase _subCategoriesUseCase = injector();
 
   @override
-  void fetch() async {
+  void fetch({int? categoryId}) async {
     if (state.isSuccess) return;
     emit(const Async.loading());
-    final result = await _subCategoriesUseCase(NoParams());
+    final result = await _subCategoriesUseCase(categoryId);
     result.fold(
       (failer) {
         emit(Async.failure(failer));

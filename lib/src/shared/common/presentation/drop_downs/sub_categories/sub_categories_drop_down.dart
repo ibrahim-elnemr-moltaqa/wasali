@@ -18,7 +18,7 @@ class SubCategoriesDropDown extends StatelessWidget {
       title: appLocalizer.sub_categories,
       hint: appLocalizer.sub_categories,
       borderRadius: 12,
-      cubit: SubCategoriesDropDownCubit(),
+      cubit: SubCategoriesCubit(),
     );
   }
 }

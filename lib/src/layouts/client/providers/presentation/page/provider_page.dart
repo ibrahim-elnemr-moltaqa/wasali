@@ -23,7 +23,7 @@ class ProviderPage extends StatelessWidget {
             size: 18,
           ).setBorder(
             radius: 12,
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(7),
           ),
           const Gap(8),
           AppSvgIcon(
@@ -32,7 +32,7 @@ class ProviderPage extends StatelessWidget {
           )
               .setBorder(
                 radius: 12,
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(7),
               )
               .paddingEnd(12),
         ],

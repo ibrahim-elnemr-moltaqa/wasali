@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:wasli/material/spin_kit_loading_widget.dart';
 import 'package:wasli/src/shared/common/presentation/choose_role/choose_role_page.dart';
 import 'package:wasli/src/shared/common/presentation/main_page/presentation/main_page.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/onboarding_page.dart';
@@ -90,7 +91,12 @@ class BuilderScreen extends StatelessWidget {
         } else if (state is AuthAuthenticatedState || state is GuestState) {
           root = const MainPage();
         } else {
-          root = const SizedBox.shrink();
+          root = Container(
+            color: Colors.white,
+            child: const Center(
+              child: SpinKitLoadingWidget(),
+            ),
+          );
         }
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 400),
@@ -99,7 +105,6 @@ class BuilderScreen extends StatelessWidget {
             color: Colors.white,
             key: ValueKey(state.hashCode),
             child: root,
-            // child: const MainAuthPage(),
           ),
         );
       },

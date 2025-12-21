@@ -17,7 +17,7 @@ abstract class CommonRepository {
   DomainServiceType<List<CommonEntity>> getBanks();
   DomainServiceType<List<CommonEntity>> getVehicles();
   DomainServiceType<List<CategoryEntity>> getMainCategories();
-  DomainServiceType<List<CategoryEntity>> getSubCategories();
+  DomainServiceType<List<CategoryEntity>> getSubCategories({int? categoryId});
   DomainServiceType<List<LanguageEntity>> getLanguages();
   DomainServiceType<List<SpecializationEntity>> getSpecializations();
   DomainServiceType<List<EducationalStageEntity>> getEducationalStages();

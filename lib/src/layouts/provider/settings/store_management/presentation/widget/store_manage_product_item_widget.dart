@@ -17,7 +17,7 @@ class StoreMangeProductItemWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image.asset(
-          AppImages.resturants,
+          AppImages.restaurant,
           width: 85,
           height: 71,
           fit: BoxFit.cover,

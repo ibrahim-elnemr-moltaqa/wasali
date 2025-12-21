@@ -328,7 +328,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get requestServiceDescription => 'Fast request your service now';
 
   @override
-  String get welcomeIn => 'Welcome to';
+  String get welcomeIn => 'Welcome in!';
 
   @override
   String get areYouServiceProvider => 'Are you a service provider?';
@@ -742,7 +742,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guestMessage =>
-      'Please ##log in##first\nin order to access our services';
+      'Log in to your account to manage your requests easily';
 
   @override
   String get yourMessageSendSuccessMessage =>
@@ -1444,13 +1444,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get featuredOffers => 'Featured Offers';
 
   @override
-  String get resturants => 'Resturants';
-
-  @override
-  String get supermarker => 'Supermarkets';
-
-  @override
-  String get delvieryTo => 'Delivery to';
+  String get deliveryTo => 'Delivery to';
 
   @override
   String get opened => 'Opened';

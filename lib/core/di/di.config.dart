@@ -19,6 +19,14 @@ import '../../material/paginated_scroll_view/domain/repositories/pagination_repo
     as _i173;
 import '../../material/paginated_scroll_view/domain/use_cases/fetch_pagination_data_use_case.dart'
     as _i266;
+import '../../src/layouts/client/home/data/data_sources/home_remote_data_source.dart'
+    as _i404;
+import '../../src/layouts/client/home/data/repositories/home_repository_impl.dart'
+    as _i618;
+import '../../src/layouts/client/home/domain/repositories/home_repository.dart'
+    as _i993;
+import '../../src/layouts/client/home/domain/usecases/get_home_data_usecase.dart'
+    as _i813;
 import '../../src/layouts/client/register/data/repository_impl/user_register_repository_impl.dart'
     as _i1009;
 import '../../src/layouts/client/register/domain/repository/user_register_repository.dart'
@@ -250,6 +258,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i625.PaginationRepoImpl(gh<_i351.DioHelper>()));
     gh.lazySingleton<_i608.PackagesRepository>(() =>
         _i715.PackagesRepositoryImpl(gh<_i545.PackagesRemoteDataSource>()));
+    gh.lazySingleton<_i404.HomeRemoteDataSource>(
+        () => _i404.HomeRemoteDataSourceImpl(gh<_i351.DioHelper>()));
     gh.factory<_i351.LanguageCacheRepository>(() =>
         _i361.LanguageCacheRepositoryImp(gh<_i203.LanguageCacheDateSource>()));
     gh.lazySingleton<_i672.SearchRepository>(
@@ -298,6 +308,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i351.GetDeviceLanguageUseCase(gh<_i351.LanguageCacheRepository>()));
     gh.factory<_i351.SetCachedLanguageUseCase>(() =>
         _i351.SetCachedLanguageUseCase(gh<_i351.LanguageCacheRepository>()));
+    gh.lazySingleton<_i993.HomeRepository>(
+        () => _i618.HomeRepositoryImpl(gh<_i404.HomeRemoteDataSource>()));
     gh.factory<_i592.ProviderAuthenticationRepository>(
         () => _i352.ProviderRegisterRepositoryImpl(
               gh<_i351.DioHelper>(),
@@ -382,6 +394,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i947.MarkNotificationAsReadUseCase>(() =>
         _i947.MarkNotificationAsReadUseCase(
             gh<_i190.NotificationRepository>()));
+    gh.factory<_i813.GetHomeDataUseCase>(
+        () => _i813.GetHomeDataUseCase(gh<_i993.HomeRepository>()));
     gh.factory<_i843.GetRecentSearchesUseCase>(
         () => _i843.GetRecentSearchesUseCase(gh<_i672.SearchRepository>()));
     gh.factory<_i160.GetPopularSearchesUseCase>(

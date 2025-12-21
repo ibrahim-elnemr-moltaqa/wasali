@@ -5,6 +5,7 @@ import 'package:wasli/core/utils/extensions/animated/animated_list_extension.dar
 import 'package:wasli/material/auth_states/guest_checker_widget.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 import 'package:wasli/src/shared/common/data/models/more_tile_model.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 import '../widgets/tile_card.dart';
 
@@ -15,7 +16,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: CustomAppBar(
+          context,
           title: Text(appLocalizer.accountSettings),
         ),
         body: Padding(

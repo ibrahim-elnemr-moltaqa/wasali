@@ -4,6 +4,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/material/app_fail_widget.dart';
 import 'package:wasli/material/spin_kit_loading_widget.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
+
 import '../../../domain/entity/menu/static_page_type_enum.dart';
 import 'static_page_cubit.dart';
 
@@ -15,16 +17,10 @@ class StaticPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
+      appBar: CustomAppBar(
+        context,
         title: Text(pageType.title),
-        leading: IconButton(
-          onPressed: () => AppRouter.pop(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: AppColors.primary,
-          ),
-        ),
+        centerTitle: true,
       ),
       body: BlocProvider(
         create: (context) => StaticPageCubit(type: pageType)..getData(),

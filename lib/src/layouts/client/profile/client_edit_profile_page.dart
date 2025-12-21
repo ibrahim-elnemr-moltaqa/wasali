@@ -127,7 +127,7 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
                 listener: (context, state) {
                   if (state.isSuccess) {
                     AppToasts.success(context,
-                        message: appLocalizer.nameUpdatedSuccessfully);
+                        message: appLocalizer.profileUpdateSuccessMessage);
                     AppAuthenticationBloc.of(context).add(AuthenticatedEvent());
                   } else if (state.isFailure) {
                     AppToasts.error(context,

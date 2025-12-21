@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/material/media/network_image.dart';
+import 'package:wasli/material/media/app_image.dart';
+import 'package:wasli/src/layouts/client/home/domain/entities/banner_entity.dart';
 
 class ClientHomeBannerWidget extends StatefulWidget {
-  const ClientHomeBannerWidget({super.key});
+  final List<BannerEntity> banners;
+  const ClientHomeBannerWidget({super.key, required this.banners});
 
   @override
   State<ClientHomeBannerWidget> createState() => _ClientHomeBannerWidgetState();
@@ -16,6 +18,7 @@ class _ClientHomeBannerWidgetState extends State<ClientHomeBannerWidget> {
   int yourActiveIndex = 0;
   @override
   Widget build(BuildContext context) {
+    if (widget.banners.isEmpty) return const SizedBox.shrink();
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       clipBehavior: Clip.none,
@@ -23,14 +26,13 @@ class _ClientHomeBannerWidgetState extends State<ClientHomeBannerWidget> {
         FractionallySizedBox(
           widthFactor: 1.1,
           child: CarouselSlider.builder(
-              itemCount: 3,
+              itemCount: widget.banners.length,
               itemBuilder: (context, index, realIndex) {
-                return const AppMedia(
-                  path: AppConstants.networkImageTest,
-                  fit: BoxFit.cover,
+                return AppImage(
+                  path: widget.banners[index].imageUrl,
                   width: double.infinity,
                   radius: 14,
-                ).setContainerToView(color: AppColors.primary, radius: 14);
+                ).zoomIn();
               },
               options: CarouselOptions(
                 height: 160,
@@ -47,7 +49,7 @@ class _ClientHomeBannerWidgetState extends State<ClientHomeBannerWidget> {
           bottom: -10,
           child: AnimatedSmoothIndicator(
             activeIndex: yourActiveIndex,
-            count: 3,
+            count: widget.banners.length,
             effect: WormEffect(
               dotColor: AppColors.lightGreyColor,
               activeDotColor: AppColors.primary,

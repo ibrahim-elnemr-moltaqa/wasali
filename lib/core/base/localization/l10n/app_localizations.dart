@@ -713,7 +713,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeIn.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to'**
+  /// **'Welcome in!'**
   String get welcomeIn;
 
   /// No description provided for @areYouServiceProvider.
@@ -1499,7 +1499,7 @@ abstract class AppLocalizations {
   /// No description provided for @guestMessage.
   ///
   /// In en, this message translates to:
-  /// **'Please ##log in##first\nin order to access our services'**
+  /// **'Log in to your account to manage your requests easily'**
   String get guestMessage;
 
   /// No description provided for @yourMessageSendSuccessMessage.
@@ -2858,23 +2858,11 @@ abstract class AppLocalizations {
   /// **'Featured Offers'**
   String get featuredOffers;
 
-  /// No description provided for @resturants.
-  ///
-  /// In en, this message translates to:
-  /// **'Resturants'**
-  String get resturants;
-
-  /// No description provided for @supermarker.
-  ///
-  /// In en, this message translates to:
-  /// **'Supermarkets'**
-  String get supermarker;
-
-  /// No description provided for @delvieryTo.
+  /// No description provided for @deliveryTo.
   ///
   /// In en, this message translates to:
   /// **'Delivery to'**
-  String get delvieryTo;
+  String get deliveryTo;
 
   /// No description provided for @opened.
   ///

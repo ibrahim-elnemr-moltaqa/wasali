@@ -1,32 +1,32 @@
 import 'package:wasli/core/core.dart';
 
 enum ProviderTypeEnum {
-  resturant,
-  supermarker;
+  restaurant,
+  supermarket;
 
   String get name {
     switch (this) {
-      case ProviderTypeEnum.resturant:
-        return appLocalizer.resturants;
-      case ProviderTypeEnum.supermarker:
-        return appLocalizer.supermarker;
+      case ProviderTypeEnum.restaurant:
+        return appLocalizer.restaurants;
+      case ProviderTypeEnum.supermarket:
+        return appLocalizer.supermarkets;
     }
   }
 
   String get image {
     switch (this) {
-      case ProviderTypeEnum.resturant:
-        return AppImages.resturants;
-      case ProviderTypeEnum.supermarker:
+      case ProviderTypeEnum.restaurant:
+        return AppImages.restaurant;
+      case ProviderTypeEnum.supermarket:
         return AppImages.supermarket;
     }
   }
 
-  String get serchFieldHint {
+  String get searchFieldHint {
     switch (this) {
-      case ProviderTypeEnum.resturant:
+      case ProviderTypeEnum.restaurant:
         return appLocalizer.store_name;
-      case ProviderTypeEnum.supermarker:
+      case ProviderTypeEnum.supermarket:
         return appLocalizer.supermarketName;
     }
   }

@@ -157,10 +157,12 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<CategoryEntity>> getSubCategories() async {
+  DomainServiceType<List<CategoryEntity>> getSubCategories({int? categoryId}) async {
     return await failureCollect(
       () async {
-        final response = await _dioHelper.get(url: 'sub-categories');
+        final response = await _dioHelper.get(url: 'sub-categories', queryParameters: {
+          'category_id': categoryId
+        });
         final List date = response['data']['data'] ?? [];
         final List<CategoryEntity> categories =
             date.map((e) => CategoryEntity.fromJson(e)).toList();

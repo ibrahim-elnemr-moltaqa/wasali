@@ -13,9 +13,9 @@ class ProvidersAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const BackButton().setBorder(radius: 12).paddingAll(10),
+      leading: const BackButton().setBorder(radius: 12).paddingAll(8),
       title: Text.rich(TextSpan(children: [
-        TextSpan(text: appLocalizer.delvieryTo, style: TextStyles.regular14),
+        TextSpan(text: appLocalizer.deliveryTo, style: TextStyles.regular14),
         const TextSpan(text: ' '),
         const TextSpan(text: 'أحمد ماهر, المنصورة', style: TextStyles.bold16),
       ])),

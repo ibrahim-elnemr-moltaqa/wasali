@@ -83,7 +83,9 @@ class AppAuthenticationBloc
     ChooseRoleEvent event,
     Emitter<AppAuthenticationState> emit,
   ) async {
-    _log("Auth Log In Page");
+    await _deleteAllCachedUseCase();
+    // FirebaseHelper.deleteDeviceFcmToken();
+    _log("Auth Choose Role Page");
     emit(ChooseRolePageState());
   }
 
