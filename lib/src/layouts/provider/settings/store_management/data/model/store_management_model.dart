@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/tabs/categories_management_tab.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/tabs/product_management_tab.dart';
-import 'package:wasli/src/layouts/provider/settings/store_management/presentation/tabs/section_management_tab.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/tabs/size_management_tap.dart';
 
 class StoreManagementTapModel {
@@ -17,7 +17,6 @@ class StoreManagementTapModel {
   });
 
   static List<StoreManagementTapModel> loadStoreManagementTabs() {
-    final context = AppRouter.appContext;
     return [
       StoreManagementTapModel(
         title: appLocalizer.sizeManagement,
@@ -28,7 +27,7 @@ class StoreManagementTapModel {
       StoreManagementTapModel(
         title: appLocalizer.sectionsManagement,
         id: 'sectionsManagement',
-        content: const SectionManagementTab(),
+        content: const CategoriesManagementTab(),
         floatingActionButtonLabel: appLocalizer.add_new_section,
       ),
       StoreManagementTapModel(

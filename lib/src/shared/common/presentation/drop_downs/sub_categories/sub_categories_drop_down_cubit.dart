@@ -4,8 +4,8 @@ import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/use_cases/get_sub_categories_use_case.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down_cubit.dart';
 
-class SubCategoriesCubit extends DropDownCubit<CategoryEntity> {
-  SubCategoriesCubit();
+class SubCategoriesDropDownCubit extends DropDownCubit<CategoryEntity> {
+  SubCategoriesDropDownCubit();
 
   final GetSubCategoriesUseCase _subCategoriesUseCase = injector();
 

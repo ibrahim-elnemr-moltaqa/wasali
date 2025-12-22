@@ -48,6 +48,40 @@ class Async<T> extends Equatable {
 
   const Async.initial() : this._(null, false, null, null);
 
+  R when<R>({
+    required R Function() loading,
+    required R Function(Failure error) failure,
+    required R Function(T data) success,
+    R Function()? successWithoutData,
+    R Function()? initial,
+  }) {
+    if (isLoading) {
+      return loading();
+    }
+    if (isFailure) {
+      return failure(this.failure!);
+    }
+    if (isSuccess) {
+      if (data != null) {
+        if (data is Iterable && (data as Iterable).isEmpty) {
+          if (successWithoutData != null) return successWithoutData();
+        } else if (data is Map && (data as Map).isEmpty) {
+          if (successWithoutData != null) return successWithoutData();
+        }
+        return success(data as T);
+      }
+
+      if (successWithoutData != null) {
+        return successWithoutData();
+      }
+      return success(data as T);
+    }
+    if (initial != null) {
+      return initial();
+    }
+    return loading();
+  }
+
   @override
   String toString() {
     return "Async : [data]: $data , [Failure]: ${failure.runtimeType} , [isFailure] : $isFailure , [isLoading] : $isLoading , [isSuccess] : $isSuccess ,[isInitial] $isInitial";

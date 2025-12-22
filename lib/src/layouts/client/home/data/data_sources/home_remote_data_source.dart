@@ -1,18 +1,12 @@
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
-import 'package:wasli/src/layouts/client/home/domain/entities/home_data.dart';
-import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
 import '../models/banner_model.dart';
 import '../models/offer_model.dart';
 
-class HomeSimulatedData extends HomeData {
-  const HomeSimulatedData({required super.banners, required super.offers, required super.categories});
-}
-
 abstract class HomeRemoteDataSource {
-  Future<HomeSimulatedData> getHomeData();
-  Future<List<CommonEntity>> getHomeCategories();
+  Future<List<BannerModel>> getHomeBanners();
+  Future<List<OfferModel>> getHomeOffers();
 }
 
 @LazySingleton(as: HomeRemoteDataSource)
@@ -20,13 +14,12 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final DioHelper _dioHelper;
 
   HomeRemoteDataSourceImpl(this._dioHelper);
-  @override
-  Future<HomeSimulatedData> getHomeData() async {
-    final categories = await getHomeCategories();
-    // Simulating network delay
-    await Future.delayed(const Duration(seconds: 1));
 
-    final banners = [
+  @override
+  Future<List<BannerModel>> getHomeBanners() async {
+    // Simulating network delay
+    await Future.delayed(const Duration(seconds: 3));
+    return [
       const BannerModel(
         id: 1,
         imageUrl:
@@ -38,8 +31,13 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
             'https://img.freepik.com/free-vector/fast-food-banner-template_23-2148633364.jpg',
       ),
     ];
+  }
 
-    final offers = [
+  @override
+  Future<List<OfferModel>> getHomeOffers() async {
+    // Simulating network delay
+    await Future.delayed(const Duration(seconds: 3));
+    return [
       const OfferModel(
         id: 1,
         title: 'وجبة العائلة',
@@ -68,21 +66,5 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         discountPrice: 80,
       ),
     ];
-    
-
-    return HomeSimulatedData(banners: banners, offers: offers, categories: categories);
-  }
-
-  @override
-  Future<List<CommonEntity>> getHomeCategories() async {
-    try {
-      final response = await _dioHelper.get(url: 'categories');
-      final List date = response['data']['data'] ?? [];
-      final List<CommonEntity> categories =
-          date.map((e) => CommonEntity.fromJson(e)).toList();
-      return categories;
-    } catch (e) {
-      rethrow;
-    }
   }
 }

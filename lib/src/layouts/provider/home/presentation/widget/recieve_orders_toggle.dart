@@ -41,7 +41,7 @@ class _ReceiveOrdersToggleState extends State<ReceiveOrdersToggle> {
             });
           },
           activeTrackColor: AppColors.primary,
-          activeThumbColor: Colors.white,
+          activeColor: Colors.white,
           inactiveThumbColor: AppColors.greyColor,
           inactiveTrackColor: AppColors.disableindicatorColor,
           trackOutlineColor:

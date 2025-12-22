@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/domain/entity/size_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
@@ -14,6 +15,7 @@ abstract class CommonRepository {
   DomainServiceType<List<CommonEntity>> getCities();
   DomainServiceType<List<CommonEntity>> getAreas();
   DomainServiceType<List<CommonEntity>> getCountries();
+  DomainServiceType<List<SizeEntity>> getSizes();
   DomainServiceType<List<CommonEntity>> getBanks();
   DomainServiceType<List<CommonEntity>> getVehicles();
   DomainServiceType<List<CategoryEntity>> getMainCategories();

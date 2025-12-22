@@ -14,8 +14,8 @@ class PriceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          '500',
+        Text(
+          price ?? '',
           style: TextStyles.bold14,
         ),
         const Gap(4),

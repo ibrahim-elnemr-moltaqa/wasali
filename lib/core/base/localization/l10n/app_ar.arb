@@ -607,5 +607,16 @@
   "showMoreRestaurants": "عرض المزيد من المطاعم",
   "showMoreSupermarkets": "عرض المزيد من سوبر ماركت",
   "restaurants": "مطاعم",
-  "supermarkets": "سوبر ماركت"
+  "supermarkets": "سوبر ماركت",
+  "noVendorsInThisCategory": "لا يوجد تجار في هذا القسم حالياً",
+  "noVendorsInThisCategoryWorkingOnMore": "لا يوجد تجار في هذا القسم حالياً، لكننا نعمل على إضافة المزيد قريبًا.",
+  "loadErrorTryAgain": "حدث خطأ أثناء التحميل، حاول مرة أخرى!",
+  "errorWorkingOnFix": "حدث خطأ ، حاول مرة أخرى. نعمل على إصلاح المشكلة.",
+  "stayTunedOffersShort": "ترقّب عروضنا القادمة قريبًا!",
+  "stayTunedOffersFollowUs": "ترقّب عروضنا القادمة قريبًا! تابعنا أولًا بأول عشان ما يفوتك الجديد.",
+  "noSearchResults": "لا يوجد نتائج بحث",
+  "noSearchResultsCheckSpelling": "لا يوجد نتائج بحث، تأكد من كتابة الكلمة بشكل صحيح.",
+  "yourWorkingHoursAddedSuccessfully" : "تمت اضافة ساعات العمل الخاصة بك بنجاح.",
+  "yourWorkingHoursUpdatedSuccessfully" : "تم تحديث ساعات العمل الخاصة بك بنجاح.",
+  "yourWorkingHoursDeletedSuccessfully" : "تم حذف ساعات العمل الخاصة بك بنجاح."
 }

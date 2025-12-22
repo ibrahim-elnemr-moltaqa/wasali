@@ -540,7 +540,7 @@ class $AssetsImagesGen {
   String get marker => 'assets/images/marker.png';
 
   /// File path: assets/images/resturants.png
-  String get restaurant => 'assets/images/resturants.png';
+  String get resturants => 'assets/images/resturants.png';
 
   /// File path: assets/images/saudi_flag.png
   String get saudiFlag => 'assets/images/saudi_flag.png';
@@ -556,7 +556,7 @@ class $AssetsImagesGen {
         logo,
         map,
         marker,
-        restaurant,
+        resturants,
         saudiFlag,
         supermarket
       ];

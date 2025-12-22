@@ -1708,4 +1708,44 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get supermarkets => 'سوبر ماركت';
+
+  @override
+  String get noVendorsInThisCategory => 'لا يوجد تجار في هذا القسم حالياً';
+
+  @override
+  String get noVendorsInThisCategoryWorkingOnMore =>
+      'لا يوجد تجار في هذا القسم حالياً، لكننا نعمل على إضافة المزيد قريبًا.';
+
+  @override
+  String get loadErrorTryAgain => 'حدث خطأ أثناء التحميل، حاول مرة أخرى!';
+
+  @override
+  String get errorWorkingOnFix =>
+      'حدث خطأ ، حاول مرة أخرى. نعمل على إصلاح المشكلة.';
+
+  @override
+  String get stayTunedOffersShort => 'ترقّب عروضنا القادمة قريبًا!';
+
+  @override
+  String get stayTunedOffersFollowUs =>
+      'ترقّب عروضنا القادمة قريبًا! تابعنا أولًا بأول عشان ما يفوتك الجديد.';
+
+  @override
+  String get noSearchResults => 'لا يوجد نتائج بحث';
+
+  @override
+  String get noSearchResultsCheckSpelling =>
+      'لا يوجد نتائج بحث، تأكد من كتابة الكلمة بشكل صحيح.';
+
+  @override
+  String get yourWorkingHoursAddedSuccessfully =>
+      'تمت اضافة ساعات العمل الخاصة بك بنجاح.';
+
+  @override
+  String get yourWorkingHoursUpdatedSuccessfully =>
+      'تم تحديث ساعات العمل الخاصة بك بنجاح.';
+
+  @override
+  String get yourWorkingHoursDeletedSuccessfully =>
+      'تم حذف ساعات العمل الخاصة بك بنجاح.';
 }

@@ -70,6 +70,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           ],
                         ).onTapScaleAnimation(onTap: () {
                           AppRouter.pushNamed(AppRoutes.mapPage).then((value) {
+                            if (value == null) return;
                             locationAddress.value = value as MapAddressEntity;
                           });
                         });

@@ -6,13 +6,16 @@ import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/widget/bottom_sheet/more_store_management_bottom_sheet.dart';
+import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 
-class SectionItemWidget extends StatelessWidget {
-  const SectionItemWidget({
+class StoreCategoryItem extends StatelessWidget {
+  const StoreCategoryItem({
     super.key,
     required this.index,
+    required this.category,
   });
   final int index;
+  final CategoryEntity category;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +27,12 @@ class SectionItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(appLocalizer.section_name),
+              const Gap(4),
               Text(
-                appLocalizer.size,
-                style: TextStyles.regular14,
+                category.name,
+                style: TextStyles.bold14,
               ),
-              const Gap(6),
-              const Text('hamada', style: TextStyles.bold14),
             ],
           ),
         ),
@@ -38,18 +41,27 @@ class SectionItemWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  appLocalizer.active,
-                  style:
-                      TextStyles.bold12.copyWith(color: AppColors.success600),
+                  category.isActive
+                      ? appLocalizer.active
+                      : appLocalizer.inactive,
+                  style: TextStyles.bold12.copyWith(
+                      color: category.isActive
+                          ? AppColors.success600
+                          : AppColors.red500),
                 ),
                 AppSvgIcon(path: AppIcons.more, size: 16)
                     .paddingStart(8)
                     .onTapScaleAnimation(onTap: () {
                   MoreStoreManagementBottomSheet.showModalBottomSheet(
                     context,
-                    initialSwitchValue: 1,
-                    onSwitchChange: (value) {},
-                    onDeleteTap: () {},
+                    initialSwitchValue: category.isActive ? 1 : 0,
+                    onSwitchChange: (value) {
+                      // Status change might not be requested for categories yet based on prompt,
+                      // but I'll keep the UI consistent with other tabs.
+                    },
+                    onDeleteTap: () {
+                      // Delete logic (unassign) could be added here if needed.
+                    },
                   );
                 })
               ],

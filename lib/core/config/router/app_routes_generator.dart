@@ -16,7 +16,7 @@ import 'package:wasli/src/layouts/provider/settings/packages/presentation/packag
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/add_new_product_page.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/store_management_screen.dart';
-import 'package:wasli/src/layouts/provider/settings/working_days/working_days_page.dart';
+import 'package:wasli/src/layouts/provider/settings/working_days/presentation/working_days_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/update_phone/update_phone_page.dart';
 import 'package:wasli/src/shared/common/presentation/menu/support/customer_support_page.dart';
@@ -106,7 +106,7 @@ class AppRoutesGenerator {
       case AppRoutes.addNewProductPage:
         page = const AddNewProductPage();
       case AppRoutes.workingTimePage:
-        page = const WorkingTimePage();
+        page = const WorkingDaysTimePage();
       case AppRoutes.generalStoreSettingsPage:
         page = const GeneralStoreSettingsPage();
       case AppRoutes.packagesPage:

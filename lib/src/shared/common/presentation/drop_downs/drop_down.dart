@@ -3,10 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:wasli/core/config/theme/app_theme.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/material/app_fail_widget.dart';
 import 'package:wasli/material/inputs/validator_field.dart';
+import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/material/spin_kit_loading_widget.dart';
 
 import 'drop_down_cubit.dart';
@@ -424,11 +427,24 @@ class _AppDropDownOverlayState<T> extends State<_AppDropDownOverlay<T>>
                                 return Center(
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 60),
-                                    child: Text(
-                                      appLocalizer.noResultFound,
-                                      style: TextStyles.semiBold12
-                                          .copyWith(color: AppColors.text),
-                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          appLocalizer.noResultFound,
+                                          style: TextStyles.semiBold12
+                                              .copyWith(color: AppColors.text),
+                                        ),
+                                        const Gap(4),
+                                        AppSvgIcon(
+                                          path: AppIcons.refresh,
+                                          size: 16,
+                                          color: AppColors.text,
+                                        )
+                                      ],
+                                    ).onTapScaleAnimation(onTap: () {
+                                      context.read<DropDownCubit<T>>().fetch();
+                                    }),
                                   ),
                                 );
                               }

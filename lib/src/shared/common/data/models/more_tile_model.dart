@@ -133,6 +133,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.accountSettings,
             icon: AppIcons.user,
+            color: Colors.black,
             onTap: () => AppRouter.pushNamed(AppRoutes.clientEditProfile),
             needAuth: true,
           ),
@@ -161,6 +162,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.service_provider_data,
             icon: AppIcons.user,
+            color: Colors.black,
             onTap: () => AppRouter.pushNamed(AppRoutes.providerEditProfile),
             needAuth: true,
           ),
@@ -180,6 +182,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.working_days,
             icon: AppIcons.calendar,
+            color: Colors.black,
             onTap: () => AppRouter.pushNamed(AppRoutes.workingTimePage),
             needAuth: true,
           ),
@@ -202,6 +205,7 @@ class MoreTileModel {
           MoreTileModel(
             title: appLocalizer.accountSettings,
             icon: AppIcons.user,
+            color: Colors.black,
             onTap: () => AppRouter.pushNamed(AppRoutes.deliveryEditProfilePage),
             needAuth: true,
           ),

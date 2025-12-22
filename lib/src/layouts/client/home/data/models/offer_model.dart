@@ -21,6 +21,14 @@ class OfferModel extends OfferEntity {
     );
   }
 
+  const OfferModel.example()
+      : this(
+            id: 1,
+            title: 'example',
+            description: 'example',
+            imageUrl: 'example',
+            price: 1);
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,

@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/data/model/api_size_model.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/domain/entity/size_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
@@ -195,5 +197,19 @@ class CommonRepositoryImp implements CommonRepository {
         return Right(vehicles);
       },
     );
+  }
+
+  @override
+  DomainServiceType<List<SizeEntity>> getSizes() async{
+    return await failureCollect(
+      () async {
+        final response = await _dioHelper.get(url: 'sizes');
+        final List date = response['data']['data'] ?? [];
+        final List<SizeEntity> sizes =
+            date.map((e) => ApiSizeModel.fromJson(e)).toList();
+        return Right(sizes);
+      },
+    );
+    
   }
 }

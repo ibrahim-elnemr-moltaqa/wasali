@@ -44,7 +44,6 @@ dependencies:
   video_player: ^2.9.1
   gap: ^3.0.1
 
-
   # Service Locator
   get_it: ^8.0.3
   injectable: ^2.3.2
@@ -89,7 +88,6 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_staggered_animations: ^1.1.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -104,7 +102,6 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
-  
 
   assets:
     - packages/timezone/data/latest_all.tzf
@@ -134,7 +131,6 @@ flutter:
           weight: 800
         - asset: assets/fonts/almaraia/Almarai-ExtraBold.ttf
           weight: 900
-
 
 flutter_gen:
   output: lib/core/config/values/

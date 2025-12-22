@@ -16,7 +16,7 @@ enum ProviderTypeEnum {
   String get image {
     switch (this) {
       case ProviderTypeEnum.restaurant:
-        return AppImages.restaurant;
+        return AppImages.resturants;
       case ProviderTypeEnum.supermarket:
         return AppImages.supermarket;
     }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/material/inputs/app_text_form_field.dart';
+import 'package:wasli/material/inputs/app_debounce_search_field.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
 class StoreManagementSearchBar extends StatelessWidget {
@@ -10,9 +10,11 @@ class StoreManagementSearchBar extends StatelessWidget {
     super.key,
     this.onFilterTap,
     this.hintText,
+    this.onChanged,
   });
 
   final VoidCallback? onFilterTap;
+  final void Function(String)? onChanged;
   final String? hintText;
 
   @override
@@ -20,12 +22,12 @@ class StoreManagementSearchBar extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-            child: AppTextFormField(
+            child: AppDebounceSearchField(
           hintText: hintText,
-          prefixIcon: (isFocused) => AppSvgIcon(
-            path: AppIcons.search,
-            color: isFocused ? AppColors.primary : AppColors.hintColor,
-          ),
+          prefixIcon: (focused) => AppSvgIcon(
+              path: AppIcons.search,
+              color: focused ? AppColors.primary : AppColors.textInputField),
+          onChanged: onChanged,
         )),
         const SizedBox(width: 8),
         AppSvgIcon(

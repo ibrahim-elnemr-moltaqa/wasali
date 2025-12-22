@@ -3415,6 +3415,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Supermarkets'**
   String get supermarkets;
+
+  /// No description provided for @noVendorsInThisCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no vendors in this category at the moment.'**
+  String get noVendorsInThisCategory;
+
+  /// No description provided for @noVendorsInThisCategoryWorkingOnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no vendors in this category at the moment, but we\'re working on adding more soon.'**
+  String get noVendorsInThisCategoryWorkingOnMore;
+
+  /// No description provided for @loadErrorTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while loading, please try again.'**
+  String get loadErrorTryAgain;
+
+  /// No description provided for @errorWorkingOnFix.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred. Please try again. We\'re working on fixing the issue.'**
+  String get errorWorkingOnFix;
+
+  /// No description provided for @stayTunedOffersShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay tuned for our upcoming offers!'**
+  String get stayTunedOffersShort;
+
+  /// No description provided for @stayTunedOffersFollowUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay tuned for our upcoming offers! Follow us to stay updated so you don\'t miss what\'s new.'**
+  String get stayTunedOffersFollowUs;
+
+  /// No description provided for @noSearchResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No search results'**
+  String get noSearchResults;
+
+  /// No description provided for @noSearchResultsCheckSpelling.
+  ///
+  /// In en, this message translates to:
+  /// **'No search results found, please check your spelling and try again.'**
+  String get noSearchResultsCheckSpelling;
+
+  /// No description provided for @yourWorkingHoursAddedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your working hours have been added successfully.'**
+  String get yourWorkingHoursAddedSuccessfully;
+
+  /// No description provided for @yourWorkingHoursUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your working hours have been updated successfully.'**
+  String get yourWorkingHoursUpdatedSuccessfully;
+
+  /// No description provided for @yourWorkingHoursDeletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your working hours have been deleted successfully.'**
+  String get yourWorkingHoursDeletedSuccessfully;
 }
 
 class _AppLocalizationsDelegate

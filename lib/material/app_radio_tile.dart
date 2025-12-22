@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../core/core.dart';
 
 class AppRadioTile<T> extends StatelessWidget {
@@ -13,6 +14,7 @@ class AppRadioTile<T> extends StatelessWidget {
   final Color borderColor;
   final AlignmentGeometry alignment;
   final ListTileControlAffinity controlAffinity;
+  final TextStyle? titleTextStyle;
 
   const AppRadioTile({
     super.key,
@@ -27,12 +29,13 @@ class AppRadioTile<T> extends StatelessWidget {
     this.alignment = AlignmentDirectional.centerStart,
     this.borderColor = const Color(0xffECEDEE),
     this.controlAffinity = ListTileControlAffinity.leading,
+    this.titleTextStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     final bool isSelected = groupValue == value;
-    final textStyle =
+    final textStyle = titleTextStyle ??
         TextStyles.medium12.copyWith(color: selectedColor, height: 1);
     final color = isSelected ? selectedColor : unSelectedColor;
     return GestureDetector(
@@ -63,7 +66,7 @@ class AppRadioTile<T> extends StatelessWidget {
                     ? child!
                     : Text(
                         titleText ?? "",
-                        style: textStyle.copyWith(height: .7, color: color),
+                        style: textStyle,
                       )),
             if (ListTileControlAffinity.trailing == controlAffinity)
               const SizedBox(width: 10),

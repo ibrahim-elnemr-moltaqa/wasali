@@ -74,6 +74,7 @@ class _YourLocationOnMapWidgetState extends State<YourLocationOnMapWidget> {
             zoomControlsEnabled: false,
             onTap: (argument) {
               AppRouter.pushNamed(AppRoutes.mapPage).then((value) {
+                if (value == null) return;
                 setState(() {
                   address = value as MapAddressEntity;
                 });

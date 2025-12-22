@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/src/layouts/provider/authentication/data/model/store_management_model.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/data/model/store_management_model.dart';
 
 class ManageStoreTapBarWidget extends StatefulWidget {
   const ManageStoreTapBarWidget({

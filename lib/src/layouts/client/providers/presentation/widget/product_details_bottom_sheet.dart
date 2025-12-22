@@ -67,7 +67,9 @@ class ProductDetailsBottomSheet extends StatelessWidget {
                       Column(
                         children: [
                           Radio(
+                            groupValue: index,
                             value: index,
+                            onChanged: (value) {},
                           )
                         ],
                       )

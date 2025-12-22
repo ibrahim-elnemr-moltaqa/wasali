@@ -10,7 +10,6 @@ import 'package:wasli/material/media/app_image.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/cubit/providers_cubit.dart';
 import 'package:wasli/src/layouts/client/providers/presentation/page/all_providers_page.dart';
 import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
-import 'package:wasli/src/shared/common/presentation/drop_downs/sub_categories/sub_categories_drop_down_cubit.dart';
 
 class ProviderSubCategoriesWidget extends StatefulWidget {
   const ProviderSubCategoriesWidget({
@@ -38,8 +37,8 @@ class _ProviderSubCategoriesWidgetState
         return HandleResponseWidget(
           status: state.subcategoriesState,
           onRetry: () => context
-              .read<SubCategoriesCubit>()
-              .fetch(categoryId: widget.args.categoryId),
+              .read<ProvidersCubit>()
+              .getSubCategories(widget.args.categoryId),
           onSuccess: (data) {
             if (selectedId == null && data != null && data.isNotEmpty) {
               selectedId = data.first.id;

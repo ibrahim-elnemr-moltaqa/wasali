@@ -602,5 +602,16 @@
   "showMoreRestaurants": "Show more restaurants",
   "showMoreSupermarkets": "Show more supermarkets",
   "restaurants": "Restaurants",
-  "supermarkets": "Supermarkets"
+  "supermarkets": "Supermarkets",
+  "noVendorsInThisCategory": "There are no vendors in this category at the moment.",
+  "noVendorsInThisCategoryWorkingOnMore": "There are no vendors in this category at the moment, but we're working on adding more soon.",
+  "loadErrorTryAgain": "An error occurred while loading, please try again.",
+  "errorWorkingOnFix": "An error occurred. Please try again. We're working on fixing the issue.",
+  "stayTunedOffersShort": "Stay tuned for our upcoming offers!",
+  "stayTunedOffersFollowUs": "Stay tuned for our upcoming offers! Follow us to stay updated so you don't miss what's new.",
+  "noSearchResults": "No search results",
+  "noSearchResultsCheckSpelling": "No search results found, please check your spelling and try again.",
+  "yourWorkingHoursAddedSuccessfully": "Your working hours have been added successfully.",
+  "yourWorkingHoursUpdatedSuccessfully": "Your working hours have been updated successfully.",
+  "yourWorkingHoursDeletedSuccessfully": "Your working hours have been deleted successfully."
 }

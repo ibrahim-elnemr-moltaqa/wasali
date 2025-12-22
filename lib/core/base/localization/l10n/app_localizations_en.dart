@@ -1729,4 +1729,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get supermarkets => 'Supermarkets';
+
+  @override
+  String get noVendorsInThisCategory =>
+      'There are no vendors in this category at the moment.';
+
+  @override
+  String get noVendorsInThisCategoryWorkingOnMore =>
+      'There are no vendors in this category at the moment, but we\'re working on adding more soon.';
+
+  @override
+  String get loadErrorTryAgain =>
+      'An error occurred while loading, please try again.';
+
+  @override
+  String get errorWorkingOnFix =>
+      'An error occurred. Please try again. We\'re working on fixing the issue.';
+
+  @override
+  String get stayTunedOffersShort => 'Stay tuned for our upcoming offers!';
+
+  @override
+  String get stayTunedOffersFollowUs =>
+      'Stay tuned for our upcoming offers! Follow us to stay updated so you don\'t miss what\'s new.';
+
+  @override
+  String get noSearchResults => 'No search results';
+
+  @override
+  String get noSearchResultsCheckSpelling =>
+      'No search results found, please check your spelling and try again.';
+
+  @override
+  String get yourWorkingHoursAddedSuccessfully =>
+      'Your working hours have been added successfully.';
+
+  @override
+  String get yourWorkingHoursUpdatedSuccessfully =>
+      'Your working hours have been updated successfully.';
+
+  @override
+  String get yourWorkingHoursDeletedSuccessfully =>
+      'Your working hours have been deleted successfully.';
 }

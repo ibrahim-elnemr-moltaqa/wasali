@@ -6,23 +6,22 @@ import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/media/app_image.dart';
 import 'package:wasli/material/media/svg_icon.dart';
-import 'package:wasli/src/layouts/client/providers/data/enum/provider_status_enum.dart';
-import 'package:wasli/src/shared/common/presentation/widget/toggle_fav_widget.dart';
+import 'package:wasli/src/layouts/client/providers/data/model/provider_model.dart';
 
 class ProviderCardWidget extends StatelessWidget {
   const ProviderCardWidget({
     super.key,
-    this.status,
+    required this.provider,
   });
 
-  final ProviderStatusEnum? status;
+  final ProviderModel provider;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const AppImage(
-          path: AppConstants.networkImageTest,
+        AppImage(
+          path: provider.imageUrl,
           width: 108,
           height: 86,
           radius: 8,
@@ -34,9 +33,9 @@ class ProviderCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Flexible(
+                  Flexible(
                     child: Text(
-                      'بابا جونز',
+                      provider.name,
                       style: TextStyles.bold14,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -44,16 +43,18 @@ class ProviderCardWidget extends StatelessWidget {
                   ),
                   const Gap(8),
                   Row(children: [
-                    CircleAvatar(radius: 2, backgroundColor: status!.color),
+                    CircleAvatar(
+                        radius: 2, backgroundColor: provider.status.color),
                     const Gap(6),
                     Text(
-                      status!.title,
-                      style: TextStyles.bold12.copyWith(color: status!.color),
+                      provider.status.title,
+                      style: TextStyles.bold12
+                          .copyWith(color: provider.status.color),
                     ),
                     const Gap(4),
                   ]),
-                  const Spacer(),
-                  const ToggleFavWidget(),
+                  // const Spacer(),
+                  // const ToggleFavWidget(),
                 ],
               ),
               const Gap(4),
@@ -61,20 +62,20 @@ class ProviderCardWidget extends StatelessWidget {
                 children: [
                   AppSvgIcon(path: AppIcons.starFill),
                   const Gap(2),
-                  const Text(
-                    '4.5',
+                  Text(
+                    provider.rating.toString(),
                     style: TextStyles.bold12,
                   ),
                   const Gap(4),
                   Text(
-                    '(+100)',
+                    '(+${provider.reviewCount})',
                     style: TextStyles.regular12
                         .copyWith(color: AppColors.grey2Color),
                   )
                 ],
               ),
               Text(
-                'متجرنا يقدّم لك تجربة تسوّق سهلة وسريعة، مع مجموعة واسعة من المنتجات عالية الجودة بأسعار تنافسية، وخدمة توصيل موثوقة حتى باب بيتك.',
+                provider.description,
                 style: TextStyles.light12.copyWith(
                   color: AppColors.grey2Color,
                 ),

@@ -31,6 +31,15 @@ class CategoryEntity extends Equatable {
     );
   }
 
+  CategoryEntity.example()
+      : id = 1,
+        name = 'name',
+        nameAr = 'nameAr',
+        nameEn = 'nameEn',
+        isActive = true,
+        image = 'image',
+        createdAt = DateTime.now();
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,

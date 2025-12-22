@@ -1,6 +1,9 @@
+import 'package:wasli/src/layouts/client/home/data/models/banner_model.dart';
+import 'package:wasli/src/layouts/client/home/data/models/offer_model.dart';
+
 import '../../../../../../core/core.dart';
-import '../entities/home_data.dart';
 
 abstract class HomeRepository {
-  DomainServiceType<HomeData> getHomeData();
+  DomainServiceType<List<BannerModel>> getHomeBanners();
+  DomainServiceType<List<OfferModel>> getHomeOffers();
 }

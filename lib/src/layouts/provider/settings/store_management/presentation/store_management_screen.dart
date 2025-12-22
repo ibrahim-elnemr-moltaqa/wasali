@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
-import 'package:wasli/src/layouts/provider/authentication/data/model/store_management_model.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/data/model/store_management_model.dart';
 
 class StoreManagementPage extends StatefulWidget {
   const StoreManagementPage({super.key});
