@@ -1771,4 +1771,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get yourWorkingHoursDeletedSuccessfully =>
       'Your working hours have been deleted successfully.';
+
+  @override
+  String get rest => 'Rest';
+
+  @override
+  String get dayToEndSubscription => 'Day to end subscription';
 }

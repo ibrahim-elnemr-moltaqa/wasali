@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
@@ -13,7 +14,7 @@ class ChooseRolePage extends StatefulWidget {
 }
 
 class _ChooseRolePageState extends State<ChooseRolePage> {
-  ValueNotifier<RoleEnum?> roleNotifire = ValueNotifier(null);
+  ValueNotifier<RoleEnum?> roleNotifier = ValueNotifier(null);
   final _setRoleUseCase = SetUserRoleUseCase.getInstance();
   @override
   Widget build(BuildContext context) {
@@ -39,14 +40,14 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
                 height: 50,
               ),
               ValueListenableBuilder(
-                  valueListenable: roleNotifire,
+                  valueListenable: roleNotifier,
                   builder: (context, value, child) {
                     return Column(
                       children: [
                         RoleCardWidget(
                           role: RoleEnum.client,
-                          isSelected: value == RoleEnum.client,
-                          onTap: () => roleNotifire.value = RoleEnum.client,
+                          isSelected: roleNotifier.value == RoleEnum.client,
+                          onTap: () => roleNotifier.value = RoleEnum.client,
                         ),
                         const SizedBox(
                           height: 64,
@@ -54,34 +55,17 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
                         RoleCardWidget(
                           role: RoleEnum.provider,
                           imageInStart: true,
-                          isSelected: value == RoleEnum.provider,
-                          onTap: () => roleNotifire.value = RoleEnum.provider,
+                          isSelected: roleNotifier.value == RoleEnum.provider,
+                          onTap: () => roleNotifier.value = RoleEnum.provider,
                         ),
                         const SizedBox(
                           height: 64,
                         ),
                         RoleCardWidget(
                           role: RoleEnum.delivery,
-                          isSelected: value == RoleEnum.delivery,
-                          onTap: () => roleNotifire.value = RoleEnum.delivery,
+                          isSelected: roleNotifier.value == RoleEnum.delivery,
+                          onTap: () => roleNotifier.value = RoleEnum.delivery,
                         ),
-                        const SizedBox(
-                          height: 125,
-                        ),
-                        AppButton(
-                          text: appLocalizer.next,
-                          buttonColor: AppColors.primary,
-                          onPressed: () {
-                            if (value != null) {
-                              _setRoleUseCase(value);
-                              AppAuthenticationBloc.of(context)
-                                  .add(OnFinishWalkThrowEvent());
-                            } else {
-                              AppToasts.hint(context,
-                                  message: 'من فضلك اختر واحد');
-                            }
-                          },
-                        )
                       ],
                     );
                   })
@@ -89,6 +73,23 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
           ),
         ),
       ),
+      bottomNavigationBar: ValueListenableBuilder(
+          valueListenable: roleNotifier,
+          builder: (context, value, child) {
+            return AppButton(
+              text: appLocalizer.next,
+              buttonColor: AppColors.primary,
+              onPressed: () {
+                if (value != null) {
+                  _setRoleUseCase(value);
+                  AppAuthenticationBloc.of(context)
+                      .add(OnFinishWalkThrowEvent());
+                } else {
+                  AppToasts.hint(context, message: 'من فضلك اختر واحد');
+                }
+              },
+            ).paddingAll(20);
+          }),
     );
   }
 }

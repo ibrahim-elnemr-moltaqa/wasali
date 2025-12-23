@@ -22,9 +22,14 @@ class ProductsCubit extends Cubit<ProductsState> {
   final DeleteProductUseCase _deleteProductUseCase = injector();
   final ChangeProductStatusUseCase _changeProductStatusUseCase = injector();
 
-  Future<void> getProducts() async {
-    emit(state.copyWith(productsState: const Async.loading()));
-    final result = await _getProductsUseCase(NoParams());
+  Future<void> getProducts({String? name, int? active}) async {
+    final activeVal = active ?? state.activeFilter;
+    emit(state.copyWith(
+      productsState: const Async.loading(),
+      activeFilter: active,
+    ));
+    final result = await _getProductsUseCase(
+        ManagementFetchParams(name: name, active: activeVal));
     result.fold((error) {
       emit(state.copyWith(productsState: Async.failure(error)));
     }, (products) {

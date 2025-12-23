@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
@@ -103,13 +103,13 @@ class _WorkingDayItemState extends State<WorkingDayItem> {
                 labelText: appLocalizer.from,
                 mode: CupertinoDatePickerMode.time,
                 value: _tempModel.from != null
-                    ? DateFormat('HH:mm:ss').parse(_tempModel.from!)
+                    ? DateFormat('HH:mm').parse(_tempModel.from!)
                     : null,
                 onChange: (date) {
                   if (date != null) {
                     setState(() {
                       _tempModel = _tempModel.copyWith(
-                          from: DateFormat('HH:mm:ss').format(date));
+                          from: DateFormat('HH:mm').format(date));
                     });
                   }
                 },
@@ -122,13 +122,13 @@ class _WorkingDayItemState extends State<WorkingDayItem> {
                 labelText: appLocalizer.to,
                 mode: CupertinoDatePickerMode.time,
                 value: _tempModel.to != null
-                    ? DateFormat('HH:mm:ss').parse(_tempModel.to!)
+                    ? DateFormat('HH:mm').parse(_tempModel.to!)
                     : null,
                 onChange: (date) {
                   if (date != null) {
                     setState(() {
                       _tempModel = _tempModel.copyWith(
-                          to: DateFormat('HH:mm:ss').format(date));
+                          to: DateFormat('HH:mm').format(date));
                     });
                   }
                 },

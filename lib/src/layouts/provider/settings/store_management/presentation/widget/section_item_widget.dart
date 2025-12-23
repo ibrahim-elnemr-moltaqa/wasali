@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/animated/animated_list_extension.dart';
 import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
+import 'package:wasli/material/app_loading_widget.dart';
 import 'package:wasli/material/media/svg_icon.dart';
+import 'package:wasli/material/toast/app_toast.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/cubits/categories/store_categories_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/widget/bottom_sheet/more_store_management_bottom_sheet.dart';
 import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 
@@ -49,18 +53,30 @@ class StoreCategoryItem extends StatelessWidget {
                           ? AppColors.success600
                           : AppColors.red500),
                 ),
-                AppSvgIcon(path: AppIcons.more, size: 16)
-                    .paddingStart(8)
-                    .onTapScaleAnimation(onTap: () {
+                BlocListener<StoreCategoriesCubit, StoreCategoriesState>(
+                  listenWhen: (previous, current) =>
+                      previous.changeSubCategoryStatus !=
+                      current.changeSubCategoryStatus,
+                  listener: (context, state) {
+                    if (state.changeSubCategoryStatus.isFailure) {
+                      AppToasts.error(context,
+                          message:
+                              state.changeSubCategoryStatus.errorMessage ?? '');
+                    } else if (state.changeSubCategoryStatus.isLoading) {
+                      AppLoadingWidget.overlay();
+                    } else if (state.changeSubCategoryStatus.isSuccess) {
+                      AppLoadingWidget.removeOverlay();
+                    }
+                  },
+                  child: AppSvgIcon(path: AppIcons.more, size: 16),
+                ).paddingStart(8).onTapScaleAnimation(onTap: () {
                   MoreStoreManagementBottomSheet.showModalBottomSheet(
                     context,
                     initialSwitchValue: category.isActive ? 1 : 0,
                     onSwitchChange: (value) {
-                      // Status change might not be requested for categories yet based on prompt,
-                      // but I'll keep the UI consistent with other tabs.
-                    },
-                    onDeleteTap: () {
-                      // Delete logic (unassign) could be added here if needed.
+                      context
+                          .read<StoreCategoriesCubit>()
+                          .changeSubCategoryStatus(category.id);
                     },
                   );
                 })

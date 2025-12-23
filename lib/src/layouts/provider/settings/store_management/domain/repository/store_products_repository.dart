@@ -4,7 +4,7 @@ import 'package:wasli/src/layouts/provider/settings/store_management/data/model/
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/entity/product_entity.dart';
 
 abstract class StoreProductsRepository {
-  DomainServiceType<List<ProductEntity>> getProducts();
+  DomainServiceType<List<ProductEntity>> getProducts({String? name, int? active});
   DomainServiceType<ProductEntity> createProduct(ProductBody body);
   DomainServiceType<ProductEntity> updateProduct(ProductBody body);
   DomainServiceType<Unit> deleteProduct(int productId);

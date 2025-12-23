@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
+import 'package:wasli/material/app_loading_widget.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/handle_response/handle_response_widget.dart';
 import 'package:wasli/material/toast/app_toast.dart';
@@ -19,7 +20,6 @@ class WorkingDaysTimePage extends StatefulWidget {
 
 class _WorkingDaysTimePageState extends State<WorkingDaysTimePage> {
   final WorkingDaysCubit _cubit = WorkingDaysCubit();
-  List<WorkingDayModel> _localWorkingDays = [];
 
   @override
   void initState() {
@@ -28,24 +28,20 @@ class _WorkingDaysTimePageState extends State<WorkingDaysTimePage> {
   }
 
   void _addWorkingDay() {
-    setState(() {
-      _localWorkingDays.add(WorkingDayModel());
-    });
+    _cubit.addLocalWorkingDay();
   }
 
   void _onSave(WorkingDayModel model) {
     if (model.id == null) {
       _cubit.createWorkingDay(model);
     } else {
-      _cubit.updateWorkingDay(model);
+      _cubit.updateWorkingDay(model.copyWith(method: 'put'));
     }
   }
 
   void _onDelete(WorkingDayModel model, int index) {
     if (model.id == null) {
-      setState(() {
-        _localWorkingDays.removeAt(index);
-      });
+      _cubit.removeLocalWorkingDay(index);
     } else {
       _cubit.deleteWorkingDay(model.id!);
     }
@@ -62,33 +58,39 @@ class _WorkingDaysTimePageState extends State<WorkingDaysTimePage> {
         body: BlocConsumer<WorkingDaysCubit, WorkingDaysState>(
             listener: (context, state) {
           if (state.createWorkingDayState.isSuccess) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.success(context,
                 message: appLocalizer.yourWorkingHoursAddedSuccessfully);
           } else if (state.createWorkingDayState.isFailure) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.error(context,
                 message: state.createWorkingDayState.errorMessage ?? '');
+          } else if (state.createWorkingDayState.isLoading) {
+            AppLoadingWidget.overlay();
           }
 
           if (state.updateWorkingDayState.isSuccess) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.success(context,
                 message: appLocalizer.yourWorkingHoursUpdatedSuccessfully);
           } else if (state.updateWorkingDayState.isFailure) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.error(context,
                 message: state.updateWorkingDayState.errorMessage ?? '');
+          } else if (state.updateWorkingDayState.isLoading) {
+            AppLoadingWidget.overlay();
           }
 
           if (state.deleteWorkingDayState.isSuccess) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.success(context,
                 message: appLocalizer.yourWorkingHoursDeletedSuccessfully);
           } else if (state.deleteWorkingDayState.isFailure) {
+            AppLoadingWidget.removeOverlay();
             AppToasts.error(context,
                 message: state.deleteWorkingDayState.errorMessage ?? '');
-          }
-
-          if (state.workingDaysState.isSuccess) {
-            setState(() {
-              _localWorkingDays = List.from(state.workingDaysState.data ?? []);
-            });
+          } else if (state.deleteWorkingDayState.isLoading) {
+            AppLoadingWidget.overlay();
           }
         }, builder: (context, state) {
           return HandleResponseWidget(
@@ -103,11 +105,12 @@ class _WorkingDaysTimePageState extends State<WorkingDaysTimePage> {
                 );
               },
               onSuccess: (data) {
+                final workingDays = state.workingDaysState.data ?? [];
                 return ListView.separated(
-                  itemCount: _localWorkingDays.length,
+                  itemCount: workingDays.length,
                   separatorBuilder: (_, __) => const Gap(20),
                   itemBuilder: (context, index) {
-                    final model = _localWorkingDays[index];
+                    final model = workingDays[index];
                     return WorkingDayItem(
                       key: ValueKey(model.id ?? 'new_$index'),
                       model: model,

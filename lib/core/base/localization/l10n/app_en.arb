@@ -613,5 +613,7 @@
   "noSearchResultsCheckSpelling": "No search results found, please check your spelling and try again.",
   "yourWorkingHoursAddedSuccessfully": "Your working hours have been added successfully.",
   "yourWorkingHoursUpdatedSuccessfully": "Your working hours have been updated successfully.",
-  "yourWorkingHoursDeletedSuccessfully": "Your working hours have been deleted successfully."
+  "yourWorkingHoursDeletedSuccessfully": "Your working hours have been deleted successfully.",
+  "rest" : "Rest",
+  "dayToEndSubscription" : "Day to end subscription"
 }

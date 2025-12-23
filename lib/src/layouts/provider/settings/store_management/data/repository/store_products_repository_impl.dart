@@ -12,9 +12,16 @@ class StoreProductsRepositoryImpl implements StoreProductsRepository {
   StoreProductsRepositoryImpl(this._dioHelper);
 
   @override
-  DomainServiceType<List<ApiProductModel>> getProducts() async {
+  DomainServiceType<List<ApiProductModel>> getProducts(
+      {String? name, int? active}) async {
     return await failureCollect(() async {
-      final response = await _dioHelper.get(url: 'products');
+      final response = await _dioHelper.get(
+        url: 'products',
+        queryParameters: {
+          if (name != null) 'name': name,
+          if (active != null) 'is_active': active,
+        },
+      );
       return Right(apiProductModelFromJson(response['data']['data']));
     });
   }
@@ -54,7 +61,7 @@ class StoreProductsRepositoryImpl implements StoreProductsRepository {
   @override
   DomainServiceType<Unit> changeProductStatus(int productId) async {
     return await failureCollect(() async {
-      await _dioHelper.post(url: 'change_status/$productId');
+      await _dioHelper.post(url: 'product/change_status/$productId');
       return const Right(unit);
     });
   }

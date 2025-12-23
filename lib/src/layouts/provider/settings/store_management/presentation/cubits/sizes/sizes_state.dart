@@ -8,6 +8,7 @@ class SizesState extends Equatable {
   final Async<Unit> deleteSizeState;
   final Async<Unit> changeSizeStatusState;
   final Async<int> selectedSizeIdState;
+  final int? activeFilter;
 
   const SizesState({
     required this.sizesState,
@@ -17,6 +18,7 @@ class SizesState extends Equatable {
     this.deleteSizeState = const Async.initial(),
     this.changeSizeStatusState = const Async.initial(),
     this.selectedSizeIdState = const Async.initial(),
+    this.activeFilter,
   });
 
   const SizesState.initial()
@@ -32,6 +34,7 @@ class SizesState extends Equatable {
     Async<Unit>? deleteSizeState,
     Async<Unit>? changeSizeStatusState,
     Async<int>? selectedSizeIdState,
+    int? activeFilter,
   }) {
     return SizesState(
       sizesState: sizesState ?? this.sizesState,
@@ -41,6 +44,7 @@ class SizesState extends Equatable {
       deleteSizeState: deleteSizeState ?? this.deleteSizeState,
       changeSizeStatusState: changeSizeStatusState ?? this.changeSizeStatusState,
       selectedSizeIdState: selectedSizeIdState ?? this.selectedSizeIdState,
+      activeFilter: activeFilter ?? this.activeFilter,
     );
   }
 
@@ -52,6 +56,7 @@ class SizesState extends Equatable {
         updateSizeState,
         deleteSizeState,
         changeSizeStatusState,
-        selectedSizeIdState
+        selectedSizeIdState,
+        activeFilter,
       ];
 }

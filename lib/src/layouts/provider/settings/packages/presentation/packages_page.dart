@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/handle_response/handle_response_widget.dart';
-import 'package:wasli/material/media/app_image.dart';
-import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_cubit.dart';
-import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_state.dart';
+import 'package:wasli/material/media/network_image.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_cubit.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_item_widget.dart';
 
 class PackagesPage extends StatelessWidget {
@@ -18,14 +19,22 @@ class PackagesPage extends StatelessWidget {
         title: Text(appLocalizer.packages), // Assuming key
       ),
       body: BlocProvider(
-        create: (context) => PackagesCubit()..getPackages(),
-        child: BlocBuilder<PackagesCubit, PackagesState>(
+        create: (context) => PackagesSubscriptionsCubit()..getPackages(),
+        child:
+            BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
           builder: (context, state) {
             return HandleResponseWidget(
               status: state.packagesState,
-              onRetry: () => context.read<PackagesCubit>().getPackages(),
+              onRetry: () =>
+                  context.read<PackagesSubscriptionsCubit>().getPackages(),
               successWithoutDataBuilder: () {
-                return AppImage(path: AppImages.emptyState);
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppMedia(path: AppIllustrations.emptyOrders),
+                    // Text(appLocalizer.no_subscription)
+                  ],
+                ).center;
               },
               onSuccess: (data) {
                 return ListView.separated(

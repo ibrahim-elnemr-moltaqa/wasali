@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/core/di/di.dart';
+
 import '../../data/model/working_day_model.dart';
 import '../../domain/use_case/create_working_day_use_case.dart';
 import '../../domain/use_case/delete_working_day_use_case.dart';
@@ -29,6 +30,18 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
     });
   }
 
+  void addLocalWorkingDay() {
+    final currentList = List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
+    currentList.add(WorkingDayModel());
+    emit(state.copyWith(workingDaysState: Async.success(currentList)));
+  }
+
+  void removeLocalWorkingDay(int index) {
+    final currentList = List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
+    currentList.removeAt(index);
+    emit(state.copyWith(workingDaysState: Async.success(currentList)));
+  }
+
   Future<void> createWorkingDay(WorkingDayModel workingDay) async {
     emit(state.copyWith(createWorkingDayState: const Async.loading()));
     final result = await _createWorkingDayUseCase(workingDay);
@@ -36,7 +49,7 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
       emit(state.copyWith(createWorkingDayState: Async.failure(error)));
     }, (_) {
       emit(state.copyWith(createWorkingDayState: const Async.success(unit)));
-      getWorkingDays(); 
+      getWorkingDays();
     });
   }
 
@@ -47,7 +60,7 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
       emit(state.copyWith(updateWorkingDayState: Async.failure(error)));
     }, (_) {
       emit(state.copyWith(updateWorkingDayState: const Async.success(unit)));
-      getWorkingDays(); 
+      getWorkingDays();
     });
   }
 

@@ -12,6 +12,7 @@ import 'package:wasli/src/layouts/delivery/authentication/presentation/update_pr
 import 'package:wasli/src/layouts/provider/authentication/presentation/register/provider_register_screen.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/general_store_settings.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/provider_edit_profile.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/package_details_page.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/add_new_product_page.dart';
@@ -112,7 +113,8 @@ class AppRoutesGenerator {
       case AppRoutes.packagesPage:
         page = const PackagesPage();
       case AppRoutes.packageDetailsPage:
-        page = const PackageDetailsPage();
+        final arguments = settings.arguments as SubscriptionEntity;
+        page =  PackageDetailsPage(subscriptionEntity: arguments,);
 
       /// MAP
       ///

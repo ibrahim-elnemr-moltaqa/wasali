@@ -3481,6 +3481,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your working hours have been deleted successfully.'**
   String get yourWorkingHoursDeletedSuccessfully;
+
+  /// No description provided for @rest.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest'**
+  String get rest;
+
+  /// No description provided for @dayToEndSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Day to end subscription'**
+  String get dayToEndSubscription;
 }
 
 class _AppLocalizationsDelegate

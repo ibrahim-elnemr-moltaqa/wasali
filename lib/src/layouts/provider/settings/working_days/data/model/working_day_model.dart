@@ -30,15 +30,15 @@ class WorkingDayModel {
 
   Map<String, dynamic> toJson() {
     return {
-      if(method != null) '_method': method,
-      'day': day,
-      'day_name': dayName,
-      'from': from,
-      'to': to,
+      if (method != null) '_method': method,
+      'day[]': day,
+      'from[]': from,
+      'to[]': to,
     };
   }
 
   WorkingDayModel copyWith({
+    String? method,
     int? id,
     int? userId,
     int? day,
@@ -47,6 +47,7 @@ class WorkingDayModel {
     String? to,
   }) {
     return WorkingDayModel(
+      method: method ?? this.method,
       id: id ?? this.id,
       userId: userId ?? this.userId,
       day: day ?? this.day,

@@ -40,10 +40,13 @@ class _MoreStoreManagementBottomSheetState
           onChange: widget.onSwitchChange,
         ),
         const Divider(),
-        Text(
-          appLocalizer.delete,
-          style: TextStyles.bold14.copyWith(color: AppColors.red600),
-        ).onTapScaleAnimation(onTap: widget.onDeleteTap ?? () {})
+        Visibility(
+          visible: widget.onDeleteTap != null,
+          child: Text(
+            appLocalizer.delete,
+            style: TextStyles.bold14.copyWith(color: AppColors.red600),
+          ).onTapScaleAnimation(onTap: widget.onDeleteTap ?? () {}),
+        )
       ],
     );
   }

@@ -159,12 +159,15 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<CategoryEntity>> getSubCategories({int? categoryId}) async {
+  DomainServiceType<List<CategoryEntity>> getSubCategories(
+      {int? categoryId}) async {
     return await failureCollect(
       () async {
-        final response = await _dioHelper.get(url: 'sub-categories', queryParameters: {
-          'category_id': categoryId
-        });
+        final response = await _dioHelper.get(
+            url: 'sub-categories',
+            queryParameters: {
+              if (categoryId != null) 'category_id': categoryId
+            });
         final List date = response['data']['data'] ?? [];
         final List<CategoryEntity> categories =
             date.map((e) => CategoryEntity.fromJson(e)).toList();
@@ -200,7 +203,7 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<SizeEntity>> getSizes() async{
+  DomainServiceType<List<SizeEntity>> getSizes() async {
     return await failureCollect(
       () async {
         final response = await _dioHelper.get(url: 'sizes');
@@ -210,6 +213,5 @@ class CommonRepositoryImp implements CommonRepository {
         return Right(sizes);
       },
     );
-    
   }
 }

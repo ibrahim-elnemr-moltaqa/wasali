@@ -155,4 +155,10 @@ extension DateTimeFormatExtention on DateTime {
   String get YYYY_MM_DD {
     return intel.DateFormat('yyyy-MM-dd', getLocale.languageCode).format(this);
   }
+
+  int daysUntil(DateTime endDate) {
+    final start = DateTime(year, month, day);
+    final end = DateTime(endDate.year, endDate.month, endDate.day);
+    return end.difference(start).inDays;
+  }
 }

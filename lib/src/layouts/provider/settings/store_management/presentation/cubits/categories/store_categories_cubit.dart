@@ -15,12 +15,19 @@ class StoreCategoriesCubit extends Cubit<StoreCategoriesState> {
   final StoreCategoriesRepository _storeCategoriesRepository = injector();
   final CommonRepository _commonRepository = injector();
 
-  Future<void> getProfileSubCategories() async {
-    emit(state.copyWith(profileSubCategoriesState: const Async.loading()));
-    final result = await _storeCategoriesRepository.getProfileSubCategories();
+  Future<void> getProfileSubCategories({String? name, int? active}) async {
+    final activeVal = active ?? state.activeFilter;
+    emit(state.copyWith(
+      profileSubCategoriesState: const Async.loading(),
+      activeFilter: active,
+    ));
+    final result = await _storeCategoriesRepository.getProfileSubCategories(
+        name: name, active: activeVal);
     result.fold(
-      (error) => emit(state.copyWith(profileSubCategoriesState: Async.failure(error))),
-      (data) => emit(state.copyWith(profileSubCategoriesState: Async.success(data))),
+      (error) => emit(
+          state.copyWith(profileSubCategoriesState: Async.failure(error))),
+      (data) =>
+          emit(state.copyWith(profileSubCategoriesState: Async.success(data))),
     );
   }
 
@@ -41,6 +48,30 @@ class StoreCategoriesCubit extends Cubit<StoreCategoriesState> {
       (_) {
         emit(state.copyWith(assignSubCategoriesState: const Async.success(unit)));
         getProfileSubCategories(); 
+      },
+    );
+  }
+
+  Future<void> changeSubCategoryStatus(int id) async {
+    emit(state.copyWith(
+      changeSubCategoryStatus: const Async.loading(),
+      selectedCategoryIdState: Async.success(id),
+    ));
+    final result = await _storeCategoriesRepository.changeCategoriesStatus(id);
+    result.fold(
+      (error) => emit(state.copyWith(changeSubCategoryStatus: Async.failure(error))),
+      (_) {
+        final currentList = state.profileSubCategoriesState.data ?? [];
+        final updatedList = currentList.map((e) {
+          if (e.id == id) {
+            return e.copyWith(isActive: !e.isActive);
+          }
+          return e;
+        }).toList();
+        emit(state.copyWith(
+          changeSubCategoryStatus: const Async.success(unit),
+          profileSubCategoriesState: Async.success(updatedList),
+        ));
       },
     );
   }

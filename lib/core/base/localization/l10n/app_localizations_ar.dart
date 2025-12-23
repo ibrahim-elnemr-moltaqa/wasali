@@ -1616,7 +1616,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get inactive => 'معطل';
 
   @override
-  String get day => 'اليوم';
+  String get day => 'يوم';
 
   @override
   String get select_day => 'اختر اليوم';
@@ -1748,4 +1748,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get yourWorkingHoursDeletedSuccessfully =>
       'تم حذف ساعات العمل الخاصة بك بنجاح.';
+
+  @override
+  String get rest => 'متبقي';
+
+  @override
+  String get dayToEndSubscription => 'يوم على انتهاء الاشتراك';
 }

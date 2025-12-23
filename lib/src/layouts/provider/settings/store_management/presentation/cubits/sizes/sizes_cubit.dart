@@ -7,6 +7,7 @@ import 'package:wasli/src/layouts/provider/settings/store_management/domain/enti
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/change_size_status_use_case.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/create_size_use_case.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/delete_size_use_case.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/get_products_use_case.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/get_size_use_case.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/get_sizes_use_case.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/update_size_use_case.dart';
@@ -23,9 +24,14 @@ class SizesCubit extends Cubit<SizesState> {
   final DeleteSizeUseCase _deleteSizeUseCase = injector();
   final ChangeSizeStatusUseCase _changeSizeStatusUseCase = injector();
 
-  Future<void> getSizes() async {
-    emit(state.copyWith(sizesState: const Async.loading()));
-    final result = await _getSizesUseCase(NoParams());
+  Future<void> getSizes({String? name, int? active}) async {
+    final activeVal = active ?? state.activeFilter;
+    emit(state.copyWith(
+      sizesState: const Async.loading(),
+      activeFilter: active,
+    ));
+    final result = await _getSizesUseCase(
+        ManagementFetchParams(name: name, active: activeVal));
     result.fold((error) {
       emit(state.copyWith(sizesState: Async.failure(error)));
     }, (sizes) {

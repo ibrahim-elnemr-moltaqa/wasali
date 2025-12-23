@@ -1,7 +1,7 @@
-import 'package:wasli/material/app_fail_widget.dart';
-import 'package:wasli/material/spin_kit_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/material/app_fail_widget.dart';
+import 'package:wasli/material/spin_kit_loading_widget.dart';
 
 class HandleResponseWidget<T> extends StatelessWidget {
   const HandleResponseWidget({
@@ -40,11 +40,20 @@ class HandleResponseWidget<T> extends StatelessWidget {
 
     if (status.isSuccess) {
       if (status.data != null) {
+        if (status.data is Iterable && (status.data as Iterable).isEmpty) {
+          if (successWithoutDataBuilder != null) {
+            return successWithoutDataBuilder!();
+          }
+        } else if (status.data is Map && (status.data as Map).isEmpty) {
+          if (successWithoutDataBuilder != null) {
+            return successWithoutDataBuilder!();
+          }
+        }
         return onSuccess(status.data as T);
       } else if (status.data == null && successWithoutDataBuilder != null) {
         return successWithoutDataBuilder!();
       } else {
-        return successWithoutDataBuilder!();
+        return onSuccess(status.data as T);
       }
     }
 

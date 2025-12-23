@@ -11,9 +11,16 @@ class SizesRepositoryImpl implements SizesRepository {
 
   SizesRepositoryImpl(this._dioHelper);
   @override
-  DomainServiceType<List<ApiSizeModel>> getSizes() async {
+  DomainServiceType<List<ApiSizeModel>> getSizes(
+      {String? name, int? active}) async {
     return await failureCollect(() async {
-      final response = await _dioHelper.get(url: 'sizes');
+      final response = await _dioHelper.get(
+        url: 'sizes',
+        queryParameters: {
+          if (name != null) 'name': name,
+          if (active != null) 'is_active': active,
+        },
+      );
       return Right(apiSizeModelFromJson(response['data']['data']));
     });
   }

@@ -11,9 +11,16 @@ class StoreCategoriesRepositoryImpl implements StoreCategoriesRepository {
   StoreCategoriesRepositoryImpl(this._dioHelper);
 
   @override
-  DomainServiceType<List<CategoryEntity>> getProfileSubCategories() async {
+  DomainServiceType<List<CategoryEntity>> getProfileSubCategories(
+      {String? name, int? active}) async {
     return await failureCollect(() async {
-      final response = await _dioHelper.get(url: 'profle-sub-categories');
+      final response = await _dioHelper.get(
+        url: 'profle-sub-categories',
+        queryParameters: {
+          if (name != null) 'name': name,
+          if (active != null) 'is_active': active,
+        },
+      );
       final List<dynamic> data = response['data']['sub_categories'];
       return Right(data.map((x) => CategoryEntity.fromJson(x)).toList());
     });
@@ -27,6 +34,14 @@ class StoreCategoriesRepositoryImpl implements StoreCategoriesRepository {
         body['sub_category[$i]'] = subCategoryIds[i];
       }
       await _dioHelper.post(url: 'assign-sub-categorey', body: body);
+      return const Right(unit);
+    });
+  }
+
+  @override
+  DomainServiceType<Unit> changeCategoriesStatus(int subCategoryId) async {
+    return await failureCollect(() async {
+      await _dioHelper.post(url: 'sub_category/change_status/$subCategoryId');
       return const Right(unit);
     });
   }

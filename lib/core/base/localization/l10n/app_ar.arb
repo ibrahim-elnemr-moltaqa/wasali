@@ -577,7 +577,7 @@
   "size" : "المقاس",
   "active" : "مفعل",
   "inactive" :  "معطل",
-  "day" : "اليوم",
+  "day" : "يوم",
   "select_day" : "اختر اليوم",
   "to" : "الى",
   "add_another_day" : "اضافه يوم اخر",
@@ -618,5 +618,7 @@
   "noSearchResultsCheckSpelling": "لا يوجد نتائج بحث، تأكد من كتابة الكلمة بشكل صحيح.",
   "yourWorkingHoursAddedSuccessfully" : "تمت اضافة ساعات العمل الخاصة بك بنجاح.",
   "yourWorkingHoursUpdatedSuccessfully" : "تم تحديث ساعات العمل الخاصة بك بنجاح.",
-  "yourWorkingHoursDeletedSuccessfully" : "تم حذف ساعات العمل الخاصة بك بنجاح."
+  "yourWorkingHoursDeletedSuccessfully" : "تم حذف ساعات العمل الخاصة بك بنجاح.",
+  "rest" : "متبقي",
+  "dayToEndSubscription" : "يوم على انتهاء الاشتراك"
 }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/handle_response/handle_response_widget.dart';
-import 'package:wasli/material/media/app_image.dart';
+import 'package:wasli/material/media/network_image.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/cubits/categories/store_categories_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/widget/bottom_sheet/sub_categories_selection_bottom_sheet.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/widget/section_item_widget.dart';
@@ -25,7 +26,7 @@ class CategoriesManagementTab extends StatelessWidget {
             onRetry: () =>
                 context.read<StoreCategoriesCubit>().getProfileSubCategories(),
             successWithoutDataBuilder: () {
-              return AppImage(path: AppImages.emptyState);
+              return AppMedia(path: AppIllustrations.emptyOrders).center;
             },
             onSuccess: (data) {
               final categories = data as List<CategoryEntity>;
@@ -36,6 +37,17 @@ class CategoriesManagementTab extends StatelessWidget {
                     children: [
                       StoreManagementSearchBar(
                         hintText: appLocalizer.section_name,
+                        currentActive: state.activeFilter,
+                        onChanged: (query) {
+                          context
+                              .read<StoreCategoriesCubit>()
+                              .getProfileSubCategories(name: query);
+                        },
+                        onStatusChanged: (status) {
+                          context
+                              .read<StoreCategoriesCubit>()
+                              .getProfileSubCategories(active: status);
+                        },
                       ),
                       const Gap(24),
                       Expanded(

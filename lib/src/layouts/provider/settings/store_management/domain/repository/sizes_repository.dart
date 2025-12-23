@@ -3,7 +3,7 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/entity/size_entity.dart';
 
 abstract class SizesRepository {
-  DomainServiceType<List<SizeEntity>> getSizes();
+  DomainServiceType<List<SizeEntity>> getSizes({String? name, int? active});
   DomainServiceType<SizeEntity> getSize({required int sizeId});
   DomainServiceType<SizeEntity> createSize({required String sizeName});
   DomainServiceType<SizeEntity> updateSize({required String name});

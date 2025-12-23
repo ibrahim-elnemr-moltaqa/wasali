@@ -4,6 +4,7 @@ import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/inputs/app_debounce_search_field.dart';
 import 'package:wasli/material/media/svg_icon.dart';
+import 'package:wasli/src/layouts/provider/settings/store_management/presentation/widget/management_status_filter_sheet.dart';
 
 class StoreManagementSearchBar extends StatelessWidget {
   const StoreManagementSearchBar({
@@ -11,10 +12,14 @@ class StoreManagementSearchBar extends StatelessWidget {
     this.onFilterTap,
     this.hintText,
     this.onChanged,
+    this.onStatusChanged,
+    this.currentActive,
   });
 
   final VoidCallback? onFilterTap;
   final void Function(String)? onChanged;
+  final void Function(int?)? onStatusChanged;
+  final int? currentActive;
   final String? hintText;
 
   @override
@@ -38,7 +43,17 @@ class StoreManagementSearchBar extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               radius: 12,
             )
-            .onTapScaleAnimation(onTap: onFilterTap ?? () {}),
+            .onTapScaleAnimation(
+                onTap: onFilterTap ??
+                    () {
+                      if (onStatusChanged != null) {
+                        ManagementStatusFilterSheet.show(
+                          context,
+                          onStatusChanged: onStatusChanged!,
+                          initialActive: currentActive,
+                        );
+                      }
+                    }),
       ],
     ).paddingTop(20);
   }

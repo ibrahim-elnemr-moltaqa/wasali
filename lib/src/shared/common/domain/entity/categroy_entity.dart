@@ -40,6 +40,26 @@ class CategoryEntity extends Equatable {
         image = 'image',
         createdAt = DateTime.now();
 
+  CategoryEntity copyWith({
+    int? id,
+    String? name,
+    String? nameAr,
+    String? nameEn,
+    bool? isActive,
+    String? image,
+    DateTime? createdAt,
+  }) {
+    return CategoryEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      nameAr: nameAr ?? this.nameAr,
+      nameEn: nameEn ?? this.nameEn,
+      isActive: isActive ?? this.isActive,
+      image: image ?? this.image,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,

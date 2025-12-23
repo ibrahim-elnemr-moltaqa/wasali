@@ -1,21 +1,18 @@
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/material/media/svg_icon.dart';
-import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/package_entity.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_tile.dart';
 import 'package:wasli/src/shared/common/presentation/widget/price_widget.dart';
 
 class PackageDetailsInfoWidget extends StatelessWidget {
-  final PackageEntity? package;
-  final DateTime? startDate;
-  final DateTime? endDate;
+  final SubscriptionEntity? subscriptionEntity;
 
   const PackageDetailsInfoWidget({
     super.key,
-    this.package,
-    this.startDate,
-    this.endDate,
+    this.subscriptionEntity,
   });
 
   @override
@@ -45,12 +42,12 @@ class PackageDetailsInfoWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        package?.name ?? 'hamada',
+                        subscriptionEntity?.package.name ?? '',
                         style: TextStyles.bold14,
                       ),
                       const Gap(4),
                       Text(
-                        '${appLocalizer.packageDuration}: ${package?.duration}', // Assuming localizer keys
+                        '${appLocalizer.packageDuration}: ${subscriptionEntity?.package.duration} ${appLocalizer.day}', // Assuming localizer keys
                         style: TextStyles.regular12
                             .copyWith(color: AppColors.grey2Color),
                       ),
@@ -58,48 +55,63 @@ class PackageDetailsInfoWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.error, width: 1.5),
-                  color: AppColors.error.withValues(alpha: .1),
-                ),
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'متبقي',
-                      style:
-                          TextStyles.regular12.copyWith(color: AppColors.error),
-                    ),
-                    Text(
-                      '22',
-                      style: TextStyles.bold14.copyWith(color: AppColors.error),
-                    ),
-                    Text(
-                      'يوم', // Localize: appLocalizer.day
-                      style:
-                          TextStyles.regular12.copyWith(color: AppColors.error),
-                    ),
-                  ],
-                ),
+              Builder(
+                builder: (context) {
+                  final totalSeconds =
+                      (subscriptionEntity?.package.duration ?? 0) *
+                          24 *
+                          60 *
+                          60;
+                  final remainingDuration =
+                      subscriptionEntity?.endDate.difference(DateTime.now()) ??
+                          Duration.zero;
+                  final remainingSeconds = remainingDuration.inSeconds;
+                  final initialDuration =
+                      (totalSeconds - remainingSeconds).clamp(0, totalSeconds);
+                  return CircularCountDownTimer(
+                    duration: totalSeconds,
+                    initialDuration: initialDuration,
+                    controller: CountDownController(),
+                    width: 70,
+                    height: 70,
+                    ringColor: AppColors.error.withValues(alpha: .1),
+                    fillColor: AppColors.error,
+                    backgroundColor: Colors.transparent,
+                    strokeCap: StrokeCap.round,
+                    strokeWidth: 2,
+                    textStyle:
+                        TextStyles.bold12.copyWith(color: AppColors.error),
+                    textAlign: TextAlign.center,
+                    textFormat: CountdownTextFormat.HH_MM_SS,
+                    isReverse: true,
+                    isReverseAnimation: true,
+                    timeFormatterFunction:
+                        (defaultFormatterFunction, duration) {
+                      final days = duration.inDays;
+                      if (days > 0) {
+                        return '${appLocalizer.rest}\n$days\n ${appLocalizer.day}';
+                      }
+                      return defaultFormatterFunction(duration);
+                    },
+                  );
+                },
               ),
             ],
           ),
           Text(
-            package?.description ?? '',
+            subscriptionEntity?.package.description ?? '',
             style: TextStyles.regular12.copyWith(color: AppColors.grey2Color),
           ),
           PackageTile(
               label: appLocalizer.packagePrice,
-              customValue: const PriceWidget()),
+              customValue: PriceWidget(
+                  price: subscriptionEntity?.package.price.toString())),
           PackageTile(
-              label: appLocalizer.subscription_start_date, value: '12/05/2023'),
+              label: appLocalizer.subscription_start_date,
+              value: subscriptionEntity?.startDate.toEEEEdMMMMy),
           PackageTile(
-              label: appLocalizer.subscription_end_date, value: '12/05/2024'),
+              label: appLocalizer.subscription_end_date,
+              value: subscriptionEntity?.endDate.toEEEEdMMMMy),
         ],
       ),
     );

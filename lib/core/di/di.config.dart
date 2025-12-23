@@ -79,14 +79,18 @@ import '../../src/layouts/provider/authentication/domain/use_case/provider_regis
     as _i386;
 import '../../src/layouts/provider/authentication/domain/use_case/provider_register_store_data_use_case.dart'
     as _i266;
-import '../../src/layouts/provider/settings/packages/data/datasource/packages_remote_data_source.dart'
-    as _i545;
-import '../../src/layouts/provider/settings/packages/data/repository/packages_repository_impl.dart'
-    as _i715;
-import '../../src/layouts/provider/settings/packages/domain/repository/packages_repository.dart'
-    as _i608;
+import '../../src/layouts/provider/settings/packages/data/datasource/packages_subscriptions_remote_data_source.dart'
+    as _i515;
+import '../../src/layouts/provider/settings/packages/data/repository/packages_subscriptions_repository_impl.dart'
+    as _i941;
+import '../../src/layouts/provider/settings/packages/domain/repository/packages_subscriptions_repository.dart'
+    as _i713;
 import '../../src/layouts/provider/settings/packages/domain/use_case/get_packages_use_case.dart'
     as _i43;
+import '../../src/layouts/provider/settings/packages/domain/use_case/get_subscriptions_use_case.dart'
+    as _i340;
+import '../../src/layouts/provider/settings/packages/domain/use_case/subscribe_package_use_case.dart'
+    as _i114;
 import '../../src/layouts/provider/settings/store_management/data/repository/sizes_repository_impl.dart'
     as _i1013;
 import '../../src/layouts/provider/settings/store_management/data/repository/store_categories_repository_impl.dart'
@@ -264,12 +268,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i185.EnableGpsAndHandlePermissionUseCase>(
         () => _i185.EnableGpsAndHandlePermissionUseCase());
+    gh.lazySingleton<_i515.PackagesSubscriptionsRemoteDataSource>(() =>
+        _i515.PackagesSubscriptionsRemoteDataSourceImpl(gh<_i351.DioHelper>()));
     gh.lazySingleton<_i613.SearchDataSource>(
         () => _i613.SearchDataSourceImpl());
+    gh.lazySingleton<_i713.PackagesSubscriptionsRepository>(() =>
+        _i941.PackagesSubscriptionsRepositoryImpl(
+            gh<_i515.PackagesSubscriptionsRemoteDataSource>()));
     gh.factory<_i143.WalletRepository>(
         () => _i78.WalletRepositoryImp(gh<_i351.DioHelper>()));
-    gh.lazySingleton<_i545.PackagesRemoteDataSource>(
-        () => _i545.PackagesRemoteDataSourceImpl());
     gh.factory<_i722.MenuCommonRepository>(
         () => _i434.MenuCommonRepositoryImp(gh<_i351.DioHelper>()));
     gh.factory<_i984.ThemeRepository>(() => _i715.ThemeRepositoryImp());
@@ -310,14 +317,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i94.UpdateWorkingDayUseCase(gh<_i224.WorkingDaysRepository>()));
     gh.factory<_i460.DeleteWorkingDayUseCase>(
         () => _i460.DeleteWorkingDayUseCase(gh<_i224.WorkingDaysRepository>()));
+    gh.factory<_i43.GetPackagesUseCase>(() =>
+        _i43.GetPackagesUseCase(gh<_i713.PackagesSubscriptionsRepository>()));
+    gh.factory<_i340.GetSubscriptionsUseCase>(() =>
+        _i340.GetSubscriptionsUseCase(
+            gh<_i713.PackagesSubscriptionsRepository>()));
+    gh.factory<_i114.SubscribePackageUseCase>(() =>
+        _i114.SubscribePackageUseCase(
+            gh<_i713.PackagesSubscriptionsRepository>()));
     gh.factory<_i151.StoreProductsRepository>(
         () => _i315.StoreProductsRepositoryImpl(gh<_i351.DioHelper>()));
     gh.factory<_i113.NotificationDataSource>(
         () => _i113.NotificationDataSourceImp(gh<_i351.DioHelper>()));
     gh.factory<_i173.PaginationRepository>(
         () => _i625.PaginationRepoImpl(gh<_i351.DioHelper>()));
-    gh.lazySingleton<_i608.PackagesRepository>(() =>
-        _i715.PackagesRepositoryImpl(gh<_i545.PackagesRemoteDataSource>()));
     gh.lazySingleton<_i404.HomeRemoteDataSource>(
         () => _i404.HomeRemoteDataSourceImpl(gh<_i351.DioHelper>()));
     gh.factory<_i351.LanguageCacheRepository>(() =>
@@ -411,6 +424,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i206.GetEducationalStageUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i874.GetCountriesUseCase>(
         () => _i874.GetCountriesUseCase(gh<_i864.CommonRepository>()));
+    gh.factory<_i602.GetSizesUseCase>(
+        () => _i602.GetSizesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i456.GetMainCategoriesUseCase>(
         () => _i456.GetMainCategoriesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i530.GetLanguagesUseCase>(
@@ -423,12 +438,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i478.GetCitiesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i1069.GetAreasUseCase>(
         () => _i1069.GetAreasUseCase(gh<_i864.CommonRepository>()));
-    gh.factory<_i602.GetSizesUseCase>(
-        () => _i602.GetSizesUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i593.GetSizesUseCase>(
         () => _i593.GetSizesUseCase(gh<_i137.SizesRepository>()));
-    gh.factory<_i43.GetPackagesUseCase>(
-        () => _i43.GetPackagesUseCase(gh<_i608.PackagesRepository>()));
     gh.factory<_i60.DeliveryMainInformationUseCase>(() =>
         _i60.DeliveryMainInformationUseCase(
             gh<_i719.DeliveryRegisterRepository>()));
