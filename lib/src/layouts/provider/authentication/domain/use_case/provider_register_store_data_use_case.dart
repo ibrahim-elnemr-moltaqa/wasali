@@ -52,14 +52,14 @@ class StoreDataParams extends Equatable {
         if (image != null) 'image': MultipartFile.fromFileSync(image!.path),
         if (name != null) 'name': name,
         if (phone != null) 'phone': '0$phone',
-        if (codeMobile != null) 'code_mobile': codeMobile,
+        if (codeMobile != null) 'code_phone': codeMobile,
         if (phones != null) ...{
           for (int i = 0; i < phones!.length; i++)
             'phones[$i]': '0${phones![i]}'
         },
         if (codesMobile != null) ...{
           for (int i = 0; i < codesMobile!.length; i++)
-            'codes_mobile[$i]': codesMobile![i]
+            'codes_phones[$i]': codesMobile![i]
         },
         if (email != null) 'email': email,
         if (description != null) 'description': description,

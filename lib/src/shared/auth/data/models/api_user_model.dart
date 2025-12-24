@@ -70,9 +70,8 @@ class PhoneModel extends PhoneEntity {
         phone: map[
             isWhatsApp ? kWhatsAppAttributeCacheKey : kPhoneAttributeCacheKey],
         code: map[isWhatsApp
-                ? kMobileCountryCodeAttributeCacheKey
-                : kWhatsappCountryCodeAttributeCacheKey] ??
-            '+966',
+            ? kWhatsappCountryCodeAttributeCacheKey
+            : kMobileCountryCodeAttributeCacheKey],
         isoCode: "SA");
   }
 

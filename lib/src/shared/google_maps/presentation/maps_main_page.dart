@@ -118,6 +118,7 @@ class _MapsMainPageBodyState extends State<_MapsMainPageBody> {
   Timer? _getLocationAddressDebounceTimer;
   BitmapDescriptor userMarkerIcon = BitmapDescriptor.defaultMarker;
 
+
   void _setLocationMarkerIconsImage() async {
     userMarkerIcon = await BitmapDescriptor.asset(
         ImageConfiguration.empty, "assets/images/marker.png");
