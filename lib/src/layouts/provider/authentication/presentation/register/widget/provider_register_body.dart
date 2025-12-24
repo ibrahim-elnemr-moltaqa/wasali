@@ -31,6 +31,7 @@ class _ProviderRegisterBodyState extends State<ProviderRegisterBody> {
                     valueListenable: completedSteps,
                     builder: (context, value, child) {
                       return CustomAuthStepperWidget(
+                        activeStep: currentStep.value,
                         steps: providerSteps,
                         onStepChanged: (index) {
                           currentStep.value = index;
@@ -50,22 +51,22 @@ class _ProviderRegisterBodyState extends State<ProviderRegisterBody> {
                     index: value,
                     children: [
                       ServiceProviderStep(
-                        onStepSucceeded: (index, phone) {
-                          currentStep.value = index;
+                        onStepSucceeded: (nextStepIndex, phone) {
                           completedSteps.value = {
                             ...completedSteps.value,
-                            index
+                            0
                           };
+                          currentStep.value = nextStepIndex;
                           this.phone.value = phone;
                         },
                       ),
                       StoreDataStep(
-                        onStepSucceeded: (index) {
-                          currentStep.value = index;
+                        onStepSucceeded: (nextStepIndex) {
                           completedSteps.value = {
                             ...completedSteps.value,
-                            index
+                            1
                           };
+                          currentStep.value = nextStepIndex;
                         },
                       ),
                       StoreAddressStep(

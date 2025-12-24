@@ -4,8 +4,8 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/media/svg_icon.dart';
 
-class ControllsButtons extends StatelessWidget {
-  const ControllsButtons({
+class ControlsButtons extends StatelessWidget {
+  const ControlsButtons({
     super.key,
     required this.isFirst,
     required this.isLast,
@@ -22,6 +22,27 @@ class ControllsButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        if (!isFirst) ...[
+          Bounce(
+            onTap: onBack,
+            child: Container(
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                color: AppColors.primary50,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: RotatedBox(
+                    quarterTurns: getLocale == const Locale('en') ? 0 : 2,
+                    child: AppSvgIcon(path: AppIcons.doubleArrowIc)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 12,
+          ),
+        ],
         Bounce(
           onTap: onNext,
           child: SizedBox(
@@ -36,27 +57,6 @@ class ControllsButtons extends StatelessWidget {
             ),
           ),
         ),
-        if (!isFirst) ...[
-          const SizedBox(
-            width: 12,
-          ),
-          Bounce(
-            onTap: onBack,
-            child: Container(
-              height: 48,
-              width: 48,
-              decoration: BoxDecoration(
-                color: AppColors.primary50,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Center(
-                child: RotatedBox(
-                    quarterTurns: getLocale == const Locale('en') ? 2 : 0,
-                    child: AppSvgIcon(path: AppIcons.doubleArrowIc)),
-              ),
-            ),
-          )
-        ]
       ],
     );
   }

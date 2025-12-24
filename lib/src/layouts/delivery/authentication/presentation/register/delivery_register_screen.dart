@@ -22,7 +22,8 @@ class _DeliveryRegisterScreenState extends State<DeliveryRegisterScreen> {
           PositionedDirectional(
               bottom: 0,
               end: 0,
-              child: SvgPicture.asset(AppIllustrations.userAuthButtonSection)),
+              child: SvgPicture.asset(
+                  AppIllustrations.prooviderDeliveryAuthButtonSection)),
           Padding(
             padding: Dimensions.hPageMargins,
             child: Column(

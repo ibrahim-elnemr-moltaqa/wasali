@@ -15,20 +15,20 @@ class OnboardingPageEntity extends Equatable {
   List<Object?> get props => [description, title, image];
 }
 
-List<OnboardingPageEntity> onboardingPages = [
-  OnboardingPageEntity(
-    description: appLocalizer.onBoarding_desc_1,
-    title: appLocalizer.onBoarding_title_1,
-    image: AppIllustrations.onBoarding1,
-  ),
-  OnboardingPageEntity(
-    description: appLocalizer.onBoarding_desc_2,
-    title: appLocalizer.onBoarding_title_2,
-    image: AppIllustrations.onBoarding2,
-  ),
-  OnboardingPageEntity(
-    description: appLocalizer.onBoarding_desc_3,
-    title: appLocalizer.onBoarding_title_3,
-    image: AppIllustrations.onBoarding3,
-  ),
-];
+List<OnboardingPageEntity> get onboardingPages => [
+      OnboardingPageEntity(
+        description: appLocalizer.onBoarding_desc_1,
+        title: appLocalizer.onBoarding_title_1,
+        image: AppIllustrations.onBoarding1,
+      ),
+      OnboardingPageEntity(
+        description: appLocalizer.onBoarding_desc_2,
+        title: appLocalizer.onBoarding_title_2,
+        image: AppIllustrations.onBoarding2,
+      ),
+      OnboardingPageEntity(
+        description: appLocalizer.onBoarding_desc_3,
+        title: appLocalizer.onBoarding_title_3,
+        image: AppIllustrations.onBoarding3,
+      ),
+    ];

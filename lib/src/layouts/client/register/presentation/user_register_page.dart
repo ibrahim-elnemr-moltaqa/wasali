@@ -47,6 +47,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
         mobile: phoneNumber!.getPhoneEntity.phone,
         whatsApp: whatsAppPhoneNumber!.getPhoneEntity.phone,
         countryCode: phoneNumber!.countryCode,
+        codeWhatsapp: whatsAppPhoneNumber!.countryCode,
         deviceToken: facmToken,
       );
       if (ctx.mounted) {

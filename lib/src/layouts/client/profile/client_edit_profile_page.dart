@@ -141,11 +141,12 @@ class _ClientEditProfilePageState extends State<ClientEditProfilePage> {
                       onPressed: () {
                         context.read<ClientEditProfileCubit>().updateProfile(
                               UpdateProfileParams(
-                                whatsapp: whatsAppNumber.numberWithZeroIfNot,
-                                name: nameController.text,
-                                gender: gender.value,
-                                image: image.value,
-                              ),
+                                  whatsapp: whatsAppNumber.numberWithZeroIfNot,
+                                  name: nameController.text,
+                                  gender: gender.value,
+                                  image: image.value,
+                                  codeWhatsapp: whatsAppNumber
+                                      .getFieldPhoneNumber.countryCode),
                             );
                       });
                 },

@@ -38,8 +38,8 @@ class ApiUserModel extends UserEntity {
   factory ApiUserModel.fromJson(Map<String, dynamic> json) => ApiUserModel(
         id: json["id"],
         name: json["name"] ?? '',
-        mobile: PhoneModel.fromMap(json),
-        whatsApp: PhoneModel.fromMap(json, isWhatsApp: true),
+        mobile: PhoneModel.fromMap(json['mobileCode']),
+        whatsApp: PhoneModel.fromMap(json['whatsappCode'], isWhatsApp: true),
         image: json["image"],
         isVerified: json["is_verified"],
         lat: double.tryParse(json["lat"] ?? "0"),
@@ -69,7 +69,10 @@ class PhoneModel extends PhoneEntity {
     return PhoneModel(
         phone: map[
             isWhatsApp ? kWhatsAppAttributeCacheKey : kPhoneAttributeCacheKey],
-        code: map[kCountryCodeAttributeCacheKey] ?? '+966',
+        code: map[isWhatsApp
+                ? kMobileCountryCodeAttributeCacheKey
+                : kWhatsappCountryCodeAttributeCacheKey] ??
+            '+966',
         isoCode: "SA");
   }
 
@@ -78,5 +81,6 @@ class PhoneModel extends PhoneEntity {
 
 const String kPhoneAttributeCacheKey = 'mobile';
 const String kWhatsAppAttributeCacheKey = 'whatsapp';
-const String kCountryCodeAttributeCacheKey = 'country_code';
+const String kMobileCountryCodeAttributeCacheKey = 'code_mobile';
+const String kWhatsappCountryCodeAttributeCacheKey = 'code_whatsapp';
 const String kCountryIsoCodeAttributeCacheKey = 'iso_code';

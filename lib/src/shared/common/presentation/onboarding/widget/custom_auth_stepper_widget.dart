@@ -8,6 +8,7 @@ class CustomAuthStepperWidget extends StatefulWidget {
     super.key,
     required this.steps,
     required this.completedSteps,
+    required this.activeStep,
     this.initialStep = 0,
     this.onStepChanged,
   });
@@ -15,6 +16,7 @@ class CustomAuthStepperWidget extends StatefulWidget {
   final List<AuthStepEntity> steps;
 
   final Set<int> completedSteps;
+  final int activeStep;
 
   final int initialStep;
   final ValueChanged<int>? onStepChanged;
@@ -25,19 +27,7 @@ class CustomAuthStepperWidget extends StatefulWidget {
 }
 
 class _CustomAuthStepperWidgetState extends State<CustomAuthStepperWidget> {
-  late int currentStep;
-
-  @override
-  void initState() {
-    super.initState();
-    currentStep = widget.initialStep;
-  }
-
   void goToStep(int index) {
-    setState(() {
-      currentStep = index;
-    });
-
     if (widget.onStepChanged != null) {
       widget.onStepChanged!(index);
     }
@@ -47,7 +37,7 @@ class _CustomAuthStepperWidgetState extends State<CustomAuthStepperWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: List.generate(widget.steps.length, (index) {
-        final isActive = index == currentStep;
+        final isActive = index == widget.activeStep;
         final isCompleted = widget.completedSteps.contains(index);
 
         return Flexible(
@@ -69,7 +59,8 @@ class _CustomAuthStepperWidgetState extends State<CustomAuthStepperWidget> {
                     child: AppSvgIcon(
                       path: widget.steps[index].icon,
                       height: 12,
-                      color: isActive ? AppColors.secondary : null,
+                      color:
+                          isActive || isCompleted ? AppColors.secondary : null,
                     ),
                   ),
                 ),

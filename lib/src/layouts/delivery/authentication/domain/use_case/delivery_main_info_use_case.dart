@@ -25,7 +25,9 @@ class DeliveryMainInformationParams extends Equatable {
   final String? fName;
   final String? lName;
   final String? mobile;
+  final String? codeMobile;
   final String? whatsApp;
+  final String? codeWhatsapp;
   final File? image;
   final GenderEnum? gender;
   final bool isUpdate;
@@ -34,7 +36,9 @@ class DeliveryMainInformationParams extends Equatable {
     this.fName,
     this.lName,
     this.mobile,
+    this.codeMobile,
     this.whatsApp,
+    this.codeWhatsapp,
     this.image,
     this.gender,
     this.isUpdate = false,
@@ -44,7 +48,9 @@ class DeliveryMainInformationParams extends Equatable {
         if (fName != null) 'first_name': fName,
         if (lName != null) 'last_name': lName,
         if (mobile != null) 'mobile': '0$mobile',
+        if (codeMobile != null) 'code_mobile': codeMobile,
         if (whatsApp != null) 'whatsapp': whatsApp,
+        if (codeWhatsapp != null) 'code_whatsapp': codeWhatsapp,
         if (image != null) 'image': MultipartFile.fromFileSync(image!.path),
         if (gender != null) 'gender': gender!.name,
       };

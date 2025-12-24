@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
 
@@ -8,8 +9,8 @@ class DeliveryUserEntity extends Equatable {
   final String firstName;
   final String lastName;
   final AttachmentEntity image;
-  final String mobile;
-  final String whatsapp;
+  final PhoneEntity mobile;
+  final PhoneEntity whatsapp;
   final DateTime lastLogin;
   final int loginCount;
   final String lang;

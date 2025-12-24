@@ -32,79 +32,79 @@ class MainPageTabEntity {
   }
 }
 
-List<MainPageTabEntity> clientTaps = [
-  MainPageTabEntity(
-    index: 0,
-    name: appLocalizer.home,
-    icon: AppIcons.homeNav,
-    activeIcon: AppIcons.homeNavActive,
-    child: const ClientHomePage(),
-  ),
-  MainPageTabEntity(
-    index: 1,
-    name: appLocalizer.orders,
-    icon: AppIcons.orderNav,
-    activeIcon: AppIcons.ordersNavActive,
-    child: const Center(child: Text('Orders')),
-  ),
-  more(2),
-];
+List<MainPageTabEntity> get clientTaps => [
+      MainPageTabEntity(
+        index: 0,
+        name: appLocalizer.home,
+        icon: AppIcons.homeNav,
+        activeIcon: AppIcons.homeNavActive,
+        child: const ClientHomePage(),
+      ),
+      MainPageTabEntity(
+        index: 1,
+        name: appLocalizer.orders,
+        icon: AppIcons.orderNav,
+        activeIcon: AppIcons.ordersNavActive,
+        child: const Center(child: Text('Orders')),
+      ),
+      more(2),
+    ];
 
-List<MainPageTabEntity> deliveryTaps = [
-  MainPageTabEntity(
-    index: 0,
-    name: appLocalizer.home,
-    icon: AppIcons.homeNav,
-    activeIcon: AppIcons.homeNavActive,
-    child: const Center(child: Text('Home')),
-  ),
-  MainPageTabEntity(
-    index: 1,
-    name: appLocalizer.orders,
-    icon: AppIcons.orderNav,
-    activeIcon: AppIcons.ordersNavActive,
-    child: const Center(child: Text('Orders')),
-  ),
-  MainPageTabEntity(
-    index: 2,
-    name: appLocalizer.wallet,
-    icon: AppIcons.walletNav,
-    activeIcon: AppIcons.walletNavActive,
-    child: const Center(child: Text('Wallet')),
-  ),
-  more(3)
-];
-List<MainPageTabEntity> providerTaps = [
-  MainPageTabEntity(
-    index: 0,
-    name: appLocalizer.home,
-    icon: AppIcons.homeNav,
-    activeIcon: AppIcons.homeNavActive,
-    child: const ProviderHomePage(),
-  ),
-  MainPageTabEntity(
-    index: 1,
-    name: appLocalizer.orders,
-    icon: AppIcons.orderNav,
-    activeIcon: AppIcons.ordersNavActive,
-    child: const Center(child: Text('Orders')),
-  ),
-  MainPageTabEntity(
-    index: 2,
-    name: appLocalizer.wallet,
-    icon: AppIcons.walletNav,
-    activeIcon: AppIcons.walletNavActive,
-    child: const Center(child: Text('Wallet')),
-  ),
-  MainPageTabEntity(
-    index: 3,
-    name: appLocalizer.offers,
-    icon: AppIcons.offersNav,
-    activeIcon: AppIcons.offersNavActive,
-    child: const Center(child: Text('Offers')),
-  ),
-  more(4)
-];
+List<MainPageTabEntity> get deliveryTaps => [
+      MainPageTabEntity(
+        index: 0,
+        name: appLocalizer.home,
+        icon: AppIcons.homeNav,
+        activeIcon: AppIcons.homeNavActive,
+        child: const Center(child: Text('Home')),
+      ),
+      MainPageTabEntity(
+        index: 1,
+        name: appLocalizer.orders,
+        icon: AppIcons.orderNav,
+        activeIcon: AppIcons.ordersNavActive,
+        child: const Center(child: Text('Orders')),
+      ),
+      MainPageTabEntity(
+        index: 2,
+        name: appLocalizer.wallet,
+        icon: AppIcons.walletNav,
+        activeIcon: AppIcons.walletNavActive,
+        child: const Center(child: Text('Wallet')),
+      ),
+      more(3)
+    ];
+List<MainPageTabEntity> get providerTaps => [
+      MainPageTabEntity(
+        index: 0,
+        name: appLocalizer.home,
+        icon: AppIcons.homeNav,
+        activeIcon: AppIcons.homeNavActive,
+        child: const ProviderHomePage(),
+      ),
+      MainPageTabEntity(
+        index: 1,
+        name: appLocalizer.orders,
+        icon: AppIcons.orderNav,
+        activeIcon: AppIcons.ordersNavActive,
+        child: const Center(child: Text('Orders')),
+      ),
+      MainPageTabEntity(
+        index: 2,
+        name: appLocalizer.wallet,
+        icon: AppIcons.walletNav,
+        activeIcon: AppIcons.walletNavActive,
+        child: const Center(child: Text('Wallet')),
+      ),
+      MainPageTabEntity(
+        index: 3,
+        name: appLocalizer.offers,
+        icon: AppIcons.offersNav,
+        activeIcon: AppIcons.offersNavActive,
+        child: const Center(child: Text('Offers')),
+      ),
+      more(4)
+    ];
 
 MainPageTabEntity more(int index) {
   return MainPageTabEntity(

@@ -38,7 +38,9 @@ class _ServiceProviderStepState extends State<ServiceProviderStep> {
       final params = MainInformationsParams(
         name: nameController.text,
         mobile: phoneNumber.value!.getPhoneEntity.numberWithZeroIfNot,
+        codeMobile: phoneNumber.value!.countryCode,
         whatsApp: whatsAppPhoneNumber.value!.getPhoneEntity.numberWithZeroIfNot,
+        codeWhatsapp: whatsAppPhoneNumber.value!.countryCode,
       );
       context.read<MainInformationCubit>().providerMainInformation(params);
     }

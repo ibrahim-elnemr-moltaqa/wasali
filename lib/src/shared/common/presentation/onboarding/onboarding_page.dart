@@ -1,11 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/material/change_language/change_language_bottom_sheet.dart';
 import 'package:wasli/src/shared/common/domain/entity/onboarding_page_entity.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/widget/animated_page_view.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/widget/controll_button.dart';
 import 'package:wasli/src/shared/common/presentation/onboarding/widget/page_proggress_indecator.dart';
@@ -140,7 +139,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               const SizedBox(
                 height: 32,
               ),
-              ControllsButtons(
+              ControlsButtons(
                 isFirst: getIsFirstPage,
                 isLast: onboardingPages.isEmpty
                     ? true

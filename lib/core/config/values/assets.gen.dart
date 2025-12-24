@@ -495,6 +495,10 @@ class $AssetsIllustrationsGen {
   /// File path: assets/illustrations/on-boarding3.svg
   String get onBoarding3 => 'assets/illustrations/on-boarding3.svg';
 
+  /// File path: assets/illustrations/proovider-delivery-auth-button-section.svg
+  String get prooviderDeliveryAuthButtonSection =>
+      'assets/illustrations/proovider-delivery-auth-button-section.svg';
+
   /// File path: assets/illustrations/something-wrong.svg
   String get somethingWrong => 'assets/illustrations/something-wrong.svg';
 
@@ -513,6 +517,7 @@ class $AssetsIllustrationsGen {
         onBoarding1,
         onBoarding2,
         onBoarding3,
+        prooviderDeliveryAuthButtonSection,
         somethingWrong,
         userAuthButtonSection
       ];

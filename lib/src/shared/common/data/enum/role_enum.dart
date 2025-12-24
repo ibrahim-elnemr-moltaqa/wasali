@@ -21,7 +21,7 @@ enum RoleEnum {
     }
   }
 
-  String get image {
+  String get onBoardingImage {
     switch (this) {
       case client:
         return AppIllustrations.onBoarding3;
@@ -29,6 +29,18 @@ enum RoleEnum {
         return AppIllustrations.onBoarding1;
       case delivery:
         return AppIllustrations.onBoarding2;
+      default:
+        return '';
+    }
+  }
+
+  String get authImage {
+    switch (this) {
+      case client:
+        return AppIllustrations.userAuthButtonSection;
+      case provider:
+      case delivery:
+        return AppIllustrations.prooviderDeliveryAuthButtonSection;
       default:
         return '';
     }

@@ -107,8 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: SvgPicture.asset(
-                        AppIllustrations.userAuthButtonSection),
+                    child: SvgPicture.asset(roleState.role.authImage),
                   ),
                   AppButton(
                     text: appLocalizer.sendOTP,

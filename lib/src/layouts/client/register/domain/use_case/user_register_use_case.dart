@@ -22,6 +22,7 @@ class RegisterParams with Params {
   final String mobile;
   final String whatsApp;
   final String countryCode;
+  final String codeWhatsapp;
   final String deviceToken;
 
   RegisterParams({
@@ -29,15 +30,17 @@ class RegisterParams with Params {
     required this.mobile,
     required this.whatsApp,
     required this.countryCode,
+    required this.codeWhatsapp,
     required this.deviceToken,
   });
 
   @override
   Map<String, dynamic> get toMap => {
         "name": username,
-        "mobile": '0$mobile',
-        "whatsapp": '0$whatsApp',
-        "country_code": countryCode,
+        "mobile": mobile,
+        "whatsapp": whatsApp,
+        "code_mobile": countryCode,
+        "code_whatsapp": codeWhatsapp,
         "terms": 1,
         "device_token": deviceToken,
       };

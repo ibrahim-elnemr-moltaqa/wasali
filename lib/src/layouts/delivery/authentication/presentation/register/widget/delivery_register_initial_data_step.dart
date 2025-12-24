@@ -51,7 +51,9 @@ class _DeliveryRegisterInitialDataStepState
           fName: firstNameController.text,
           lName: lastNameController.text,
           mobile: phoneNumber.value!.number,
+          codeMobile: phoneNumber.value!.countryCode,
           whatsApp: whatsAppPhoneNumber.value!.number,
+          codeWhatsapp: whatsAppPhoneNumber.value!.countryCode,
           image: profileImage.value!);
       context.read<DeliveryMainInfoCubit>().deliveryMainInformation(params);
     }

@@ -24,14 +24,18 @@ class UpdateProfileParams {
   final String name;
   final File? image;
   final String? phone;
+  final String? codeMobile;
   final String whatsapp;
+  final String codeWhatsapp;
   final GenderEnum? gender;
 
   UpdateProfileParams({
     required this.name,
     this.image,
     this.phone,
+    this.codeMobile,
     required this.whatsapp,
+    required this.codeWhatsapp,
     this.gender,
   });
 
@@ -40,7 +44,9 @@ class UpdateProfileParams {
       "name": name,
       if (image != null) "image": MultipartFile.fromFileSync(image!.path),
       if (phone != null) "phone": phone,
+      if (codeMobile != null) "code_mobile": codeMobile,
       "whatsapp": whatsapp,
+      "code_whatsapp": codeWhatsapp,
       if (gender != null) "gender": gender!.name,
     };
   }

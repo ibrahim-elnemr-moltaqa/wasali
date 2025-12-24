@@ -61,6 +61,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
         image: storeImage.value!,
         name: storeNameController.text,
         phone: storePhoneNumber.value!.number,
+        codeMobile: storePhoneNumber.value!.countryCode,
         email: storeEmailController.text,
         description: storeDescriptionController.text,
         categoryId: categoryId.value!,

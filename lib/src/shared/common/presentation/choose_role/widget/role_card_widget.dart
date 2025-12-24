@@ -46,7 +46,7 @@ class RoleCardWidget extends StatelessWidget {
             end: imageInStart ? null : 20,
             start: imageInStart ? 20 : null,
             child: SvgPicture.asset(
-              role.image,
+              role.onBoardingImage,
               height: 107,
             ),
           )

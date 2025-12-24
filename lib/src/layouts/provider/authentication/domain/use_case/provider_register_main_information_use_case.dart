@@ -24,11 +24,13 @@ class ProviderMainInformationUseCase
 class MainInformationsParams extends Equatable {
   final String? name;
   final String? mobile;
+  final String? codeMobile;
   final String? whatsApp;
+  final String? codeWhatsapp;
   final bool isUpdate;
 
   const MainInformationsParams(
-      {this.name, this.mobile, this.whatsApp, this.isUpdate = false});
+      {this.name, this.mobile, this.codeMobile, this.whatsApp, this.codeWhatsapp, this.isUpdate = false});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -41,8 +43,16 @@ class MainInformationsParams extends Equatable {
       data['mobile'] = mobile;
     }
 
+    if (codeMobile != null) {
+      data['code_mobile'] = codeMobile;
+    }
+
     if (whatsApp != null) {
       data['whatsapp'] = whatsApp;
+    }
+
+    if (codeWhatsapp != null) {
+      data['code_whatsapp'] = codeWhatsapp;
     }
 
     return data;
@@ -55,15 +65,19 @@ class MainInformationsParams extends Equatable {
   MainInformationsParams copyWith({
     String? name,
     String? mobile,
+    String? mobileCode,
     String? whatsApp,
+    String? whatsAppCode, 
   }) {
     return MainInformationsParams(
       name: name ?? this.name,
       mobile: mobile ?? this.mobile,
+      codeMobile: mobileCode ?? this.codeMobile,
       whatsApp: whatsApp ?? this.whatsApp,
+      codeWhatsapp: whatsAppCode ?? this.codeWhatsapp,
     );
   }
 
   @override
-  List<Object?> get props => [name, mobile, whatsApp, isUpdate];
+  List<Object?> get props => [name, mobile, codeMobile, whatsApp, codeWhatsapp, isUpdate];
 }

@@ -1,5 +1,6 @@
 import 'package:wasli/core/core.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/entity/delivery_user_entity.dart';
+import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 
 class ApiDeliveryUserModel extends DeliveryUserEntity {
@@ -28,8 +29,8 @@ class ApiDeliveryUserModel extends DeliveryUserEntity {
         firstName: json["first_name"],
         lastName: json["last_name"],
         image: AttachmentEntity.fromNetwork(url: json["image"]),
-        mobile: json["mobile"],
-        whatsapp: json["whatsapp"],
+        mobile: PhoneModel.fromMap(json["mobileCode"]),
+        whatsapp: PhoneModel.fromMap(json["whatsappCode"]),
         lastLogin: DateTime.parse(json["last_login"]),
         loginCount: json["login_count"],
         lang: json["lang"],

@@ -85,6 +85,7 @@ class _StoreDataTabState extends State<StoreDataTab> {
           image: storeImage.value,
           name: storeNameController.text,
           phones: storePhoneNumber.map((e) => e.number).toList(),
+          codesMobile: storePhoneNumber.map((e) => e.countryCode).toList(),
           email: storeEmailController.text,
           description: storeDescriptionController.text,
           categoryId: category.value?.id,

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/core.dart';
-import '../repository/authentication_repository.dart';
 
+import '../../../../../core/core.dart';
 import '../../../../../core/utils/mixins/params.dart';
 import '../entities/user_entity.dart';
+import '../repository/authentication_repository.dart';
 
 @Injectable()
 class LoginUseCase extends IUseCase<Unit, LoginParams> {
@@ -30,8 +30,8 @@ class LoginParams with Params {
   });
   @override
   Map<String, dynamic> get toMap => {
-        "mobile": '0${phone.phone}',
-        "country_code": countryCode,
+        "mobile": phone.phone,
+        "code_mobile": countryCode,
         "device_token": deviceToken,
       };
 }

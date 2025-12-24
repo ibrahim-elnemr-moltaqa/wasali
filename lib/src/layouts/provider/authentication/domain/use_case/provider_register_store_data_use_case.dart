@@ -23,7 +23,9 @@ class StoreDataParams extends Equatable {
   final File? image;
   final String? name;
   final String? phone;
+  final String? codeMobile;
   final List<String>? phones;
+  final List<String>? codesMobile;
   final String? email;
   final String? description;
   final int? categoryId;
@@ -35,7 +37,9 @@ class StoreDataParams extends Equatable {
     this.image,
     this.name,
     this.phone,
+    this.codeMobile,
     this.phones,
+    this.codesMobile,
     this.email,
     this.description,
     this.categoryId,
@@ -48,9 +52,14 @@ class StoreDataParams extends Equatable {
         if (image != null) 'image': MultipartFile.fromFileSync(image!.path),
         if (name != null) 'name': name,
         if (phone != null) 'phone': '0$phone',
+        if (codeMobile != null) 'code_mobile': codeMobile,
         if (phones != null) ...{
           for (int i = 0; i < phones!.length; i++)
             'phones[$i]': '0${phones![i]}'
+        },
+        if (codesMobile != null) ...{
+          for (int i = 0; i < codesMobile!.length; i++)
+            'codes_mobile[$i]': codesMobile![i]
         },
         if (email != null) 'email': email,
         if (description != null) 'description': description,

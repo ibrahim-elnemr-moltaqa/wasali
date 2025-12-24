@@ -61,10 +61,7 @@ class _DeliveryUpdateProfilePageState extends State<DeliveryUpdateProfilePage> {
                   firstNameController.text = delivery.firstName;
                   lastNameController.text = delivery.lastName;
                   avatarFromApi = delivery.image.path;
-                  whatsAppNumber = IntelPhoneNumberEntity.fromCompleteNumber(
-                    completeNumber: delivery.whatsapp
-                        .replaceFirstCharWithCountryCode('+966'),
-                  ).getPhoneEntity;
+                  whatsAppNumber = delivery.whatsapp;
                   gender.value = GenderEnum.fromApiValue(delivery.gender);
                   return SafeArea(
                     child: SingleChildScrollView(
@@ -102,8 +99,7 @@ class _DeliveryUpdateProfilePageState extends State<DeliveryUpdateProfilePage> {
                               ],
                             ),
                             IntelPhoneField(
-                              initialValue:
-                                  whatsAppNumber?.toIntelPhoneEntity(),
+                              initialValue: whatsAppNumber?.getFieldPhoneNumber,
                               label: appLocalizer.whatsApp_number,
                               onChange: (phoneNumber) {
                                 whatsAppNumber = phoneNumber.getPhoneEntity;

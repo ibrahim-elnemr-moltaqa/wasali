@@ -107,6 +107,8 @@ import '../../src/layouts/provider/settings/store_management/domain/use_case/cha
     as _i449;
 import '../../src/layouts/provider/settings/store_management/domain/use_case/change_size_status_use_case.dart'
     as _i442;
+import '../../src/layouts/provider/settings/store_management/domain/use_case/change_subCategory_status.dart'
+    as _i187;
 import '../../src/layouts/provider/settings/store_management/domain/use_case/create_product_use_case.dart'
     as _i874;
 import '../../src/layouts/provider/settings/store_management/domain/use_case/create_size_use_case.dart'
@@ -368,6 +370,9 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i351.DioHelper>(),
               gh<_i351.SecureStorageRepository>(),
             ));
+    gh.factory<_i187.ChangeSubCategoryStatusUseCase>(() =>
+        _i187.ChangeSubCategoryStatusUseCase(
+            gh<_i59.StoreCategoriesRepository>()));
     gh.factory<_i1005.AuthenticationRepository>(
         () => _i565.AuthenticationRepositoryImp(
               gh<_i351.DioHelper>(),

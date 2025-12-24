@@ -33,6 +33,7 @@ class _DeliveryRegisterBodyState extends State<DeliveryRegisterBody> {
                         onStepChanged: (index) {
                           currentStep.value = index;
                         },
+                        activeStep: currentStep.value,
                         completedSteps: completedSteps.value,
                       );
                     });
