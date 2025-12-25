@@ -20,7 +20,7 @@ class ProductManagementTab extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProductsCubit()..getProducts(),
       child: Stack(
-        alignment: AlignmentGeometry.bottomLeft,
+        alignment: Alignment.bottomLeft,
         children: [
           BlocBuilder<ProductsCubit, ProductsState>(
             buildWhen: (previous, current) =>
@@ -40,7 +40,9 @@ class ProductManagementTab extends StatelessWidget {
                         hintText: appLocalizer.product_name,
                         currentActive: state.activeFilter,
                         onChanged: (query) {
-                          context.read<ProductsCubit>().getProducts(name: query);
+                          context
+                              .read<ProductsCubit>()
+                              .getProducts(name: query);
                         },
                         onStatusChanged: (status) {
                           context
@@ -67,17 +69,19 @@ class ProductManagementTab extends StatelessWidget {
               );
             },
           ),
-          StoreManagementFloatingActionButton(
-            label: appLocalizer.add_new_product,
-            onTap: () async {
-              final result = await AppRouter.push(
-                const AddNewProductPage(),
-              );
-              if (result != null && context.mounted) {
-                context.read<ProductsCubit>().getProducts();
-              }
-            },
-          ),
+          Builder(builder: (newContext) {
+            return StoreManagementFloatingActionButton(
+              label: appLocalizer.add_new_product,
+              onTap: () async {
+                final result = await AppRouter.push(
+                  const AddNewProductPage(),
+                );
+                if (result != null && context.mounted) {
+                  newContext.read<ProductsCubit>().getProducts();
+                }
+              },
+            );
+          }),
         ],
       ),
     );

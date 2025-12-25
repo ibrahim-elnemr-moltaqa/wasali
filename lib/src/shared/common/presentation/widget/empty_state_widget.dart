@@ -25,6 +25,7 @@ class EmptyStateWidget extends StatelessWidget {
         Text(
           text,
           style: TextStyles.bold16,
+          textAlign: TextAlign.center,
         ),
         const Gap(4),
         Text(

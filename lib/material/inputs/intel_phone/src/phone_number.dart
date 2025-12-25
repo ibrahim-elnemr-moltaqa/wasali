@@ -19,7 +19,7 @@ class IntelPhoneNumberEntity extends Equatable {
 
   PhoneEntity get getPhoneEntity => PhoneEntity(
         code: countryCode,
-        phone: numberWithoutZero,
+        phone: number,
         isoCode: countryISOCode,
       );
 

@@ -616,4 +616,9 @@
   "yourWorkingHoursDeletedSuccessfully": "Your working hours have been deleted successfully.",
   "rest" : "Rest",
   "dayToEndSubscription" : "Day to end subscription"
+  ,"wantToLogoutQuestion": "Do you want to log out?",
+  "youCanAlwaysComeBackLoginLater": "You can always come back and sign in later.",
+  "undo": "Undo",
+  "wantToDeleteAccount": "Do you want to delete the account?",
+  "deleteAccountPermanentWarning": "All your data will be permanently deleted and cannot be recovered."
 }

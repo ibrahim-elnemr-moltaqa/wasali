@@ -23,8 +23,7 @@ class StoreCategoriesState extends Equatable {
         assignSubCategoriesState = const Async.initial(),
         changeSubCategoryStatus = const Async.initial(),
         selectedCategoryIdState = const Async.initial(),
-        activeFilter = 0;
-
+        activeFilter = null;
 
   StoreCategoriesState copyWith({
     Async<List<CategoryEntity>>? profileSubCategoriesState,

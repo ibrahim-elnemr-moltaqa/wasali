@@ -45,4 +45,11 @@ class PackagesSubscriptionsCubit extends Cubit<PackagesSubscriptionsState> {
       getSubscriptions();
     });
   }
+
+  @override
+  void emit(PackagesSubscriptionsState state) {
+    if (!isClosed) {
+      super.emit(state);
+    }
+  }
 }

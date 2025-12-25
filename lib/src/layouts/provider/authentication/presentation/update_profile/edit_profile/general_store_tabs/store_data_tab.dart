@@ -210,8 +210,9 @@ class _StoreDataTabState extends State<StoreDataTab> {
                     valueListenable: subCategories,
                     builder: (context, value, child) {
                       return SubCategoriesDropDown(
+                        selectionType: DropDownSelectionType.multi,
                         subCategories: subCategories.value,
-                        onChanged: (value) {
+                        onMultiChanged: (value) {
                           subCategories.value = value ?? [];
                         },
                       );

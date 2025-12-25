@@ -69,9 +69,7 @@ class PhoneModel extends PhoneEntity {
     return PhoneModel(
         phone: map[
             isWhatsApp ? kWhatsAppAttributeCacheKey : kPhoneAttributeCacheKey],
-        code: map[isWhatsApp
-            ? kWhatsappCountryCodeAttributeCacheKey
-            : kMobileCountryCodeAttributeCacheKey],
+        code: map[ kMobileCountryCodeAttributeCacheKey],
         isoCode: "SA");
   }
 
@@ -80,6 +78,5 @@ class PhoneModel extends PhoneEntity {
 
 const String kPhoneAttributeCacheKey = 'mobile';
 const String kWhatsAppAttributeCacheKey = 'whatsapp';
-const String kMobileCountryCodeAttributeCacheKey = 'code_mobile';
-const String kWhatsappCountryCodeAttributeCacheKey = 'code_whatsapp';
+const String kMobileCountryCodeAttributeCacheKey = 'country_code';
 const String kCountryIsoCodeAttributeCacheKey = 'iso_code';

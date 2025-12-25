@@ -10,7 +10,7 @@ import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/can_update_phone_use_case.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/update_phone/update_phone_cubit.dart';
-import 'package:wasli/src/shared/auth/presentation/widgets/auth_app_bar_widget.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 class UpdatePhonePage extends StatefulWidget {
   const UpdatePhonePage({super.key});
@@ -42,8 +42,10 @@ class _UpdatePhonePageState extends State<UpdatePhonePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AuthAppBarWidget(
-        onPressed: () => AppRouter.pop(),
+      appBar: CustomAppBar(
+        context,
+        title: Text(appLocalizer.changePhoneNumber),
+        centerTitle: false,
       ),
       body: BlocProvider(
         create: (context) => UpdatePhoneCubit(),

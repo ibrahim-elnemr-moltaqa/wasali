@@ -57,6 +57,7 @@ class _ProviderSubCategoriesWidgetState
                           path: category?.image ?? '',
                           height: 60,
                           width: 60,
+                          radius: 100,
                         )
                             .circle(
                                 borderColor: category?.id == selectedId

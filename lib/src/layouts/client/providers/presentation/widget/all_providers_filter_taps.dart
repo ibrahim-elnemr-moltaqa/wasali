@@ -24,11 +24,18 @@ class AllProvidersFilterTaps extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(state.selectedStatus?.title ?? appLocalizer.storeStatus,
-                      style: TextStyles.bold12.copyWith(
-                          color: state.selectedStatus != null
-                              ? AppColors.black
-                              : AppColors.grey2Color)),
+                  Flexible(
+                    child: FittedBox(
+                      child: Text(
+                        state.selectedStatus?.title ?? appLocalizer.storeStatus,
+                        style: TextStyles.bold12.copyWith(
+                            color: state.selectedStatus != null
+                                ? AppColors.black
+                                : AppColors.grey2Color),
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
                   const Gap(12),
                   AppSvgIcon(
                     path: AppIcons.arrowDownIc,

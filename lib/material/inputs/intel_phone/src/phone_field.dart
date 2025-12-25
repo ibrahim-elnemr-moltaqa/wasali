@@ -70,14 +70,14 @@ class IntelPhoneField extends StatelessWidget {
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: _IntlPhoneField(
-              initialValue: initialValue?.numberWithoutZero,
+              initialValue: initialValue?.number,
               dropdownIcon: Icon(
                 Icons.arrow_drop_down,
                 color: AppColors.primary,
                 size: 24,
               ),
               // prefix: AppSvgIcon(path: AppIcons.callIcSvg_),
-              initialCountryCode: initialValue?.countryISOCode ?? "SA",
+              initialCountryCode: initialValue?.countryCode ?? "+966",
               onChanged: onChange,
               enabled: enabled,
               // autovalidateMode: AutovalidateMode.disabled,
@@ -107,100 +107,100 @@ class IntelPhoneField extends StatelessWidget {
   }
 }
 
-class PhoneField extends StatelessWidget {
-  final TextEditingController? controller;
-  final void Function(String email)? onChanged;
-  final bool isOptional;
-  final TextStyle? labelStyle;
-  final String? hint;
-  final String? labelText;
-  final TextStyle? style;
-  final TextStyle? hintStyle;
-  final Widget? suffixIcon;
-  final String? underLine;
+// class PhoneField extends StatelessWidget {
+//   final TextEditingController? controller;
+//   final void Function(String email)? onChanged;
+//   final bool isOptional;
+//   final TextStyle? labelStyle;
+//   final String? hint;
+//   final String? labelText;
+//   final TextStyle? style;
+//   final TextStyle? hintStyle;
+//   final Widget? suffixIcon;
+//   final String? underLine;
 
-  const PhoneField({
-    super.key,
-    this.controller,
-    this.onChanged,
-    this.underLine,
-    this.isOptional = false,
-    this.labelStyle,
-    this.hint,
-    this.labelText,
-    this.style,
-    this.hintStyle,
-    this.suffixIcon,
-  });
+//   const PhoneField({
+//     super.key,
+//     this.controller,
+//     this.onChanged,
+//     this.underLine,
+//     this.isOptional = false,
+//     this.labelStyle,
+//     this.hint,
+//     this.labelText,
+//     this.style,
+//     this.hintStyle,
+//     this.suffixIcon,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        AppTextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: controller,
-          inputType: TextInputType.phone,
-          hintTextStyle: hintStyle ??
-              TextStyles.regular12.copyWith(color: AppColors.hintColor),
-          validate: (text) => Validator(text).phone,
-          onChanged: onChanged,
-          hintText: appLocalizer.phoneNumber,
-          labelTextStyle: labelStyle,
-          inputTextStyle: style,
-          textDirection: AppLanguageCubit.of(context).isArabic
-              ? TextDirection.rtl
-              : TextDirection.ltr,
-          filled: true,
-          maxLength: 9,
-          fillColor: AppColors.canvasBackgroundColor,
-          suffixIcon: AppLanguageCubit.of(context).isArabic
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (suffixIcon != null)
-                        suffixIcon!
-                      else ...[
-                        Text("966+ ",
-                            style: TextStyles.regular13
-                                .copyWith(color: AppColors.black, height: 1.2)),
-                        AppSvgIcon(path: AppIcons.flag),
-                      ],
-                    ],
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AppSvgIcon(path: AppIcons.callIcSvg_),
-                ),
-          prefixIcon: (isFocused) => AppLanguageCubit.of(context).isArabic
-              ? AppSvgIcon(path: AppIcons.callIcSvg_)
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (suffixIcon != null)
-                      suffixIcon!
-                    else ...[
-                      AppSvgIcon(path: AppIcons.flag),
-                      Text(" +966",
-                          style: TextStyles.regular13.copyWith(
-                              color: AppColors.secondary300, height: 1.2)),
-                    ],
-                  ],
-                ),
-        ),
-        if (underLine != null) ...[
-          Text(
-            underLine!,
-            style: TextStyles.light10.copyWith(color: AppColors.secondary300),
-          ),
-        ]
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         AppTextFormField(
+//           autovalidateMode: AutovalidateMode.onUserInteraction,
+//           controller: controller,
+//           inputType: TextInputType.phone,
+//           hintTextStyle: hintStyle ??
+//               TextStyles.regular12.copyWith(color: AppColors.hintColor),
+//           // validate: (text) => Validator(text).phone,
+//           onChanged: onChanged,
+//           hintText: appLocalizer.phoneNumber,
+//           labelTextStyle: labelStyle,
+//           inputTextStyle: style,
+//           textDirection: AppLanguageCubit.of(context).isArabic
+//               ? TextDirection.rtl
+//               : TextDirection.ltr,
+//           filled: true,
+//           maxLength: 9,
+//           fillColor: AppColors.canvasBackgroundColor,
+//           suffixIcon: AppLanguageCubit.of(context).isArabic
+//               ? Padding(
+//                   padding: const EdgeInsets.symmetric(horizontal: 8),
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     mainAxisSize: MainAxisSize.min,
+//                     children: [
+//                       if (suffixIcon != null)
+//                         suffixIcon!
+//                       else ...[
+//                         Text("966+ ",
+//                             style: TextStyles.regular13
+//                                 .copyWith(color: AppColors.black, height: 1.2)),
+//                         AppSvgIcon(path: AppIcons.flag),
+//                       ],
+//                     ],
+//                   ),
+//                 )
+//               : Padding(
+//                   padding: const EdgeInsets.all(8.0),
+//                   child: AppSvgIcon(path: AppIcons.callIcSvg_),
+//                 ),
+//           prefixIcon: (isFocused) => AppLanguageCubit.of(context).isArabic
+//               ? AppSvgIcon(path: AppIcons.callIcSvg_)
+//               : Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   mainAxisSize: MainAxisSize.min,
+//                   children: [
+//                     if (suffixIcon != null)
+//                       suffixIcon!
+//                     else ...[
+//                       AppSvgIcon(path: AppIcons.flag),
+//                       Text(" +966",
+//                           style: TextStyles.regular13.copyWith(
+//                               color: AppColors.secondary300, height: 1.2)),
+//                     ],
+//                   ],
+//                 ),
+//         ),
+//         if (underLine != null) ...[
+//           Text(
+//             underLine!,
+//             style: TextStyles.light10.copyWith(color: AppColors.secondary300),
+//           ),
+//         ]
+//       ],
+//     );
+//   }
+// }

@@ -83,16 +83,18 @@ class SizeManagementTap extends StatelessWidget {
                 AppLoadingWidget.overlay();
               }
             },
-            child: StoreManagementFloatingActionButton(
-                label: appLocalizer.add_new_size,
-                onTap: () => FloatingActionBottomSheet.showModalBottomSheet(
-                      context,
-                      title: appLocalizer.size_name,
-                      hintText: appLocalizer.size_name,
-                      onConfirmed: (value) {
-                        context.read<SizesCubit>().createSize(value);
-                      },
-                    )),
+            child: Builder(builder: (newContext) {
+              return StoreManagementFloatingActionButton(
+                  label: appLocalizer.add_new_size,
+                  onTap: () => FloatingActionBottomSheet.showModalBottomSheet(
+                        newContext,
+                        title: appLocalizer.size_name,
+                        hintText: appLocalizer.size_name,
+                        onConfirmed: (value) {
+                          newContext.read<SizesCubit>().createSize(value);
+                        },
+                      ));
+            }),
           ),
         ],
       ),

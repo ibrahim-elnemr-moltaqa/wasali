@@ -144,7 +144,8 @@ class _StoreDataStepState extends State<StoreDataStep> {
                     valueListenable: subCategories,
                     builder: (context, value, child) {
                       return SubCategoriesDropDown(
-                        onChanged: (value) {
+                        selectionType: DropDownSelectionType.multi,
+                        onMultiChanged: (value) {
                           subCategories.value = value;
                           subCategories.notifyListeners();
                         },

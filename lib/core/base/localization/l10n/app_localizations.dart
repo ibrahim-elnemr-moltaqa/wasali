@@ -3493,6 +3493,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Day to end subscription'**
   String get dayToEndSubscription;
+
+  /// No description provided for @wantToLogoutQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to log out?'**
+  String get wantToLogoutQuestion;
+
+  /// No description provided for @youCanAlwaysComeBackLoginLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can always come back and sign in later.'**
+  String get youCanAlwaysComeBackLoginLater;
+
+  /// No description provided for @undo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// No description provided for @wantToDeleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to delete the account?'**
+  String get wantToDeleteAccount;
+
+  /// No description provided for @deleteAccountPermanentWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'All your data will be permanently deleted and cannot be recovered.'**
+  String get deleteAccountPermanentWarning;
 }
 
 class _AppLocalizationsDelegate

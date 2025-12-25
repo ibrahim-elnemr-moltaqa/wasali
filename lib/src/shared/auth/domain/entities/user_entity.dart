@@ -85,7 +85,7 @@ class PhoneEntity extends Equatable {
       );
 
   Map<String, dynamic> get toMap => {
-        kWhatsappCountryCodeAttributeCacheKey: code,
+        kMobileCountryCodeAttributeCacheKey: code,
         kPhoneAttributeCacheKey: phone,
         kCountryIsoCodeAttributeCacheKey: isoCode,
       };

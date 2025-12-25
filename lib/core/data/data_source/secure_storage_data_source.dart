@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
 
 import '../../core.dart';
 
@@ -14,7 +13,6 @@ abstract class SecureStorageDataSource {
   Future<void> setCachedUser(CacheUserModel user);
   Future<CacheUserModel?> getCachedUser();
   Future<void> deleteAllCache();
-
 }
 
 @Injectable(as: SecureStorageDataSource)
@@ -83,9 +81,8 @@ class SecureStorageDataSourceImpl implements SecureStorageDataSource {
     }
   }
 
-  
   @override
-  Future<void> deleteAllCache() async{
+  Future<void> deleteAllCache() async {
     try {
       await _storageObj.deleteAll();
     } catch (_) {
@@ -93,6 +90,5 @@ class SecureStorageDataSourceImpl implements SecureStorageDataSource {
         message: "Failed to delete all cache ، please try again",
       );
     }
-    
   }
 }

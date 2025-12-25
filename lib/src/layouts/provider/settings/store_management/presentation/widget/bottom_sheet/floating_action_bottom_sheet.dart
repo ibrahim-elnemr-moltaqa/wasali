@@ -44,6 +44,7 @@ class _FloatingActionBottomSheetState extends State<FloatingActionBottomSheet> {
           label: widget.title,
           hint: widget.hintText,
           controller: _nameController,
+          validator: (text) => Validator(text).defaultValidator,
         ),
         const Gap(24),
         AppButton(

@@ -1777,4 +1777,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dayToEndSubscription => 'Day to end subscription';
+
+  @override
+  String get wantToLogoutQuestion => 'Do you want to log out?';
+
+  @override
+  String get youCanAlwaysComeBackLoginLater =>
+      'You can always come back and sign in later.';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get wantToDeleteAccount => 'Do you want to delete the account?';
+
+  @override
+  String get deleteAccountPermanentWarning =>
+      'All your data will be permanently deleted and cannot be recovered.';
 }

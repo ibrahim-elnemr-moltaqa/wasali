@@ -59,7 +59,7 @@ class StoreDataParams extends Equatable {
         },
         if (codesMobile != null) ...{
           for (int i = 0; i < codesMobile!.length; i++)
-            'codes_phones[$i]': codesMobile![i]
+            'code_phones[$i]': codesMobile![i]
         },
         if (email != null) 'email': email,
         if (description != null) 'description': description,

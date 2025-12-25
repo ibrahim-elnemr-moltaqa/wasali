@@ -1622,7 +1622,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get select_day => 'اختر اليوم';
 
   @override
-  String get to => 'الى';
+  String get to => 'To';
 
   @override
   String get add_another_day => 'اضافه يوم اخر';
@@ -1754,4 +1754,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dayToEndSubscription => 'يوم على انتهاء الاشتراك';
+
+  @override
+  String get wantToLogoutQuestion => 'هل تريد تسجيل الخروج؟';
+
+  @override
+  String get youCanAlwaysComeBackLoginLater =>
+      'يمكنك دائمًا العودة وتسجيل الدخول لاحقًا';
+
+  @override
+  String get undo => 'تراجع';
+
+  @override
+  String get wantToDeleteAccount => 'هل تريد حذف الحساب؟';
+
+  @override
+  String get deleteAccountPermanentWarning =>
+      'سيتم حذف جميع بياناتك نهائي ولن تتمكن من استعادتها.';
 }

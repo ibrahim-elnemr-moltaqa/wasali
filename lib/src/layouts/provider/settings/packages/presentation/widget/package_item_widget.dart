@@ -73,6 +73,8 @@ class PackageItemWidget extends StatelessWidget {
           Divider(color: AppColors.dividerColor),
           const Gap(12),
           BlocListener<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
+            listenWhen: (previous, current) =>
+                previous.subscribePackageState != current.subscribePackageState,
             listener: (context, state) {
               if (state.subscribePackageState.isFailure) {
                 AppLoadingWidget.removeOverlay();
@@ -90,7 +92,7 @@ class PackageItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  appLocalizer.subscribeNow, // Assuming key
+                  appLocalizer.subscribeNow,
                   style: TextStyles.bold14,
                 ),
                 AppSvgIcon(path: AppIcons.arrowPackage),

@@ -439,7 +439,7 @@ class _IntlPhoneFieldState extends State<_IntlPhoneField> {
             }
           : (value) {
               number = value ?? '';
-              String? errorMessage = _validatorFun(number);
+              String? errorMessage = _validatorFun(number, _selectedCountry);
               if (widget.validator != null && errorMessage == null ||
                   errorMessage?.isEmpty == true) {
                 final phoneNumber = IntelPhoneNumberEntity(
@@ -475,7 +475,7 @@ class _IntlPhoneFieldState extends State<_IntlPhoneField> {
     );
   }
 
-  String? _validatorFun(String? value) {
+  String? _validatorFun(String? value, PhoneFieldCountryEntity? country) {
     if (value == null || value == '') {
       return appLocalizer.fieldRequired;
     } else if (!widget.disableLengthCheck) {

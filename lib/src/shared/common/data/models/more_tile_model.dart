@@ -118,7 +118,7 @@ class MoreTileModel {
           icon: AppIcons.logoutIc,
           color: AppColors.error,
           needAuth: true,
-          onTap: () => LogoutPage.showBottomSheet(context),
+          onTap: () => LogoutPage.showDialog(context),
           trailing: const SizedBox.shrink(),
         ),
       ];

@@ -44,26 +44,16 @@ class LogoutPage extends StatelessWidget {
       },
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                appLocalizer.logOut,
-                style: TextStyles.regular18.copyWith(color: AppColors.text),
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.close),
-              ),
-            ],
+          Text(
+            appLocalizer.wantToLogoutQuestion,
+            style: TextStyles.regular18.copyWith(color: AppColors.text),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: Dimensions.p12),
           Text(
-            appLocalizer.logoutMessage,
+            appLocalizer.youCanAlwaysComeBackLoginLater,
             style: TextStyles.regular14.copyWith(color: AppColors.text1),
-            textAlign: TextAlign.start,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: Dimensions.p24),
           BlocBuilder<LogOutCubit, Async<void>>(
@@ -73,11 +63,11 @@ class LogoutPage extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: AppButton(
-                      text: appLocalizer.cancel,
-                      buttonColor: AppColors.red50,
+                      text: appLocalizer.undo,
+                      buttonColor: AppColors.primary,
                       isLoading: state.isLoading,
                       textStyle:
-                          TextStyles.medium16.copyWith(color: AppColors.red700),
+                          TextStyles.bold16.copyWith(color: AppColors.black),
                       onPressed: () => AppRouter.pop(),
                     ),
                   ),
@@ -86,10 +76,10 @@ class LogoutPage extends StatelessWidget {
                     flex: 5,
                     child: AppButton(
                       text: appLocalizer.logOut,
-                      buttonColor: AppColors.red700,
+                      buttonColor: AppColors.lightGreyColor,
                       isLoading: state.isLoading,
-                      textStyle:
-                          TextStyles.medium16.copyWith(color: Colors.white),
+                      textStyle: TextStyles.bold16
+                          .copyWith(color: AppColors.grey2Color),
                       onPressed: context.read<LogOutCubit>().logout,
                     ),
                   ),

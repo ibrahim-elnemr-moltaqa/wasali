@@ -2,6 +2,15 @@ part of phone_field;
 
 const List<PhoneFieldCountryEntity> _countries = [
   PhoneFieldCountryEntity(
+    name: "Saudi Arabia",
+    arabicName: "المملكة العربية السعودية",
+    flag: "🇸🇦",
+    code: "SA",
+    dialCode: "966",
+    minLength: 9,
+    maxLength: 9,
+  ),
+  PhoneFieldCountryEntity(
     name: "Egypt",
     arabicName: "مصر",
     flag: "🇪🇬",
@@ -63,15 +72,6 @@ const List<PhoneFieldCountryEntity> _countries = [
     dialCode: "974",
     minLength: 8,
     maxLength: 8,
-  ),
-  PhoneFieldCountryEntity(
-    name: "Saudi Arabia",
-    arabicName: "المملكة العربية السعودية",
-    flag: "🇸🇦",
-    code: "SA",
-    dialCode: "966",
-    minLength: 9,
-    maxLength: 9,
   ),
   PhoneFieldCountryEntity(
     name: "Yemen",
