@@ -10,6 +10,7 @@ import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/layouts/provider/settings/working_days/data/model/working_day_model.dart';
 import 'package:wasli/src/layouts/provider/settings/working_days/presentation/cubit/working_days_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/working_days/presentation/widget/working_day_item.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 class WorkingDaysTimePage extends StatefulWidget {
   const WorkingDaysTimePage({super.key});
@@ -52,7 +53,8 @@ class _WorkingDaysTimePageState extends State<WorkingDaysTimePage> {
     return BlocProvider.value(
       value: _cubit,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: CustomAppBar(
+          context,
           title: Text(appLocalizer.workingTime),
         ),
         body: BlocConsumer<WorkingDaysCubit, WorkingDaysState>(

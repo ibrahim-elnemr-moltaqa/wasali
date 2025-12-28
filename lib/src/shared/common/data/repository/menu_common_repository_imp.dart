@@ -21,7 +21,7 @@ class MenuCommonRepositoryImp implements MenuCommonRepository {
   @override
   DomainServiceType<String> getStaticPageData(StaticPageTypeEnum type) async {
     return await failureCollect<String>(() async {
-      final result = await _apiHelper.get(url: 'settings/${type.key}');
+      final result = await _apiHelper.get(url: '${ApiConstants.addGeneralBaseUrl}settings/${type.key}');
       final String data = result['text'] ?? '';
       return Right(data);
     });
@@ -41,7 +41,7 @@ class MenuCommonRepositoryImp implements MenuCommonRepository {
   DomainServiceType<void> sendContactUsMessage(
       SendContactUsMessageParams params) async {
     return await failureCollect<void>(() async {
-      await _apiHelper.post(url: "/contact-us/store", body: params.toMap);
+      await _apiHelper.post(url: "contact-us/store", body: params.toMap);
       return const Right(null);
     });
   }
@@ -49,7 +49,7 @@ class MenuCommonRepositoryImp implements MenuCommonRepository {
   @override
   DomainServiceType<List<FaqEntity>> getFaqList() async {
     return await failureCollect<List<FaqEntity>>(() async {
-      final req = await _apiHelper.get(url: "faq");
+      final req = await _apiHelper.get(url: "${ApiConstants.addGeneralBaseUrl}faq");
       final reqData = req['data']["data"] as List;
       final List<FaqEntity> data =
           reqData.map((e) => FaqEntity.fromJson(e)).toList();
