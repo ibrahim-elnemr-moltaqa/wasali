@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasli/core/config/router/app_routes.dart';
 import 'package:wasli/core/core.dart';
+import 'package:wasli/core/utils/extensions/file_ext.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/buttons/app_button.dart';
 import 'package:wasli/material/inputs/app_text_form_field.dart';
@@ -61,7 +62,7 @@ class _DeliveryRegisterVehicleDataStepState
     required ValueNotifier<List<File>> notifier,
     required int index,
     required File file,
-  }) {
+  }) async {
     final images = List<File>.from(notifier.value);
 
     if (images.length > index) {
@@ -70,6 +71,10 @@ class _DeliveryRegisterVehicleDataStepState
       while (images.length < index) {
         images.add(images.last);
       }
+      // final compressedFile = await file.compressImage();
+      // if (compressedFile != null) {
+      //   images.add(compressedFile);
+      // }
       images.add(file);
     }
 
@@ -97,10 +102,9 @@ class _DeliveryRegisterVehicleDataStepState
                     }),
                 AppTextFormField(
                   controller: vehicleNumberController,
-                  inputType: TextInputType.number,
                   label: appLocalizer.vehicle_plate_number,
                   hintText: appLocalizer.enter_vehicle_plate_number,
-                  validate: (text) => Validator(text).defaultValidator,
+                  validate: (text) => Validator(text).vehiclePlateNumber,
                 ),
                 const SizedBox(
                   height: 5,

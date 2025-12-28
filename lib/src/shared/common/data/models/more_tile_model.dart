@@ -212,17 +212,20 @@ class MoreTileModel {
           MoreTileModel(
               title: appLocalizer.changePhoneNumber,
               icon: AppIcons.call,
+              color: Colors.black,
               onTap: () => AppRouter.pushNamed(AppRoutes.updatePhonePage),
               needAuth: true),
           MoreTileModel(
               title: appLocalizer.bankAccountDetails,
               icon: AppIcons.bank,
+              color: Colors.black,
               onTap: () =>
                   AppRouter.pushNamed(AppRoutes.deliveryUpdateBankDataPage),
               needAuth: true),
           MoreTileModel(
               title: appLocalizer.vehicle_data,
               icon: AppIcons.email,
+              color: Colors.black,
               onTap: () =>
                   AppRouter.pushNamed(AppRoutes.deliveryUpdateVehicleDataPage),
               needAuth: true),

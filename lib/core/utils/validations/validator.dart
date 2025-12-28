@@ -165,10 +165,10 @@ class Validator {
       return appLocalizer.invalidIban;
     }
 
-    final regex = RegExp(r'^[A-Z]{2}[0-9]{2}[A-Z0-9]+$');
-    if (!regex.hasMatch(iban)) {
-      return appLocalizer.invalidIban;
-    }
+    // final regex = RegExp(r'^[A-Z]{2}[0-9]{2}[A-Z0-9]+$');
+    // if (!regex.hasMatch(iban)) {
+    //   return appLocalizer.invalidIban;
+    // }
 
     return null;
   }
@@ -191,6 +191,22 @@ class Validator {
     // Typical range 8–24 digits
     if (input.length < 8 || input.length > 24) {
       return appLocalizer.invalidBankAccountNumber;
+    }
+
+    return null;
+  }
+
+  String? get vehiclePlateNumber {
+    final input = (inputText ?? '').trim();
+
+    if (input.isEmpty) {
+      return appLocalizer.fieldRequired;
+    }
+
+    final plateRegex = RegExp(r'^[a-zA-Z0-9]{6,14}$');
+
+    if (!plateRegex.hasMatch(input)) {
+      return appLocalizer.invalidVehiclePlateNumber;
     }
 
     return null;

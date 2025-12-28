@@ -30,7 +30,8 @@ class MenuCommonRepositoryImp implements MenuCommonRepository {
   @override
   DomainServiceType<ContactUsEntity> getContactUsData() async {
     return await failureCollect<ContactUsEntity>(() async {
-      final result = await _apiHelper.get(url: "settings/social_contact");
+      final result = await _apiHelper.get(
+          url: "${ApiConstants.addGeneralBaseUrl}settings/social_contact");
       final data = result['data'];
       return Right(ContactUsEntity.fromJson(data));
     });

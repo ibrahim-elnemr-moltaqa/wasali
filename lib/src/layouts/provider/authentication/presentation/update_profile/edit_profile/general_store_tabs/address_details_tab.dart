@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -105,7 +103,7 @@ class _AddressDetailsTabState extends State<AddressDetailsTab> {
               builder: (context, state) {
                 return AppButton(
                   isLoading: state.isLoading,
-                  text: appLocalizer.edit,
+                  text: appLocalizer.requestEdit,
                   onPressed: () {
                     context.read<StoreAddressCubit>().providerStoreAddress(
                           StoreAddressParams(

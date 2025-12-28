@@ -598,6 +598,9 @@ class $AssetsNativeSplashGen {
 class $AssetsPopularSitesIconsGen {
   const $AssetsPopularSitesIconsGen();
 
+  /// File path: assets/popular_sites_icons/Snapchat.svg
+  String get snapchat => 'assets/popular_sites_icons/Snapchat.svg';
+
   /// File path: assets/popular_sites_icons/amazon.svg
   String get amazon => 'assets/popular_sites_icons/amazon.svg';
 
@@ -631,6 +634,9 @@ class $AssetsPopularSitesIconsGen {
   /// File path: assets/popular_sites_icons/facebook4.svg
   String get facebook4 => 'assets/popular_sites_icons/facebook4.svg';
 
+  /// File path: assets/popular_sites_icons/facebook5.svg
+  String get facebook5 => 'assets/popular_sites_icons/facebook5.svg';
+
   /// File path: assets/popular_sites_icons/githup.svg
   String get githup => 'assets/popular_sites_icons/githup.svg';
 
@@ -648,6 +654,9 @@ class $AssetsPopularSitesIconsGen {
 
   /// File path: assets/popular_sites_icons/google_play.svg
   String get googlePlay => 'assets/popular_sites_icons/google_play.svg';
+
+  /// File path: assets/popular_sites_icons/insta.svg
+  String get insta => 'assets/popular_sites_icons/insta.svg';
 
   /// File path: assets/popular_sites_icons/instagram.svg
   String get instagram => 'assets/popular_sites_icons/instagram.svg';
@@ -701,9 +710,6 @@ class $AssetsPopularSitesIconsGen {
   /// File path: assets/popular_sites_icons/skype.svg
   String get skype => 'assets/popular_sites_icons/skype.svg';
 
-  /// File path: assets/popular_sites_icons/snapchat.svg
-  String get snapchat => 'assets/popular_sites_icons/snapchat.svg';
-
   /// File path: assets/popular_sites_icons/snapchat2.svg
   String get snapchat2 => 'assets/popular_sites_icons/snapchat2.svg';
 
@@ -741,6 +747,9 @@ class $AssetsPopularSitesIconsGen {
   /// File path: assets/popular_sites_icons/tiktok4.svg
   String get tiktok4 => 'assets/popular_sites_icons/tiktok4.svg';
 
+  /// File path: assets/popular_sites_icons/tiktok5.svg
+  String get tiktok5 => 'assets/popular_sites_icons/tiktok5.svg';
+
   /// File path: assets/popular_sites_icons/twitter.svg
   String get twitter => 'assets/popular_sites_icons/twitter.svg';
 
@@ -755,6 +764,9 @@ class $AssetsPopularSitesIconsGen {
 
   /// File path: assets/popular_sites_icons/word.svg
   String get word => 'assets/popular_sites_icons/word.svg';
+
+  /// File path: assets/popular_sites_icons/x.svg
+  String get x => 'assets/popular_sites_icons/x.svg';
 
   /// File path: assets/popular_sites_icons/x2.svg
   String get x2 => 'assets/popular_sites_icons/x2.svg';
@@ -776,6 +788,7 @@ class $AssetsPopularSitesIconsGen {
 
   /// List of all assets
   List<String> get values => [
+        snapchat,
         amazon,
         amazonMusic,
         apple,
@@ -787,12 +800,14 @@ class $AssetsPopularSitesIconsGen {
         facebook2,
         facebook3,
         facebook4,
+        facebook5,
         githup,
         gmail,
         google,
         googleDrive,
         googleMeet,
         googlePlay,
+        insta,
         instagram,
         instegram2,
         instegram3,
@@ -810,7 +825,6 @@ class $AssetsPopularSitesIconsGen {
         powerPoint,
         reddit,
         skype,
-        snapchat,
         snapchat2,
         snapchat3,
         snapchat4,
@@ -823,11 +837,13 @@ class $AssetsPopularSitesIconsGen {
         tiktok2,
         tiktok3,
         tiktok4,
+        tiktok5,
         twitter,
         utorrent,
         whatsApp,
         whatsapp,
         word,
+        x,
         x2,
         x3,
         youtube,

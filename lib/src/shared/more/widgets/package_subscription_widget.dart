@@ -10,34 +10,44 @@ import 'package:wasli/material/media/svg_icon.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/package_details_page.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
 
 class PackageSubscriptionWidget extends StatelessWidget {
   const PackageSubscriptionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PackagesSubscriptionsCubit()..getSubscriptions(),
-      child:
-          BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
-        builder: (context, state) {
-          return state.subscriptionsState.when(
-            failure: (error) => AppFailWidget(
-              text: error.message,
-            ),
-            success: (subscriptions) =>
-                subscriptionDisplay(subscription: subscriptions.first)
-                    .onTapScaleAnimation(
-                        onTap: () => AppRouter.pushNamed(
-                            AppRoutes.packageDetailsPage,
-                            arguments: subscriptions.first)),
-            loading: () => const CircularProgressIndicator(),
-            successWithoutData: () => subscriptionDisplay().onTapScaleAnimation(
-                onTap: () => AppRouter.pushNamed(AppRoutes.packagesPage)),
-          );
-        },
+    return BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
+            builder: (context, state) {
+    return state.subscriptionsState.when(
+      failure: (error) => AppFailWidget(
+        text: error.message,
       ),
-    ).setBorder(
+      success: (subscriptions) =>
+          subscriptionDisplay(subscription: subscriptions.first)
+              .onTapScaleAnimation(
+                  onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: context.read<PackagesSubscriptionsCubit>(),
+                  child: const PackageDetailsPage(),
+                ),
+              ))),
+      loading: () => const CircularProgressIndicator(),
+      successWithoutData: () => subscriptionDisplay().onTapScaleAnimation(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: context.read<PackagesSubscriptionsCubit>(),
+                  child: const PackagesPage(),
+                ),
+              ))),
+    );
+            },
+          ).setBorder(
       radius: 12,
       padding: const EdgeInsets.all(8),
     );

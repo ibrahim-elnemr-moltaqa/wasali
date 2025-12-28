@@ -22,9 +22,8 @@ class IbanField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextFormField(
       controller: controller,
-      inputType: TextInputType.text,
       hintTextStyle: hintStyle,
-      validate: (text) => Validator(text).defaultValidator,
+      validate: (text) => Validator(text).ibanValidator,
       onChanged: onChanged,
       label: appLocalizer.ibaneNumber,
       hintText: appLocalizer.enterIbaneNumber,
@@ -33,6 +32,7 @@ class IbanField extends StatelessWidget {
       maxLines: 1,
       maxLength: 34,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      
     );
   }
 }

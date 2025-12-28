@@ -9,48 +9,57 @@ import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_item_widget.dart';
 
-class PackagesPage extends StatelessWidget {
+class PackagesPage extends StatefulWidget {
   const PackagesPage({super.key});
 
   @override
+  State<PackagesPage> createState() => _PackagesPageState();
+}
+
+class _PackagesPageState extends State<PackagesPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PackagesSubscriptionsCubit>().getPackages();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(appLocalizer.packages), // Assuming key
       ),
-      body: BlocProvider(
-        create: (context) => PackagesSubscriptionsCubit()..getPackages(),
-        child:
-            BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
-          builder: (context, state) {
-            return HandleResponseWidget(
-              status: state.packagesState,
-              onRetry: () =>
-                  context.read<PackagesSubscriptionsCubit>().getPackages(),
-              successWithoutDataBuilder: () {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppMedia(path: AppIllustrations.emptyOrders),
-                    // Text(appLocalizer.no_subscription)
-                  ],
-                ).center;
-              },
-              onSuccess: (data) {
-                return ListView.separated(
-                  padding: const EdgeInsets.all(16),
-                  itemCount: data?.length ?? 0,
-                  separatorBuilder: (context, index) => const Gap(16),
-                  itemBuilder: (context, index) {
-                    return PackageItemWidget(
-                      package: data?[index],
-                    );
-                  },
-                );
-              },
-            );
-          },
-        ),
+      body: BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
+        builder: (context, state) {
+          return HandleResponseWidget(
+            status: state.packagesState,
+            onRetry: () =>
+                context.read<PackagesSubscriptionsCubit>().getPackages(),
+            successWithoutDataBuilder: () {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppMedia(path: AppIllustrations.emptyOrders),
+                  // Text(appLocalizer.no_subscription)
+                ],
+              ).center;
+            },
+            onSuccess: (data) {
+              return ListView.separated(
+                padding: const EdgeInsets.all(16),
+                itemCount: data?.length ?? 0,
+                separatorBuilder: (context, index) => const Gap(16),
+                itemBuilder: (context, index) {
+                  return PackageItemWidget(
+                    package: data?[index],
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }

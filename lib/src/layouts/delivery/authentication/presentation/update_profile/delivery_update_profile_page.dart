@@ -14,7 +14,7 @@ import 'package:wasli/material/inputs/name_field.dart';
 import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/entity/delivery_user_entity.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delivery_main_info_use_case.dart';
-import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/delivery_cubit.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/delivery_cubit/delivery_cubit.dart';
 import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/delviery_main_info_cubit.dart';
 import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
 import 'package:wasli/src/shared/auth/presentation/delete_account/delete_account_bottom_sheet.dart';
@@ -51,10 +51,10 @@ class _DeliveryUpdateProfilePageState extends State<DeliveryUpdateProfilePage> {
           title: Text(appLocalizer.acccountInformation),
           centerTitle: false,
         ),
-        body: BlocBuilder<DeliveryCubit, Async>(
+        body: BlocBuilder<DeliveryCubit, DeliveryState>(
           builder: (context, state) {
             return HandleResponseWidget(
-                status: state,
+                status: state.deliveryState,
                 onRetry: () => context.read<DeliveryCubit>().getDelivery(),
                 onSuccess: (data) {
                   final delivery = data as DeliveryUserEntity;

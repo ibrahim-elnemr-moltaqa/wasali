@@ -18,11 +18,11 @@ class ContactUsCubit extends Cubit<ContactUsState> {
       BlocProvider.of<ContactUsCubit>(context);
 
   late final GetContactUsDataUseCase _getContactDataUseCase;
-  late final SendContactUsMessageUseCase _sendContactUsMessageUseCase;
+  // late final SendContactUsMessageUseCase _sendContactUsMessageUseCase;
 
   void initDependency() {
     _getContactDataUseCase = injector<GetContactUsDataUseCase>();
-    _sendContactUsMessageUseCase = injector<SendContactUsMessageUseCase>();
+    // _sendContactUsMessageUseCase = injector<SendContactUsMessageUseCase>();
   }
 
   void getData() async {
@@ -38,16 +38,16 @@ class ContactUsCubit extends Cubit<ContactUsState> {
     );
   }
 
-  void sendMessage(SendContactUsMessageParams params) async {
-    emit(state.copyWith(sendMessageState: const Async.loading()));
-    final result = await _sendContactUsMessageUseCase(params);
-    result.fold((failure) {
-      emit(state.copyWith(sendMessageState: Async.failure(failure)));
-    }, (_) {
-      emit(state.copyWith(sendMessageState: const Async.successWithoutData()));
-    });
-    emit(state.copyWith(sendMessageState: const Async.initial()));
-  }
+  // void sendMessage(SendContactUsMessageParams params) async {
+  //   emit(state.copyWith(sendMessageState: const Async.loading()));
+  //   final result = await _sendContactUsMessageUseCase(params);
+  //   result.fold((failure) {
+  //     emit(state.copyWith(sendMessageState: Async.failure(failure)));
+  //   }, (_) {
+  //     emit(state.copyWith(sendMessageState: const Async.successWithoutData()));
+  //   });
+  //   emit(state.copyWith(sendMessageState: const Async.initial()));
+  // }
 
   @override
   void emit(ContactUsState state) {

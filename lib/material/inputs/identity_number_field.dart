@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/core.dart';
 import 'app_text_form_field.dart';
 
@@ -22,7 +23,6 @@ class IdentityNumberField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextFormField(
       controller: controller,
-      inputType: TextInputType.number,
       hintTextStyle: hintStyle,
       validate: (text) => Validator(text).commonIdentityNumber,
       onChanged: onChanged,

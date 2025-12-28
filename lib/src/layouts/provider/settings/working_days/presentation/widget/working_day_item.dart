@@ -42,15 +42,7 @@ class _WorkingDayItemState extends State<WorkingDayItem> {
     }
   }
 
-  static const List<Map<String, dynamic>> days = [
-    {'id': 1, 'name': 'Monday'},
-    {'id': 2, 'name': 'Tuesday'},
-    {'id': 3, 'name': 'Wednesday'},
-    {'id': 4, 'name': 'Thursday'},
-    {'id': 5, 'name': 'Friday'},
-    {'id': 6, 'name': 'Saturday'},
-    {'id': 7, 'name': 'Sunday'},
-  ];
+  int? day;
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +54,15 @@ class _WorkingDayItemState extends State<WorkingDayItem> {
         Row(
           children: [
             Expanded(
-              child: AppSingleDropDown<Map<String, dynamic>>(
-                value: days.firstWhereOrNull((e) => e['id'] == _tempModel.day),
-                items: days,
-                itemDisplay: (item) => item?['name'],
+              child: AppSingleDropDown<WeekDayEnum>(
+                value: WeekDayEnumX.fromDayValue(_tempModel.day),
+                items: WeekDayEnum.values,
+                itemDisplay: (item) => item?.localizedName,
                 onChanged: (value) {
                   setState(() {
-                    _tempModel = _tempModel.copyWith(day: value?['id']);
+                    _tempModel = _tempModel.copyWith(
+                      day: value?.dayValue,
+                    );
                   });
                 },
                 title: appLocalizer.day,

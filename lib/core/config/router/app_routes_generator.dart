@@ -12,7 +12,6 @@ import 'package:wasli/src/layouts/delivery/authentication/presentation/update_pr
 import 'package:wasli/src/layouts/provider/authentication/presentation/register/provider_register_screen.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/general_store_settings.dart';
 import 'package:wasli/src/layouts/provider/authentication/presentation/update_profile/edit_profile/provider_edit_profile.dart';
-import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/package_details_page.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
 import 'package:wasli/src/layouts/provider/settings/store_management/presentation/add_new_product_page.dart';
@@ -20,7 +19,7 @@ import 'package:wasli/src/layouts/provider/settings/store_management/presentatio
 import 'package:wasli/src/layouts/provider/settings/working_days/presentation/working_days_page.dart';
 import 'package:wasli/src/shared/auth/domain/use_case/verify_otp_use_case.dart';
 import 'package:wasli/src/shared/auth/presentation/update_phone/update_phone_page.dart';
-import 'package:wasli/src/shared/common/presentation/menu/support/customer_support_page.dart';
+import 'package:wasli/src/shared/common/presentation/menu/contact_us/contact_us_page.dart';
 import 'package:wasli/src/shared/google_maps/presentation/maps_main_page.dart';
 import 'package:wasli/src/shared/more/settings/settings_page.dart';
 
@@ -30,7 +29,6 @@ import '../../../src/shared/auth/presentation/login/login_page.dart';
 import '../../../src/shared/auth/presentation/otp/otp_page.dart';
 import '../../../src/shared/notifications/presentation/notifications_cubit.dart';
 import '../../../src/shared/notifications/presentation/notifications_dialog.dart';
-import '../../../src/shared/wallet/presentation/payment_web_view/payment_webview_page.dart';
 import '../../core.dart';
 import 'app_routes.dart';
 
@@ -49,15 +47,15 @@ class AppRoutesGenerator {
       case AppRoutes.changeLanguage:
         page = const ChangeLanguagePage();
 
-      case AppRoutes.paymentWebView:
-        final arguments = settings.arguments as PaymentWebViewPage;
-        page = arguments;
+      // case AppRoutes.paymentWebView:
+      //   final arguments = settings.arguments as PaymentWebViewPage;
+      //   page = arguments;
 
       case AppRoutes.notificationsPage:
         final arguments = settings.arguments as NotificationsCubit;
         page = NotifiactionDialog(cubit: arguments);
       case AppRoutes.customerSupportPage:
-        page = const CustomerSupportPage();
+        page = const ContactUsPage();
 
       /// Authentication
       ///
@@ -113,8 +111,7 @@ class AppRoutesGenerator {
       case AppRoutes.packagesPage:
         page = const PackagesPage();
       case AppRoutes.packageDetailsPage:
-        final arguments = settings.arguments as SubscriptionEntity;
-        page =  PackageDetailsPage(subscriptionEntity: arguments,);
+        page = const PackageDetailsPage();
 
       /// MAP
       ///

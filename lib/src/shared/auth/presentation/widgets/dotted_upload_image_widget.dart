@@ -175,7 +175,7 @@ class _DottedUploadImageWidgetState extends State<DottedUploadImageWidget> {
                               style: TextStyles.bold12
                                   .copyWith(color: AppColors.red500))
                           .onTapScaleAnimation(
-                        onTap: () => widget.onDelete,
+                        onTap: () => widget.onDelete!(),
                       ),
                     )
                   }

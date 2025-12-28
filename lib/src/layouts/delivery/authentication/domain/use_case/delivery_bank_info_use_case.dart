@@ -7,7 +7,7 @@ import 'package:wasli/src/layouts/delivery/authentication/domain/repository/deli
 @injectable
 class DeliveryBankInfoUseCase extends IUseCase<Unit, DeliveryBankInfoParams> {
   DeliveryBankInfoUseCase(this._repository);
-  final DeliveryRegisterRepository _repository;
+  final DeliveryAuthenticationRepository _repository;
   @override
   DomainServiceType<Unit> call(DeliveryBankInfoParams params) async {
     return await _repository.deliveryBankInfo(params);
@@ -38,5 +38,6 @@ class DeliveryBankInfoParams extends Equatable {
       };
 
   @override
-  List<Object?> get props => [bankID, accountNumber, iban, nationalID, isUpdate];
+  List<Object?> get props =>
+      [bankID, accountNumber, iban, nationalID, isUpdate];
 }

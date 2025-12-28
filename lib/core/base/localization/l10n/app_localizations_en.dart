@@ -1794,4 +1794,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get deleteAccountPermanentWarning =>
       'All your data will be permanently deleted and cannot be recovered.';
+
+  @override
+  String get invalidVehiclePlateNumber =>
+      'Vehicle plate number must be maximum 14 characters long.';
+
+  @override
+  String get requestEdit => 'Request Edit';
+
+  @override
+  String get socialMedia => 'Social Media';
+
+  @override
+  String get technicalSupport => 'Technical Support';
 }

@@ -3523,6 +3523,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All your data will be permanently deleted and cannot be recovered.'**
   String get deleteAccountPermanentWarning;
+
+  /// No description provided for @invalidVehiclePlateNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle plate number must be maximum 14 characters long.'**
+  String get invalidVehiclePlateNumber;
+
+  /// No description provided for @requestEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Edit'**
+  String get requestEdit;
+
+  /// No description provided for @socialMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Media'**
+  String get socialMedia;
+
+  /// No description provided for @technicalSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical Support'**
+  String get technicalSupport;
 }
 
 class _AppLocalizationsDelegate

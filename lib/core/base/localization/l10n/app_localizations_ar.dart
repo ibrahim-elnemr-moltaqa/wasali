@@ -1622,7 +1622,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get select_day => 'اختر اليوم';
 
   @override
-  String get to => 'To';
+  String get to => 'إلى';
 
   @override
   String get add_another_day => 'اضافه يوم اخر';
@@ -1771,4 +1771,17 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get deleteAccountPermanentWarning =>
       'سيتم حذف جميع بياناتك نهائي ولن تتمكن من استعادتها.';
+
+  @override
+  String get invalidVehiclePlateNumber =>
+      'رقم لوحة المركبه يجب ان يكون على الأكثر 14 حرف';
+
+  @override
+  String get requestEdit => 'طلب تعديل';
+
+  @override
+  String get socialMedia => ' وسائل التواصل الاجتماعي';
+
+  @override
+  String get technicalSupport => 'الدعم الفني';
 }

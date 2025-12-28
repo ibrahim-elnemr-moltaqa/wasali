@@ -5,10 +5,11 @@ import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delive
 import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delivery_main_info_use_case.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delivery_vehicle_data_use_case.dart';
 
-abstract class DeliveryRegisterRepository {
+abstract class DeliveryAuthenticationRepository {
   DomainServiceType<Unit> deliveryMainInformation(
       DeliveryMainInformationParams params);
   DomainServiceType<Unit> deliveryBankInfo(DeliveryBankInfoParams params);
   DomainServiceType<Unit> deliveryVehicleData(DeliveryVehicleParams params);
+  DomainServiceType<Unit> deleteImage(int imageId, String type);
   DomainServiceType<DeliveryUserEntity> getDeliveryUser();
 }

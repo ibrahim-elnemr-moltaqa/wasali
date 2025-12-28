@@ -6,13 +6,13 @@ part of 'popular_sites_utils.dart';
 class _PopularLinksSitesSvgPaths {
   /// Paths For [Svg] Icons
   static const String _mainIconsPath = 'assets/popular_sites_icons';
-  static const String facebook = '$_mainIconsPath/facebook.svg';
+  static const String facebook = '$_mainIconsPath/facebook5.svg';
   static const String messenger = '$_mainIconsPath/messenger.svg';
-  static const String x = '$_mainIconsPath/twitter.svg';
+  static const String x = '$_mainIconsPath/x.svg';
   static const String youtube = '$_mainIconsPath/youtube.svg';
   static const String youtubeMusic = '$_mainIconsPath/youtube_music.svg';
-  static const String instagram = '$_mainIconsPath/instagram.svg';
-  static const String tikTok = "$_mainIconsPath/tiktok.svg";
+  static const String instagram = '$_mainIconsPath/instegram3.svg';
+  static const String tikTok = "$_mainIconsPath/tiktok5.svg";
   static const String soundCloud = '$_mainIconsPath/sound_cloud.svg';
   static const String amazonMusic = '$_mainIconsPath/amazon_music.svg';
   static const String appleMusic = '$_mainIconsPath/apple_music.svg';

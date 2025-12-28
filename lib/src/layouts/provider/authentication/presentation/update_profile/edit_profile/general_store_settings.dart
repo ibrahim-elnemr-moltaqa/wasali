@@ -31,6 +31,8 @@ class _GeneralStoreSettingsPageState extends State<GeneralStoreSettingsPage>
     return BlocProvider(
       create: (context) => ProviderCubit()..getProvider(),
       child: Scaffold(
+          extendBody: true,
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(appLocalizer.general_store_settings),
             leading: const ArrowBackWidget(),
@@ -67,7 +69,7 @@ class _GeneralStoreSettingsPageState extends State<GeneralStoreSettingsPage>
                     return TabBarView(
                       controller: _tabController,
                       children: [
-                        StoreDataTab(storeDataEntity: provider.storeData ),
+                        StoreDataTab(storeDataEntity: provider.storeData),
                         AddressDetailsTab(
                           storeAddressEntity: provider.storeAddress,
                         ),

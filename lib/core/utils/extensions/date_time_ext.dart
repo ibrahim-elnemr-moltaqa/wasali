@@ -47,6 +47,13 @@ extension DateTimeExtention on DateTime {
       WeekDayEnum.values.firstWhere((element) => element.dayValue == weekday);
 }
 
+extension WeekDayEnumX on WeekDayEnum {
+  static WeekDayEnum? fromDayValue(int? value) {
+    if (value == null) return null;
+    return WeekDayEnum.values
+        .firstWhereOrNull((e) => e.dayValue == value);
+  }
+}
 /// DateTime Format Extensions
 ///
 ///

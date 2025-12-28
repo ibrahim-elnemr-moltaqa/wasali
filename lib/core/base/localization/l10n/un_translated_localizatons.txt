@@ -1,6 +1,5 @@
 {
   "ar": [
-    "select_product",
-    "to"
+    "select_product"
   ]
 }

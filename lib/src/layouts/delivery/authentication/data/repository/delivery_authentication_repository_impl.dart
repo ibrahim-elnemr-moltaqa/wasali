@@ -10,11 +10,12 @@ import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delive
 import 'package:wasli/src/shared/auth/data/models/api_authentication_response.dart';
 import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
 
-@Injectable(as: DeliveryRegisterRepository)
-class DeliveryRegisterRepositoryImpl implements DeliveryRegisterRepository {
+@Injectable(as: DeliveryAuthenticationRepository)
+class DeliveryAuthenticationRepositoryImpl
+    implements DeliveryAuthenticationRepository {
   final DioHelper _dioHelper;
   final SecureStorageRepository _secureStorageRepository;
-  DeliveryRegisterRepositoryImpl(
+  DeliveryAuthenticationRepositoryImpl(
       this._dioHelper, this._secureStorageRepository);
 
   @override
@@ -67,6 +68,17 @@ class DeliveryRegisterRepositoryImpl implements DeliveryRegisterRepository {
       final result = await _dioHelper.get(url: "auth/profile");
       final data = ApiDeliveryUserModel.fromJson(result['data']['user']);
       return Right(data);
+    });
+  }
+
+  @override
+  DomainServiceType<Unit> deleteImage(int imageId, String type) async {
+    return failureCollect(() async {
+      await _dioHelper.post(
+        url: "auth/delete-image/$imageId",
+        body: {'type': type},
+      );
+      return const Right(unit);
     });
   }
 }

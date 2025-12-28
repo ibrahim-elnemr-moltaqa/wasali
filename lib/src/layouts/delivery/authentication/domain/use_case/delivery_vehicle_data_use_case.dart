@@ -9,7 +9,7 @@ import 'package:wasli/src/layouts/delivery/authentication/domain/repository/deli
 
 @injectable
 class DeliveryVehicleDataUseCase extends IUseCase<Unit, DeliveryVehicleParams> {
-  final DeliveryRegisterRepository repository;
+  final DeliveryAuthenticationRepository repository;
 
   DeliveryVehicleDataUseCase(this.repository);
 

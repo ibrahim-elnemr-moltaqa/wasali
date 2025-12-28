@@ -30,7 +30,7 @@ class ApiDeliveryUserModel extends DeliveryUserEntity {
         lastName: json["last_name"],
         image: AttachmentEntity.fromNetwork(url: json["image"]),
         mobile: PhoneModel.fromMap(json["mobileCode"]),
-        whatsapp: PhoneModel.fromMap(json["whatsappCode"]),
+        whatsapp: PhoneModel.fromMap(json["whatsappCode"], isWhatsApp: true),
         lastLogin: DateTime.parse(json["last_login"]),
         loginCount: json["login_count"],
         lang: json["lang"],
@@ -146,4 +146,3 @@ class ApiVehicleDataModel extends VehicleDataEntity {
         vehicle,
       ];
 }
-

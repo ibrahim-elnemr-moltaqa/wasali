@@ -59,6 +59,8 @@ import '../../src/layouts/delivery/authentication/data/repository/delivery_authe
     as _i893;
 import '../../src/layouts/delivery/authentication/domain/repository/delivery_authentication_repository.dart'
     as _i719;
+import '../../src/layouts/delivery/authentication/domain/use_case/delete_image_use_case.dart'
+    as _i1027;
 import '../../src/layouts/delivery/authentication/domain/use_case/delivery_bank_info_use_case.dart'
     as _i368;
 import '../../src/layouts/delivery/authentication/domain/use_case/delivery_main_info_use_case.dart'
@@ -341,12 +343,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i215.SearchRepositoryImpl(gh<_i613.SearchDataSource>()));
     gh.factory<_i864.CommonRepository>(
         () => _i321.CommonRepositoryImp(gh<_i351.DioHelper>()));
+    gh.factory<_i351.DeleteUserRoleUseCase>(
+        () => _i351.DeleteUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
     gh.factory<_i351.GetUserRoleUseCase>(
         () => _i351.GetUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
     gh.factory<_i351.SetUserRoleUseCase>(
         () => _i351.SetUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
-    gh.factory<_i351.DeleteUserRoleUseCase>(
-        () => _i351.DeleteUserRoleUseCase(gh<_i271.RoleCachedDataSource>()));
     gh.factory<_i101.GetVehicleUseCase>(
         () => _i101.GetVehicleUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i800.GetBanksUseCase>(
@@ -373,6 +375,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i187.ChangeSubCategoryStatusUseCase>(() =>
         _i187.ChangeSubCategoryStatusUseCase(
             gh<_i59.StoreCategoriesRepository>()));
+    gh.factory<_i719.DeliveryAuthenticationRepository>(
+        () => _i893.DeliveryAuthenticationRepositoryImpl(
+              gh<_i351.DioHelper>(),
+              gh<_i351.SecureStorageRepository>(),
+            ));
+    gh.factory<_i368.DeliveryBankInfoUseCase>(() =>
+        _i368.DeliveryBankInfoUseCase(
+            gh<_i719.DeliveryAuthenticationRepository>()));
     gh.factory<_i1005.AuthenticationRepository>(
         () => _i565.AuthenticationRepositoryImp(
               gh<_i351.DioHelper>(),
@@ -418,11 +428,6 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i592.ProviderAuthenticationRepository>()));
     gh.factory<_i602.MapsRepository>(
         () => _i596.MapsRepositoryImp(gh<_i614.MapsDataSource>()));
-    gh.factory<_i719.DeliveryRegisterRepository>(
-        () => _i893.DeliveryRegisterRepositoryImpl(
-              gh<_i351.DioHelper>(),
-              gh<_i351.SecureStorageRepository>(),
-            ));
     gh.factory<_i771.GetEducationalYearsUseCase>(
         () => _i771.GetEducationalYearsUseCase(gh<_i864.CommonRepository>()));
     gh.factory<_i206.GetEducationalStageUseCase>(
@@ -447,7 +452,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i593.GetSizesUseCase(gh<_i137.SizesRepository>()));
     gh.factory<_i60.DeliveryMainInformationUseCase>(() =>
         _i60.DeliveryMainInformationUseCase(
-            gh<_i719.DeliveryRegisterRepository>()));
+            gh<_i719.DeliveryAuthenticationRepository>()));
     gh.factory<_i635.RegiserUseCase>(
         () => _i635.RegiserUseCase(gh<_i561.UserRegisterRepository>()));
     gh.factory<_i693.GetHomeOffersUseCase>(
@@ -472,14 +477,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i949.GetMapsPlaceDetailsUseCase(gh<_i602.MapsRepository>()));
     gh.factory<_i25.SendRateUseCase>(
         () => _i25.SendRateUseCase(gh<_i864.CommonRepository>()));
-    gh.factory<_i927.DeliveryVehicleDataUseCase>(() =>
-        _i927.DeliveryVehicleDataUseCase(
-            gh<_i719.DeliveryRegisterRepository>()));
-    gh.factory<_i345.GetDeliveryUseCase>(
-        () => _i345.GetDeliveryUseCase(gh<_i719.DeliveryRegisterRepository>()));
     gh.factory<_i266.FetchPaginatedDataUseCase<dynamic>>(() =>
         _i266.FetchPaginatedDataUseCase<dynamic>(
             gh<_i173.PaginationRepository>()));
+    gh.factory<_i927.DeliveryVehicleDataUseCase>(() =>
+        _i927.DeliveryVehicleDataUseCase(
+            gh<_i719.DeliveryAuthenticationRepository>()));
+    gh.factory<_i345.GetDeliveryUseCase>(() =>
+        _i345.GetDeliveryUseCase(gh<_i719.DeliveryAuthenticationRepository>()));
+    gh.factory<_i1027.DeleteImageUseCase>(() => _i1027.DeleteImageUseCase(
+        gh<_i719.DeliveryAuthenticationRepository>()));
     gh.factory<_i109.MarkAllNotificationsAsReadUseCase>(() =>
         _i109.MarkAllNotificationsAsReadUseCase(
             gh<_i190.NotificationRepository>()));
@@ -513,8 +520,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i808.UpdateProfileUseCase>(() =>
         _i808.UpdateProfileUseCase(
             repository: gh<_i1005.AuthenticationRepository>()));
-    gh.factory<_i368.DeliveryBankInfoUseCase>(() =>
-        _i368.DeliveryBankInfoUseCase(gh<_i719.DeliveryRegisterRepository>()));
     gh.factory<_i966.GetCurrentUserLocationUseCase>(
         () => _i966.GetCurrentUserLocationUseCase(
               gh<_i185.EnableGpsAndHandlePermissionUseCase>(),

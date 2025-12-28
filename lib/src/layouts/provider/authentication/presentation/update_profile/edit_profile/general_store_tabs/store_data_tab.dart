@@ -100,148 +100,152 @@ class _StoreDataTabState extends State<StoreDataTab> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => StoreDataCubit(),
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 20),
-                DottedUploadImageWidget(
-                    initialValue: initialStoreImage,
-                    title: appLocalizer.store_image,
-                    onChanged: (image) {
-                      storeImage.value = image;
-                    }),
-                const SizedBox(height: 12),
-                NameField(
-                  label: appLocalizer.store_name,
-                  hint: appLocalizer.store_name,
-                  controller: storeNameController,
-                ),
-                ...List.generate(storePhoneNumber.length, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: IntelPhoneField(
-                            initialValue: storePhoneNumber[index],
-                            label: appLocalizer.phoneNumber,
-                            onChange: (phoneNumber) {
-                              storePhoneNumber[index] = phoneNumber;
-                            },
-                            hint: appLocalizer.enterPhoneNumber,
+      child: Scaffold(
+        extendBody: true,
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 20),
+                  DottedUploadImageWidget(
+                      initialValue: initialStoreImage,
+                      title: appLocalizer.store_image,
+                      onChanged: (image) {
+                        storeImage.value = image;
+                      }),
+                  const SizedBox(height: 12),
+                  NameField(
+                    label: appLocalizer.store_name,
+                    hint: appLocalizer.store_name,
+                    controller: storeNameController,
+                  ),
+                  ...List.generate(storePhoneNumber.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: IntelPhoneField(
+                              initialValue: storePhoneNumber[index],
+                              label: appLocalizer.phoneNumber,
+                              onChange: (phoneNumber) {
+                                storePhoneNumber[index] = phoneNumber;
+                              },
+                              hint: appLocalizer.enterPhoneNumber,
+                            ),
                           ),
-                        ),
-                        Visibility(
-                          visible: storePhoneNumber.length - 1 == index,
-                          child: AppSvgIcon(
-                            path: AppIcons.plus,
-                            height: 14,
+                          Visibility(
+                            visible: storePhoneNumber.length - 1 == index,
+                            child: AppSvgIcon(
+                              path: AppIcons.plus,
+                              height: 14,
+                            )
+                                .onTapScaleAnimation(onTap: () {
+                                  setState(() {
+                                    storePhoneNumber.add(
+                                      IntelPhoneNumberEntity.fromCompleteNumber(
+                                        completeNumber: '+966',
+                                      ),
+                                    );
+                                  });
+                                })
+                                .setBorder(
+                                    padding: const EdgeInsets.all(12),
+                                    radius: 14)
+                                .paddingStart(8)
+                                .paddingTop(22),
+                          ),
+                          Visibility(
+                            visible: storePhoneNumber.length > 1,
+                            child: Icon(
+                              Iconsax.trash_copy,
+                              color: AppColors.red500,
+                              size: 14,
+                            )
+                                .onTapScaleAnimation(onTap: () {
+                                  setState(() {
+                                    storePhoneNumber.removeAt(index);
+                                  });
+                                })
+                                .setBorder(
+                                    padding: const EdgeInsets.all(12),
+                                    radius: 14)
+                                .paddingStart(8)
+                                .paddingTop(22),
                           )
-                              .onTapScaleAnimation(onTap: () {
-                                setState(() {
-                                  storePhoneNumber.add(
-                                    IntelPhoneNumberEntity.fromCompleteNumber(
-                                      completeNumber: '+966',
-                                    ),
-                                  );
-                                });
-                              })
-                              .setBorder(
-                                  padding: const EdgeInsets.all(12), radius: 14)
-                              .paddingStart(8)
-                              .paddingTop(22),
-                        ),
-                        Visibility(
-                          visible: storePhoneNumber.length > 1,
-                          child: Icon(
-                            Iconsax.trash_copy,
-                            color: AppColors.red500,
-                            size: 14,
-                          )
-                              .onTapScaleAnimation(onTap: () {
-                                setState(() {
-                                  storePhoneNumber.removeAt(index);
-                                });
-                              })
-                              .setBorder(
-                                  padding: const EdgeInsets.all(12), radius: 14)
-                              .paddingStart(8)
-                              .paddingTop(22),
-                        )
-                      ],
-                    ),
-                  );
-                }),
-                EmailField(controller: storeEmailController),
-                AppTextFormField(
-                  label: appLocalizer.store_description,
-                  hintText: appLocalizer.store_description,
-                  controller: storeDescriptionController,
-                  maxLines: 5,
-                  maxLength: 300,
-                  showCounter: true,
-                  validate: (text) => Validator(text).defaultValidator,
-                ),
-                ValueListenableBuilder(
-                    valueListenable: commercialRegisterImage,
-                    builder: (context, value, child) {
-                      return DottedUploadImageWidget(
-                          initialValue: initialCommercialRegisterImage,
-                          title: appLocalizer.commercial_register_image,
-                          onChanged: (image) {
-                            commercialRegisterImage.value = image;
-                          });
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: category,
-                    builder: (context, value, child) {
-                      return MainCategoriesDropDown(
-                        category: category.value,
-                        onChanged: (value) {
-                          category.value = value;
-                        },
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: subCategories,
-                    builder: (context, value, child) {
-                      return SubCategoriesDropDown(
-                        selectionType: DropDownSelectionType.multi,
-                        subCategories: subCategories.value,
-                        onMultiChanged: (value) {
-                          subCategories.value = value ?? [];
-                        },
-                      );
-                    }),
-                const SizedBox(height: 20),
-                BlocConsumer<StoreDataCubit, Async>(
-                  listener: (context, state) {
-                    if (state.isFailure) {
-                      AppToasts.error(context,
-                          message: state.errorMessage ?? '');
-                    } else if (state.isSuccess) {
-                      AppToasts.success(context,
-                          message: appLocalizer.profileUpdateSuccessMessage);
-                    }
-                  },
-                  builder: (context, state) {
-                    return AppButton(
-                      isLoading: state.isLoading,
-                      text: appLocalizer.edit,
-                      onPressed: () {
-                        onUpdateStoreData(context);
-                      },
+                        ],
+                      ),
                     );
-                  },
-                ),
-                const SizedBox(height: 20),
-              ],
-            ).paddingHorizontal(20),
+                  }),
+                  EmailField(controller: storeEmailController),
+                  AppTextFormField(
+                    label: appLocalizer.store_description,
+                    hintText: appLocalizer.store_description,
+                    controller: storeDescriptionController,
+                    maxLines: 5,
+                    maxLength: 300,
+                    showCounter: true,
+                    validate: (text) => Validator(text).defaultValidator,
+                  ),
+                  ValueListenableBuilder(
+                      valueListenable: commercialRegisterImage,
+                      builder: (context, value, child) {
+                        return DottedUploadImageWidget(
+                            initialValue: initialCommercialRegisterImage,
+                            title: appLocalizer.commercial_register_image,
+                            onChanged: (image) {
+                              commercialRegisterImage.value = image;
+                            });
+                      }),
+                  ValueListenableBuilder(
+                      valueListenable: category,
+                      builder: (context, value, child) {
+                        return MainCategoriesDropDown(
+                          category: category.value,
+                          onChanged: (value) {
+                            category.value = value;
+                          },
+                        );
+                      }),
+                  ValueListenableBuilder(
+                      valueListenable: subCategories,
+                      builder: (context, value, child) {
+                        return SubCategoriesDropDown(
+                          selectionType: DropDownSelectionType.multi,
+                          subCategories: subCategories.value,
+                          onMultiChanged: (value) {
+                            subCategories.value = value ?? [];
+                          },
+                        );
+                      }),
+                  const SizedBox(height: 20),
+                ],
+              ).paddingHorizontal(20),
+            ),
           ),
+        ),
+        bottomNavigationBar: BlocConsumer<StoreDataCubit, Async>(
+          listener: (context, state) {
+            if (state.isFailure) {
+              AppToasts.error(context, message: state.errorMessage ?? '');
+            } else if (state.isSuccess) {
+              AppToasts.success(context,
+                  message: appLocalizer.profileUpdateSuccessMessage);
+            }
+          },
+          builder: (context, state) {
+            return AppButton(
+              isLoading: state.isLoading,
+              text: appLocalizer.requestEdit,
+              onPressed: () {
+                onUpdateStoreData(context);
+              },
+            ).paddingAll(24);
+          },
         ),
       ),
     );

@@ -11,7 +11,7 @@ import 'package:wasli/src/shared/common/domain/entity/gender_enum.dart';
 @injectable
 class DeliveryMainInformationUseCase
     extends IUseCase<Unit, DeliveryMainInformationParams> {
-  final DeliveryRegisterRepository _deliveryRegisterRepository;
+  final DeliveryAuthenticationRepository _deliveryRegisterRepository;
 
   DeliveryMainInformationUseCase(this._deliveryRegisterRepository);
 
@@ -47,7 +47,7 @@ class DeliveryMainInformationParams extends Equatable {
   Map<String, dynamic> toJson() => {
         if (fName != null) 'first_name': fName,
         if (lName != null) 'last_name': lName,
-        if (mobile != null) 'mobile': '0$mobile',
+        if (mobile != null) 'mobile': mobile,
         if (codeMobile != null) 'code_mobile': codeMobile,
         if (whatsApp != null) 'whatsapp': whatsApp,
         if (codeWhatsapp != null) 'code_whatsapp': codeWhatsapp,

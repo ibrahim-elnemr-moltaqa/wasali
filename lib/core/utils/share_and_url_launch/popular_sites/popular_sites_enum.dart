@@ -310,13 +310,23 @@ extension PopularLinksSitesEnumExtension on PopularLinksSitesEnum {
   }
 
   Widget iconWidget({double? size, Color? color}) {
-    return AppSvgIcon(
-      path: svgPath,
-      size: size,
-      color: color,
-      placholder: const AppSvgIcon(
-        path: _PopularLinksSitesSvgPaths.unKnown,
-      ),
+    return Row(
+      children: [
+        AppSvgIcon(
+          path: svgPath,
+          size: size,
+          color: color,
+          placholder: const AppSvgIcon(
+            path: _PopularLinksSitesSvgPaths.unKnown,
+          ),
+        ).setBorder(
+          radius: 12,
+          color: AppColors.borderColor,
+          padding: const EdgeInsets.all(8),
+        ),
+        const SizedBox(width: 8),
+        Text(name, style: TextStyles.bold10),
+      ],
     );
   }
 }

@@ -22,7 +22,6 @@ class BankAccountNumberField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextFormField(
       controller: controller,
-      inputType: TextInputType.number,
       hintTextStyle: hintStyle,
       validate: (text) => Validator(text).bankAccountValidator,
       onChanged: onChanged,

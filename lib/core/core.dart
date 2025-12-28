@@ -26,11 +26,9 @@ import 'package:wasli/core/config/theme/app_theme.dart';
 import 'package:wasli/core/config/theme/light_theme.dart';
 import 'package:wasli/core/data/data_source/role_cached_data_source.dart';
 import 'package:wasli/core/di/di.dart';
-import 'package:wasli/src/layouts/client/profile/client_edit_profile_page.dart';
 import 'package:wasli/src/shared/auth/data/models/api_user_model.dart';
 import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
 import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
-import 'package:wasli/src/shared/common/domain/entity/gender_enum.dart';
 import 'package:wasli/src/shared/notifications/helpers/firebase/firebase_helper.dart';
 
 import 'base/localization/l10n/app_localizations.dart';
@@ -97,9 +95,9 @@ part "domain/use_cases/secure_storage/get_is_user_authenticated_use_case.dart";
 part "domain/use_cases/secure_storage/get_token_use_case.dart";
 part "domain/use_cases/secure_storage/set_cached_user_use_case.dart";
 part "domain/use_cases/secure_storage/set_token_use_case.dart";
+part "domain/use_cases/user_role/delete_user_role_use_case.dart";
 part "domain/use_cases/user_role/get_user_role_use_case.dart";
 part "domain/use_cases/user_role/set_user_role_use_case.dart";
-part "domain/use_cases/user_role/delete_user_role_use_case.dart";
 
 /// Network Files
 ///
@@ -116,7 +114,6 @@ part "utils/extensions/context_ext.dart";
 /// Utils Files
 ///
 part "utils/extensions/date_time_ext.dart";
-part "utils/extensions/file_ext.dart";
 part "utils/extensions/formatters.dart";
 part "utils/extensions/list_ext.dart";
 part "utils/extensions/set_ext.dart";

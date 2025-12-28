@@ -15,9 +15,9 @@ class DioHelper {
 
   final Dio _dio = Dio(BaseOptions(
     receiveDataWhenStatusError: true,
-    sendTimeout: const Duration(milliseconds: 30000),
-    receiveTimeout: const Duration(milliseconds: 30000),
-    connectTimeout: const Duration(milliseconds: 30000),
+    sendTimeout: const Duration(minutes: 1),
+    receiveTimeout: const Duration(minutes: 1),
+    connectTimeout: const Duration(minutes: 1),
   ));
 
   final Map<String, String> _headers = <String, String>{
@@ -51,8 +51,11 @@ class DioHelper {
     final result = await apiExecptionCollecter(
       task: () async {
         final FormData? formData = body != null ? FormData.fromMap(body) : null;
-        final result = await _dio.get(url,
-            data: formData, queryParameters: queryParameters);
+        final result = await _dio.get(
+          url,
+          data: formData,
+          queryParameters: queryParameters,
+        );
         return result;
       },
     );

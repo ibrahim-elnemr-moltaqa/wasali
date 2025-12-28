@@ -4,9 +4,8 @@ import 'package:wasli/src/layouts/delivery/authentication/domain/entity/delivery
 import 'package:wasli/src/layouts/delivery/authentication/domain/repository/delivery_authentication_repository.dart';
 
 @injectable
-class GetDeliveryUseCase
-    extends IUseCase<DeliveryUserEntity, NoParams> {
-  final DeliveryRegisterRepository repository;
+class GetDeliveryUseCase extends IUseCase<DeliveryUserEntity, NoParams> {
+  final DeliveryAuthenticationRepository repository;
 
   GetDeliveryUseCase(this.repository);
 

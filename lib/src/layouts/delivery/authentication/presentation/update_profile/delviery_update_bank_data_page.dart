@@ -11,7 +11,7 @@ import 'package:wasli/material/toast/app_toast.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/entity/delivery_user_entity.dart';
 import 'package:wasli/src/layouts/delivery/authentication/domain/use_case/delivery_bank_info_use_case.dart';
 import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/bank_info_cubit.dart';
-import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/delivery_cubit.dart';
+import 'package:wasli/src/layouts/delivery/authentication/presentation/delivery_authentication_cubit/delivery_cubit/delivery_cubit.dart';
 import 'package:wasli/src/shared/common/domain/entity/common_entity.dart';
 import 'package:wasli/src/shared/common/presentation/drop_downs/banks/banks_drop_down.dart';
 
@@ -66,10 +66,10 @@ class _DeliveryUpdateBankDataPageState
           title: Text(appLocalizer.bank_account_data),
           centerTitle: false,
         ),
-        body: BlocBuilder<DeliveryCubit, Async>(
+        body: BlocBuilder<DeliveryCubit, DeliveryState>(
           builder: (context, state) {
             return HandleResponseWidget(
-                status: state,
+                status: state.deliveryState,
                 onRetry: () => context.read<DeliveryCubit>().getDelivery(),
                 onSuccess: (data) {
                   final delivery = data as DeliveryUserEntity;
