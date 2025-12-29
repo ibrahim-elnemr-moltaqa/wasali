@@ -16,8 +16,8 @@ class DeliveryMainInformationUseCase
   DeliveryMainInformationUseCase(this._deliveryRegisterRepository);
 
   @override
-  DomainServiceType<Unit> call(DeliveryMainInformationParams params) async {
-    return await _deliveryRegisterRepository.deliveryMainInformation(params);
+  DomainServiceType<Unit> call(DeliveryMainInformationParams countryId) async {
+    return await _deliveryRegisterRepository.deliveryMainInformation(countryId);
   }
 }
 

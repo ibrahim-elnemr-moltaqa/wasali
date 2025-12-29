@@ -11,6 +11,8 @@ class CacheUserEntity extends Equatable {
   final PhoneEntity mobile;
   final PhoneEntity whatsApp;
   final String? gender;
+  final String? storeName; 
+  final String? storeImage;
 
   const CacheUserEntity({
     required this.id,
@@ -21,11 +23,13 @@ class CacheUserEntity extends Equatable {
     this.gender,
     this.fName,
     this.lName,
+    this.storeName,
+    this.storeImage
   });
 
   @override
   List<Object?> get props =>
-      [id, name, avatar, mobile, whatsApp, gender, fName, lName];
+      [id, name, avatar, mobile, whatsApp, gender, fName, lName, storeName, storeImage];
 
   @override
   String toString() {
@@ -38,6 +42,8 @@ class CacheUserEntity extends Equatable {
         "[Gender] $gender\n"
         "[fName] $fName\n"
         "[lName] $lName\n"
+        "[storeName] $storeName\n"
+        "[storeImage] $storeImage\n"
         "-----------------------------------------";
   }
 }

@@ -10,7 +10,7 @@ class DeleteProductUseCase extends IUseCase<Unit, int> {
   DeleteProductUseCase(this._repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return _repository.deleteProduct(params);
+  DomainServiceType<Unit> call(int countryId) {
+    return _repository.deleteProduct(countryId);
   }
 }

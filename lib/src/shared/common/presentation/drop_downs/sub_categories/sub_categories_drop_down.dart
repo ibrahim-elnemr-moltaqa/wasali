@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
@@ -17,6 +18,8 @@ class SubCategoriesDropDown extends StatelessWidget {
     this.selectedCategory,
     this.onMultiChanged,
     this.onSingleChanged,
+    this.categoryId,
+    this.endPoint,
   });
 
   final DropDownSelectionType selectionType;
@@ -28,6 +31,8 @@ class SubCategoriesDropDown extends StatelessWidget {
   // single
   final CategoryEntity? selectedCategory;
   final void Function(CategoryEntity?)? onSingleChanged;
+  final int? categoryId;
+  final String? endPoint;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +41,15 @@ class SubCategoriesDropDown extends StatelessWidget {
         return _MultiSubCategoriesDropDown(
           subCategories: subCategories,
           onChanged: onMultiChanged,
+          categoryId: categoryId,
         );
 
       case DropDownSelectionType.single:
         return _SingleSubCategoryDropDown(
           selectedCategory: selectedCategory,
           onChanged: onSingleChanged,
+          categoryId: categoryId,
+          endPoint: endPoint,
         );
     }
   }
@@ -50,10 +58,12 @@ class SubCategoriesDropDown extends StatelessWidget {
 class _MultiSubCategoriesDropDown extends StatelessWidget {
   const _MultiSubCategoriesDropDown({
     this.subCategories,
+    this.categoryId,
     this.onChanged,
   });
 
   final List<CategoryEntity>? subCategories;
+  final int? categoryId;
   final void Function(List<CategoryEntity>?)? onChanged;
 
   @override
@@ -65,7 +75,7 @@ class _MultiSubCategoriesDropDown extends StatelessWidget {
       title: appLocalizer.sub_categories,
       hint: appLocalizer.sub_categories,
       borderRadius: 12,
-      cubit: SubCategoriesDropDownCubit(),
+      cubit: SubCategoriesDropDownCubit(categoryId: categoryId),
     );
   }
 }
@@ -74,9 +84,13 @@ class _SingleSubCategoryDropDown extends StatelessWidget {
   const _SingleSubCategoryDropDown({
     this.selectedCategory,
     this.onChanged,
+    this.categoryId,
+    this.endPoint,
   });
 
   final CategoryEntity? selectedCategory;
+  final int? categoryId;
+  final String? endPoint;
   final void Function(CategoryEntity?)? onChanged;
 
   @override
@@ -88,7 +102,7 @@ class _SingleSubCategoryDropDown extends StatelessWidget {
       title: appLocalizer.section,
       hint: appLocalizer.select_section,
       borderRadius: 12,
-      cubit: SubCategoriesDropDownCubit(),
+      cubit: SubCategoriesDropDownCubit(categoryId: categoryId, endPoint: endPoint),
     );
   }
 }

@@ -31,9 +31,9 @@ class WorkingDayModel {
   Map<String, dynamic> toJson() {
     return {
       if (method != null) '_method': method,
-      'day[]': day,
-      'from[]': from,
-      'to[]': to,
+      'day': day,
+      'from': from,
+      'to': to,
     };
   }
 

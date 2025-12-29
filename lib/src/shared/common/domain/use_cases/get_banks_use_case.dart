@@ -10,7 +10,7 @@ class GetBanksUseCase extends IUseCase<List<CommonEntity>, NoParams> {
   GetBanksUseCase(this._commonRepository);
 
   @override
-  DomainServiceType<List<CommonEntity>> call(NoParams params) {
+  DomainServiceType<List<CommonEntity>> call(NoParams countryId) {
     return _commonRepository.getBanks();
   }
 }

@@ -12,14 +12,14 @@ import '../entity/specialization_entity.dart';
 import '../use_cases/send_rate_use_case.dart';
 
 abstract class CommonRepository {
-  DomainServiceType<List<CommonEntity>> getCities();
-  DomainServiceType<List<CommonEntity>> getAreas();
+  DomainServiceType<List<CommonEntity>> getCities({int? areaId});
+  DomainServiceType<List<CommonEntity>> getAreas({int? countryId});
   DomainServiceType<List<CommonEntity>> getCountries();
   DomainServiceType<List<SizeEntity>> getSizes();
   DomainServiceType<List<CommonEntity>> getBanks();
   DomainServiceType<List<CommonEntity>> getVehicles();
   DomainServiceType<List<CategoryEntity>> getMainCategories();
-  DomainServiceType<List<CategoryEntity>> getSubCategories({int? categoryId});
+  DomainServiceType<List<CategoryEntity>> getSubCategories({int? categoryId, String? endPoint});
   DomainServiceType<List<LanguageEntity>> getLanguages();
   DomainServiceType<List<SpecializationEntity>> getSpecializations();
   DomainServiceType<List<EducationalStageEntity>> getEducationalStages();

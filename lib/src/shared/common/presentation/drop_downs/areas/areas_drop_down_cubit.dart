@@ -6,7 +6,8 @@ import 'package:wasli/src/shared/common/domain/use_cases/get_areas_use_case.dart
 import '../drop_down_cubit.dart';
 
 class AreasDropDownCubit extends DropDownCubit<CommonEntity> {
-  AreasDropDownCubit();
+  AreasDropDownCubit({this.countryId});
+  final int? countryId;
 
   final GetAreasUseCase _areasUseCase = injector();
 
@@ -14,7 +15,7 @@ class AreasDropDownCubit extends DropDownCubit<CommonEntity> {
   void fetch() async {
     if (state.isSuccess) return;
     emit(const Async.loading());
-    final result = await _areasUseCase(NoParams());
+    final result = await _areasUseCase(countryId);
     result.fold(
       (failer) {
         emit(Async.failure(failer));

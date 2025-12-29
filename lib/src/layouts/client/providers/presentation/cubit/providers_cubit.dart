@@ -75,7 +75,9 @@ class ProvidersCubit extends Cubit<ProvidersState> {
 
   Future<void> getSubCategories(int? categoryId) async {
     emit(state.copyWith(subcategoriesState: const Async.loading()));
-    final result = await getSubCategoriesUseCase(categoryId);
+    final result = await getSubCategoriesUseCase(
+      GetSubCategoriesParams(categoryId: categoryId!),
+    );
     result.fold(
       (failure) {
         emit(state.copyWith(subcategoriesState: Async.failure(failure)));

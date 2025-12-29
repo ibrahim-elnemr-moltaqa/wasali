@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/core.dart';
 import '../repository/authentication_repository.dart';
 
@@ -10,7 +11,7 @@ class LogOutUseCase extends IUseCase<void, void> {
   LogOutUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(void params) async {
+  Future<Either<Failure, void>> call(void countryId) async {
     return await _repository.logOut();
   }
 }

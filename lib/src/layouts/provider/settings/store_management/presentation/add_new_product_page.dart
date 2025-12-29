@@ -84,6 +84,8 @@ class _AddNewProductPageState extends State<AddNewProductPage> {
                         selectedSection = value;
                       });
                     },
+                    categoryId: selectedSection?.id,
+                    endPoint: 'profle-sub-categories',
                   ),
                   SizesDropDown(
                     onChanged: (values) {

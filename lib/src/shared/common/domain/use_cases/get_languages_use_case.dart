@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../entity/language_entity.dart';
 import '../repository/common_repository.dart';
 
@@ -10,7 +11,7 @@ class GetLanguagesUseCase extends IUseCase<List<LanguageEntity>, NoParams> {
 
   GetLanguagesUseCase(this._repository);
   @override
-  Future<Either<Failure, List<LanguageEntity>>> call(NoParams params) async {
+  Future<Either<Failure, List<LanguageEntity>>> call(NoParams countryId) async {
     return await _repository.getLanguages();
   }
 }

@@ -51,7 +51,7 @@ class PackageItemWidget extends StatelessWidget {
                       ),
                       const Gap(4),
                       Text(
-                        '${appLocalizer.packageDuration}: ${package?.duration}', // Assuming localizer keys
+                        '${appLocalizer.packageDuration}: ${package?.duration} ${appLocalizer.day}', // Assuming localizer keys
                         style: TextStyles.regular12
                             .copyWith(color: AppColors.grey2Color),
                       ),

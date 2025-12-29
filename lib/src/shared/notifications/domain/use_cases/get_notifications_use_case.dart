@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../entities/notifications_result.dart';
 import '../repository/notification_repository.dart';
 
@@ -13,7 +14,7 @@ class GetNotificationsUseCase
 
   @override
   Future<Either<Failure, NotificationsResult>> call(
-      PaginatedInput params) async {
-    return await _repository.getNotifications(params);
+      PaginatedInput countryId) async {
+    return await _repository.getNotifications(countryId);
   }
 }

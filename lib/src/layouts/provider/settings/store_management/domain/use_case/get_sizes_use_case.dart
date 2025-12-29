@@ -5,14 +5,15 @@ import 'package:wasli/src/layouts/provider/settings/store_management/domain/repo
 import 'package:wasli/src/layouts/provider/settings/store_management/domain/use_case/get_products_use_case.dart';
 
 @injectable
-class GetSizesUseCase extends IUseCase<List<SizeEntity>, ManagementFetchParams> {
+class GetSizesUseCase
+    extends IUseCase<List<SizeEntity>, ManagementFetchParams> {
   final SizesRepository storeManagementRepository;
 
   GetSizesUseCase(this.storeManagementRepository);
 
   @override
-  DomainServiceType<List<SizeEntity>> call(ManagementFetchParams params) {
+  DomainServiceType<List<SizeEntity>> call(ManagementFetchParams countryId) {
     return storeManagementRepository.getSizes(
-        name: params.name, active: params.active);
+        name: countryId.name, active: countryId.active);
   }
 }

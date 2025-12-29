@@ -10,8 +10,8 @@ class DeleteImageUseCase extends IUseCase<Unit, DeleteImageParams> {
   DeleteImageUseCase(this.repository);
 
   @override
-  DomainServiceType<Unit> call(DeleteImageParams params) async {
-    return await repository.deleteImage(params.imageId, params.type);
+  DomainServiceType<Unit> call(DeleteImageParams countryId) async {
+    return await repository.deleteImage(countryId.imageId, countryId.type);
   }
 }
 

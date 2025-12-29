@@ -52,8 +52,7 @@ class _StoreDataTabState extends State<StoreDataTab> {
             .map((storePhone) {
               try {
                 return IntelPhoneNumberEntity.fromCompleteNumber(
-                  completeNumber:
-                      storePhone.phone.replaceFirstCharWithCountryCode('+966'),
+                  completeNumber: storePhone.phone,
                 );
               } catch (e) {
                 debugPrint(
@@ -187,6 +186,7 @@ class _StoreDataTabState extends State<StoreDataTab> {
                     hintText: appLocalizer.store_description,
                     controller: storeDescriptionController,
                     maxLines: 5,
+                    minLines: 5,
                     maxLength: 300,
                     showCounter: true,
                     validate: (text) => Validator(text).defaultValidator,
@@ -220,6 +220,7 @@ class _StoreDataTabState extends State<StoreDataTab> {
                           onMultiChanged: (value) {
                             subCategories.value = value ?? [];
                           },
+                          categoryId: category.value?.id,
                         );
                       }),
                   const SizedBox(height: 20),
@@ -238,13 +239,18 @@ class _StoreDataTabState extends State<StoreDataTab> {
             }
           },
           builder: (context, state) {
-            return AppButton(
-              isLoading: state.isLoading,
-              text: appLocalizer.requestEdit,
-              onPressed: () {
-                onUpdateStoreData(context);
-              },
-            ).paddingAll(24);
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppButton(
+                  isLoading: state.isLoading,
+                  text: appLocalizer.requestEdit,
+                  onPressed: () {
+                    onUpdateStoreData(context);
+                  },
+                ).paddingAll(24),
+              ],
+            );
           },
         ),
       ),

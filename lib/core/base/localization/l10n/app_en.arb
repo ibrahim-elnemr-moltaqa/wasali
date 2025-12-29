@@ -241,7 +241,7 @@
   "logOut": "Log out",
   "deleteAccount": "Delete account",
   "logoutMessage": "Are you sure you want to log out?",
-  "deleteAccountMessage": "If you want to delete the account, please note that all your data and information associated with the account will be permanently deleted and cannot be recovered.",
+  "deleteAccountMessage": "All your data will be permanently deleted and you will not be able to recover it.",
   "profileUpdateSuccessMessage": "Your profile has been successfully updated",
   "birthDate": "Birth date",
   "birthDateHint": "Day/Month/Year",
@@ -621,7 +621,7 @@
   "undo": "Undo",
   "wantToDeleteAccount": "Do you want to delete the account?",
   "deleteAccountPermanentWarning": "All your data will be permanently deleted and cannot be recovered.",
-  "invalidVehiclePlateNumber" : "Vehicle plate number must be maximum 14 characters long.",
+  "invalidVehiclePlateNumber" : "Vehicle plate number must be maximum 13 characters long.",
   "requestEdit" : "Request Edit",
   "socialMedia" : "Social Media",
   "technicalSupport" : "Technical Support"

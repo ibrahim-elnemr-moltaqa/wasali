@@ -10,7 +10,7 @@ class DeleteSizeUseCase extends IUseCase<Unit, int> {
   DeleteSizeUseCase(this.repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return repository.deleteSize(sizeId: params);
+  DomainServiceType<Unit> call(int countryId) {
+    return repository.deleteSize(sizeId: countryId);
   }
 }

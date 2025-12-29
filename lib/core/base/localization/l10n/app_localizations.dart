@@ -1385,7 +1385,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteAccountMessage.
   ///
   /// In en, this message translates to:
-  /// **'If you want to delete the account, please note that all your data and information associated with the account will be permanently deleted and cannot be recovered.'**
+  /// **'All your data will be permanently deleted and you will not be able to recover it.'**
   String get deleteAccountMessage;
 
   /// No description provided for @profileUpdateSuccessMessage.
@@ -3527,7 +3527,7 @@ abstract class AppLocalizations {
   /// No description provided for @invalidVehiclePlateNumber.
   ///
   /// In en, this message translates to:
-  /// **'Vehicle plate number must be maximum 14 characters long.'**
+  /// **'Vehicle plate number must be maximum 13 characters long.'**
   String get invalidVehiclePlateNumber;
 
   /// No description provided for @requestEdit.

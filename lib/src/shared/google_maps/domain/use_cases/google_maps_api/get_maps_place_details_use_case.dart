@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../models/address_entity.dart';
 import '../../repository/maps_repository.dart';
 
@@ -13,8 +14,8 @@ class GetMapsPlaceDetailsUseCase
   );
   @override
   Future<Either<Failure, MapAddressEntity>> call(
-      GetMapsPlaceDetailsParams params) async {
-    return await _repository.getPlaceDetails(params.placeID);
+      GetMapsPlaceDetailsParams countryId) async {
+    return await _repository.getPlaceDetails(countryId.placeID);
   }
 }
 

@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/core.dart';
 import '../entities/paginated_entity.dart';
 import '../repositories/pagination_repo.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class FetchPaginatedDataUseCase<T>
@@ -10,8 +11,8 @@ class FetchPaginatedDataUseCase<T>
   FetchPaginatedDataUseCase(this.repository);
 
   @override
-  DomainServiceType<PagedResponse<T>> call(PaginatedParams<T> params) {
-    return repository.fetchPaginated(params);
+  DomainServiceType<PagedResponse<T>> call(PaginatedParams<T> countryId) {
+    return repository.fetchPaginated(countryId);
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/core.dart';
 
+import '../../../../../core/core.dart';
 import '../../../../../material/inputs/intel_phone/phone_field.dart';
 import '../repository/authentication_repository.dart';
 
@@ -12,8 +12,8 @@ class VerifyOtpUseCase extends IUseCase<Unit, String> {
   VerifyOtpUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Unit>> call(String params) async {
-    return await _repository.verifyOtp(params);
+  Future<Either<Failure, Unit>> call(String countryId) async {
+    return await _repository.verifyOtp(countryId);
   }
 }
 

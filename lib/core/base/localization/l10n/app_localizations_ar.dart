@@ -673,7 +673,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get deleteAccountMessage =>
-      'اذا كنت تريد حذف الحساب، يرجى ملاحظة أن جميع بياناتك ومعلوماتك المرتبطة بالحساب سيتم حذفها نهائيًا ولن يمكن استعادتها.';
+      'سيتم حذف جميع بياناتك نهائي ولن تتمكن من استعادتها.';
 
   @override
   String get profileUpdateSuccessMessage => 'تم تحديث الملف الشخصي بنجاح';
@@ -1774,7 +1774,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get invalidVehiclePlateNumber =>
-      'رقم لوحة المركبه يجب ان يكون على الأكثر 14 حرف';
+      'رقم لوحة المركبه يجب ان يكون على الأكثر 13 حرف';
 
   @override
   String get requestEdit => 'طلب تعديل';

@@ -9,7 +9,7 @@ class GetMainCategoriesUseCase
   GetMainCategoriesUseCase(this._repository);
   final CommonRepository _repository;
   @override
-  DomainServiceType<List<CategoryEntity>> call(NoParams params) {
+  DomainServiceType<List<CategoryEntity>> call(NoParams countryId) {
     return _repository.getMainCategories();
   }
 }

@@ -10,6 +10,6 @@ class GetDeliveryUseCase extends IUseCase<DeliveryUserEntity, NoParams> {
   GetDeliveryUseCase(this.repository);
 
   @override
-  DomainServiceType<DeliveryUserEntity> call(NoParams params) async =>
+  DomainServiceType<DeliveryUserEntity> call(NoParams countryId) async =>
       await repository.getDeliveryUser();
 }

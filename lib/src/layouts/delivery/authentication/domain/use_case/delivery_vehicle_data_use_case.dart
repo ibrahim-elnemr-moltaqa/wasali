@@ -14,8 +14,8 @@ class DeliveryVehicleDataUseCase extends IUseCase<Unit, DeliveryVehicleParams> {
   DeliveryVehicleDataUseCase(this.repository);
 
   @override
-  DomainServiceType<Unit> call(DeliveryVehicleParams params) async =>
-      await repository.deliveryVehicleData(params);
+  DomainServiceType<Unit> call(DeliveryVehicleParams countryId) async =>
+      await repository.deliveryVehicleData(countryId);
 }
 
 class DeliveryVehicleParams extends Equatable {

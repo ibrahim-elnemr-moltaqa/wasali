@@ -11,7 +11,7 @@ class UpdateProductUseCase extends IUseCase<ProductEntity, ProductBody> {
   UpdateProductUseCase(this._repository);
 
   @override
-  DomainServiceType<ProductEntity> call(ProductBody params) {
-    return _repository.updateProduct(params);
+  DomainServiceType<ProductEntity> call(ProductBody countryId) {
+    return _repository.updateProduct(countryId);
   }
 }

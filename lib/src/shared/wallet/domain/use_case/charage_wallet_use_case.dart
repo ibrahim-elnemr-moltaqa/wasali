@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../repository/wallet_repository.dart';
 
 @injectable
@@ -9,7 +10,7 @@ class CharageWalletUseCase extends IUseCase<String, int> {
 
   CharageWalletUseCase(this._repository);
   @override
-  Future<Either<Failure, String>> call(int params) async {
-    return await _repository.charageBalance(params);
+  Future<Either<Failure, String>> call(int countryId) async {
+    return await _repository.charageBalance(countryId);
   }
 }

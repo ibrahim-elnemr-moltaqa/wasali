@@ -10,14 +10,14 @@ class ProviderMainInformationUseCase
   final ProviderAuthenticationRepository _providerRegisterRepository;
   ProviderMainInformationUseCase(this._providerRegisterRepository);
   @override
-  Future<Either<Failure, Unit>> call(MainInformationsParams params) async {
-    if (!params.hasAnyField) {
+  Future<Either<Failure, Unit>> call(MainInformationsParams countryId) async {
+    if (!countryId.hasAnyField) {
       return const Left(
         Failure(message: 'No fields to update'),
       );
     }
     return await _providerRegisterRepository
-        .providerRegisterMainInformations(params);
+        .providerRegisterMainInformations(countryId);
   }
 }
 
@@ -30,7 +30,12 @@ class MainInformationsParams extends Equatable {
   final bool isUpdate;
 
   const MainInformationsParams(
-      {this.name, this.mobile, this.codeMobile, this.whatsApp, this.codeWhatsapp, this.isUpdate = false});
+      {this.name,
+      this.mobile,
+      this.codeMobile,
+      this.whatsApp,
+      this.codeWhatsapp,
+      this.isUpdate = false});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
@@ -67,7 +72,7 @@ class MainInformationsParams extends Equatable {
     String? mobile,
     String? mobileCode,
     String? whatsApp,
-    String? whatsAppCode, 
+    String? whatsAppCode,
   }) {
     return MainInformationsParams(
       name: name ?? this.name,
@@ -79,5 +84,6 @@ class MainInformationsParams extends Equatable {
   }
 
   @override
-  List<Object?> get props => [name, mobile, codeMobile, whatsApp, codeWhatsapp, isUpdate];
+  List<Object?> get props =>
+      [name, mobile, codeMobile, whatsApp, codeWhatsapp, isUpdate];
 }

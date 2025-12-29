@@ -10,7 +10,7 @@ class CreateSizeUseCase extends IUseCase<SizeEntity, String> {
   CreateSizeUseCase(this.repository);
 
   @override
-  DomainServiceType<SizeEntity> call(String params) {
-    return repository.createSize(sizeName: params);
+  DomainServiceType<SizeEntity> call(String countryId) {
+    return repository.createSize(sizeName: countryId);
   }
 }

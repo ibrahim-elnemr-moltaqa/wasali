@@ -681,7 +681,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteAccountMessage =>
-      'If you want to delete the account, please note that all your data and information associated with the account will be permanently deleted and cannot be recovered.';
+      'All your data will be permanently deleted and you will not be able to recover it.';
 
   @override
   String get profileUpdateSuccessMessage =>
@@ -1797,7 +1797,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidVehiclePlateNumber =>
-      'Vehicle plate number must be maximum 14 characters long.';
+      'Vehicle plate number must be maximum 13 characters long.';
 
   @override
   String get requestEdit => 'Request Edit';

@@ -10,7 +10,7 @@ class GetPackagesUseCase extends IUseCase<List<PackageEntity>, NoParams> {
   GetPackagesUseCase(this._repository);
 
   @override
-  DomainServiceType<List<PackageEntity>> call(NoParams params) {
+  DomainServiceType<List<PackageEntity>> call(NoParams countryId) {
     return _repository.getPackages();
   }
 }

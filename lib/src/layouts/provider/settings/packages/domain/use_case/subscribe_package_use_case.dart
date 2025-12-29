@@ -10,7 +10,7 @@ class SubscribePackageUseCase extends IUseCase<Unit, int> {
   SubscribePackageUseCase(this._repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return _repository.subscribePackage(params);
+  DomainServiceType<Unit> call(int countryId) {
+    return _repository.subscribePackage(countryId);
   }
 }

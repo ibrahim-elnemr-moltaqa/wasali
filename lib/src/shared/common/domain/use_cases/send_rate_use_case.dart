@@ -1,17 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
 
 import '../repository/common_repository.dart';
-import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class SendRateUseCase extends IUseCase<Unit, RateParams> {
   final CommonRepository repository;
   SendRateUseCase(this.repository);
   @override
-
-  Future<Either<Failure, Unit>> call(RateParams params) async {
-    return repository.sendRate(params);
+  Future<Either<Failure, Unit>> call(RateParams countryId) async {
+    return repository.sendRate(countryId);
   }
 }
 

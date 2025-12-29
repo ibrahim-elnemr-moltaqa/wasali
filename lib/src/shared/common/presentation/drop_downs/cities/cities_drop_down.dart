@@ -9,9 +9,11 @@ class CitiesDropDown extends StatelessWidget {
   const CitiesDropDown({
     super.key,
     this.city,
+    this.areaId,
     this.onChanged,
   });
   final CommonEntity? city;
+  final int? areaId;
   final void Function(CommonEntity? value)? onChanged;
 
   @override
@@ -21,8 +23,9 @@ class CitiesDropDown extends StatelessWidget {
       itemDisplay: (displayValue) => displayValue?.name,
       onChanged: onChanged,
       hint: appLocalizer.choose_city,
+      title: appLocalizer.city,
       borderRadius: 12,
-      cubit: CitiesDropDownCubit(),
+      cubit: CitiesDropDownCubit(areaId: areaId),
     );
   }
 }

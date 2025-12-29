@@ -11,7 +11,7 @@ class GetHomeBannersUseCase implements IUseCase<List<BannerModel>, NoParams> {
   GetHomeBannersUseCase(this._repository);
 
   @override
-  DomainServiceType<List<BannerModel>> call(NoParams params) {
+  DomainServiceType<List<BannerModel>> call(NoParams countryId) {
     return _repository.getHomeBanners();
   }
 }

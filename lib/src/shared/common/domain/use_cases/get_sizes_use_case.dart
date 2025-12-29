@@ -9,7 +9,7 @@ class GetSizesUseCase extends IUseCase<List<SizeEntity>, NoParams> {
 
   GetSizesUseCase(this._repository);
   @override
-  DomainServiceType<List<SizeEntity>> call(NoParams params) {
+  DomainServiceType<List<SizeEntity>> call(NoParams countryId) {
     return _repository.getSizes();
   }
 }

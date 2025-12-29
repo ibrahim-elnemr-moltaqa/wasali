@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/core.dart';
 import '../repository/authentication_repository.dart';
 
@@ -11,8 +12,8 @@ class CanUpdateEmailUseCase extends IUseCase<void, CanUpdateEmailParams> {
   CanUpdateEmailUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(CanUpdateEmailParams params) async =>
-      await _repository.canUpdateEmail(params);
+  Future<Either<Failure, void>> call(CanUpdateEmailParams countryId) async =>
+      await _repository.canUpdateEmail(countryId);
 }
 
 class CanUpdateEmailParams extends Equatable {

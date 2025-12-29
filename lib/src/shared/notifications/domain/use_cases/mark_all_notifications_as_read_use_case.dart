@@ -11,7 +11,7 @@ class MarkAllNotificationsAsReadUseCase extends IUseCase<void, NoParams> {
   MarkAllNotificationsAsReadUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(NoParams params) async {
+  Future<Either<Failure, void>> call(NoParams countryId) async {
     return await _repository.markAllNotificationAsRead();
   }
 }

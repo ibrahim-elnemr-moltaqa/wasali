@@ -10,7 +10,7 @@ class GetVehicleUseCase extends IUseCase<List<CommonEntity>, NoParams> {
   GetVehicleUseCase(this._commonRepository);
 
   @override
-  DomainServiceType<List<CommonEntity>> call(NoParams params) {
+  DomainServiceType<List<CommonEntity>> call(NoParams countryId) {
     return _commonRepository.getVehicles();
   }
 }

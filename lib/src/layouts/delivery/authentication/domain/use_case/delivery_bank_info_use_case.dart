@@ -9,8 +9,8 @@ class DeliveryBankInfoUseCase extends IUseCase<Unit, DeliveryBankInfoParams> {
   DeliveryBankInfoUseCase(this._repository);
   final DeliveryAuthenticationRepository _repository;
   @override
-  DomainServiceType<Unit> call(DeliveryBankInfoParams params) async {
-    return await _repository.deliveryBankInfo(params);
+  DomainServiceType<Unit> call(DeliveryBankInfoParams countryId) async {
+    return await _repository.deliveryBankInfo(countryId);
   }
 }
 

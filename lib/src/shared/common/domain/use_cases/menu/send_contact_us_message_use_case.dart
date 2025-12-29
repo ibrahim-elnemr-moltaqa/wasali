@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
+
 import '../../repository/menu_common_repository.dart';
 
 @Injectable()
@@ -11,8 +12,8 @@ class SendContactUsMessageUseCase
 
   SendContactUsMessageUseCase(this._repository);
   @override
-  Future<Either<Failure, void>> call(SendContactUsMessageParams params) async {
-    return await _repository.sendContactUsMessage(params);
+  Future<Either<Failure, void>> call(SendContactUsMessageParams countryId) async {
+    return await _repository.sendContactUsMessage(countryId);
   }
 }
 

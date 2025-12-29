@@ -12,8 +12,8 @@ class CanUpdatePhoneUseCase extends IUseCase<void, CanUpdatePhoneParams> {
   CanUpdatePhoneUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(CanUpdatePhoneParams params) async =>
-      await _repository.canUpdateMobile(params);
+  Future<Either<Failure, void>> call(CanUpdatePhoneParams countryId) async =>
+      await _repository.canUpdateMobile(countryId);
 }
 
 class CanUpdatePhoneParams extends Equatable {

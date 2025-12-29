@@ -65,11 +65,13 @@ class _AddressDetailsTabState extends State<AddressDetailsTab> {
             ),
             AreasDropDown(
               area: area,
+              countryId: country?.id,
               onChanged: (value) => area = value!,
             ),
             CitiesDropDown(
               city: city,
               onChanged: (value) => city = value!,
+              areaId: area?.id,
             ),
             AppTextFormField(
               controller: addressDescriptionController,

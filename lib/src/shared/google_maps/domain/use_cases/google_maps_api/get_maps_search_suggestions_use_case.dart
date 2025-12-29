@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../models/place_suggestion_entity.dart';
 import '../../repository/maps_repository.dart';
 
@@ -13,8 +14,8 @@ class GetSearchSuggestionsUseCase extends IUseCase<
   );
   @override
   Future<Either<Failure, List<MapPlaceSuggestionsEntity>>> call(
-      GetSearchSuggestionsParams params) async {
-    return await _repository.getSearchSuggestions(params.searchText);
+      GetSearchSuggestionsParams countryId) async {
+    return await _repository.getSearchSuggestions(countryId.searchText);
   }
 }
 

@@ -10,9 +10,9 @@ class ProviderStoreAddressUseCase extends IUseCase<Unit, StoreAddressParams> {
   ProviderStoreAddressUseCase(this.providerRegisterRepository);
 
   @override
-  Future<Either<Failure, Unit>> call(StoreAddressParams params) async {
+  Future<Either<Failure, Unit>> call(StoreAddressParams countryId) async {
     return await providerRegisterRepository
-        .providerRegisterStoreAddress(params);
+        .providerRegisterStoreAddress(countryId);
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../data/model/working_day_model.dart';
 import '../repository/working_days_repository.dart';
 
@@ -11,7 +12,7 @@ class UpdateWorkingDayUseCase extends IUseCase<Unit, WorkingDayModel> {
   UpdateWorkingDayUseCase(this._repository);
 
   @override
-  DomainServiceType<Unit> call(WorkingDayModel params) {
-    return _repository.updateWorkingDay(params);
+  DomainServiceType<Unit> call(WorkingDayModel countryId) {
+    return _repository.updateWorkingDay(countryId);
   }
 }

@@ -10,7 +10,7 @@ class UpdateSizeUseCase extends IUseCase<SizeEntity, String> {
   UpdateSizeUseCase(this.repository);
 
   @override
-  DomainServiceType<SizeEntity> call(String params) {
-    return repository.updateSize(name: params);
+  DomainServiceType<SizeEntity> call(String countryId) {
+    return repository.updateSize(name: countryId);
   }
 }

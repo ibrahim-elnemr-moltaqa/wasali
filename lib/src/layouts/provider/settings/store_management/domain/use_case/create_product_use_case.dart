@@ -11,7 +11,7 @@ class CreateProductUseCase extends IUseCase<ProductEntity, ProductBody> {
   CreateProductUseCase(this._repository);
 
   @override
-  DomainServiceType<ProductEntity> call(ProductBody params) {
-    return _repository.createProduct(params);
+  DomainServiceType<ProductEntity> call(ProductBody countryId) {
+    return _repository.createProduct(countryId);
   }
 }

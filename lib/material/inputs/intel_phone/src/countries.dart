@@ -8,7 +8,7 @@ const List<PhoneFieldCountryEntity> _countries = [
     code: "SA",
     dialCode: "966",
     minLength: 9,
-    maxLength: 9,
+    maxLength: 10,
   ),
   PhoneFieldCountryEntity(
     name: "Egypt",
@@ -16,7 +16,7 @@ const List<PhoneFieldCountryEntity> _countries = [
     flag: "🇪🇬",
     code: "EG",
     dialCode: "20",
-    minLength: 11,
+    minLength: 10,
     maxLength: 11,
   ),
   PhoneFieldCountryEntity(

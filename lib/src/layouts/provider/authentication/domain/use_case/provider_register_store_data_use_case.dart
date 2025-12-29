@@ -13,9 +13,9 @@ class ProviderStoreDataUseCase extends IUseCase<Unit, StoreDataParams> {
 
   ProviderStoreDataUseCase(this.providerRegisterRepository);
   @override
-  Future<Either<Failure, Unit>> call(StoreDataParams params) async {
+  Future<Either<Failure, Unit>> call(StoreDataParams countryId) async {
     return await providerRegisterRepository
-        .providerRegisterStoreInformations(params);
+        .providerRegisterStoreInformations(countryId);
   }
 }
 

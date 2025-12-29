@@ -11,7 +11,7 @@ class GetHomeOffersUseCase implements IUseCase<List<OfferModel>, NoParams> {
   GetHomeOffersUseCase(this._repository);
 
   @override
-  DomainServiceType<List<OfferModel>> call(NoParams params) {
+  DomainServiceType<List<OfferModel>> call(NoParams countryId) {
     return _repository.getHomeOffers();
   }
 }

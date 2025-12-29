@@ -31,13 +31,15 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
   }
 
   void addLocalWorkingDay() {
-    final currentList = List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
+    final currentList =
+        List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
     currentList.add(WorkingDayModel());
     emit(state.copyWith(workingDaysState: Async.success(currentList)));
   }
 
   void removeLocalWorkingDay(int index) {
-    final currentList = List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
+    final currentList =
+        List<WorkingDayModel>.from(state.workingDaysState.data ?? []);
     currentList.removeAt(index);
     emit(state.copyWith(workingDaysState: Async.success(currentList)));
   }
@@ -51,6 +53,7 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
       emit(state.copyWith(createWorkingDayState: const Async.success(unit)));
       getWorkingDays();
     });
+    emit(state.copyWith(createWorkingDayState: const Async.initial()));
   }
 
   Future<void> updateWorkingDay(WorkingDayModel workingDay) async {
@@ -62,6 +65,7 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
       emit(state.copyWith(updateWorkingDayState: const Async.success(unit)));
       getWorkingDays();
     });
+    emit(state.copyWith(updateWorkingDayState: const Async.initial()));
   }
 
   Future<void> deleteWorkingDay(int id) async {
@@ -75,5 +79,6 @@ class WorkingDaysCubit extends Cubit<WorkingDaysState> {
       final updatedList = currentList.where((e) => e.id != id).toList();
       emit(state.copyWith(workingDaysState: Async.success(updatedList)));
     });
+    emit(state.copyWith(deleteWorkingDayState: const Async.initial()));
   }
 }

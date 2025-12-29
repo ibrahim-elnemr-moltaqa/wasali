@@ -12,8 +12,8 @@ class RegiserUseCase extends IUseCase<void, RegisterParams> {
   RegiserUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Unit>> call(RegisterParams params) async {
-    return await _repository.register(params);
+  Future<Either<Failure, Unit>> call(RegisterParams countryId) async {
+    return await _repository.register(countryId);
   }
 }
 

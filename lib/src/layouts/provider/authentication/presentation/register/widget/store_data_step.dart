@@ -68,7 +68,6 @@ class _StoreDataStepState extends State<StoreDataStep> {
         subCategoryIds: subCategories.value!.map((e) => e.id).toList(),
         commercialImage: commercialRegisterImage.value!,
       );
-      log(subCategories.value!.map((e) => e.id).toList().toString());
       context.read<StoreDataCubit>().providerStoreData(params);
     }
   }
@@ -118,6 +117,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
                   hintText: appLocalizer.store_description,
                   controller: storeDescriptionController,
                   maxLines: 5,
+                  minLines: 5,
                   maxLength: 300,
                   showCounter: true,
                   validate: (text) => Validator(text).defaultValidator,
@@ -134,21 +134,26 @@ class _StoreDataStepState extends State<StoreDataStep> {
                 ValueListenableBuilder(
                     valueListenable: categoryId,
                     builder: (context, value, child) {
-                      return MainCategoriesDropDown(
-                        onChanged: (value) {
-                          categoryId.value = value?.id;
-                        },
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: subCategories,
-                    builder: (context, value, child) {
-                      return SubCategoriesDropDown(
-                        selectionType: DropDownSelectionType.multi,
-                        onMultiChanged: (value) {
-                          subCategories.value = value;
-                          subCategories.notifyListeners();
-                        },
+                      return Column(
+                        children: [
+                          MainCategoriesDropDown(
+                            onChanged: (value) {
+                              categoryId.value = value?.id;
+                            },
+                          ),
+                          ValueListenableBuilder(
+                              valueListenable: subCategories,
+                              builder: (context, value, child) {
+                                return SubCategoriesDropDown(
+                                  selectionType: DropDownSelectionType.multi,
+                                  onMultiChanged: (value) {
+                                    subCategories.value = value;
+                                    subCategories.notifyListeners();
+                                  },
+                                  categoryId: categoryId.value,
+                                );
+                              }),
+                        ],
                       );
                     }),
                 ValueListenableBuilder(

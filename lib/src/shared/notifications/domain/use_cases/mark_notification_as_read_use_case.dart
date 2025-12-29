@@ -12,8 +12,8 @@ class MarkNotificationAsReadUseCase
   MarkNotificationAsReadUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(MarkNotificationParams params) async {
-    return await _repository.markNotificationAsRead(params);
+  Future<Either<Failure, void>> call(MarkNotificationParams countryId) async {
+    return await _repository.markNotificationAsRead(countryId);
   }
 }
 

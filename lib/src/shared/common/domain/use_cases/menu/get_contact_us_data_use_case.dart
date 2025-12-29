@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../entity/menu/contact_us_entity.dart';
 import '../../repository/menu_common_repository.dart';
 
@@ -10,7 +11,7 @@ class GetContactUsDataUseCase extends IUseCase<ContactUsEntity, NoParams> {
 
   GetContactUsDataUseCase(this._repository);
   @override
-  Future<Either<Failure, ContactUsEntity>> call(NoParams params) async {
+  Future<Either<Failure, ContactUsEntity>> call(NoParams countryId) async {
     return await _repository.getContactUsData();
   }
 }

@@ -120,10 +120,12 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<CommonEntity>> getCities() async {
+  DomainServiceType<List<CommonEntity>> getCities({int? areaId}) async {
     return await failureCollect(
       () async {
-        final response = await _dioHelper.get(url: 'cities');
+        final response = await _dioHelper.get(
+            url: 'cities',
+            queryParameters: {if (areaId != null) 'area_id': areaId});
         final List date = response['data']['data'] ?? [];
         final List<CommonEntity> cities =
             date.map((e) => CommonEntity.fromJson(e)).toList();
@@ -133,10 +135,12 @@ class CommonRepositoryImp implements CommonRepository {
   }
 
   @override
-  DomainServiceType<List<CommonEntity>> getAreas() async {
+  DomainServiceType<List<CommonEntity>> getAreas({int? countryId}) async {
     return await failureCollect(
       () async {
-        final response = await _dioHelper.get(url: 'areas');
+        final response = await _dioHelper.get(
+            url: 'areas',
+            queryParameters: {if (countryId != null) 'country_id': countryId});
         final List date = response['data']['data'] ?? [];
         final List<CommonEntity> areas =
             date.map((e) => CommonEntity.fromJson(e)).toList();
@@ -160,15 +164,17 @@ class CommonRepositoryImp implements CommonRepository {
 
   @override
   DomainServiceType<List<CategoryEntity>> getSubCategories(
-      {int? categoryId}) async {
+      {int? categoryId, String? endPoint}) async {
     return await failureCollect(
       () async {
         final response = await _dioHelper.get(
-            url: 'sub-categories',
+            url: endPoint ?? 'sub-categories',
             queryParameters: {
               if (categoryId != null) 'category_id': categoryId
             });
-        final List date = response['data']['data'] ?? [];
+        final List date = response['data']['data'] ??
+            response['data']['sub_categories'] ??
+            [];
         final List<CategoryEntity> categories =
             date.map((e) => CategoryEntity.fromJson(e)).toList();
         return Right(categories);

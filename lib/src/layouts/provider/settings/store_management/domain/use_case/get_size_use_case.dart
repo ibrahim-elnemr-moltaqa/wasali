@@ -10,7 +10,7 @@ class GetSizeUseCase extends IUseCase<SizeEntity, int> {
   GetSizeUseCase(this.repository);
 
   @override
-  DomainServiceType<SizeEntity> call(int params) {
-    return repository.getSize(sizeId: params);
+  DomainServiceType<SizeEntity> call(int countryId) {
+    return repository.getSize(sizeId: countryId);
   }
 }

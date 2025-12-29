@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../entity/educational_subject_entity.dart';
 import '../repository/common_repository.dart';
 
@@ -12,7 +13,7 @@ class GetEducationalSubjectUseCase
   GetEducationalSubjectUseCase(this._repository);
   @override
   Future<Either<Failure, List<EducationalSubjectEntity>>> call(
-      NoParams params) async {
+      NoParams countryId) async {
     return await _repository.getEducationalSubject();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/core.dart';
 
+import '../../../../../core/core.dart';
 import '../entities/user_entity.dart';
 import '../repository/authentication_repository.dart';
 
@@ -12,7 +12,7 @@ class ResendOtpUseCase extends IUseCase<void, PhoneEntity> {
   ResendOtpUseCase(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(PhoneEntity params) async {
-    return await _repository.resendOtp(params);
+  Future<Either<Failure, void>> call(PhoneEntity countryId) async {
+    return await _repository.resendOtp(countryId);
   }
 }

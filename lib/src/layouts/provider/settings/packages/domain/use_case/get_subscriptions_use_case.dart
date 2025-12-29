@@ -4,13 +4,14 @@ import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subsc
 import 'package:wasli/src/layouts/provider/settings/packages/domain/repository/packages_subscriptions_repository.dart';
 
 @injectable
-class GetSubscriptionsUseCase extends IUseCase<List<SubscriptionEntity>, NoParams> {
+class GetSubscriptionsUseCase
+    extends IUseCase<List<SubscriptionEntity>, NoParams> {
   final PackagesSubscriptionsRepository _repository;
 
   GetSubscriptionsUseCase(this._repository);
 
   @override
-  DomainServiceType<List<SubscriptionEntity>> call(NoParams params) {
+  DomainServiceType<List<SubscriptionEntity>> call(NoParams countryId) {
     return _repository.getSubscriptions();
   }
 }

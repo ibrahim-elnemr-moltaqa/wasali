@@ -22,7 +22,8 @@ class GetProductsUseCase
   GetProductsUseCase(this._repository);
 
   @override
-  DomainServiceType<List<ProductEntity>> call(ManagementFetchParams params) {
-    return _repository.getProducts(name: params.name, active: params.active);
+  DomainServiceType<List<ProductEntity>> call(ManagementFetchParams countryId) {
+    return _repository.getProducts(
+        name: countryId.name, active: countryId.active);
   }
 }

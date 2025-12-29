@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../entities/transaction_entity.dart';
 import '../repository/wallet_repository.dart';
 
@@ -11,7 +12,7 @@ class GetTransactionsUseCase
 
   GetTransactionsUseCase(this._repository);
   @override
-  Future<Either<Failure, List<TransactionEntity>>> call(NoParams params) async {
+  Future<Either<Failure, List<TransactionEntity>>> call(NoParams countryId) async {
     return await _repository.getTransactions();
   }
 }

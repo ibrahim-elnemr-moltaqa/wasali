@@ -10,7 +10,7 @@ class ChangeSizeStatusUseCase extends IUseCase<Unit, int> {
   ChangeSizeStatusUseCase(this.repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return repository.changeSizeStatus(sizeId: params);
+  DomainServiceType<Unit> call(int countryId) {
+    return repository.changeSizeStatus(sizeId: countryId);
   }
 }

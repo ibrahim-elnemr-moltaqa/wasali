@@ -10,7 +10,7 @@ class ChangeProductStatusUseCase extends IUseCase<Unit, int> {
   ChangeProductStatusUseCase(this._repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return _repository.changeProductStatus(params);
+  DomainServiceType<Unit> call(int countryId) {
+    return _repository.changeProductStatus(countryId);
   }
 }

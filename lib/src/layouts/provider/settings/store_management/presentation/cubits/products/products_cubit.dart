@@ -107,4 +107,10 @@ class ProductsCubit extends Cubit<ProductsState> {
       ));
     });
   }
+
+  @override
+  void emit(ProductsState state) {
+    if (isClosed) return;
+    super.emit(state);
+  }
 }

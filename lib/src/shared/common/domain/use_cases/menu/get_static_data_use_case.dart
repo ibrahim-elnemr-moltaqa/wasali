@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../entity/menu/static_page_type_enum.dart';
 import '../../repository/menu_common_repository.dart';
 
@@ -10,7 +11,7 @@ class GetStaticDataUseCase extends IUseCase<String, StaticPageTypeEnum> {
 
   GetStaticDataUseCase(this._repository);
   @override
-  Future<Either<Failure, String>> call(StaticPageTypeEnum params) async {
-    return await _repository.getStaticPageData(params);
+  Future<Either<Failure, String>> call(StaticPageTypeEnum countryId) async {
+    return await _repository.getStaticPageData(countryId);
   }
 }

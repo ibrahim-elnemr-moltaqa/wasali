@@ -13,8 +13,8 @@ class LoginUseCase extends IUseCase<Unit, LoginParams> {
   LoginUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Unit>> call(LoginParams params) async {
-    return await _repository.login(params);
+  Future<Either<Failure, Unit>> call(LoginParams countryId) async {
+    return await _repository.login(countryId);
   }
 }
 

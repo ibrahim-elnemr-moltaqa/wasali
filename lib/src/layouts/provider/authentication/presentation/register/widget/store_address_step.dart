@@ -75,25 +75,40 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
                 ValueListenableBuilder(
                     valueListenable: countryId,
                     builder: (context, value, child) {
-                      return CountriesDropDown(
-                        onChanged: (value) {
-                          countryId.value = value?.id;
-                        },
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: areaId,
-                    builder: (context, value, child) {
-                      return AreasDropDown(
-                        onChanged: (value) => areaId.value = value?.id,
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: cityId,
-                    builder: (context, value, child) {
-                      return CitiesDropDown(
-                        onChanged: (value) => cityId.value = value?.id,
-                      );
+                      return ValueListenableBuilder(
+                          valueListenable: areaId,
+                          builder: (context, value, child) {
+                            return Column(
+                              children: [
+                                CountriesDropDown(
+                                  onChanged: (value) {
+                                    countryId.value = value?.id;
+                                  },
+                                ),
+                                if (countryId.value == null) ...[
+                                  const SizedBox.shrink()
+                                ] else ...[
+                                  AreasDropDown(
+                                    onChanged: (value) =>
+                                        areaId.value = value?.id,
+                                    countryId: countryId.value,
+                                  ),
+                                ],
+                                ValueListenableBuilder(
+                                    valueListenable: cityId,
+                                    builder: (context, value, child) {
+                                      if (areaId.value == null) {
+                                        return const SizedBox.shrink();
+                                      }
+                                      return CitiesDropDown(
+                                        onChanged: (value) =>
+                                            cityId.value = value?.id,
+                                        areaId: areaId.value,
+                                      );
+                                    }),
+                              ],
+                            );
+                          });
                     }),
                 AppTextFormField(
                   controller: addressDescriptionController,

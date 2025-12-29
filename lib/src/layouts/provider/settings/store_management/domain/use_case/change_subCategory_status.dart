@@ -10,7 +10,7 @@ class ChangeSubCategoryStatusUseCase extends IUseCase<Unit, int> {
   ChangeSubCategoryStatusUseCase(this.repository);
 
   @override
-  DomainServiceType<Unit> call(int params) {
-    return repository.changeCategoriesStatus(params);
+  DomainServiceType<Unit> call(int countryId) {
+    return repository.changeCategoriesStatus(countryId);
   }
 }

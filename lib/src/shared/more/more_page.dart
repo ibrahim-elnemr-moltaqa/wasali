@@ -17,57 +17,56 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PackagesSubscriptionsCubit()..getSubscriptions(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-            padding: Dimensions.pageMargins,
-            child: Column(
-              children: [
-                LoggedUserCheckerWidget(
-                  loggedBuilder: (user) {
-                    return MoreAppBarWidget(
-                      user: user,
-                    );
-                  },
-                  guestWidget: const MoreAppBarWidget(),
-                ),
-                const SizedBox(height: 20),
-                BlocBuilder<AppAuthenticationBloc, AppAuthenticationState>(
-                  buildWhen: (previous, current) =>
-                      current is AuthAuthenticatedState ||
-                      current is GuestState,
-                  builder: (context, state) {
-                    RoleEnum role;
-                    if (state is AuthAuthenticatedState) {
-                      role = state.role;
-                    } else if (state is GuestState) {
-                      role = state.role;
-                    } else {
-                      role = RoleEnum.guest;
-                    }
-                    return Column(spacing: 8, children: [
-                      Visibility(
-                          visible: role == RoleEnum.provider,
-                          child: const PackageSubscriptionWidget()),
-                      Visibility(
-                          visible: role == RoleEnum.guest,
-                          child: const GuestMoreWidget()),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      ...MoreTileModel.loadRoleMoreItems(role, context).map(
-                          (e) => e.needAuth
-                              ? LoggedUserCheckerWidget(
-                                  loggedBuilder: (user) =>
-                                      TileCard(tileModel: e))
-                              : TileCard(tileModel: e))
-                    ]);
-                  },
-                ),
-              ],
-            )).withSafeArea(),
-      ),
+    return Scaffold(
+      body: SingleChildScrollView(
+          padding: Dimensions.pageMargins,
+          child: Column(
+            children: [
+              LoggedUserCheckerWidget(
+                loggedBuilder: (user) {
+                  return MoreAppBarWidget(
+                    user: user,
+                  );
+                },
+                guestWidget: const MoreAppBarWidget(),
+              ),
+              const SizedBox(height: 20),
+              BlocBuilder<AppAuthenticationBloc, AppAuthenticationState>(
+                buildWhen: (previous, current) =>
+                    current is AuthAuthenticatedState || current is GuestState,
+                builder: (context, state) {
+                  RoleEnum role;
+                  if (state is AuthAuthenticatedState) {
+                    role = state.role;
+                  } else if (state is GuestState) {
+                    role = state.role;
+                  } else {
+                    role = RoleEnum.guest;
+                  }
+                  return Column(spacing: 8, children: [
+                    Visibility(
+                        visible: role == RoleEnum.provider,
+                        child: BlocProvider(
+                          create: (context) =>
+                              PackagesSubscriptionsCubit()..getSubscriptions(),
+                          child: const PackageSubscriptionWidget(),
+                        )),
+                    Visibility(
+                        visible: role == RoleEnum.guest,
+                        child: const GuestMoreWidget()),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    ...MoreTileModel.loadRoleMoreItems(role, context).map((e) =>
+                        e.needAuth
+                            ? LoggedUserCheckerWidget(
+                                loggedBuilder: (user) => TileCard(tileModel: e))
+                            : TileCard(tileModel: e))
+                  ]);
+                },
+              ),
+            ],
+          )).withSafeArea(),
     );
   }
 }

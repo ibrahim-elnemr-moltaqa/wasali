@@ -14,8 +14,9 @@ class GetProvidersUseCase
   GetProvidersUseCase(this._repository);
 
   @override
-  Future<Either<Failure, List<ProviderModel>>> call(GetProvidersParams params) {
-    return _repository.getProviders(params: params);
+  Future<Either<Failure, List<ProviderModel>>> call(
+      GetProvidersParams countryId) {
+    return _repository.getProviders(params: countryId);
   }
 }
 

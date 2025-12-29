@@ -203,7 +203,7 @@ class Validator {
       return appLocalizer.fieldRequired;
     }
 
-    final plateRegex = RegExp(r'^[a-zA-Z0-9]{6,14}$');
+    final plateRegex = RegExp(r'^[a-zA-Z0-9]{1,13}$');
 
     if (!plateRegex.hasMatch(input)) {
       return appLocalizer.invalidVehiclePlateNumber;

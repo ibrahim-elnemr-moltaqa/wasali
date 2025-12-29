@@ -109,12 +109,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>OrderedSet-OrderedSet_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>OrderedSet.xcscheme</key>
+		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -145,6 +140,11 @@
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImageWebPCoder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -184,12 +184,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>flutter_inappwebview_ios-flutter_inappwebview_ios_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>flutter_inappwebview_ios.xcscheme</key>
+		<key>flutter_image_compress_common.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -260,6 +255,11 @@
 			<false/>
 		</dict>
 		<key>image_picker_ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>libwebp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

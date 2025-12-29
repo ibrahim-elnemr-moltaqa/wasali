@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasli/core/core.dart';
+
 import '../../models/address_entity.dart';
 import '../../repository/maps_repository.dart';
 
@@ -13,8 +14,8 @@ class GetMapLocationAddressUseCase
   );
   @override
   Future<Either<Failure, MapAddressEntity>> call(
-      GetMapLocationAddressParams params) async {
-    return await _repository.getLocationAddress(params);
+      GetMapLocationAddressParams countryId) async {
+    return await _repository.getLocationAddress(countryId);
   }
 }
 

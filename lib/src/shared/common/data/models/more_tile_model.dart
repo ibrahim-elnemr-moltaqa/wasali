@@ -197,6 +197,7 @@ class MoreTileModel {
             icon: AppIcons.bank,
             onTap: () {},
             needAuth: true,
+            color: Colors.black,
           ),
           ...generalSettingsItems(context)
         ];

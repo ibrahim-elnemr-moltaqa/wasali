@@ -15,8 +15,8 @@ class UpdateProfileUseCase extends IUseCase<Unit, UpdateProfileParams> {
   UpdateProfileUseCase({required this.repository});
 
   @override
-  Future<Either<Failure, Unit>> call(UpdateProfileParams params) async {
-    return await repository.updateProfile(params);
+  Future<Either<Failure, Unit>> call(UpdateProfileParams countryId) async {
+    return await repository.updateProfile(countryId);
   }
 }
 

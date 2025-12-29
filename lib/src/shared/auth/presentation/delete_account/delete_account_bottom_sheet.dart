@@ -33,22 +33,16 @@ class DeleteAccountBottomSheet extends StatelessWidget {
       },
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                appLocalizer.deleteAccount,
-                style: TextStyles.regular18.copyWith(color: AppColors.text),
-              ),
-              IconButton(
-                  onPressed: () => AppRouter.pop(),
-                  icon: const Icon(Icons.close))
-            ],
+          Text(
+            appLocalizer.wantToDeleteAccount,
+            style: TextStyles.regular18.copyWith(color: AppColors.text),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: Dimensions.p12),
           Text(
             appLocalizer.deleteAccountMessage,
             style: TextStyles.regular14.copyWith(color: AppColors.text2),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: Dimensions.p24),
           BlocBuilder<DeleteAccountCubit, Async<void>>(
@@ -56,25 +50,28 @@ class DeleteAccountBottomSheet extends StatelessWidget {
               return Row(
                 children: [
                   Expanded(
+                    flex: 5,
                     child: AppButton(
-                      text: appLocalizer.cancel,
-                      buttonColor: AppColors.red50,
+                      text: appLocalizer.undo,
+                      buttonColor: AppColors.primary,
                       isLoading: state.isLoading,
                       textStyle:
-                          TextStyles.medium14.copyWith(color: AppColors.red700),
-                      onPressed: AppRouter.pop,
+                          TextStyles.bold16.copyWith(color: AppColors.black),
+                      onPressed: () => AppRouter.pop(),
                     ),
                   ),
                   const SizedBox(width: Dimensions.p12),
                   Expanded(
+                    flex: 5,
                     child: AppButton(
-                      text: appLocalizer.agree,
-                      buttonColor: AppColors.red700,
+                      text: appLocalizer.deleteAccount,
+                      buttonColor: AppColors.lightGreyColor,
                       isLoading: state.isLoading,
-                      textStyle:
-                          TextStyles.regular14.copyWith(color: Colors.white),
-                      onPressed:
-                          context.read<DeleteAccountCubit>().deleteAccount,
+                      textStyle: TextStyles.bold16
+                          .copyWith(color: AppColors.grey2Color),
+                      onPressed: () {
+                        context.read<DeleteAccountCubit>().deleteAccount();
+                      },
                     ),
                   ),
                 ],

@@ -16,7 +16,9 @@ class ApiUserModel extends UserEntity {
       required super.lng,
       super.gender,
       super.fName,
-      super.lName});
+      super.lName,
+      super.storeName,
+      super.storeImage});
   factory ApiUserModel.example() => const ApiUserModel(
       id: 0,
       name: "name",
@@ -49,6 +51,8 @@ class ApiUserModel extends UserEntity {
             : GenderEnum.fromApiValue(json["gender"]),
         fName: json["first_name"],
         lName: json["last_name"],
+        // storeName: json['strore_data']["name"],
+        // storeImage: json['strore_data']["image"],
       );
 }
 
@@ -69,7 +73,7 @@ class PhoneModel extends PhoneEntity {
     return PhoneModel(
         phone: map[
             isWhatsApp ? kWhatsAppAttributeCacheKey : kPhoneAttributeCacheKey],
-        code: map[ kMobileCountryCodeAttributeCacheKey],
+        code: map[kMobileCountryCodeAttributeCacheKey],
         isoCode: "SA");
   }
 

@@ -4,12 +4,18 @@ import 'package:wasli/src/shared/common/domain/entity/categroy_entity.dart';
 import 'package:wasli/src/shared/common/domain/repository/common_repository.dart';
 
 @injectable
-class GetSubCategoriesUseCase extends IUseCase<List<CategoryEntity>, int?> {
+class GetSubCategoriesUseCase extends IUseCase<List<CategoryEntity>, GetSubCategoriesParams> {
   final CommonRepository _repository;
 
   GetSubCategoriesUseCase(this._repository);
   @override
-  DomainServiceType<List<CategoryEntity>> call(int? params) {
-    return _repository.getSubCategories(categoryId: params);
+  DomainServiceType<List<CategoryEntity>> call(GetSubCategoriesParams params) {
+    return _repository.getSubCategories(categoryId: params.categoryId, endPoint: params.endPoint);
   }
+}
+
+class GetSubCategoriesParams {
+  final int? categoryId;
+  final String? endPoint;
+  GetSubCategoriesParams({ this.categoryId, this.endPoint});
 }
