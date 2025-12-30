@@ -408,7 +408,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get agreeFor => 'تأكيد سياية';
 
   @override
-  String get termsAndConditions => 'االشروط والأحكام';
+  String get termsAndConditions => 'الشروط والأحكام';
 
   @override
   String get aboutApp => 'عن التطبيق';
