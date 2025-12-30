@@ -6,7 +6,7 @@ class SubscriptionEntity extends Equatable {
   final int packageId;
   final int userId;
   final num price;
-  final int duration; // num_days
+  final int duration;
   final DateTime startDate;
   final DateTime endDate;
   final PackageEntity package;

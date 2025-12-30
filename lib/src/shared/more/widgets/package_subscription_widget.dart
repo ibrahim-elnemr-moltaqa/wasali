@@ -6,6 +6,7 @@ import 'package:wasli/core/utils/extensions/animated/top_scale_animation.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/material/app_fail_widget.dart';
 import 'package:wasli/material/media/svg_icon.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/data/extension/subscription_ext.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
@@ -18,43 +19,41 @@ class PackageSubscriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
-            builder: (context, state) {
-    return state.subscriptionsState.when(
-      failure: (error) => AppFailWidget(
-        text: error.message,
-      ),
-      success: (subscriptions) =>
-          subscriptionDisplay(subscription: subscriptions.first)
-              .onTapScaleAnimation(
-                  onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => BlocProvider.value(
-                  value: context.read<PackagesSubscriptionsCubit>(),
-                  child: const PackageDetailsPage(),
-                ),
-              ))),
-      loading: () => const CircularProgressIndicator(),
-      successWithoutData: () => subscriptionDisplay().onTapScaleAnimation(
-          onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => BlocProvider.value(
-                  value: context.read<PackagesSubscriptionsCubit>(),
-                  child: const PackagesPage(),
-                ),
-              ))),
-    );
-            },
-          ).setBorder(
+      builder: (context, state) {
+        return state.subscriptionsState.when(
+          failure: (error) => AppFailWidget(
+            text: error.message,
+          ),
+          success: (subscriptions) =>
+              subscriptionDisplay(subscription: subscriptions.first)
+                  .onTapScaleAnimation(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<PackagesSubscriptionsCubit>(),
+                              child: const PackageDetailsPage(),
+                            ),
+                          ))),
+          loading: () => const CircularProgressIndicator(),
+          successWithoutData: () => subscriptionDisplay().onTapScaleAnimation(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider.value(
+                      value: context.read<PackagesSubscriptionsCubit>(),
+                      child: const PackagesPage(),
+                    ),
+                  ))),
+        );
+      },
+    ).setBorder(
       radius: 12,
       padding: const EdgeInsets.all(8),
     );
   }
 
   Row subscriptionDisplay({SubscriptionEntity? subscription}) {
-    final int? restDays =
-        subscription?.endDate.difference(subscription.startDate).inDays;
     return Row(
       children: [
         Expanded(
@@ -73,13 +72,14 @@ class PackageSubscriptionWidget extends StatelessWidget {
                       style: TextStyles.bold14,
                     ),
                     const Gap(4),
-                    if (restDays != null) ...{
+                    if (subscription?.duration != null) ...{
                       Text.rich(
                         TextSpan(children: [
                           TextSpan(text: appLocalizer.rest),
                           const TextSpan(text: ' '),
                           TextSpan(
-                            text: restDays.toString(),
+                            text: subscription!.remainingDuration.inDays
+                                .toString(),
                             style: TextStyles.bold14
                                 .copyWith(color: AppColors.black),
                           ),

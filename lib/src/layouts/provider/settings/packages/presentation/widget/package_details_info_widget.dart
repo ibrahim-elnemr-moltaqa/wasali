@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:wasli/core/core.dart';
 import 'package:wasli/material/media/svg_icon.dart';
+import 'package:wasli/src/layouts/provider/settings/packages/data/extension/subscription_ext.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/domain/entity/subscription_entity.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_tile.dart';
 import 'package:wasli/src/shared/common/presentation/widget/price_widget.dart';
@@ -57,17 +58,9 @@ class PackageDetailsInfoWidget extends StatelessWidget {
               ),
               Builder(
                 builder: (context) {
-                  final totalSeconds =
-                      (subscriptionEntity?.package.duration ?? 0) *
-                          24 *
-                          60 *
-                          60;
-                  final remainingDuration =
-                      subscriptionEntity?.endDate.difference(DateTime.now()) ??
-                          Duration.zero;
-                  final remainingSeconds = remainingDuration.inSeconds;
                   final initialDuration =
-                      (totalSeconds - remainingSeconds).clamp(0, totalSeconds);
+                      subscriptionEntity?.elapsedDuration.inSeconds ?? 0;
+                  final totalSeconds = subscriptionEntity?.totalSeconds ?? 0;
                   return CircularCountDownTimer(
                     duration: totalSeconds,
                     initialDuration: initialDuration,
