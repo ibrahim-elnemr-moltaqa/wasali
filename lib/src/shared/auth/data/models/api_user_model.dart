@@ -5,20 +5,19 @@ import 'package:wasli/src/shared/common/domain/entity/gender_enum.dart';
 import '../../domain/entities/user_entity.dart';
 
 class ApiUserModel extends UserEntity {
-  const ApiUserModel(
-      {required super.id,
-      required super.name,
-      required super.mobile,
-      required super.whatsApp,
-      required super.image,
-      required super.isVerified,
-      required super.lat,
-      required super.lng,
-      super.gender,
-      super.fName,
-      super.lName,
-      super.storeName,
-      super.storeImage});
+  const ApiUserModel({
+    required super.id,
+    required super.name,
+    required super.mobile,
+    required super.whatsApp,
+    required super.image,
+    required super.isVerified,
+    required super.lat,
+    required super.lng,
+    super.gender,
+    super.fName,
+    super.lName,
+  });
   factory ApiUserModel.example() => const ApiUserModel(
       id: 0,
       name: "name",
@@ -51,8 +50,6 @@ class ApiUserModel extends UserEntity {
             : GenderEnum.fromApiValue(json["gender"]),
         fName: json["first_name"],
         lName: json["last_name"],
-        // storeName: json['strore_data']["name"],
-        // storeImage: json['strore_data']["image"],
       );
 }
 

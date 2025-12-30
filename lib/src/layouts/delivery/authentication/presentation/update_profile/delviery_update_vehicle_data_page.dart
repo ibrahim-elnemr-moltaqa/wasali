@@ -104,12 +104,13 @@ class _DeliveryUpdateVehicleDataPageState
                   onRetry: () => context.read<DeliveryCubit>().getDelivery(),
                   onSuccess: (data) {
                     final delivery = data as DeliveryUserEntity;
-                    vehicle.value = delivery.vehicleData.vehicle;
+                    vehicle.value = delivery.vehicleData?.vehicle;
                     vehicleNumberController.text =
-                        delivery.vehicleData.vehicleNumber;
-                    apiVehicleImagesList = delivery.vehicleData.vehicleLicense;
+                        delivery.vehicleData?.vehicleNumber ?? '';
+                    apiVehicleImagesList =
+                        delivery.vehicleData?.vehicleLicense ?? [];
                     apiDrivingLicenseImagesList =
-                        delivery.vehicleData.drivingLicense;
+                        delivery.vehicleData?.drivingLicense ?? [];
                     return SafeArea(
                       child: Form(
                         key: formKey,

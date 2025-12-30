@@ -8,6 +8,7 @@ import 'package:wasli/material/media/network_image.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_cubit.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_item_widget.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 class PackagesPage extends StatefulWidget {
   const PackagesPage({super.key});
@@ -25,13 +26,11 @@ class _PackagesPageState extends State<PackagesPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    
     return Scaffold(
-      appBar: AppBar(
-        title: Text(appLocalizer.packages), // Assuming key
-      ),
+      appBar: CustomAppBar(context, title: Text(appLocalizer.packages)),
       body: BlocBuilder<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
+        buildWhen: (previous, current) =>
+            previous.packagesState != current.packagesState,
         builder: (context, state) {
           return HandleResponseWidget(
             status: state.packagesState,

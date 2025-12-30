@@ -8,6 +8,7 @@ import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/cubit/packages_subscriptions_state.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/packages_page.dart';
 import 'package:wasli/src/layouts/provider/settings/packages/presentation/widget/package_details_info_widget.dart';
+import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 class PackageDetailsPage extends StatelessWidget {
   const PackageDetailsPage({
@@ -17,7 +18,8 @@ class PackageDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
+        context,
         title: Text(appLocalizer.packageDetails),
       ),
       body: Padding(

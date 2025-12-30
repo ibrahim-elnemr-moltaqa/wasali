@@ -43,6 +43,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your session has expired, please log in again.';
 
   @override
+  String get unSupportedZone =>
+      'This area is currently not supported for delivery.';
+
+  @override
   String get saturday => 'Saturday';
 
   @override

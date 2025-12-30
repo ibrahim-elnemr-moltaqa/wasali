@@ -19,8 +19,8 @@ class DeliveryUserEntity extends Equatable {
   final int notificationStatus;
   final bool isActive;
   final bool isVerified;
-  final DeliveryBankInfoEntity deliveryBankInfo;
-  final VehicleDataEntity vehicleData;
+  final DeliveryBankInfoEntity? deliveryBankInfo;
+  final VehicleDataEntity? vehicleData;
 
   const DeliveryUserEntity({
     required this.id,

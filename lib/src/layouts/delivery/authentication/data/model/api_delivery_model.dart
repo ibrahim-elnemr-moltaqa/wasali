@@ -19,8 +19,8 @@ class ApiDeliveryUserModel extends DeliveryUserEntity {
     required super.notificationStatus,
     required super.isActive,
     required super.isVerified,
-    required super.deliveryBankInfo,
-    required super.vehicleData,
+    super.deliveryBankInfo,
+    super.vehicleData,
   });
 
   factory ApiDeliveryUserModel.fromJson(Map<String, dynamic> json) =>
@@ -39,9 +39,12 @@ class ApiDeliveryUserModel extends DeliveryUserEntity {
         notificationStatus: json["notification_status"],
         isActive: json["is_active"],
         isVerified: json["is_verified"],
-        deliveryBankInfo:
-            ApiDeliveryBankInfoModel.fromJson(json["deliveryBankInfo"]),
-        vehicleData: ApiVehicleDataModel.fromJson(json["vehicleData"]),
+        deliveryBankInfo: json["deliveryBankInfo"] == null
+            ? null
+            : ApiDeliveryBankInfoModel.fromJson(json["deliveryBankInfo"]),
+        vehicleData: json["vehicleData"] == null
+            ? null
+            : ApiVehicleDataModel.fromJson(json["vehicleData"]),
       );
 
   @override

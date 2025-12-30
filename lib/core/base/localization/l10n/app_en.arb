@@ -13,6 +13,7 @@
   "connectionIssueTryLater": "There was a connection issue. Please try again later.",
   "noInternetFound": "No internet found, check your connection",
   "unAuthenticatedMessage": "Your session has expired, please log in again.",
+  "unSupportedZone": "This area is currently not supported for delivery.",
   "@-WEEKDAYS-": {
     "description": "----------------- WEEKDAYS Localizations -----------------"
   },

@@ -13,6 +13,7 @@
   "connectionIssueTryLater": "كانت هناك مشكلة في الاتصال. يرجى المحاولة مرة أخرى لاحقًا.",
   "noInternetFound": "لم يتم العثور على اتصال بالإنترنت تحقق من اتصالك بالانترنت",
   "unAuthenticatedMessage": "انتهت الجلسة الخاصة بك , يرجى تسجيل الدخول مرة أخرى.",
+  "unSupportedZone": "هذه المنطقة غير مدعومة للتوصيل حالياً.",
   "@-WEEKDAYS-": {
     "description": "----------------- WEEKDAYS Localizations -----------------"
   },

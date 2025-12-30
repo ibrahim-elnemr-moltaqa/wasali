@@ -73,12 +73,12 @@ class _DeliveryUpdateBankDataPageState
                 onRetry: () => context.read<DeliveryCubit>().getDelivery(),
                 onSuccess: (data) {
                   final delivery = data as DeliveryUserEntity;
-                  ibanController.text = delivery.deliveryBankInfo.iban;
+                  ibanController.text = delivery.deliveryBankInfo?.iban ?? '';
                   identityNumberController.text =
-                      delivery.deliveryBankInfo.nationalId;
+                      delivery.deliveryBankInfo?.nationalId ?? '';
                   bankAccountNumberController.text =
-                      delivery.deliveryBankInfo.accountNumber;
-                  bank.value = delivery.deliveryBankInfo.bank;
+                      delivery.deliveryBankInfo?.accountNumber ?? '';
+                  bank.value = delivery.deliveryBankInfo?.bank;
                   return Form(
                     key: formKey,
                     child: SingleChildScrollView(

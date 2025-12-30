@@ -204,23 +204,28 @@ class _StoreDataTabState extends State<StoreDataTab> {
                   ValueListenableBuilder(
                       valueListenable: category,
                       builder: (context, value, child) {
-                        return MainCategoriesDropDown(
-                          category: category.value,
-                          onChanged: (value) {
-                            category.value = value;
-                          },
-                        );
-                      }),
-                  ValueListenableBuilder(
-                      valueListenable: subCategories,
-                      builder: (context, value, child) {
-                        return SubCategoriesDropDown(
-                          selectionType: DropDownSelectionType.multi,
-                          subCategories: subCategories.value,
-                          onMultiChanged: (value) {
-                            subCategories.value = value ?? [];
-                          },
-                          categoryId: category.value?.id,
+                        return Column(
+                          children: [
+                            MainCategoriesDropDown(
+                              category: category.value,
+                              onChanged: (value) {
+                                category.value = value;
+                              },
+                            ),
+                            ValueListenableBuilder(
+                                valueListenable: subCategories,
+                                builder: (context, value, child) {
+                                  return SubCategoriesDropDown(
+                                    key: ValueKey(category.value?.id),
+                                    selectionType: DropDownSelectionType.multi,
+                                    subCategories: subCategories.value,
+                                    onMultiChanged: (value) {
+                                      subCategories.value = value ?? [];
+                                    },
+                                    categoryId: category.value?.id,
+                                  );
+                                }),
+                          ],
                         );
                       }),
                   const SizedBox(height: 20),

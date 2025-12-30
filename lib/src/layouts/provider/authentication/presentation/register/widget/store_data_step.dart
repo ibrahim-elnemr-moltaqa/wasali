@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -145,6 +144,7 @@ class _StoreDataStepState extends State<StoreDataStep> {
                               valueListenable: subCategories,
                               builder: (context, value, child) {
                                 return SubCategoriesDropDown(
+                                  key: ValueKey(categoryId.value),
                                   selectionType: DropDownSelectionType.multi,
                                   onMultiChanged: (value) {
                                     subCategories.value = value;

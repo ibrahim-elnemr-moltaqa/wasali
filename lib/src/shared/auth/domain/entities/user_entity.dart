@@ -10,8 +10,6 @@ class UserEntity extends Equatable {
   final String name;
   final String? fName;
   final String? lName;
-  final String? storeName;
-  final String? storeImage;
   final PhoneEntity mobile;
   final PhoneEntity whatsApp;
   final String? image;
@@ -32,9 +30,7 @@ class UserEntity extends Equatable {
       required this.lng,
       required this.gender,
       this.fName,
-      this.lName,
-      this.storeName,
-      this.storeImage});
+      this.lName,});
 
   CacheUserEntity get mapToCacheEntity {
     return CacheUserEntity(
@@ -45,9 +41,7 @@ class UserEntity extends Equatable {
         whatsApp: whatsApp,
         gender: gender?.name,
         fName: fName,
-        lName: lName,
-        storeName: storeName,
-        storeImage: storeImage);
+        lName: lName,);
   }
 
   @override
@@ -63,8 +57,6 @@ class UserEntity extends Equatable {
         gender,
         fName,
         lName,
-        storeName,
-        storeImage
       ];
 }
 

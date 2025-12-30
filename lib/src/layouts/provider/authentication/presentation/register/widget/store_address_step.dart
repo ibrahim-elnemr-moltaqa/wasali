@@ -89,6 +89,7 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
                                   const SizedBox.shrink()
                                 ] else ...[
                                   AreasDropDown(
+                                    key: ValueKey(countryId.value),
                                     onChanged: (value) =>
                                         areaId.value = value?.id,
                                     countryId: countryId.value,
@@ -101,6 +102,7 @@ class _StoreAddressStepState extends State<StoreAddressStep> {
                                         return const SizedBox.shrink();
                                       }
                                       return CitiesDropDown(
+                                        key: ValueKey(areaId.value),
                                         onChanged: (value) =>
                                             cityId.value = value?.id,
                                         areaId: areaId.value,

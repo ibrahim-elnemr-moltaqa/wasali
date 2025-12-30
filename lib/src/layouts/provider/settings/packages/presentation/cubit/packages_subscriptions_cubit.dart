@@ -34,14 +34,14 @@ class PackagesSubscriptionsCubit extends Cubit<PackagesSubscriptionsState> {
   }
 
   Future<void> subscribePackage(int packageId) async {
-    emit(state.copyWith(subscribePackageState: const Async.loading()));
+    emit(state.copyWith(subscribePackageState: const Async.loading(), selectedPackage: packageId));
     final result = await _subscribePackage(packageId);
     result.fold(
         (error) =>
-            emit(state.copyWith(subscribePackageState: Async.failure(error))),
+            emit(state.copyWith(subscribePackageState: Async.failure(error), selectedPackage: packageId)),
         (_) {
       emit(state.copyWith(
-          subscribePackageState: const Async.successWithoutData()));
+          subscribePackageState: const Async.successWithoutData(), selectedPackage: packageId));
       getSubscriptions();
     });
   }

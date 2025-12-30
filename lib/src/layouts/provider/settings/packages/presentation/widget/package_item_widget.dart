@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -74,17 +76,23 @@ class PackageItemWidget extends StatelessWidget {
           const Gap(12),
           BlocListener<PackagesSubscriptionsCubit, PackagesSubscriptionsState>(
             listenWhen: (previous, current) =>
-                previous.subscribePackageState != current.subscribePackageState,
+                previous.subscribePackageState !=
+                    current.subscribePackageState &&
+                current.selectedPackage == package?.id,
             listener: (context, state) {
-              if (state.subscribePackageState.isFailure) {
+              if (state.subscribePackageState.isFailure &&
+                  state.selectedPackage == package?.id) {
                 AppLoadingWidget.removeOverlay();
                 AppToasts.error(context,
                     message: state.subscriptionsState.errorMessage ?? '');
-              } else if (state.subscribePackageState.isSuccess) {
+              } else if (state.subscribePackageState.isSuccess &&
+                  state.selectedPackage == package?.id) {
+                log('Subscription successful for package: ${package?.name}');
                 AppLoadingWidget.removeOverlay();
                 Navigator.pop(context);
                 Navigator.pop(context);
-              } else if (state.subscribePackageState.isLoading) {
+              } else if (state.subscribePackageState.isLoading &&
+                  state.selectedPackage == package?.id) {
                 AppLoadingWidget.overlay();
               }
             },

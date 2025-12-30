@@ -43,6 +43,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'انتهت الجلسة الخاصة بك , يرجى تسجيل الدخول مرة أخرى.';
 
   @override
+  String get unSupportedZone => 'هذه المنطقة غير مدعومة للتوصيل حالياً.';
+
+  @override
   String get saturday => 'السبت';
 
   @override

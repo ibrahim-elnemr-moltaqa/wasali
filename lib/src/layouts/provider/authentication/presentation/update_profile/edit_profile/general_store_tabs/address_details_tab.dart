@@ -25,19 +25,23 @@ class AddressDetailsTab extends StatefulWidget {
 
 class _AddressDetailsTabState extends State<AddressDetailsTab> {
   TextEditingController addressDescriptionController = TextEditingController();
-  late CommonEntity? country;
-  late CommonEntity? area;
-  late CommonEntity? city;
+  late ValueNotifier<CommonEntity> country;
+  late ValueNotifier<CommonEntity> area;
+  late ValueNotifier<CommonEntity> city;
   ValueNotifier<LatLng?> latLng = ValueNotifier(null);
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     addressDescriptionController.text =
         widget.storeAddressEntity?.address ?? '';
-    country = widget.storeAddressEntity?.country;
-    area = widget.storeAddressEntity?.area;
-    city = widget.storeAddressEntity?.city;
+    country = ValueNotifier(
+        widget.storeAddressEntity?.country ?? CommonEntity.initial());
+    area = ValueNotifier(
+        widget.storeAddressEntity?.area ?? CommonEntity.initial());
+    city = ValueNotifier(
+        widget.storeAddressEntity?.city ?? CommonEntity.initial());
     final lat = double.tryParse(widget.storeAddressEntity?.lat ?? '');
     final lng = double.tryParse(widget.storeAddressEntity?.lng ?? '');
     if (lat != null && lng != null && isValidLatLng(lat, lng)) {
@@ -54,75 +58,92 @@ class _AddressDetailsTabState extends State<AddressDetailsTab> {
     return BlocProvider(
       create: (context) => StoreAddressCubit(),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            CountriesDropDown(
-              country: country,
-              onChanged: (value) {
-                country = value!;
-              },
-            ),
-            AreasDropDown(
-              area: area,
-              countryId: country?.id,
-              onChanged: (value) => area = value!,
-            ),
-            CitiesDropDown(
-              city: city,
-              onChanged: (value) => city = value!,
-              areaId: area?.id,
-            ),
-            AppTextFormField(
-              controller: addressDescriptionController,
-              hintText: appLocalizer.address_details,
-              label: appLocalizer.address_details,
-              maxLines: 2,
-              minLines: 2,
-              validate: (text) => Validator(text).defaultValidator,
-            ),
-            const SizedBox(height: 6),
-            ValueListenableBuilder(
-                valueListenable: latLng,
-                builder: (context, value, child) {
-                  return YourLocationOnMapWidget(
-                    initialPosition: latLng.value,
-                    onLocationChanged: (address) {
-                      latLng.value = LatLng(address.lat, address.long);
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              ValueListenableBuilder(
+                  valueListenable: country,
+                  builder: (context, value, child) {
+                    return ValueListenableBuilder(
+                        valueListenable: area,
+                        builder: (context, value, child) {
+                          return Column(
+                            children: [
+                              CountriesDropDown(
+                                country: country.value,
+                                onChanged: (value) {
+                                  country.value = value!;
+                                },
+                              ),
+                              AreasDropDown(
+                                key: ValueKey(country.value.id),
+                                area: area.value,
+                                countryId: country.value.id,
+                                onChanged: (value) => area.value = value!,
+                              ),
+                              CitiesDropDown(
+                                key: ValueKey(area.value.id),
+                                city: city.value,
+                                onChanged: (value) => city.value = value!,
+                                areaId: area.value.id,
+                              ),
+                            ],
+                          );
+                        });
+                  }),
+              AppTextFormField(
+                controller: addressDescriptionController,
+                hintText: appLocalizer.address_details,
+                label: appLocalizer.address_details,
+                maxLines: 2,
+                minLines: 2,
+                validate: (text) => Validator(text).defaultValidator,
+              ),
+              const SizedBox(height: 6),
+              ValueListenableBuilder(
+                  valueListenable: latLng,
+                  builder: (context, value, child) {
+                    return YourLocationOnMapWidget(
+                      initialPosition: latLng.value,
+                      onLocationChanged: (address) {
+                        latLng.value = LatLng(address.lat, address.long);
+                      },
+                    );
+                  }),
+              const SizedBox(height: 50),
+              BlocConsumer<StoreAddressCubit, Async>(
+                listener: (context, state) {
+                  if (state.isFailure) {
+                    AppToasts.error(context, message: state.errorMessage ?? '');
+                  } else if (state.isSuccess) {
+                    AppToasts.success(context,
+                        message: appLocalizer.profileUpdateSuccessMessage);
+                  }
+                },
+                builder: (context, state) {
+                  return AppButton(
+                    isLoading: state.isLoading,
+                    text: appLocalizer.requestEdit,
+                    onPressed: () {
+                      context.read<StoreAddressCubit>().providerStoreAddress(
+                            StoreAddressParams(
+                              address: addressDescriptionController.text,
+                              countryId: country.value.id,
+                              areaId: area.value.id,
+                              cityId: city.value.id,
+                              lat: latLng.value?.latitude.toString(),
+                              lng: latLng.value?.longitude.toString(),
+                              isUpdate: true,
+                            ),
+                          );
                     },
                   );
-                }),
-            const SizedBox(height: 50),
-            BlocConsumer<StoreAddressCubit, Async>(
-              listener: (context, state) {
-                if (state.isFailure) {
-                  AppToasts.error(context, message: state.errorMessage ?? '');
-                } else if (state.isSuccess) {
-                  AppToasts.success(context,
-                      message: appLocalizer.profileUpdateSuccessMessage);
-                }
-              },
-              builder: (context, state) {
-                return AppButton(
-                  isLoading: state.isLoading,
-                  text: appLocalizer.requestEdit,
-                  onPressed: () {
-                    context.read<StoreAddressCubit>().providerStoreAddress(
-                          StoreAddressParams(
-                            address: addressDescriptionController.text,
-                            countryId: country?.id,
-                            areaId: area?.id,
-                            cityId: city?.id,
-                            lat: latLng.value?.latitude.toString(),
-                            lng: latLng.value?.longitude.toString(),
-                            isUpdate: true,
-                          ),
-                        );
-                  },
-                );
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     ).paddingHorizontal(20);

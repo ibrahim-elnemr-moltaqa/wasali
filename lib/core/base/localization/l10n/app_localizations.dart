@@ -158,6 +158,12 @@ abstract class AppLocalizations {
   /// **'Your session has expired, please log in again.'**
   String get unAuthenticatedMessage;
 
+  /// No description provided for @unSupportedZone.
+  ///
+  /// In en, this message translates to:
+  /// **'This area is currently not supported for delivery.'**
+  String get unSupportedZone;
+
   /// No description provided for @saturday.
   ///
   /// In en, this message translates to:
