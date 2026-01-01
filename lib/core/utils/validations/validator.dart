@@ -184,9 +184,9 @@ class Validator {
       return appLocalizer.fieldMustNotHaveSpaces;
     }
 
-    if (!RegExp(r'^[0-9]+$').hasMatch(input)) {
-      return appLocalizer.invalidBankAccountNumber;
-    }
+    // if (!RegExp(r'^[0-9]+$').hasMatch(input)) {
+    //   return appLocalizer.invalidBankAccountNumber;
+    // }
 
     // Typical range 8–24 digits
     if (input.length < 8 || input.length > 24) {

@@ -176,17 +176,20 @@ class _DeliveryUpdateProfilePageState extends State<DeliveryUpdateProfilePage> {
                                         if (formKey.currentState!.validate()) {
                                           context
                                               .read<DeliveryMainInfoCubit>()
-                                              .deliveryMainInformation(
-                                                  DeliveryMainInformationParams(
-                                                      fName: firstNameController
-                                                          .text,
-                                                      lName: lastNameController
-                                                          .text,
-                                                      whatsApp: whatsAppNumber!
-                                                          .numberWithZeroIfNot,
-                                                      image: image.value,
-                                                      gender: gender.value,
-                                                      isUpdate: true));
+                                              .deliveryMainInformation(DeliveryMainInformationParams(
+                                                  fName:
+                                                      firstNameController.text,
+                                                  lName:
+                                                      lastNameController.text,
+                                                  whatsApp: whatsAppNumber
+                                                      ?.getFieldPhoneNumber
+                                                      .number,
+                                                  codeWhatsapp: whatsAppNumber
+                                                      ?.getFieldPhoneNumber
+                                                      .countryCode,
+                                                  image: image.value,
+                                                  gender: gender.value,
+                                                  isUpdate: true));
                                         }
                                       });
                                 },

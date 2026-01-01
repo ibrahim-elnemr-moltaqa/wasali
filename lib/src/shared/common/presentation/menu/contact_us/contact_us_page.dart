@@ -6,8 +6,20 @@ import 'package:wasli/core/core.dart';
 import 'package:wasli/core/utils/extensions/widget_ext.dart';
 import 'package:wasli/core/utils/share_and_url_launch/popular_sites/popular_sites_utils.dart';
 import 'package:wasli/material/app_fail_widget.dart';
+import 'package:wasli/material/app_loading_widget.dart';
+import 'package:wasli/material/buttons/app_button.dart';
+import 'package:wasli/material/inputs/app_text_form_field.dart';
+import 'package:wasli/material/inputs/email_field.dart';
+import 'package:wasli/material/inputs/intel_phone/phone_field.dart';
+import 'package:wasli/material/inputs/name_field.dart';
 import 'package:wasli/material/media/svg_icon.dart';
+import 'package:wasli/material/overlay/show_dialog.dart';
 import 'package:wasli/material/spin_kit_loading_widget.dart';
+import 'package:wasli/material/toast/app_toast.dart';
+import 'package:wasli/src/shared/auth/domain/entities/user_entity.dart';
+import 'package:wasli/src/shared/common/data/enum/role_enum.dart';
+import 'package:wasli/src/shared/common/domain/use_cases/menu/send_contact_us_message_use_case.dart';
+import 'package:wasli/src/shared/common/presentation/drop_downs/drop_down.dart';
 import 'package:wasli/src/shared/common/presentation/widget/custom_app_bar.dart';
 
 import '../../../domain/entity/menu/contact_us_entity.dart';
@@ -63,26 +75,38 @@ class _ContactUsBody extends StatefulWidget {
 }
 
 class __ContactUsBodyState extends State<_ContactUsBody> {
-  // final _nameController = TextEditingController();
-  // final _emailController = TextEditingController();
-  // final _phoneController = TextEditingController();
-  // PhoneEntity? _phoneEntity;
-  // final _messageContentController = TextEditingController();
-  // final _formKey = GlobalKey<FormState>();
-  // ContactUsMessageType? messageType;
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  PhoneEntity? _phoneEntity;
+  final _messageContentController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  ContactUsMessageType? messageType;
 
-  // void _onSendMessage() {
-  //   final isValidForm = _formKey.currentState?.validate() ?? false;
-  //   if (isValidForm && messageType != null) {
-  //     ContactUsCubit.of(context).sendMessage(SendContactUsMessageParams(
-  //       email: _emailController.text,
-  //       name: _nameController.text,
-  //       phone: _phoneEntity!,
-  //       type: messageType!,
-  //       message: _messageContentController.text,
-  //     ));
-  //   }
-  // }
+  late final RoleEnum? profileRole;
+
+  @override
+  void initState() {
+    super.initState();
+    final state = AppAuthenticationBloc.of(context).state;
+    if (state is AuthAuthenticatedState) {
+      final role = state.role;
+      profileRole = role;
+    }
+  }
+
+  void _onSendMessage() {
+    final isValidForm = _formKey.currentState?.validate() ?? false;
+    if (isValidForm && messageType != null) {
+      ContactUsCubit.of(context).sendMessage(SendContactUsMessageParams(
+        email: _emailController.text,
+        name: _nameController.text,
+        phone: _phoneEntity!,
+        type: messageType!,
+        message: _messageContentController.text,
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,30 +201,130 @@ class __ContactUsBodyState extends State<_ContactUsBody> {
           ],
         ),
         const SizedBox(height: 20),
-        _CardWidget(
-          title: appLocalizer.socialMedia,
-          children: [
-            Wrap(
-              spacing: 23,
-              runSpacing: 23,
-              children: widget.data.getSocialLinks.map(
-                (url) {
-                  return PopularSitesLinksUtils(url).builder(
-                    context,
-                    (url, launchFun, siteWidget) {
-                      return _TileWidget(children: [
-                        GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: launchFun,
-                            child: siteWidget),
-                      ]);
-                    },
-                  );
-                },
-              ).toList(),
+        if (profileRole != null && profileRole == RoleEnum.provider) ...{
+          BlocListener<ContactUsCubit, ContactUsState>(
+            listener: (context, state) async {
+              if (state.sendMessageState.isSuccess) {
+                AppLoadingWidget.removeOverlay();
+                await _SuccessDialog.show(context);
+                if (context.mounted) {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                }
+              } else if (state.sendMessageState.isLoading) {
+                AppLoadingWidget.overlay();
+              } else if (state.sendMessageState.isFailure) {
+                AppLoadingWidget.removeOverlay();
+                AppToasts.error(context,
+                    message: state.sendMessageState.errorMessage ?? '');
+              }
+            },
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _CardWidget(
+                    title: appLocalizer.sendMessage,
+                    // iconPath: AppIcons.message,
+                    children: [
+                      NameField(
+                        label: appLocalizer.name,
+                        controller: _nameController,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      EmailField(
+                        controller: _emailController,
+                      ),
+                      const SizedBox(height: 12),
+                      IntelPhoneField(
+                        label: appLocalizer.phoneNumber,
+                        controller: _phoneController,
+                        onChange: (phoneNumber) =>
+                            _phoneEntity = phoneNumber.getPhoneEntity,
+                      ),
+                      const SizedBox(height: 12),
+                      AppSingleDropDown(
+                        borderRadius: 12,
+                        value: messageType,
+                        itemDisplay: (displayValue) => displayValue?.title,
+                        title: appLocalizer.messageType,
+                        hint: appLocalizer.selectMessageType,
+                        items: ContactUsMessageType.values,
+                        suffixIconPath: AppIcons.arrowDown2Ic,
+                        onChanged: (value) {
+                          setState(() {
+                            messageType = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      AppTextFormField(
+                        controller: _messageContentController,
+                        minLines: 5,
+                        maxLines: 7,
+                        label: appLocalizer.message,
+                        hintText: appLocalizer.writeHere,
+                        validate: (text) {
+                          return Validator(text).defaultValidator;
+                        },
+                        // prefixIcon: const Align(
+                        //     heightFactor: 5,
+                        //     alignment: Alignment.topCenter,
+                        //     child: AppSvgIcon(path: AppIcons.message)),
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      BlocSelector<ContactUsCubit, ContactUsState, Async<void>>(
+                        selector: (state) => state.sendMessageState,
+                        builder: (context, state) {
+                          return AppButton(
+                            text: appLocalizer.send,
+                            isLoading: state.isLoading,
+                            onPressed: _onSendMessage,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const SizedBox(height: 50),
+                ],
+              ),
             ),
-          ],
-        )
+          ),
+        } else ...{
+          _CardWidget(
+            title: appLocalizer.socialMedia,
+            children: [
+              Wrap(
+                spacing: 23,
+                runSpacing: 23,
+                children: widget.data.getSocialLinks.map(
+                  (url) {
+                    return PopularSitesLinksUtils(url).builder(
+                      context,
+                      (url, launchFun, siteWidget) {
+                        return _TileWidget(children: [
+                          GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: launchFun,
+                              child: siteWidget),
+                        ]);
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+            ],
+          )
+        }
       ],
     );
   }
@@ -311,137 +435,38 @@ class _TileWidget extends StatelessWidget {
   }
 }
 
-// return BlocListener<ContactUsCubit, ContactUsState>(
-    //   listener: (context, state) async {
-    //     if (state.sendMessageState.isSuccess) {
-    //       AppLoadingWidget.removeOverlay();
-    //       await _SuccessDialog.show(context);
-    //       if (context.mounted) {
-    //         Navigator.of(context).popUntil((route) => route.isFirst);
-    //       }
-    //     } else if (state.sendMessageState.isLoading) {
-    //       AppLoadingWidget.overlay();
-    //     } else if (state.sendMessageState.isFailure) {
-    //       AppLoadingWidget.removeOverlay();
-    //       AppToasts.error(context,
-    //           message: state.sendMessageState.errorMessage ?? '');
-    //     }
-    //   },
-    //   child: Form(
-    //     key: _formKey,
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         _CardWidget(
-    //           title: appLocalizer.sendMessage,
-    //           iconPath: AppIcons.message,
-    //           children: [
-    //             NameField(
-    //               label: appLocalizer.name,
-    //               controller: _nameController,
-    //             ),
-    //             const SizedBox(
-    //               height: 12,
-    //             ),
-    //             EmailField(
-    //               controller: _emailController,
-    //             ),
-    //             const SizedBox(height: 12),
-    //             IntelPhoneField(
-    //               label: appLocalizer.phoneNumber,
-    //               controller: _phoneController,
-    //               onChange: (phoneNumber) =>
-    //                   _phoneEntity = phoneNumber.getPhoneEntity,
-    //             ),
-    //             const SizedBox(height: 12),
-    //             AppSingleDropDown(
-    //               borderRadius: 12,
-    //               value: messageType,
-    //               itemDisplay: (displayValue) => displayValue?.title,
-    //               title: appLocalizer.messageType,
-    //               hint: appLocalizer.selectMessageType,
-    //               items: ContactUsMessageType.values,
-    //               suffixIconPath: AppIcons.arrowDown2Ic,
-    //               onChanged: (value) {
-    //                 setState(() {
-    //                   messageType = value;
-    //                 });
-    //               },
-    //             ),
-    //             const SizedBox(
-    //               height: 12,
-    //             ),
-    //             AppTextFormField(
-    //               controller: _messageContentController,
-    //               minLines: 5,
-    //               maxLines: 7,
-    //               label: appLocalizer.message,
-    //               hintText: appLocalizer.writeHere,
-    //               validate: (text) {
-    //                 return Validator(text).defaultValidator;
-    //               },
-    //               // prefixIcon: const Align(
-    //               //     heightFactor: 5,
-    //               //     alignment: Alignment.topCenter,
-    //               //     child: AppSvgIcon(path: AppIcons.message)),
-    //             ),
-    //             const SizedBox(
-    //               height: 32,
-    //             ),
-    //             BlocSelector<ContactUsCubit, ContactUsState, Async<void>>(
-    //               selector: (state) => state.sendMessageState,
-    //               builder: (context, state) {
-    //                 return AppButton(
-    //                   text: appLocalizer.send,
-    //                   isLoading: state.isLoading,
-    //                   onPressed: _onSendMessage,
-    //                 );
-    //               },
-    //             ),
-    //           ],
-    //         ),
-    //         const SizedBox(
-    //           height: 16,
-    //         ),
+class _SuccessDialog extends StatelessWidget {
+  const _SuccessDialog._();
+  static Future show(BuildContext context) => showAppDialog(
+        context: context,
+        child: const _SuccessDialog._(),
+      );
 
-    //         const SizedBox(height: 50),
-    //       ],
-    //     ),
-    //   ),
-    // );
-
-// class _SuccessDialog extends StatelessWidget {
-//   const _SuccessDialog();
-//   static Future show(context) => showAppDialog(
-//         context: context,
-//         child: const _SuccessDialog(),
-//       );
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Align(
-//           alignment: AlignmentDirectional.topEnd,
-//           child: IconButton(
-//             onPressed: () => AppRouter.pop(),
-//             icon: const Icon(Icons.close),
-//           ),
-//         ),
-//         AppSvgIcon(
-//           path: AppIcons.successIc,
-//         ),
-//         const SizedBox(
-//           height: 32,
-//         ),
-//         Text(
-//           appLocalizer.yourMessageSendSuccessMessage,
-//           style: TextStyles.medium16,
-//         ),
-//         const SizedBox(
-//           height: 20,
-//         ),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: AlignmentDirectional.topEnd,
+          child: IconButton(
+            onPressed: () => AppRouter.pop(),
+            icon: const Icon(Icons.close),
+          ),
+        ),
+        AppSvgIcon(
+          path: AppIcons.successIc,
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        Text(
+          appLocalizer.yourMessageSendSuccessMessage,
+          style: TextStyles.medium16,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
+    );
+  }
+}

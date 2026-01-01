@@ -18,7 +18,7 @@ class SizesRepositoryImpl implements SizesRepository {
         url: 'sizes',
         queryParameters: {
           if (name != null) 'name': name,
-          if (active != null) 'is_active': active,
+          'is_active': active,
         },
       );
       return Right(apiSizeModelFromJson(response['data']['data']));

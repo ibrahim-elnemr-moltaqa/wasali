@@ -17,6 +17,8 @@ class UserEntity extends Equatable {
   final double? lat;
   final double? lng;
   final GenderEnum? gender;
+  final String? storeName;
+  final String? storeImage;
   
 
   const UserEntity(
@@ -30,7 +32,9 @@ class UserEntity extends Equatable {
       required this.lng,
       required this.gender,
       this.fName,
-      this.lName,});
+      this.lName,
+      this.storeName,
+      this.storeImage});
 
   CacheUserEntity get mapToCacheEntity {
     return CacheUserEntity(
@@ -41,7 +45,11 @@ class UserEntity extends Equatable {
         whatsApp: whatsApp,
         gender: gender?.name,
         fName: fName,
-        lName: lName,);
+        lName: lName,
+        lat: lat,
+        lng: lng,
+        storeName: storeName,
+        storeImage: storeImage);
   }
 
   @override
@@ -57,6 +65,10 @@ class UserEntity extends Equatable {
         gender,
         fName,
         lName,
+        storeName,
+        storeImage,
+        lat,
+        lng,
       ];
 }
 

@@ -10,6 +10,10 @@ class CacheUserModel extends CacheUserEntity {
     super.gender,
     super.fName,
     super.lName,
+    super.lat,
+    super.lng,
+    super.storeName,
+    super.storeImage,
   });
 
   CacheUserModel.fromEntity(CacheUserEntity entity)
@@ -22,6 +26,10 @@ class CacheUserModel extends CacheUserEntity {
           gender: entity.gender,
           fName: entity.fName,
           lName: entity.lName,
+          lat: entity.lat,
+          lng: entity.lng,
+          storeName: entity.storeName,
+          storeImage: entity.storeImage,
         );
 
   factory CacheUserModel.fromJson(String tokenJson) {
@@ -35,6 +43,10 @@ class CacheUserModel extends CacheUserEntity {
       gender: encodedMap[_kCacheGenderKey],
       fName: encodedMap[_kCacheFNameKey],
       lName: encodedMap[_kCacheLNameKey],
+      lat: encodedMap[_kCacheLatKey],
+      lng: encodedMap[_kCacheLngKey],
+      storeName: encodedMap[_kCacheStoreNameKey],
+      storeImage: encodedMap[_kCacheStoreImageKey],
     );
   }
 
@@ -46,7 +58,11 @@ class CacheUserModel extends CacheUserEntity {
         _kCacheWhatsAppObjectKey: whatsApp.toMap,
         _kCacheGenderKey: gender,
         _kCacheFNameKey: fName,
-        _kCacheLNameKey: lName
+        _kCacheLNameKey: lName,
+        _kCacheLatKey: lat,
+        _kCacheLngKey: lng,
+        _kCacheStoreNameKey: storeName,
+        _kCacheStoreImageKey: storeImage
       };
 
   String get toJson => json.encode(toMap);
@@ -62,3 +78,7 @@ const String _kCacheGenderKey = "kCacheGenderKey";
 
 const String _kCacheFNameKey = "kCacheFNameKey";
 const String _kCacheLNameKey = "kCacheLNameKey";
+const String _kCacheLatKey = "kCacheLatKey";
+const String _kCacheLngKey = "kCacheLngKey";
+const String _kCacheStoreNameKey = "kCacheStoreNameKey";
+const String _kCacheStoreImageKey = "kCacheStoreImageKey";

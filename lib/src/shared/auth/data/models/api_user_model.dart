@@ -17,6 +17,8 @@ class ApiUserModel extends UserEntity {
     super.gender,
     super.fName,
     super.lName,
+    super.storeName,
+    super.storeImage,
   });
   factory ApiUserModel.example() => const ApiUserModel(
       id: 0,
@@ -50,6 +52,12 @@ class ApiUserModel extends UserEntity {
             : GenderEnum.fromApiValue(json["gender"]),
         fName: json["first_name"],
         lName: json["last_name"],
+        storeName: json["strore_data"] != null
+            ? json["strore_data"]["name"] as String?
+            : null,
+        storeImage: json["strore_data"] != null
+            ? json["strore_data"]["image"] as String?
+            : null,
       );
 }
 

@@ -14,7 +14,9 @@ class SizesDropDownCubit extends DropDownCubit<SizeEntity> {
   void fetch() async {
     if (state.isSuccess) return;
     emit(const Async.loading());
-    final result = await _getSizesUseCase(ManagementFetchParams());
+    final result = await _getSizesUseCase(const ManagementFetchParams(
+      active: 1,
+    ));
     result.fold(
       (failer) {
         emit(Async.failure(failer));
