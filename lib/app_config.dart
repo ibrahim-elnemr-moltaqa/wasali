@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wasli/src/shared/notifications/helpers/firebase/firebase_helper.dart';
 import 'core/blocs/theme_notifier/theme_notifier.dart';
 // import 'src/notifications/helpers/firebase/firebase_helper.dart';
 import 'core/di/di.dart';
@@ -20,7 +21,7 @@ Future<void> initializeAppConfig() async {
   await initializeDependencies();
 
   // Initialize Firebase services.
-  // await FirebaseHelper.init();
+  await FirebaseHelper.init();
 
   // To increase image cache size
   PaintingBinding.instance.imageCache.maximumSizeBytes = 250 << 20;

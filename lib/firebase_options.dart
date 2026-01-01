@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBfdxrbW6UIgRLC_V8C2_prQD9xG91OIxo',
-    appId: '1:683348192308:android:b417203583b1f77b852e61',
-    messagingSenderId: '683348192308',
-    projectId: 'remotly-2025',
-    storageBucket: 'remotly-2025.firebasestorage.app',
+    apiKey: 'AIzaSyBhjSobEDLExux4aemaVwSq8rn-CXpmOLs',
+    appId: '1:589129273056:android:c6658e9174aaf64dccca85',
+    messagingSenderId: '589129273056',
+    projectId: 'wasli-93ae3',
+    storageBucket: 'wasli-93ae3.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDKKtJ9gGVcWkc6mRw316e8LXB8NUSsy5c',
-    appId: '1:683348192308:ios:8b41a81c0403fe80852e61',
-    messagingSenderId: '683348192308',
-    projectId: 'remotly-2025',
-    storageBucket: 'remotly-2025.firebasestorage.app',
-    iosBundleId: 'com.moltaqa.remotly',
+    apiKey: 'AIzaSyBnsvqsql-fP3_FmBA2qqj7-kU8PL5eyfo',
+    appId: '1:589129273056:ios:c83e58ae168b88b3ccca85',
+    messagingSenderId: '589129273056',
+    projectId: 'wasli-93ae3',
+    storageBucket: 'wasli-93ae3.firebasestorage.app',
+    iosBundleId: 'com.moltaqa.wasali',
   );
+
 }
